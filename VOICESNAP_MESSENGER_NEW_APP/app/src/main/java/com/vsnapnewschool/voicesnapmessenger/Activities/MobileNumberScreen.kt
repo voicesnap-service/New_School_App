@@ -3,7 +3,7 @@ package com.vsnapnewschool.voicesnapmessenger.Activities
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.View
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.Util_shared_preferences
@@ -27,7 +27,7 @@ class MobileNumberScreen : BaseActivity(), View.OnClickListener {
             R.id.btnNext -> {
                 if (txtPhoneNumber.text.length == mobileLength) {
                     Util_shared_preferences.putMobileNumber(this,  txtPhoneNumber?.text.toString())
-                    APIServices.checkMobileNumber(this)
+                    SchoolAPIServices.checkMobileNumber(this)
                 } else {
                     UtilConstants.normalToast(this, "Enter valid mobile number")
                 }

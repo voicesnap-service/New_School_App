@@ -2,19 +2,11 @@ package com.vsnapnewschool.voicesnapmessenger.Activities
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.PopupWindow
-import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentLanguageAdapter
-import com.vsnapnewschool.voicesnapmessenger.Models.ImageClass
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
-import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.IsAdmin
-import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.IsGroupHead
-import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.IsParent
-import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.IsPrincipal
-import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.IsStaff
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.Util_shared_preferences
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
 import kotlinx.android.synthetic.main.activity_profile.view.*
@@ -23,7 +15,6 @@ import kotlinx.android.synthetic.main.parent_activity_settings_screen.Logout
 import kotlinx.android.synthetic.main.parent_bottom_menus.*
 import kotlinx.android.synthetic.main.parent_settings_scroll.*
 import kotlinx.android.synthetic.main.popup_changepassword.view.*
-import java.util.*
 
 class SettingScreen : BaseActivity(), View.OnClickListener {
     var recipientpopup: PopupWindow? = null
@@ -93,7 +84,7 @@ class SettingScreen : BaseActivity(), View.OnClickListener {
             }
             R.id.Logout -> {
                 Util_shared_preferences.putUserLoggedIn(this, false)
-                APIServices.logoutFromSameDevice(this)
+                SchoolAPIServices.logoutFromSameDevice(this)
             }
             R.id.imgTeacherChat -> {
 

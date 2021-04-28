@@ -31,6 +31,8 @@ class ParentEvents : BaseActivity(),View.OnClickListener  {
         imgSettings?.setOnClickListener(this)
         parent_bottom_layout.visibility= View.VISIBLE
         ImageLength()
+
+
         eventsAdapter = ParentEventsAdapter(menulist, this,true, object : eventsparentListener {
             override fun oneventClick(holder: ParentEventsAdapter.MyViewHolder, text_info: EventsImageClass) {
                 holder.imgEventsImage.setOnClickListener({

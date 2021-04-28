@@ -12,7 +12,7 @@ import com.vsnapnewschool.voicesnapmessenger.BioMetric.BiometricCallback
 import com.vsnapnewschool.voicesnapmessenger.BioMetric.BiometricDialogV23
 import com.vsnapnewschool.voicesnapmessenger.BioMetric.BiometricManager
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.GenerateOtpCallBack
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.OtpData
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
@@ -99,10 +99,10 @@ class SignInScreen : BaseActivity(), View.OnClickListener, GenerateOtpCallBack {
                 val mobileNumber:String?=Util_shared_preferences.getMobileNumber(this@SignInScreen)
                 val password:String?=Util_shared_preferences.getPassword(this@SignInScreen)
                 if(!token!!.isEmpty()){
-                    APIServices.validateLoginToken(this@SignInScreen, mobileNumber, password, false)
+                    SchoolAPIServices.validateLoginToken(this@SignInScreen, mobileNumber, password, false)
                 }
                 else{
-                    APIServices.generateNewLoginToken(this@SignInScreen, mobileNumber, password)
+                    SchoolAPIServices.generateNewLoginToken(this@SignInScreen, mobileNumber, password)
                 }
 
             }
@@ -143,7 +143,7 @@ class SignInScreen : BaseActivity(), View.OnClickListener, GenerateOtpCallBack {
             }
             R.id.lblForgotPassword -> {
                 if (txtPhoneNumber.text.toString().length == mobileLength) {
-                    APIServices.generateOTP(this, "forgot", txtPhoneNumber.text.toString(),this)
+                    SchoolAPIServices.generateOTP(this, "forgot", txtPhoneNumber.text.toString(),this)
                 } else {
                     UtilConstants.normalToast(this, "Enter valid mobile number")
                 }
@@ -158,10 +158,10 @@ class SignInScreen : BaseActivity(), View.OnClickListener, GenerateOtpCallBack {
             if(Password?.isNotEmpty() == true){
                 val token:String?=Util_shared_preferences.getLoginToken(this)
                 if(token?.isNotEmpty() == true){
-                    APIServices.validateLoginToken(this, MobileNumber, Password, false)
+                    SchoolAPIServices.validateLoginToken(this, MobileNumber, Password, false)
                 }
                 else{
-                    APIServices.generateNewLoginToken(this, MobileNumber, Password)
+                    SchoolAPIServices.generateNewLoginToken(this, MobileNumber, Password)
                 }
             }
             else{

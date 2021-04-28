@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.Util_shared_preferences
@@ -54,7 +54,7 @@ class SetNewPasswordScreen : BaseActivity(), View.OnClickListener {
             R.id.btnConfirmPassword -> {
                 Util_shared_preferences.putPasswordScreen(this,true)
                 if(txtNewPassword?.text.toString().equals(txtConfirmpassword?.text.toString())){
-                    APIServices.setNewPassword(this,txtConfirmpassword?.text.toString(),MobileNumber)
+                    SchoolAPIServices.setNewPassword(this,txtConfirmpassword?.text.toString(),MobileNumber)
                 }
                 else{
                     UtilConstants.normalToast(this,"Enter the correct password")

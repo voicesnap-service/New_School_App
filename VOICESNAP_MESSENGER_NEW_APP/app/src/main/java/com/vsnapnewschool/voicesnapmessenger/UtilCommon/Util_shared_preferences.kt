@@ -3,8 +3,9 @@ package com.vsnapnewschool.voicesnapmessenger.UtilCommon
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import com.vsnapnewschool.voicesnapmessenger.Activities.CombinationHomeScreen
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.ChildDetailData
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.CountryData
-import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.LoginData
 
 class Util_shared_preferences {
     companion object {
@@ -43,13 +44,62 @@ class Util_shared_preferences {
         var RazorpayApiKey: String? = "RazorpayApiKey"
         var ChildVisible: String? = "ChildVisible"
         var ChildMonthVisible: String? = "ChildMonthVisible"
-
         var userLoggedIn: String? = "userLoggedIn"
         var fingerCheckLoggedIn: String? = "fingerCheckLoggedIn"
         var MobileNumberScreen: String? = "MobileNumberScreen"
         var MemberType: String? = "MemberType"
         var ModuleType: String? = "ModuleType"
         var VoiceHistory: Boolean = false
+
+        var StudentName: String? = "StudentName"
+        var StudentSchoolID: String? = "StudentSchoolID"
+        var StudentID: String? = "StudentID"
+        var StudentClassID: String? = "StudentClassID"
+        var StudentSectionID: String? = "StudentSectionID"
+
+
+
+        fun putChildInfo(activity: Activity?, child_info: ChildDetailData) {
+            val sharedPreferences: SharedPreferences =
+                activity!!.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString(StudentName, child_info.child_name)
+            editor.putString(StudentSchoolID, child_info.school_id)
+            editor.putString(StudentID, child_info.child_id)
+            editor.putString(StudentClassID, child_info.child_id)
+            editor.putString(StudentSectionID, child_info.child_id)
+            editor.commit()
+        }
+
+        fun getStudentName(activity: Activity?): String? {
+            val member = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+                ?.getString(StudentName, "")
+            return member
+        }
+
+        fun getStudentID(activity: Activity?): String? {
+            val member = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+                ?.getString(StudentID, "")
+            return member
+        }
+
+        fun getStudentSchoolID(activity: Activity?): String? {
+            val member = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+                ?.getString(StudentSchoolID, "")
+            return member
+        }
+
+        fun getStudentClassID(activity: Activity?): String? {
+            val member = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+                ?.getString(StudentClassID, "")
+            return member
+        }
+
+        fun getStudentSectionID(activity: Activity?): String? {
+            val member = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+                ?.getString(StudentSectionID, "")
+            return member
+        }
 
 
         fun putMemberType(context: Context?, type: String?) {
@@ -122,6 +172,8 @@ class Util_shared_preferences {
                 ?.getBoolean(userLoggedIn, false)
             return name
         }
+
+
 
         fun putUserMobileandPassword(activity: Activity?, number: String?, password: String?) {
             val sharedPreferences: SharedPreferences =

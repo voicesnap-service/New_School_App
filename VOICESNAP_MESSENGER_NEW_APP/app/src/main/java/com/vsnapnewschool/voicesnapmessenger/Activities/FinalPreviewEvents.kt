@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentImageAdapter
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.imageListener
-import com.vsnapnewschool.voicesnapmessenger.Models.EventsImageClass
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.SelcetedFileList
@@ -20,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_final_preview_events.*
 import kotlinx.android.synthetic.main.activity_image_grid.recyleImages
 import kotlinx.android.synthetic.main.scroll_preview_events.*
 import kotlinx.android.synthetic.main.scroll_preview_voice.*
-import okhttp3.internal.Util
 
 class FinalPreviewEvents : BaseActivity(), View.OnClickListener {
     var imageadapter: ParentImageAdapter? = null

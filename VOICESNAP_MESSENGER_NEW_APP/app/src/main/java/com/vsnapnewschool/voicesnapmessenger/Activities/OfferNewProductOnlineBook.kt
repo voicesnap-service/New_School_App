@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.ReturnGlobalValue
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_IMPORTANT_INFO
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_ONLINE_TEXT_BOOK
@@ -27,15 +27,15 @@ class OfferNewProductOnlineBook: BaseActivity(), ReturnGlobalValue {
         MobileNumber= Util_shared_preferences.getMobileNumber(this)
         if(MENU_TYPE == MENU_IMPORTANT_INFO ){
             setTitle("Important Info")
-            APIServices.getGlobalValues(this, "offers_link", this)
+            SchoolAPIServices.getGlobalValues(this, "offers_link", this)
         }
         else if(MENU_TYPE == MENU_ONLINE_TEXT_BOOK){
             setTitle("Online Text Book")
-            APIServices.getGlobalValues(this, "online_textbooklink", this)
+            SchoolAPIServices.getGlobalValues(this, "online_textbooklink", this)
         }
         else if(MENU_TYPE == MENU_OTHER_SERVICES){
             setTitle("Other Services")
-            APIServices.getGlobalValues(this, "new_product_link", this)
+            SchoolAPIServices.getGlobalValues(this, "new_product_link", this)
         }
 
     }

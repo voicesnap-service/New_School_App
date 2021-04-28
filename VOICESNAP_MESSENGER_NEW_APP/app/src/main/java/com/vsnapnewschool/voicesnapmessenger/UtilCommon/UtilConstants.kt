@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vsnapnewschool.voicesnapmessenger.Activities.*
 import com.vsnapnewschool.voicesnapmessenger.Adapters.ForgotDialNumbers
 import com.vsnapnewschool.voicesnapmessenger.Models.*
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.R.layout.*
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.*
@@ -59,8 +58,8 @@ class UtilConstants {
 
         //Parent menus
 
-        var PARENT_MENU_EMERGENCY: Int? = 200
-        var PARENT_MENU_COMMUNICATION: Int? = 201
+        var PARENT_MENU_VOICE: Int? = 200
+        var PARENT_MENU_TEXT: Int? = 201
         var PARENT_MENU_HOMEWORK: Int? = 202
         var PARENT_MENU_EXAM_TEST: Int? = 203
         var PARENT_MENU_EXAM_MARKS: Int? = 204
@@ -219,10 +218,6 @@ class UtilConstants {
             lblMessage.setText(msg)
             lblClose.setOnClickListener {
                 popupWindow.dismiss()
-                val intent = Intent(activity, SchoolHomeScreen::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                activity?.startActivity(intent)
             }
             popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
         }
@@ -251,7 +246,7 @@ class UtilConstants {
             lblMessage.setText(message)
             lblClose.setOnClickListener {
                 popupWindow.dismiss()
-                APIServices.logoutfromOtherDevice(activity, mobileNumber, password)
+                SchoolAPIServices.logoutfromOtherDevice(activity, mobileNumber, password)
             }
             popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
         }
@@ -289,11 +284,10 @@ class UtilConstants {
 
         private fun entireSchoolApi(activity: Activity) {
             if (MENU_TYPE == MENU_TEXT) {
-                APIServices.sendTextToEntireSchool(activity)
+                SchoolAPIServices.sendTextToEntireSchool(activity)
             } else if (MENU_TYPE == MENU_VOICE) {
-                APIServices.sendNonEmergencyVoiceToEntireSchool(activity)
+                SchoolAPIServices.sendNonEmergencyVoiceToEntireSchool(activity)
             } else if ((MENU_TYPE == MENU_EVENTS) || (MENU_TYPE == MENU_IMGAE_PDF) || (MENU_TYPE == MENU_PDF_UPLOAD) || (MENU_TYPE == MENU_NOTICEBOARD)) {
-                Log.d("testType", MENU_TYPE.toString())
                 val baseActivity: BaseActivity
                 baseActivity = BaseActivity()
                 baseActivity?.awsFileUpload(activity, 0)
@@ -326,7 +320,6 @@ class UtilConstants {
             val txtEdit4 = view.findViewById<EditText>(R.id.txtEdit4)
 
             val imgNext = view.findViewById<ImageView>(R.id.imgNext)
-
             textWatcher(activity, txtEdit1, txtEdit2, txtEdit3, txtEdit4)
 
             lblClickHere.setText(otpData.more_info)
@@ -350,7 +343,7 @@ class UtilConstants {
                     txtEdit1.text.toString() + txtEdit2.text.toString() + txtEdit3.text.toString() + txtEdit4.text.toString()
                 if (!otp!!.isEmpty()) {
                     popupWindow.dismiss()
-                    APIServices.validateOTP(activity, MobileNumber, otp)
+                    SchoolAPIServices.validateOTP(activity, MobileNumber, otp)
                 } else {
                     normalToast(activity, "Enter the OTP")
                 }
@@ -392,6 +385,7 @@ class UtilConstants {
         }
 
         fun exitApplicationAlert(activity: Activity) {
+
             val inflater: LayoutInflater =
                 activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view: View = inflater.inflate(exit_application_alert, null)
@@ -411,7 +405,6 @@ class UtilConstants {
             lblMessage.setText(activity.getString(R.string.exit_app))
             lblClose.setOnClickListener {
                 popupWindow.dismiss()
-
                 activity.moveTaskToBack(true);
                 exitProcess(-1)
 
@@ -1142,10 +1135,11 @@ class UtilConstants {
 
         fun openParentMenuScreens(activity: Activity?) {
 
-            if (PARENT_MENU_TYPE == PARENT_MENU_EMERGENCY) {
-                parentCommunicationActivity(activity)
-            } else if (PARENT_MENU_TYPE == PARENT_MENU_COMMUNICATION) {
-                parentCommunicationActivity(activity)
+            if (PARENT_MENU_TYPE == PARENT_MENU_VOICE) {
+                parentVoiceCommunicationView(activity)
+            } else if (PARENT_MENU_TYPE == PARENT_MENU_TEXT) {
+                parentTextMessageView(activity)
+
             } else if (PARENT_MENU_TYPE == PARENT_MENU_HOMEWORK) {
                 parentHomeworkActivity(activity)
             } else if (PARENT_MENU_TYPE == PARENT_MENU_EXAM_TEST) {

@@ -39,12 +39,12 @@ class ParentCommunication : BaseActivity(),View.OnClickListener {
             override fun oncommunicationClick(holder: ParentCommunicationAdapter.MyViewHolder, text_info: Text_Class) {
                 holder.communication.setOnClickListener({
 
-                    if(UtilConstants.PARENT_MENU_TYPE == UtilConstants.PARENT_MENU_EMERGENCY){
-                        UtilConstants.parentVoiceCommunicationView(this@ParentCommunication)
-                    }
-                    else if(UtilConstants.PARENT_MENU_TYPE == UtilConstants.PARENT_MENU_COMMUNICATION){
-                        UtilConstants.parentTextMessageView(this@ParentCommunication)
-                    }
+//                    if(UtilConstants.PARENT_MENU_TYPE == UtilConstants.PARENT_MENU_VOICE){
+//                        UtilConstants.parentVoiceCommunicationView(this@ParentCommunication)
+//                    }
+//                    else if(UtilConstants.PARENT_MENU_TYPE == UtilConstants.PARENT_MENU_TEXT){
+//                        UtilConstants.parentTextMessageView(this@ParentCommunication)
+//                    }
 
                 })
 

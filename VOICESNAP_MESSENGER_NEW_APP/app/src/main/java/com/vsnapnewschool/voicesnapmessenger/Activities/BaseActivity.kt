@@ -42,7 +42,7 @@ import com.vsnapnewschool.voicesnapmessenger.Adapters.ImageSliderAdapter
 import com.vsnapnewschool.voicesnapmessenger.Adapters.RecipientsAdapter
 import com.vsnapnewschool.voicesnapmessenger.Models.AWSUploadedFiles
 import com.vsnapnewschool.voicesnapmessenger.Models.SliderItem
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.AWSUploadedFilesList
@@ -428,8 +428,6 @@ open class BaseActivity : AppCompatActivity() {
                         ReadAndWriteFile(uri, extension!!)
 
                     }
-
-
                 }
             } else if (requestCode == REQUEST_Video) {
                 if (data != null) {
@@ -601,54 +599,54 @@ open class BaseActivity : AppCompatActivity() {
                                 if (SelcetedFileList.size == AWSUploadedFilesList.size) {
                                     if (MENU_TYPE == MENU_EVENTS) {
                                         if (UtilConstants.RecipientsType == UtilConstants.EntireSchool) {
-                                            APIServices.sendEventsToEntireSchool(activity)
+                                            SchoolAPIServices.sendEventsToEntireSchool(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.StandardSection) {
-                                            APIServices.sendEventsToStdGrpStaffStudSection(activity)
+                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Standard) {
-                                            APIServices.sendEventsToStdGrpStaffStudSection(activity)
+                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Students) {
-                                            APIServices.sendEventsToStdGrpStaffStudSection(activity)
+                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Staff) {
-                                            APIServices.sendEventsToStdGrpStaffStudSection(activity)
+                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Group) {
-                                            APIServices.sendEventsToStdGrpStaffStudSection(activity)
+                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(activity)
                                         }
 
                                     } else if ((MENU_TYPE == MENU_IMGAE_PDF) || (MENU_TYPE == MENU_PDF_UPLOAD)) {
                                         if (UtilConstants.RecipientsType == UtilConstants.EntireSchool) {
-                                            APIServices.sendFilesToEntireSchool(activity)
+                                            SchoolAPIServices.sendFilesToEntireSchool(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.StandardSection) {
-                                            APIServices.sendFilesTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendFilesTostudentGrpStaffSec(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Standard) {
-                                            APIServices.sendFilesTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendFilesTostudentGrpStaffSec(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Students) {
-                                            APIServices.sendFilesTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendFilesTostudentGrpStaffSec(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Staff) {
-                                            APIServices.sendFilesTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendFilesTostudentGrpStaffSec(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Group) {
-                                            APIServices.sendFilesTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendFilesTostudentGrpStaffSec(activity)
                                         }
 
                                     } else if (MENU_TYPE == MENU_NOTICEBOARD) {
                                         if (UtilConstants.RecipientsType == UtilConstants.EntireSchool) {
-                                            APIServices.sendNoticeboardToEntireSchool(activity)
+                                            SchoolAPIServices.sendNoticeboardToEntireSchool(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.StandardSection) {
-                                            APIServices.sendNoticeboardTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Standard) {
-                                            APIServices.sendNoticeboardTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Students) {
-                                            APIServices.sendNoticeboardTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Staff) {
-                                            APIServices.sendNoticeboardTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Group) {
-                                            APIServices.sendNoticeboardTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(activity)
                                         }
 
                                     } else if (MENU_TYPE == MENU_VOICE_HOMEWORK) {
-                                        APIServices.sendHomeWork(activity)
+                                        SchoolAPIServices.sendHomeWork(activity)
 
                                     } else if (MENU_TYPE == MENU_ASSIGNMENT) {
-                                        APIServices.sendAssignment(activity)
+                                        SchoolAPIServices.sendAssignment(activity)
 
                                     }
                                 }

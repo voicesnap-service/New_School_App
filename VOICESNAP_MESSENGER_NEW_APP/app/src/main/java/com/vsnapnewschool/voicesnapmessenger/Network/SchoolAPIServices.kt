@@ -3,12 +3,8 @@
 package com.vsnapnewschool.voicesnapmessenger.Network
 
 import android.app.Activity
-import android.content.Context
 import android.provider.Settings
 import android.util.Log
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -52,9 +48,8 @@ import retrofit2.Response
 import java.io.File
 import java.util.*
 
-object APIServices {
+object SchoolAPIServices {
     lateinit var call: Call<StatusMessageResponse?>
-
     fun checkMobileNumber(activity: Activity?) {
         val CountryID = Util_shared_preferences.getCountryID(activity)
         val MobileNumber = Util_shared_preferences.getMobileNumber(activity)

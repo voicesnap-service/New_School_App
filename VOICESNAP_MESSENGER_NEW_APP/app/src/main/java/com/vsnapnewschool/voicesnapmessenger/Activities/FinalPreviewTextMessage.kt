@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.Group
@@ -46,15 +46,15 @@ class FinalPreviewTextMessage : BaseActivity(), View.OnClickListener {
             R.id.btnTextPublish -> {
                 HideKeyboard_Fragment(this)
                 if (RecipientsType == Students) {
-                    APIServices.sendTextToStandardGroupStaffSectionStudents(this)
+                    SchoolAPIServices.sendTextToStandardGroupStaffSectionStudents(this)
                 } else if (RecipientsType == Standard) {
-                    APIServices.sendTextToStandardGroupStaffSectionStudents(this)
+                    SchoolAPIServices.sendTextToStandardGroupStaffSectionStudents(this)
                 } else if (RecipientsType == StandardSection) {
-                    APIServices.sendTextToStandardGroupStaffSectionStudents(this)
+                    SchoolAPIServices.sendTextToStandardGroupStaffSectionStudents(this)
                 } else if (RecipientsType == Group) {
-                    APIServices.sendTextToStandardGroupStaffSectionStudents(this)
+                    SchoolAPIServices.sendTextToStandardGroupStaffSectionStudents(this)
                 } else if (RecipientsType == Staff) {
-                    APIServices.sendTextToStandardGroupStaffSectionStudents(this)
+                    SchoolAPIServices.sendTextToStandardGroupStaffSectionStudents(this)
                 }
 
             }
