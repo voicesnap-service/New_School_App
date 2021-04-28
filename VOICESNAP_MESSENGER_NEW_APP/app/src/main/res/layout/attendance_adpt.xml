@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/twenty2_size"
+    android:id="@+id/LayoutAttendance"
+    android:background="@drawable/rectangle_grey"
+    android:padding="@dimen/dimen_five">
+
+    <Button
+        android:id="@+id/btnattendance"
+        android:layout_width="@dimen/one_thirty"
+        android:layout_height="@dimen/thirty5_size"
+        android:layout_margin="@dimen/ten_size"
+        android:background="@drawable/whitebg_curve"
+        android:text="Show attendance"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lbltime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twele_size"
+        android:padding="@dimen/dimen_two"
+        android:text="09:00 AM"
+        android:textColor="@color/white"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/lblclass"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="class"
+    android:layout_marginStart="@dimen/eight_size"
+    android:textSize="@dimen/twele_size"
+    android:textColor="@color/white"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/lbltime"
+    app:layout_constraintEnd_toStartOf="@id/lbl"/>
+
+    <TextView
+        android:id="@+id/lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" : "
+        android:textColor="@color/white"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintLeft_toRightOf="@+id/lblclass"
+        app:layout_constraintTop_toBottomOf="@id/lbltime" />
+
+    <TextView
+        android:id="@+id/lblattendanceclass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10 C"
+        android:textColor="@color/white"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintLeft_toRightOf="@+id/lbl"
+        app:layout_constraintTop_toBottomOf="@id/lbltime" />
+
+    <TextView
+        android:id="@+id/lblsubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_five"
+        android:layout_marginLeft="@dimen/dimen_two"
+        android:layout_marginEnd="@dimen/dimen_two"
+        android:text="Subject"
+        android:textColor="@color/white"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblclass" />
+
+    <TextView
+        android:id="@+id/lbl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:text=" : "
+        android:textColor="@color/white"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintLeft_toRightOf="@+id/lblsubject"
+        app:layout_constraintTop_toBottomOf="@id/lbl" />
+
+    <TextView
+        android:id="@+id/lblsubattendance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maths"
+        android:textColor="@color/white"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintStart_toEndOf="@id/lbl1"
+        app:layout_constraintTop_toBottomOf="@id/lblattendanceclass" />
+</androidx.constraintlayout.widget.ConstraintLayout>

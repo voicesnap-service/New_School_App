@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="@dimen/sixty_size"
+        android:layout_height="@dimen/sixty_size"
+        android:layout_marginStart="@dimen/twenty_size"
+        android:layout_marginTop="@dimen/fifteen_size"
+        android:background="@drawable/circle_blue_bg"
+        android:src="@drawable/settings_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblProfileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/twenty_size"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:text="Rajeswari Reddy"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imgProfile"
+        app:layout_constraintTop_toBottomOf="@+id/lblTitle"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+    <TextView
+        android:id="@+id/lblLoginAs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/twenty2_size"
+        android:text="Parent"
+        android:textColor="@color/clr_grey_light"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@+id/imgProfile"
+        app:layout_constraintTop_toBottomOf="@+id/lblProfileName" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ProfileLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twenty_size"
+        android:padding="@dimen/dimen_five"
+        app:layout_constraintStart_toStartOf="@+id/imgProfile"
+        app:layout_constraintTop_toBottomOf="@+id/imgProfile">
+
+        <TextView
+            android:id="@+id/lblProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:text="@string/txt_Profile"
+            android:textColor="@color/dark_grey_black"
+            android:textSize="@dimen/thirteen_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgRightArrow"
+            android:layout_width="@dimen/fifteen_size"
+            android:layout_height="@dimen/fifteen_size"
+            android:layout_marginEnd="@dimen/twenty_size"
+            android:layout_marginRight="@dimen/twenty_size"
+            android:padding="@dimen/dimen_two"
+            android:src="@drawable/right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewOne"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:background="@color/txt_clr_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblProfile" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ChangePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twenty_size"
+        android:padding="@dimen/dimen_five"
+        app:layout_constraintStart_toStartOf="@+id/ProfileLayout"
+        app:layout_constraintTop_toBottomOf="@+id/ProfileLayout">
+
+        <TextView
+            android:id="@+id/lblChangePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:text="@string/txt_change_password"
+            android:textColor="@color/dark_grey_black"
+            android:textSize="@dimen/thirteen_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgRightArrow1"
+            android:layout_width="@dimen/fifteen_size"
+            android:layout_height="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/twenty_size"
+            android:layout_marginRight="@dimen/twenty_size"
+            android:padding="@dimen/dimen_two"
+
+            android:src="@drawable/right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewTwo"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:background="@color/txt_clr_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblChangePassword" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Changelanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twenty_size"
+        android:padding="@dimen/dimen_five"
+        app:layout_constraintStart_toStartOf="@+id/ChangePassword"
+        app:layout_constraintTop_toBottomOf="@+id/ChangePassword">
+
+        <TextView
+            android:id="@+id/lblChangeLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@string/txt_change_language"
+            android:textColor="@color/dark_grey_black"
+            android:textSize="@dimen/thirteen_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgRightArrow2"
+            android:layout_width="@dimen/fifteen_size"
+            android:layout_height="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/twenty_size"
+            android:layout_marginRight="@dimen/twenty_size"
+            android:padding="@dimen/dimen_two"
+
+            android:src="@drawable/right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewThree"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:background="@color/txt_clr_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblChangeLanguage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/AboutUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twenty_size"
+        android:padding="@dimen/dimen_five"
+        app:layout_constraintStart_toStartOf="@+id/Changelanguage"
+        app:layout_constraintTop_toBottomOf="@+id/Changelanguage">
+
+        <TextView
+            android:id="@+id/lblAboutUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:text="@string/txt_about_us"
+            android:textColor="@color/dark_grey_black"
+            android:textSize="@dimen/thirteen_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgRightArrow4"
+            android:layout_width="@dimen/fifteen_size"
+            android:layout_height="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/dimen_four"
+            android:layout_marginEnd="@dimen/twenty_size"
+            android:layout_marginRight="@dimen/twenty_size"
+            android:padding="@dimen/dimen_two"
+            android:src="@drawable/right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewFive"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:background="@color/txt_clr_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblAboutUs" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/TermsNCondition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twenty_size"
+        android:padding="@dimen/dimen_five"
+        app:layout_constraintStart_toStartOf="@+id/AboutUs"
+        app:layout_constraintTop_toBottomOf="@+id/AboutUs">
+
+        <TextView
+            android:id="@+id/lblTermsnCondition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:text="@string/txt_terms_condition"
+            android:textColor="@color/dark_grey_black"
+            android:textSize="@dimen/thirteen_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgRightArrow5"
+            android:layout_width="@dimen/fifteen_size"
+            android:layout_height="@dimen/fifteen_size"
+            android:layout_marginEnd="@dimen/twenty_size"
+            android:layout_marginRight="@dimen/twenty_size"
+            android:padding="@dimen/dimen_two"
+            android:src="@drawable/right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewSix"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:background="@color/txt_clr_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblTermsnCondition" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ContactUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twenty_size"
+        android:padding="@dimen/dimen_five"
+        app:layout_constraintStart_toStartOf="@+id/TermsNCondition"
+        app:layout_constraintTop_toBottomOf="@+id/TermsNCondition">
+
+        <TextView
+            android:id="@+id/lblContactUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:text="@string/txt_contact_us"
+            android:textColor="@color/dark_grey_black"
+            android:textSize="@dimen/thirteen_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgRightArrow6"
+            android:layout_width="@dimen/fifteen_size"
+            android:layout_height="@dimen/fifteen_size"
+            android:layout_marginEnd="@dimen/twenty_size"
+            android:layout_marginRight="@dimen/twenty_size"
+            android:padding="@dimen/dimen_two"
+            android:src="@drawable/right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewSeven"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:background="@color/txt_clr_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblContactUs" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twenty_size"
+        android:padding="@dimen/dimen_five"
+        app:layout_constraintStart_toStartOf="@+id/ContactUs"
+        app:layout_constraintTop_toBottomOf="@+id/ContactUs">
+
+        <TextView
+            android:id="@+id/lblReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:text="@string/txt_report_error"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/thirteen_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgRightArrow7"
+            android:layout_width="@dimen/fifteen_size"
+            android:layout_height="@dimen/fifteen_size"
+            android:layout_marginEnd="@dimen/twenty_size"
+            android:layout_marginRight="@dimen/twenty_size"
+            android:padding="@dimen/dimen_two"
+            android:src="@drawable/right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewEight"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:background="@color/txt_clr_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblReport" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twenty_size"
+        android:padding="@dimen/dimen_five"
+        app:layout_constraintStart_toStartOf="@+id/Report"
+        app:layout_constraintTop_toBottomOf="@+id/Report">
+
+        <TextView
+            android:id="@+id/lblLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:text="@string/txt_logout"
+            android:textColor="@color/dark_grey_black"
+            android:textSize="@dimen/thirteen_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgRightArrow8"
+            android:layout_width="@dimen/fifteen_size"
+            android:layout_height="@dimen/fifteen_size"
+            android:layout_marginEnd="@dimen/twenty_size"
+            android:layout_marginRight="@dimen/twenty_size"
+            android:padding="@dimen/dimen_two"
+            android:src="@drawable/right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewNine"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:background="@color/txt_clr_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblLogout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ClearCache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twenty_size"
+        android:padding="@dimen/dimen_five"
+        app:layout_constraintStart_toStartOf="@+id/Logout"
+        app:layout_constraintTop_toBottomOf="@+id/Logout">
+
+        <TextView
+            android:id="@+id/lblClearCache"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:text="@string/txt_clear_cache"
+            android:textColor="@color/dark_grey_black"
+            android:textSize="@dimen/thirteen_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgRightArrow10"
+            android:layout_width="@dimen/fifteen_size"
+            android:layout_height="@dimen/fifteen_size"
+            android:layout_marginEnd="@dimen/twenty_size"
+            android:layout_marginRight="@dimen/twenty_size"
+            android:padding="@dimen/dimen_two"
+            android:src="@drawable/right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewten"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:background="@color/txt_clr_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblClearCache" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

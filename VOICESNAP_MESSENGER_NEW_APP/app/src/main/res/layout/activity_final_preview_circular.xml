@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/dimen_three"
+    android:background="@color/whitegrey"
+    android:padding="@dimen/eight_size">
+
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fourteen_size"
+        android:text="@string/lbl_title"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/lblSubject"
+        app:layout_constraintTop_toBottomOf="@+id/lblSubject" />
+
+    <TextView
+        android:id="@+id/lblCircularTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:text=""
+        android:textColor="@color/clr_txtgrey_light"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:padding="1dp"
+        app:layout_constraintStart_toStartOf="@+id/Title"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fourteen_size"
+        android:text="@string/lbl_description"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/lblCircularTitle"
+        app:layout_constraintTop_toBottomOf="@+id/lblCircularTitle" />
+    <TextView
+        android:id="@+id/lblCircularDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:text=""
+        android:textColor="@color/clr_txtgrey_light"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description" />
+
+
+    <TextView
+        android:id="@+id/Attachment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fourteen_size"
+        android:text="@string/lbl_uploaded_files"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/lblCircularDescription"
+        app:layout_constraintTop_toBottomOf="@+id/lblCircularDescription" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutViewPDF"
+        android:layout_width="@dimen/one_fifty"
+        android:layout_height="@dimen/fourty_size"
+        android:layout_marginTop="@dimen/fifteen_size"
+        android:background="@drawable/rectangle_orange"
+        android:padding="@dimen/dimen_five"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Attachment">
+
+        <TextView
+            android:id="@+id/lblViewIamge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ten_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:gravity="left"
+            android:text="@string/txt_view_Pdf"
+            android:textColor="@color/clr_white"
+            android:textSize="@dimen/fourteen_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/twenty3_size"
+            android:layout_height="@dimen/twenty3_size"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:src="@drawable/img_download_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/lblEnroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fourteen_size"
+        android:text="@string/lbl_enrollment_question"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/layoutViewPDF"
+        app:layout_constraintTop_toBottomOf="@+id/layoutViewPDF" />
+
+    <TextView
+        android:id="@+id/lblQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/eight_size"
+        android:layout_marginTop="@dimen/eight_size"
+        android:layout_marginRight="@dimen/ten_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:background="@drawable/orange_shadow"
+        android:padding="@dimen/fifteen_size"
+        android:text="Do you want to enroll with the school bus service ?"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintStart_toStartOf="@id/lblEnroll"
+        app:layout_constraintTop_toBottomOf="@id/lblEnroll" />
+
+    <TextView
+        android:id="@+id/lblSign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eighteen"
+        android:text="@string/lbl_signature"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblQuestion" />
+
+    <TextView
+        android:id="@+id/lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/eight_size"
+        android:layout_marginTop="@dimen/eighteen"
+        android:text="@string/lbl_colon"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintLeft_toRightOf="@+id/lblSign"
+        app:layout_constraintTop_toBottomOf="@+id/lblQuestion" />
+
+    <TextView
+        android:id="@+id/lblSignature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/eight_size"
+        android:layout_marginTop="@dimen/eighteen"
+        android:text="Yes"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintLeft_toRightOf="@+id/lbl"
+        app:layout_constraintTop_toBottomOf="@+id/lblQuestion" />
+
+
+
+    <TextView
+        android:id="@+id/lblRecipients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fifteen_size"
+        android:text="@string/txt_Recpients"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblSignature" />
+
+    <TextView
+        android:id="@+id/lblrecipient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginTop="@dimen/fifteen_size"
+        android:text="(4200)"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:visibility="visible"
+        app:layout_constraintLeft_toRightOf="@+id/lblRecipients"
+        app:layout_constraintTop_toBottomOf="@id/lblSignature" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyleRecipients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_five"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblRecipients" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/app_color"
+    android:orientation="horizontal">
+    <TableRow>
+        <ImageButton
+            android:id="@+id/action_bar_cart"
+            android:layout_width="@dimen/thirty_size"
+            android:layout_height="@dimen/thirty_size"
+            android:scaleType="fitCenter"
+            android:src="@drawable/left_white_arrow"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:id="@+id/nav_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:gravity="left"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:padding="@dimen/twele_size"
+            android:textSize="@dimen/eighteen"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:textColor="#fff"
+            android:maxLines="1"/>
+        <SearchView
+            android:id="@+id/action_bar_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search..."
+            android:visibility="gone"
+            android:background="@android:color/transparent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+    </TableRow>
+
+</TableLayout>

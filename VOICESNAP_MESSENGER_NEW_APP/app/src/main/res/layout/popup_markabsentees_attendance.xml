@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:background="@drawable/rect_white_bg"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/fourty_size"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lbldelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/twenty_size"
+                android:padding="@dimen/dimen_two"
+                android:text="@string/txt_confirm_attendance"
+                android:textColor="@color/clr_black"
+                android:textSize="@dimen/sixteen"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/lblContactdata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_two"
+                android:layout_marginTop="@dimen/ten_size"
+                android:layout_gravity="center"
+                android:text="Absentees -2"
+                android:textColor="@color/clr_dark_grey"
+                android:textSize="@dimen/twele_size"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/btnConfirm"
+                android:layout_width="@dimen/one_fifty"
+                android:layout_height="@dimen/fourty_size"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/thirty_size"
+                android:layout_marginBottom="@dimen/fifteen_size"
+                android:background="@drawable/rectangle_orange"
+                android:gravity="center"
+                android:padding="@dimen/ten_size"
+                android:text="@string/btn_confirm"
+                android:textAllCaps="false"
+                android:textColor="@color/white">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="@dimen/one_fifty"
+                android:layout_height="@dimen/fourty_size"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/fifteen_size"
+                android:layout_marginBottom="@dimen/twenty5_size"
+                android:background="@drawable/bg_editbox_black"
+                android:gravity="center"
+                android:padding="@dimen/ten_size"
+                android:text="@string/btn_cancel"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="@color/app_color">
+
+            </Button>
+    </LinearLayout>
+</LinearLayout>

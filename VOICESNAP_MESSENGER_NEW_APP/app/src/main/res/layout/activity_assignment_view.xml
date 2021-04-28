@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ExamSchedule"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/eight_size"
+    android:layout_marginStart="@dimen/ten_size"
+    android:layout_marginEnd="@dimen/ten_size"
+    android:background="@drawable/parent_blue_bg">
+
+    <TextView
+        android:id="@+id/lblMonth"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="AUG"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:padding="@dimen/dimen_five"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblDate"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="09"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:padding="@dimen/dimen_four"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblMonth" />
+    <TextView
+        android:id="@+id/lblYear"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="AUG"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:padding="@dimen/dimen_five"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblDate" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="1dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/dimen_five"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/lblMonth"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/lnrSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@+id/view"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/lblSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mathematics"
+            android:textColor="@color/white"
+            android:textSize="13dp"
+            android:layout_marginStart="10dp"
+            android:padding="@dimen/dimen_five"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/lblTimings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ten_size"
+            android:layout_marginRight="@dimen/ten_size"
+            android:layout_marginBottom="@dimen/ten_size"
+            android:textStyle="bold"
+            android:text="10.00 Am - 11.00 Am"
+            android:textColor="@color/white"
+            android:textSize="13dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

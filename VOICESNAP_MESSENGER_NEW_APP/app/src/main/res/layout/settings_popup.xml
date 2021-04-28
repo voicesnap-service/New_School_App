@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/lnrSwibe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:background="@drawable/rect_solid_orange"
+        android:orientation="vertical"
+        android:padding="@dimen/ten_size"
+        android:visibility="visible">
+        <ImageView
+            android:id="@+id/imgClose"
+            android:layout_width="@dimen/thirty_size"
+            android:layout_height="@dimen/thirty_size"
+            android:layout_gravity="right"
+            android:src="@drawable/close" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/ten_size">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/home_settings"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/lblSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Settinggs"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fifteen_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img" />
+
+
+            <ImageView
+
+                android:id="@+id/img1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/home_absentees"
+                app:layout_constraintTop_toTopOf="parent"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintLeft_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/lblChangePassword"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Change password"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fifteen_size"
+                app:layout_constraintTop_toBottomOf="@+id/img1" />
+
+
+            <ImageView
+                android:id="@+id/img2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/home_absentees"
+                app:layout_constraintTop_toTopOf="parent"
+
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/lblMenu"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="right"
+                android:text="Menu"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fifteen_size"
+                app:layout_constraintTop_toBottomOf="@+id/img2" />
+
+
+            <ImageView
+                android:id="@+id/img3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+
+                android:src="@drawable/home_absentees"
+                app:layout_constraintTop_toBottomOf="@+id/lblSettings" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="right"
+                android:text="Settings"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+
+                android:textSize="@dimen/fifteen_size"
+                app:layout_constraintTop_toBottomOf="@+id/img3" />
+
+            <ImageView
+
+                android:id="@+id/img4"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/home_absentees"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintLeft_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblChangePassword" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Change password"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fifteen_size"
+                app:layout_constraintTop_toBottomOf="@+id/img4" />
+
+            <ImageView
+                android:id="@+id/img5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/home_absentees"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblMenu" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="right"
+                android:text="Menu"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fifteen_size"
+                app:layout_constraintTop_toBottomOf="@+id/img5" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

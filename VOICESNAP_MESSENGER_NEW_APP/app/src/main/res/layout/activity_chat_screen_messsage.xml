@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitegrey">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/fifteen_size"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/lblContent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="15dp"
+        tools:listitem="@layout/chat_sender_design" />
+
+    <EditText
+        android:id="@+id/lblContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fifteen_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginEnd="@dimen/fifty_size"
+        android:background="@drawable/bg_editbox_black"
+        android:hint="@string/ed_chat_message"
+        android:orientation="horizontal"
+        android:padding="@dimen/thirteen_size"
+        android:text=""
+        android:layout_marginBottom="@dimen/twele_size"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout">
+
+    </EditText>
+
+    <ImageView
+        android:id="@+id/imgSend"
+        android:layout_width="@dimen/thirty_size"
+        android:layout_height="@dimen/thirty_size"
+        android:layout_marginEnd="@dimen/ten_size"
+        android:layout_marginStart="@dimen/dimen_two"
+        app:layout_constraintLeft_toRightOf="@+id/lblContent"
+        android:src="@drawable/teacherchat_send"
+        android:layout_marginBottom="@dimen/seventeen_size"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/activity_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

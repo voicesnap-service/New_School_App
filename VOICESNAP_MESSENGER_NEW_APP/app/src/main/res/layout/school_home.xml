@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootHome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:scrollbarSize="5dp"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@drawable/rect_solid_orange"
+        android:id="@+id/listHomeRecycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/adds_layout"
+        android:layout_margin="5dp"
+        tools:listitem="@layout/recycle_cardview">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <include
+        android:id="@+id/adds_layout"
+        layout="@layout/bottom_adds_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:layout_above="@+id/bottom_layout"
+        android:visibility="visible" />
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/activity_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sixty3_size"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>

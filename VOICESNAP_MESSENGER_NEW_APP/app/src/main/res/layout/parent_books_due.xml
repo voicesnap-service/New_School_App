@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:padding="2dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgCardview"
+            android:layout_width="140dp"
+            android:layout_height="160dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/white"
+            app:strokeWidth="@dimen/dimen_five"
+            app:layout_constraintStart_toStartOf="parent"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/event3"
+            app:shapeAppearanceOverlay="@style/roundedCorner" />
+
+        <TextView
+            android:id="@+id/lblBookName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_five"
+            android:text="Name of theBook"
+            android:textColor="@color/dark_grey_black"
+            android:textSize="@dimen/fourteen_size"
+            app:layout_constraintStart_toStartOf="@+id/imgCardview"
+            app:layout_constraintTop_toBottomOf="@+id/imgCardview" />
+
+        <TextView
+            android:id="@+id/lblAuthorName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_three"
+            android:text="Author Name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/lblBookName"
+            app:layout_constraintTop_toBottomOf="@+id/lblBookName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

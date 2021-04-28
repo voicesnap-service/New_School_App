@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitegrey">
+
+    <RelativeLayout
+        android:id="@+id/rytPendingLeave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/ten_size"
+        android:background="@drawable/rectangle_orange"
+        android:padding="@dimen/dimen_five"
+        android:textColor="@android:color/white">
+
+        <TextView
+            android:id="@+id/imgCalendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_five"
+            android:paddingBottom="@dimen/dimen_three"
+            android:src="@drawable/calendar_clock"
+            android:text="05"
+            android:textColor="@color/clr_white"
+            android:textSize="@dimen/eighteen"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/lblDueOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/seven_size"
+            android:layout_toRightOf="@+id/imgCalendar"
+            android:paddingBottom="@dimen/dimen_three"
+            android:text="@string/txt_pendingLeave"
+            android:textAlignment="center"
+            android:textColor="@color/clr_white"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyleApproveleave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_below="@+id/rytPendingLeave"
+        android:layout_margin="@dimen/ten_size" />
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/activity_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_eighty_size"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:visibility="visible" />
+</RelativeLayout>

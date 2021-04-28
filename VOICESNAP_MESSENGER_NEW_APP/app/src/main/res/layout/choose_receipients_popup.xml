@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="15dp">
+
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/ten_size"
+        android:layout_marginRight="@dimen/ten_size"
+        android:id="@+id/rytEntireSchool"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_height="@dimen/fourty5_size"
+        android:background="@drawable/rect_solid_orange"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+
+            android:id="@+id/lblEniteSchool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Send to entire school"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fifteen_size"></TextView>
+
+        <ImageView
+            android:id="@+id/imgArrow"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/right_white_icon">
+
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/ten_size"
+        android:layout_marginRight="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@+id/rytEntireSchool"
+        android:id="@+id/rytGroupsStandards"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/fourty5_size"
+        android:background="@drawable/rect_solid_orange">
+
+        <TextView
+            android:id="@+id/lblStandardsGroups"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Send to Standard or Groups"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fifteen_size"></TextView>
+
+        <ImageView
+            android:id="@+id/imgArrow1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/right_white_icon">
+        </ImageView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/ten_size"
+        android:layout_marginRight="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@+id/rytGroupsStandards"
+        android:id="@+id/rytStandardsSections"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/fourty5_size"
+        android:background="@drawable/rect_solid_orange">
+
+        <TextView
+            android:id="@+id/lblStandardsSections"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Send to Standard or Sections"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fifteen_size"></TextView>
+
+        <ImageView
+            android:id="@+id/imgArrow2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/right_white_icon">
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/ten_size"
+        android:layout_marginRight="@dimen/ten_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rytStandardsSections"
+        android:id="@+id/rytSpecificStudents"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/fourty5_size"
+        android:background="@drawable/rect_solid_orange">
+
+        <TextView
+            android:id="@+id/lblSpecificStudents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Send to sections or Students "
+            android:textColor="@color/white"
+            android:textSize="@dimen/fifteen_size"></TextView>
+
+        <ImageView
+            android:id="@+id/imgArrow3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/right_white_icon">
+        </ImageView>
+    </RelativeLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

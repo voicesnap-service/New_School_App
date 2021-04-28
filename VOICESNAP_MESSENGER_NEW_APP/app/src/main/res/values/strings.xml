@@ -1,0 +1,276 @@
+<resources>
+    <string name="app_name">VoicesnapMessenger</string>
+    <!--    menu names-->
+
+    <string-array name="ExamType">
+        <item>Select Exam...</item>
+        <item>Annual Exam</item>
+        <item>Half Yearly</item>
+        <item>Quaterly</item>
+        <item>Mid Trerm</item>
+        <item>Revision</item>
+
+    </string-array>
+    <string-array name="Subjects">
+        <item>Select Subjects...</item>
+        <item>Tamil</item>
+        <item>English</item>
+        <item>Maths</item>
+        <item>Science</item>
+        <item>Social</item>
+
+    </string-array>
+    <string-array name="Leavetype">
+        <item>Select Leave...</item>
+        <item>Casual Leave</item>
+        <item>Sick Leave</item>
+        <item>Emergency Leave</item>
+
+
+    </string-array>
+    /**Album**/
+    <string name="permission_info">App requires permission to Storage to view images.</string>
+    <string name="permission_force">App requires permission to Storage to view images. Tap Settings and go to Permissions to grant permission.</string>
+    <string name="permission_ok">OK</string>
+    <string name="permission_settings">Settings</string>
+    <string name="permission_package">package</string>
+    <string name="selected">selected</string>
+    <string name="teacher_btn_ok">Ok</string>
+    <string name="limit_exceeded">Can select a maximum of %d images</string>
+    /**Album**/
+
+    <!--Textviews-->
+    <string name="txt_Title">TITLE</string>
+    <string name="txt_Description">DESCRIPTION</string>
+    <string name="txt_place">PLACE</string>
+    <string name="txt_event_datetime">EVENT DATE &amp; TIME </string>
+    <string name="txt_pendingLeave">Pending Leave Application</string>
+    <string name="txt_Subject">SUBJECT</string>
+    <string name="txt_Recpients">SELECTED RECIPIENTS -  </string>
+    <string name="txt_viewCircular">View Circular Pdf/Image</string>
+    <string name="txt_status">STATUS</string>
+    <string name="txt_enrollment">ENROLLMENT</string>
+    <string name="txt_enrollment_question">ENROLLMENT QUESTION</string>
+    <string name="txt_circular">CIRCULAR</string>
+    <string name="txt_UploadedFiles">UPLOADED FILES</string>
+    <string name="txt_addcover_image">ADD COVER IMAGE</string>
+    <string name="txt_upload_image">UPLOAD IMAGE</string>
+    <string name="txt_Signature">SIGNATURE</string>
+    <string name="txt_filter_title">Filter your Schedule</string>
+    <string name="txt_Sort_by">Sort by</string>
+    <string name="filter_typecontent_one">All Leave Request</string>
+    <string name="filter_typecontent_two">Approve Leave Request</string>
+    <string name="filter_typecontent_three">Reject Leave Request</string>
+    <string name="txt_Sort_by_date">Sort by date</string>
+    <string name="txt_FromDate">From</string>
+    <string name="txt_Todate">To</string>
+    <string name="txt_month">13 AUG</string>
+    <string name="txt_day">day</string>
+    <string name="txt_Profile">Profile</string>
+    <string name="txt_FirstName">First Name</string>
+    <string name="txt_LastName">Last Name</string>
+    <string name="txt_birthday">Birth Day</string>
+    <string name="txt_Gender">Gender</string>
+    <string name="txt_Email">Email</string>
+    <string name="txt_teacher">TEACHER</string>
+    <string name="txt_homework">HOMEWORK</string>
+    <string name="txt_homework_title">HOMEWORK TITLE</string>
+    <string name="txt_view_imagePdf">View Image / Pdf </string>
+    <string name="txt_view_Pdf">View Pdf </string>
+    <string name="txt_enter_manually">Enter Manually</string>
+    <string name="txt_overall_attendance">Overall Attendance</string>
+    <string name="txt_attended">Attended</string>
+    <string name="txt_onleave">On Leave</string>
+    <string name="txt_attachment">ATTACHMENTS</string>
+    <string name="txt_leavetype">Leave Type</string>
+    <string name="txt_startdate">Start Date</string>
+    <string name="txt_enddate">End Date</string>
+    <string name="txt_file_attach">Attach File</string>
+    <string name="txt_choose_file">Choose a file (.PDF,.JPEG,.PNG)</string>
+    <string name="txt_select_absent">Select those who are absent</string>
+    <string name="txt_change_password">Change Password</string>
+    <string name="txt_map_student">Mapped Students</string>
+    <string name="txt_about_us">About us</string>
+    <string name="txt_terms_condition">Terms &amp; Condition</string>
+    <string name="txt_contact_us">Contact Us</string>
+    <string name="txt_report_error">Report An Error</string>
+    <string name="txt_logout">Logout</string>
+    <string name="txt_clear_cache">Clear Cache</string>
+    <string name="txt_aasignement">ASSIGNMENT</string>
+    <string name="txt_event_details">Event Description</string>
+    <string name="txt_your_attendace">Your Attendance</string>
+    <string name="txt_class_attendance">Class Attendance</string>
+    <string name="txt_choose_role">Role</string>
+    <string name="txt_choose_standard">Standard</string>
+    <string name="txt_choose_section">Section</string>
+    <string name="txt_choose_groups">Special Groups</string>
+    <string name="txt_all_role">All Role</string>
+    <string name="txt_all">All Standard</string>
+    <string name="txt_all_section">All Section</string>
+    <string name="txt_all_groups">All Special Groups</string>
+    <string name="txt_choose_subject">CHOOSE SUBJECTS</string>
+    <string name="txt_uploaded_images">Uploaded Images</string>
+    <string name="txt_date_time">Select Date </string>
+    <string name="txt_confirm_attendance">Confirm Attendance ?</string>
+    <string name="txt_Choose_Image">Gallery</string>
+    <string name="txt_Choose_Doc_file">Documents</string>
+    <string name="txt_Choose_from_Camera">Camera </string>
+    <string name="txt_select_file">Select File</string>
+    <string name="txt_small_description">Description</string>
+    <string name="txt_phone_number">Phone Number</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_forgot_password">Forgot Password?</string>
+    <string name="txt_view_as">View As</string>
+    <string name="txt_log_in">Log In</string>
+    <string name="txt_enter_new_password">Enter New Password</string>
+    <string name="txt_change_image_pdf">Change IMAGE</string>
+    <string name="txt_change_video">Change Video</string>
+    <string name="txt_change_img">Change Image</string>
+    <string name="txt_change_pdf">Change PDF</string>
+    <string name="txt_Ok">OK</string>
+    <string name="txt_submission_date">SUBMISSION DATE</string>
+
+
+    <!--    Edittext-->
+    <string name="ed_Typehere">Type here…</string>
+    <string name="ed_chat_message">Enter a Message</string>
+    <string name="ed_enter_details">Enter details</string>
+    <string name="ed_enter_title">Enter title ...</string>
+    <string name="ed_confirm_password">Confirm Password</string>
+    <string name="ed_enter_new_password">Enter new password</string>
+    <string name="ed_enter_descripition">Type description here.</string>
+
+    <!--    Buttons-->
+    <string name="btn_Next">NEXT</string>
+    <string name="btn_Publish">Publish</string>
+    <string name="btn_Approve">Approve</string>
+    <string name="btn_Reject">Reject</string>
+    <string name="btn_SendNow">Send Now</string>
+    <string name="btn_addimg_pdf">ADD IMAGE </string>
+    <string name="btn_add_pdf">ADD PDF</string>
+    <string name="lbl_addimg"> + IMAGE </string>
+    <string name="lbl_addpdf"> + PDF</string>
+    <string name="btn_applyfilter">Apply Filters </string>
+    <string name="btn_clearfilter">Clear Filters </string>
+    <string name="btn_applyleave">Apply Leave</string>
+    <string name="btn_Apply">Apply</string>
+    <string name="btn_Discard">Discard</string>
+    <string name="btn_mark_absent">Mark Absent</string>
+    <string name="btn_send_now">Send Now</string>
+    <string name="btn_Instant">Instant</string>
+    <string name="btn_schedule">Schedule</string>
+    <string name="btn_add_video">ADD VIDEO</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_confirm_password_change">Confirm Password</string>
+    <string name="btn_Submit">Submit</string>
+    <string name="btn_Submissions">Submissions</string>
+    <string name="btn_Total">Total</string>
+    <string name="btn_view">View</string>
+    <string name="btn_delete">Delete</string>
+
+    <!--Tab_Strings-->
+    <string name="tab_voice_record">RECORD</string>
+    <string name="tab_history">HISTORY</string>
+    <string name="tab_publish">PUBLISH</string>
+    <string name="tab_leave_request">LEAVE REQUEST</string>
+    <string name="tab_manage_leave">MANAGE LEAVE</string>
+    <string name="tab_due">DUE</string>
+    <string name="tab_completed">COMPLETED</string>
+    <string name="tab_fees_due">FEES DUE</string>
+    <string name="tab_upcoming_fee">UPCOMING FEE</string>
+    <string name="tab_paid_fee">PAID FEE</string>
+    <string name="tab_books_due">BOOKS DUE</string>
+    <string name="tab_books_return">BOOKS RETURNED</string>
+    <!--TITLE-->
+    <string name="title_Menus">TeachersMenus</string>
+    <string name="title_parentmenus">ParentMenus</string>
+    <string name="title_Attendance">Attendance</string>
+    <string name="title_ApplyLeave">Apply Leave</string>
+    <string name="title_Assignment">Assignment</string>
+    <string name="title_Chat">Chat</string>
+    <string name="title_Circular">Circular</string>
+    <string name="title_Communication">Communication</string>
+    <string name="title_Events">Events</string>
+    <string name="title_Exam_Result">Exam Result</string>
+    <string name="title_Exam_Schedule">Exam Schedule</string>
+    <string name="title_Fees">Fees</string>
+    <string name="title_Homework">Homework</string>
+    <string name="title_Images">Images</string>
+    <string name="title_Library">Library</string>
+    <string name="title_leave">Leave</string>
+    <string name="title_ChooseRecipients">Choose Recipients</string>
+    <string name="title_notice_board">NoticeBoard</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_staff">Staff</string>
+    <string name="title_timetable">TimeTable</string>
+    <string name="title_Video">Video</string>
+    <string name="title_Text">TextMessage</string>
+    <string name="title_LeaveRequest">Leave Request</string>
+    <string name="title_Approve_leave">Approve Leave</string>
+    <string name="title_mark_attendace">Mark Attendance</string>
+    <string name="title_Voice">Voice</string>
+    <string name="title_home">Home</string>
+    <string name="title_File">File</string>
+    <string name="parentmenu">ParentMenu</string>
+    <string name="title_album_gallery">Gallery</string>
+    <string name="txt_confirm_new_password">Confirm New Password</string>
+    <string name="website_domain">quaestio.org</string>
+    <string name="website_url">https://quaestio.org</string>
+    <string name="default_notification_channel_id">01</string>
+    <string name="terms_conditions">Terms and Condition</string>
+    <string name="agree_continue">AGREE AND CONTINUE</string>
+    <string name="choose_country">Choose Country</string>
+    <string name="check_internet">Check Your Internet Connection</string>
+    <string name="permission_status">permissionStatus</string>
+    <string name="txt_change_language">Change Language</string>
+    <string name="txt_mapped_students">Mapped Students</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="enter_your_otp">Enter your OTP</string>
+    <string name="update">UPDATE</string>
+    <string name="enter_new_password">Enter New Password</string>
+    <string name="splash_version">1.0</string>
+    <string name="log_in">Log In</string>
+    <string name="welcome">Welcome</string>
+    <string name="enter_password_here">Enter password here</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="login">Login</string>
+    <string name="sections">SECTIONS</string>
+    <string name="next">NEXT</string>
+    <string name="Service_unavailable">Service Unavailable</string>
+    <string name="exit_app">Are you sure want to exit ?</string>
+    <string name="forward">Forward</string>
+    <string name="send">SEND</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="txt_Preview">Preview</string>
+    <string name="lbl_event_title">Event Title</string>
+
+    <string name="lbl_subject">Subject</string>
+    <string name="lbl_teacher">Teacher</string>
+    <string name="lbl_assignment">Assignment</string>
+    <string name="lbl_attachment">Attachment</string>
+    <string name="circular">Circular</string>
+    <string name="lbl_uploaded_files">Uploaded Files</string>
+    <string name="lbl_enrollment_question">Enrollment question</string>
+    <string name="lbl_signature">Signature</string>
+    <string name="lbl_colon">:</string>
+    <string name="lbl_title">Title</string>
+    <string name="lbl_description">Description</string>
+    <string name="lbl_schedule_date_and_time">Schedule Date and Time</string>
+    <string name="lbl_end_call_date_and_time">End call Date and Time</string>
+    <string name="lbl_select_end_date">Select End Date</string>
+    <string name="lbl_select_time">Select Time</string>
+    <string name="lbl_select_date">Select Date</string>
+    <string name="recipient_standard">Standard</string>
+    <string name="recipient_section">Section</string>
+    <string name="recipient_group">Groups</string>
+    <string name="recipient_staff">Staff</string>
+    <string name="recipient_student">Student</string>
+    <string name="recipient_stdnsec">Standard-Section</string>
+    <string name="lbl_voice_file">Voice File</string>
+    <string name="lbl_get_subjects">Get Subjects</string>
+    <string name="lbl_selectedSubject">Selected Subject</string>
+    <string name="str_selectSubject">Please Select Subject</string>
+
+</resources>

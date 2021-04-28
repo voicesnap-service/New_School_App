@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyViewVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/lblviewall"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="VIEW ALL"
+        android:layout_marginTop="@dimen/ten_size"
+        android:textStyle="bold"
+        android:textColor="@color/bpBlue"
+        android:textSize="@dimen/fourteen_size"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/rcyViewVideo"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@id/lblviewall"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyVideo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_five"
+        app:layout_constraintTop_toBottomOf="@+id/rcyDay"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/adds_layout" />
+
+    <include
+        android:id="@+id/adds_layout"
+        layout="@layout/bottom_adds_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout" />
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/parent_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sixty3_size"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

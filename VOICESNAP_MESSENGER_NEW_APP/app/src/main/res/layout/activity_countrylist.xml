@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/lblChoose"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginEnd="@dimen/ten_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@color/white"
+        android:text="Choose Country"
+        android:textColor="@color/LoadedBarPrimeColor"
+        android:textSize="@dimen/fifteen_size"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+       android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginEnd="@dimen/ten_size"
+        android:id="@+id/recycleCountry"
+        android:layout_marginTop="50dp"
+        android:background="@color/white"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constBottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginEnd="@dimen/ten_size"
+        android:background="@drawable/rect_stroke_orange"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <TextView
+            android:id="@+id/lblCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:padding="8dp"
+            android:text=" Cancel  "
+            android:textColor="@color/LoadedBarPrimeColor"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="bold" />
+
+        <View
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/clr_school"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/lblOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="   Ok   "
+            android:textColor="@color/LoadedBarPrimeColor"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="bold" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

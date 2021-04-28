@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/dimen_five"
+    android:padding="@dimen/ten_size"
+    android:background="@color/clr_white">
+
+    <TextView
+        android:id="@+id/lblSendOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Sent on 15th july 2020 at 21.10"
+        android:textColor="@color/txt_clr_grey"
+        android:textSize="@dimen/fourteen_size"
+        android:layout_marginStart="@dimen/thirteen_size"
+        android:textStyle="normal"
+        android:layout_marginTop="@dimen/dimen_two"
+        android:layout_marginBottom="@dimen/dimen_two"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblheading"
+        android:orientation="horizontal"
+        android:padding="1dp">
+    </TextView>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rytDaymonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_orange"
+        android:layout_margin="@dimen/twenty_size"
+app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="@dimen/eight_size"
+        app:layout_constraintTop_toBottomOf="@+id/lblSendOn"
+        android:textColor="@android:color/white"
+        >
+        <TextView
+            android:id="@+id/lblDueOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/sixteen"
+            android:padding="@dimen/dimen_two"
+            android:layout_margin="@dimen/dimen_five"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/clr_white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/imgCalendar"
+            android:text="Due On Aug 3,2020"/>
+        <ImageView
+            android:id="@+id/imgCalendar"
+            android:layout_width="@dimen/thirty_size"
+            android:layout_height="@dimen/thirty_size"
+            android:layout_margin="@dimen/dimen_three"
+            android:padding="@dimen/dimen_two"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:src="@drawable/calendar_white" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/lblheading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_Subject"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/twele_size"
+        android:layout_marginEnd="@dimen/fifteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rytDaymonth" />
+    <TextView
+        android:id="@+id/lblSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Mathematics"
+        android:textColor="@color/txt_clr_grey"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:layout_marginTop="@dimen/dimen_two"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblheading"
+        android:orientation="horizontal"
+        android:padding="1dp">
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/lblDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_teacher"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:layout_marginTop="@dimen/ten_size"
+        app:layout_constraintStart_toStartOf="@+id/lblSubject"
+        app:layout_constraintTop_toBottomOf="@+id/lblSubject"/>
+
+    <TextView
+        android:id="@+id/lblTeacherName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mr.Bharath"
+        android:textColor="@color/txt_clr_grey"
+        android:textSize="@dimen/thirteen_size"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/dimen_three"
+        app:layout_constraintStart_toStartOf="@+id/lblDescription"
+        app:layout_constraintTop_toBottomOf="@+id/lblDescription"/>
+    <TextView
+        android:id="@+id/homework"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_homework"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        android:layout_marginTop="@dimen/ten_size"
+        app:layout_constraintStart_toStartOf="@+id/lblTeacherName"
+        app:layout_constraintTop_toBottomOf="@+id/lblTeacherName"/>
+
+    <TextView
+        android:id="@+id/lblHomework"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Do  problems on Linear Equations. Equatios is  written has ax+b=0."
+        android:textColor="@color/txt_clr_grey"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/ten_size"
+        app:layout_constraintStart_toStartOf="@+id/homework"
+        app:layout_constraintTop_toBottomOf="@+id/homework"/>
+
+    <TextView
+        android:id="@+id/Attachment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_homework_title"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/lblHomework"
+        app:layout_constraintTop_toBottomOf="@+id/lblHomework"/>
+
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rytViewImage"
+        android:layout_width="@dimen/two_ten"
+        android:layout_height="@dimen/fourty_size"
+        android:background="@drawable/rectangle_orange"
+        android:layout_margin="@dimen/twenty_size"
+        android:textColor="@android:color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Attachment">
+        <TextView
+            android:id="@+id/lblViewIamge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/fourteen_size"
+            android:layout_marginStart="@dimen/ten_size"
+            android:textAlignment="center"
+            android:textColor="@color/clr_white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/txt_view_imagePdf"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/img_download_white" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/rytRecipients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/rytViewImage"
+
+        >
+        <TextView
+            android:id="@+id/lblname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_two"
+            android:text="Reipients"
+            android:textColor="@color/clr_black"
+            android:textSize="@dimen/fourteen_size"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textStyle="normal"/>
+        <TextView
+            android:id="@+id/lblRecipients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_two"
+            android:layout_marginStart="@dimen/dimen_five"
+            android:text="(4852)"
+            android:textColor="@color/clr_black"
+            android:textSize="14dp"
+            android:layout_toRightOf="@+id/lblname"
+            android:textStyle="normal"/>
+
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyleSelectedFiles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_margin="@dimen/dimen_five"
+        app:layout_constraintStart_toStartOf="@+id/rytRecipients"
+        app:layout_constraintTop_toBottomOf="@+id/rytRecipients">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    <Button
+            android:id="@+id/btnNext"
+            android:layout_width="@dimen/two_hundred"
+            android:layout_height="@dimen/fourty_size"
+            android:layout_marginEnd="@dimen/eight_size"
+            android:layout_marginStart="@dimen/eight_size"
+            android:layout_marginTop="@dimen/fifty_size"
+            android:text="@string/btn_Publish"
+            android:background="@drawable/rectangle_orange"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+

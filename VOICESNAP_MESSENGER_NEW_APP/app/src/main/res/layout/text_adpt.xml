@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lnrText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/chat_clrSender"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:background="@drawable/whitebg"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/dimen_five">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rycRecipt"
+            android:layout_width="@dimen/seventy_size"
+            android:layout_height="@dimen/hundred" />
+
+        <View
+            android:layout_width="0.8dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dimen_two"
+            android:background="@color/clr_txt_grey" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/lblContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_five"
+                android:text="School will not function on 5th September due to the safety precaution
+        being undertaken in the school for the safety of our staffs and students"
+                android:textColor="@color/black"
+                android:textSize="@dimen/twele_size" />
+
+            <TextView
+                android:id="@+id/lblcount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblContent"
+                android:layout_margin="@dimen/seven_size"
+                android:background="@drawable/pinkbg"
+                android:text=" 4200 Recipients "
+                android:textColor="@color/clr_dark_pink"
+                android:textSize="@dimen/twele_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lblstatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblContent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/seven_size"
+                android:background="@drawable/greenbg"
+                android:text=" sent successfully "
+                android:textColor="@color/clr_dark_green"
+                android:textSize="@dimen/twele_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lbltime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblstatus"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/dimen_two"
+                android:text="Sent on 1st Sept 2020 at 13:00"
+                android:textColor="@color/black"
+                android:textSize="@dimen/twele_size"
+                android:textStyle="normal" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

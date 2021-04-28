@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/communication"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_five"
+    android:background="@drawable/whitebg"
+    android:padding="@dimen/eight_size">
+
+    <TextView
+        android:id="@+id/lblName"
+        android:layout_width="@dimen/fourty5_size"
+        android:layout_height="@dimen/fourty5_size"
+        android:background="@drawable/parent_blue_bg"
+        android:gravity="center"
+        android:text="SN"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fifty_size"
+        android:layout_marginEnd="@dimen/fourty_size"
+        app:layout_constraintEnd_toEndOf="@+id/lblcount"
+        app:layout_constraintStart_toEndOf="@+id/lblcount"
+        app:layout_constraintStart_toStartOf="@+id/lblName"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/lblTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_three"
+            android:text="Annual  Day 2020"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fourteen_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/lblrole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/seven_size"
+        android:gravity="center"
+        android:text="Principal"
+        android:textColor="@color/clr_dark_grey"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintStart_toEndOf="@id/lblName"
+        app:layout_constraintTop_toBottomOf="@id/constraintText" />
+
+    <TextView
+        android:id="@+id/lblcount"
+        android:layout_width="@dimen/twenty_size"
+        android:layout_height="@dimen/twenty_size"
+        android:layout_marginTop="@dimen/dimen_two"
+        android:layout_marginRight="@dimen/sixteen"
+        android:background="@drawable/parent_blue_bg"
+        android:gravity="center"
+        android:text="1"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/thirteen_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lbltime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/ten_size"
+        android:gravity="center"
+        android:padding="@dimen/dimen_two"
+        android:text="1 hour"
+        android:textColor="@color/clr_dark_grey"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblcount" />
+</androidx.constraintlayout.widget.ConstraintLayout>

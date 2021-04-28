@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/whitegrey"
+    android:layout_margin="@dimen/fifteen_size"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/lblSendOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_five"
+        android:layout_marginLeft="@dimen/dimen_five"
+        android:text="Sent On 12th July .12.30 PM"
+        android:textAlignment="center"
+        android:textColor="@color/clr_dark_grey"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgEventsImage"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/white"
+        app:strokeWidth="5dp"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:layout_marginLeft="@dimen/eight_size"
+        android:layout_marginRight="@dimen/eight_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblSendOn"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/album6"
+        app:shapeAppearanceOverlay="@style/roundedCorner" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutCreatedBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/twenty_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgEventsImage">
+        <TextView
+            android:id="@+id/lblName"
+            android:layout_width="@dimen/fourty_size"
+            android:layout_height="@dimen/fourty_size"
+            android:text="SP"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textSize="@dimen/sixteen"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:layout_marginLeft="@dimen/dimen_five"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/parent_blue_bg"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ten_size"
+            android:layout_marginLeft="@dimen/ten_size"
+            android:text="CREATED BY"
+            android:padding="@dimen/dimen_two"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            android:layout_marginTop="@dimen/dimen_five"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/lblName"/>
+        <TextView
+            android:id="@+id/lblCreatedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ten_size"
+            android:layout_marginLeft="@dimen/ten_size"
+            android:text="Vijaya Narayanan"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/eleven_size"
+            android:textStyle="normal"
+            app:layout_constraintTop_toBottomOf="@+id/Name"
+            app:layout_constraintLeft_toRightOf="@+id/lblName"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/lblEventTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_five"
+        android:padding="@dimen/dimen_five"
+        android:text="Annual Day 2020"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutCreatedBy" />
+
+    <TextView
+        android:id="@+id/lblEventPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_five"
+        android:layout_marginLeft="5dp"
+        android:text="Main Auditorium"
+        android:textAlignment="center"
+        android:textColor="@color/clr_dark_grey"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/lblEventTitle"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventTitle" />
+
+    <ImageView
+        android:id="@+id/imgEventTime"
+        android:layout_width="@dimen/fifty_size"
+        android:layout_height="@dimen/fifty_size"
+        android:layout_margin="@dimen/ten_size"
+        android:scaleType="fitXY"
+        android:background="@drawable/bg_grey"
+        android:backgroundTint="@color/clr_bluelight"
+        app:layout_constraintStart_toStartOf="@+id/lblEventPlace"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventPlace"
+        android:src="@drawable/clock_img" />
+    <TextView
+        android:id="@+id/lblEventDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginLeft="@dimen/ten_size"
+        android:text="Sun, 20 August,2020"
+        android:textAlignment="center"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        android:layout_marginTop="@dimen/fifteen_size"
+        app:layout_constraintLeft_toRightOf="@+id/imgEventTime"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventPlace" />
+    <TextView
+        android:id="@+id/lblEventTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginLeft="@dimen/ten_size"
+        android:text="12 PM to 3PM"
+        android:textAlignment="center"
+        android:textColor="@color/clr_dark_grey"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:layout_marginTop="@dimen/dimen_two"
+        app:layout_constraintLeft_toRightOf="@+id/imgEventTime"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventDay" />
+
+    <ImageView
+        android:id="@+id/imgEventPlace"
+        android:layout_width="@dimen/fifty_size"
+        android:layout_height="@dimen/fifty_size"
+        android:layout_margin="@dimen/eighteen"
+        android:backgroundTint="@color/clr_bluelight"
+        android:background="@drawable/bg_grey"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgEventTime"
+        android:src="@drawable/img_map" />
+    <TextView
+        android:id="@+id/lblEventDirection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginLeft="@dimen/ten_size"
+        android:text="Get Direction"
+        android:textAlignment="center"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        android:layout_marginTop="@dimen/thirty5_size"
+        app:layout_constraintLeft_toRightOf="@+id/imgEventPlace"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventTime" />
+
+    <TextView
+        android:id="@+id/lblEvetnPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginLeft="@dimen/ten_size"
+        android:text="12 PM to 3PM"
+        android:textAlignment="center"
+        android:textColor="@color/clr_dark_grey"
+        android:textSize="12dp"
+        android:textStyle="normal"
+        android:layout_marginTop="2dp"
+
+        app:layout_constraintLeft_toRightOf="@+id/imgEventTime"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventDirection" />
+
+    <TextView
+        android:id="@+id/txtDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/twenty_size"
+        android:layout_marginLeft="@dimen/twenty_size"
+        android:text="@string/txt_event_details"
+        android:textAlignment="center"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgEventPlace" />
+    <TextView
+        android:id="@+id/lblEventDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/twenty_size"
+        app:layout_constraintStart_toStartOf="@+id/txtDetails"
+        android:layout_marginEnd="@dimen/twenty_size"
+        android:text="Event Will be held on Dec31"
+        android:textColor="@color/clr_dark_grey"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:layout_marginTop="@dimen/eight_size"
+        app:layout_constraintTop_toBottomOf="@+id/txtDetails" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyleRecipients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fifteen_size"
+        app:layout_constraintTop_toBottomOf="@+id/lblEventDetails"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout">
+    </androidx.recyclerview.widget.RecyclerView>
+</androidx.constraintlayout.widget.ConstraintLayout>

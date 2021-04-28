@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/circular"
+    android:padding="@dimen/dimen_five"
+    android:background="@color/whitegrey"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CircularLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_size"
+        android:background="@drawable/orange_shadow"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+   <TextView
+       android:id="@+id/lblsent"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="sent by nisha"
+       android:textColor="@color/clr_grey_light"
+       android:textSize="@dimen/twele_size"
+       android:padding="@dimen/dimen_two"
+       android:gravity="right"
+       android:layout_marginEnd="@dimen/dimen_three"
+       android:textStyle="bold"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bus fees"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fourteen_size"
+        android:layout_marginLeft="@dimen/twenty_size"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:layout_marginRight="@dimen/thirty_size"
+        android:padding="@dimen/dimen_two"
+        android:gravity="left"
+        android:textStyle="normal"
+        app:layout_constraintTop_toBottomOf="@id/lblsent"
+        app:layout_constraintStart_toStartOf="parent"/>
+        <ImageView
+            android:id="@+id/imgNext"
+            android:layout_width="@dimen/fifteen_size"
+            android:layout_height="@dimen/twele_size"
+            android:src="@drawable/right_arrow"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:layout_marginRight="@dimen/ten_size"
+            app:layout_constraintTop_toBottomOf="@id/lblsent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/lblcontent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Last day for the school bus fee for this first term is on july 09 2020 "
+        android:textColor="@color/clr_dark_grey"
+        android:textSize="@dimen/thirteen_size"
+        android:padding="@dimen/dimen_four"
+        android:layout_marginLeft="@dimen/twenty_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:gravity="left"
+        app:layout_constraintTop_toBottomOf="@id/lblTitle"
+        app:layout_constraintStart_toStartOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        tools:listitem="@layout/timetable_calendar"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutTimeClass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/rcyDay"
+        app:layout_constraintStart_toStartOf="parent">
+        <TextView
+            android:id="@+id/lbltime"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/ten_size"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sixteen"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/thirty_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:background="@color/clr_grey_light"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@id/lbltime"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <TextView
+            android:id="@+id/lblclass"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="wrap_content"
+            android:text="Class"
+            android:layout_marginTop="@dimen/ten_size"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sixteen"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/view"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcyclass"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            tools:listitem="@layout/timetable_adpt"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginTop="@dimen/twenty_size"
+            android:layout_marginBottom="@dimen/twenty_size"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+            app:layout_constraintTop_toBottomOf="@id/LayoutTimeClass"
+            />
+
+
+    <include
+        android:id="@+id/adds_layout"
+        layout="@layout/bottom_adds_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout" />
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/parent_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sixty3_size"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

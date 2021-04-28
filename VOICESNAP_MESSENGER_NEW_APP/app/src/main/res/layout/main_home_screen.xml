@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activities.CombinationHomeScreen"
+    android:background="@drawable/home_bg">
+
+    <io.armcha.elasticview.ElasticView
+        android:id="@+id/imageElasticView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:flexibility="10"
+        app:cardElevation="5dp">
+
+    <RelativeLayout
+        android:id="@+id/rytRole"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/rect_solid_orange"
+        android:padding="5dp">
+
+        <ImageView
+            android:background="@drawable/circle_white_bg"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:id="@+id/imgSchool"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/school_icon"/>
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:padding="5dp"
+            android:layout_toRightOf="@+id/imgSchool"
+            android:text="Login As Principal"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            android:textSize="17dp"
+            android:layout_toLeftOf="@+id/imgArrow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/imgArrow"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/right_white_arrows"/>
+    </RelativeLayout>
+    </io.armcha.elasticview.ElasticView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:scrollbarSize="5dp"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@drawable/rect_solid_orange"
+        android:layout_below="@+id/imageElasticView"
+        android:id="@+id/recycleChildrens"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        tools:listitem="@layout/child_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</RelativeLayout>

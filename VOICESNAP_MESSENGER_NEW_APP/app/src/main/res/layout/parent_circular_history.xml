@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:background="@color/whitegrey"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/lblCircular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/circular"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:textSize="@dimen/fourteen_size"
+        android:padding="@dimen/dimen_two"
+        android:layout_marginLeft="@dimen/fifteen_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/lblContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android Kotlin "
+        android:textColor="@color/clr_dark_grey"
+        android:textSize="@dimen/twele_size"
+        android:padding="@dimen/dimen_two"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:layout_marginRight="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@id/lblCircular"
+        app:layout_constraintStart_toStartOf="@id/lblCircular"/>
+
+    <TextView
+        android:id="@+id/lblupload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_uploaded_files"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:textSize="@dimen/fourteen_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:layout_marginLeft="@dimen/fifteen_size"
+        app:layout_constraintTop_toBottomOf="@id/lblContent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <RelativeLayout
+        android:id="@+id/rytViewDownload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/parent_blue_bg"
+        android:padding="@dimen/seven_size"
+        app:layout_constraintTop_toBottomOf="@id/lblupload"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:layout_marginRight="@dimen/dimen_eighty_size"
+        android:layout_marginLeft="@dimen/dimen_eighty_size"
+        android:layout_marginBottom="@dimen/thirty_size">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/btnNext"
+        android:textStyle="bold"
+        android:textSize="@dimen/fifteen_size"
+        android:gravity="left"
+        android:layout_marginStart="@dimen/fifteen_size"
+        android:layout_marginTop="1dp"
+        android:textColor="@color/white"
+        android:text="@string/txt_view_imagePdf"
+        />
+
+    <ImageView
+        android:layout_height="23dp"
+        android:layout_width="23dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/img_download_white"/>
+
+</RelativeLayout>
+    <TextView
+        android:id="@+id/lblenrol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enrollment question"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/eighteen"
+        android:visibility="gone"
+        android:padding="@dimen/dimen_two"
+        android:layout_marginLeft="@dimen/fifteen_size"
+        android:layout_marginTop="@dimen/thirty_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@id/rytViewDownload"
+        app:layout_constraintStart_toStartOf="@id/rytViewDownload"/>
+
+    <TextView
+        android:id="@+id/lblquestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blue_shadow"
+        android:text="Do you want to enroll with the school bus service ?"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:padding="@dimen/fifteen_size"
+        android:layout_marginLeft="@dimen/fifteen_size"
+        android:layout_marginTop="@dimen/thirty5_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:layout_marginRight="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@id/lblenrol"
+        app:layout_constraintStart_toStartOf="@id/lblenrol"/>
+    <RadioGroup
+        android:id="@+id/rbEnrol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_five"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/lblquestion"
+        app:layout_constraintStart_toStartOf="@id/lblquestion">
+        <RadioButton
+            android:id="@+id/rbsignatureYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="left"
+            android:text="Yes"
+            android:layout_marginLeft="@dimen/fifty_size"
+            android:textSize="@dimen/twele_size" />
+
+        <RadioButton
+            android:id="@+id/rbsignatureNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="No"
+            android:layout_marginLeft="@dimen/hundred"
+            android:textSize="@dimen/twele_size" />
+
+
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutSignature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_margin="@dimen/fifteen_size"
+
+        android:paddingBottom="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@id/rbEnrol"
+        app:layout_constraintStart_toStartOf="@id/rbEnrol">
+
+        <TextView
+            android:id="@+id/lblSign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SIGNATURE"
+            android:textColor="@color/black"
+            android:padding="@dimen/dimen_two"
+            android:textSize="@dimen/fourteen_size"
+            android:layout_marginTop="@dimen/twenty_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/signaturePad"
+            app:penColor="@android:color/black"
+            android:layout_margin="@dimen/twenty_size"
+            android:visibility="visible"
+            android:background="@drawable/bg_editbox_black"
+            app:layout_constraintTop_toBottomOf="@id/lblSign"
+            app:layout_constraintStart_toStartOf="@id/lblSign"/>
+
+        <Button
+            android:layout_width="@dimen/hundred"
+            android:layout_height="@dimen/fourty5_size"
+            android:id="@+id/btnClear"
+            android:text="Clear"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/thirty_size"
+            android:background="@drawable/bg_editbox_black"
+            android:enabled="true"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sixteen"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/signaturePad"
+            app:layout_constraintLeft_toLeftOf="parent" />
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="@dimen/fourty5_size"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/thirty_size"
+            android:background="@drawable/parent_blue_bg"
+            android:enabled="true"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sixteen"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/signaturePad"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

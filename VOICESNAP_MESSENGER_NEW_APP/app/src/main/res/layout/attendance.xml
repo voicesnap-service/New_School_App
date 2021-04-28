@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitegrey"
+    android:fitsSystemWindows="true">
+    <com.michalsvec.singlerowcalendar.calendar.SingleRowCalendar
+        android:id="@+id/rcyDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sixteen"
+        android:layout_marginTop="@dimen/sixteen"
+        android:layout_marginEnd="@dimen/sixteen"
+        app:deselection="false"
+        app:longPress="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:multiSelection="false" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyclass"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/fifteen_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rcyDay" />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:layout_marginBottom="@dimen/eight_size"
+        android:background="@drawable/rectangle_orange"
+        android:text="@string/txt_enter_manually"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        style="@style/btnConfirm"
+        android:enabled="false"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/activity_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_eighty_size"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

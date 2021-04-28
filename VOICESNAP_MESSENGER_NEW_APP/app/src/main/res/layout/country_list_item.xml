@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/constParent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/imgFlag"
+        android:layout_width="@dimen/twenty5_size"
+        android:layout_height="@dimen/twenty5_size"
+        android:layout_margin="@dimen/ten_size"
+        android:src="@drawable/indian_flag"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblCountryNAme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_size"
+        android:text="Exam Schedule"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        app:layout_constraintLeft_toRightOf="@+id/imgFlag"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <CheckBox
+        android:id="@+id/chooseCheck"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="@dimen/ten_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:checked="false"
+        android:scaleX="1.20"
+        android:scaleY="1.20"
+        android:button="@drawable/custom_checkbox"
+        android:layout_height="wrap_content"/>
+    <View
+        android:id="@+id/viewOne"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/ten_size"
+        android:background="@color/clr_dullgrey"
+        app:layout_constraintEnd_toEndOf="@+id/imgFlag"
+        app:layout_constraintStart_toStartOf="@+id/imgFlag"
+        app:layout_constraintTop_toBottomOf="@+id/imgFlag" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

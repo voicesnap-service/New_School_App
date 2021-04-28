@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:id="@+id/TimingLayout"
+       android:layout_width="@dimen/dimen_eighty_size"
+       android:layout_height="@dimen/dimen_eighty5_size"
+       android:layout_marginTop="@dimen/dimen_five"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent">
+
+      <TextView
+          android:id="@+id/lblstarttime"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="9:00"
+          android:textColor="@color/clr_grey_light"
+          android:textSize="@dimen/thirteen_size"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+      <View
+          android:id="@+id/dotline"
+          android:layout_width="@dimen/thirty_size"
+          android:layout_height="@dimen/thirty_size"
+          android:layout_marginTop="@dimen/dimen_three"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/lblstarttime"
+          android:background="@drawable/vertical_line"
+          android:orientation="vertical">
+
+      </View>
+
+
+      <TextView
+          android:id="@+id/lblendtime"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="9:30"
+          android:textColor="@color/clr_grey_light"
+          android:textSize="@dimen/fifteen_size"
+          android:layout_marginTop="@dimen/dimen_three"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/dotline"/>
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+   <View
+       android:id="@+id/view"
+       android:layout_width="1dp"
+       android:layout_height="75dp"
+       android:background="@color/clr_grey_light"
+       android:orientation="vertical"
+
+       android:layout_marginLeft="20dp"
+       app:layout_constraintStart_toEndOf="@id/TimingLayout"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <LinearLayout
+       android:id="@+id/lnrSubject"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="120dp"
+       android:layout_marginRight="10dp"
+       android:layout_marginTop="3dp"
+       android:background="@drawable/timetable_shadow"
+       android:orientation="vertical"
+       app:layout_constraintTop_toTopOf="parent">
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="10dp"
+          android:layout_marginRight="10dp"
+          android:padding="2dp"
+          android:text="Chemistry"
+          android:textColor="@color/transparent"
+          android:textSize="14dp"
+          android:textStyle="bold" />
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginBottom="20dp"
+          android:padding="2dp"
+          android:text="Class A"
+          android:textColor="@color/clr_txt_grey"
+          android:textSize="14dp" />
+
+   </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

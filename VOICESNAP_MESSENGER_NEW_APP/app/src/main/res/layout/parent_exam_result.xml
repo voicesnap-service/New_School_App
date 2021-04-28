@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitegrey"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consExamResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fourty_size"
+        android:layout_marginEnd="@dimen/fourty_size"
+        android:background="@drawable/parent_blue_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/fifteen_size">
+        <Spinner
+            android:id="@+id/SpinExamResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sixteen"
+            android:background="@null"
+            android:spinnerMode="dropdown"
+            android:entries="@array/ExamType"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:minHeight="@dimen/thirty5_size" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="@dimen/hundred"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/progress"
+            android:background="@drawable/circle_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_marginLeft="@dimen/twenty_size"
+            android:max="100"
+            android:progress="62"
+            android:layout_marginTop="@dimen/twenty5_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/consExamResult"
+          />
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        android:layout_width="@dimen/hundred"
+        android:layout_height="@dimen/hundred"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/progress"
+        android:background="@drawable/circle_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:progress="95"
+        android:layout_marginRight="@dimen/twenty_size"
+        android:layout_marginTop="@dimen/twenty5_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/consExamResult"
+        />
+    <TextView
+        android:id="@+id/lblYourAttendance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fifteen_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:text="@string/txt_your_attendace"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:textSize="@dimen/fourteen_size"
+        app:layout_constraintTop_toBottomOf="@id/progressBar"
+        app:layout_constraintStart_toStartOf="@id/progressBar"/>
+    <TextView
+        android:id="@+id/lblclass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/fifteen_size"
+        android:layout_marginTop="@dimen/fifteen_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:text="@string/txt_class_attendance"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:textSize="@dimen/fourteen_size"
+        app:layout_constraintTop_toBottomOf="@id/progressBar2"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyResults"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/ten_size"
+        app:layout_constraintBottom_toTopOf="@+id/adds_layout"
+        app:layout_constraintTop_toBottomOf="@id/lblYourAttendance"
+        />
+
+    <include
+        android:id="@+id/adds_layout"
+        layout="@layout/bottom_adds_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout" />
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/parent_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sixty3_size"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

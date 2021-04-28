@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_five"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout
+        android:id="@+id/frameLayoutVideo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/two_hundred"
+        android:layout_marginLeft="@dimen/twenty_size"
+        android:layout_marginRight="@dimen/twenty_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_three"
+            android:background="@color/clr_white"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/imgthumb"
+                android:scaleType="fitXY"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/white"
+                app:strokeWidth="@dimen/ten_size"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/album6"
+                app:shapeAppearanceOverlay="@style/roundedCorner">
+
+            </com.google.android.material.imageview.ShapeableImageView>
+            <VideoView
+                android:id="@+id/videoview"
+                android:layout_width="@dimen/one_fifty"
+                android:layout_height="@dimen/hundred"
+                android:visibility="invisible"/>
+            <ImageView
+                android:id="@+id/imgplay"
+                android:layout_width="@dimen/thirty_size"
+                android:layout_height="@dimen/thirty_size"
+                android:src="@drawable/white_pause"
+                android:layout_centerInParent="true"
+                android:visibility="visible"
+                android:layout_gravity="center"/>
+        </RelativeLayout>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/lblheading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_subject"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        android:layout_marginTop="@dimen/fifteen_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayoutVideo" />
+
+    <TextView
+        android:id="@+id/lblSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_four"
+        android:text="Mathematics"
+        android:padding="1dp"
+        android:textColor="@color/clr_txtgrey_light"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblheading">
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/lbltitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fourteen_size"
+        android:text="@string/lbl_title"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/lblSubject"
+        app:layout_constraintTop_toBottomOf="@+id/lblSubject" />
+
+    <TextView
+        android:id="@+id/lblVideoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:text="test"
+        android:textColor="@color/clr_txtgrey_light"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:padding="1dp"
+        app:layout_constraintStart_toStartOf="@+id/lbltitle"
+        app:layout_constraintTop_toBottomOf="@+id/lbltitle" />
+
+
+    <TextView
+        android:id="@+id/lbldescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fourteen_size"
+        android:text="@string/lbl_description"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/lblVideoTitle"
+        app:layout_constraintTop_toBottomOf="@+id/lblVideoTitle" />
+
+    <TextView
+        android:id="@+id/lblVideoDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:text="test"
+        android:textColor="@color/clr_txtgrey_light"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:padding="1dp"
+        app:layout_constraintStart_toStartOf="@+id/lbldescription"
+        app:layout_constraintTop_toBottomOf="@+id/lbldescription" />
+
+    <TextView
+        android:id="@+id/lblRecipients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten_size"
+        android:text="@string/txt_Recpients"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblVideoDescription" />
+
+    <TextView
+        android:id="@+id/lblrecipient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:text="(4200)"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:visibility="visible"
+        app:layout_constraintLeft_toRightOf="@+id/lblRecipients"
+        app:layout_constraintTop_toBottomOf="@id/lblVideoDescription" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyleRecipients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_five"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblRecipients" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

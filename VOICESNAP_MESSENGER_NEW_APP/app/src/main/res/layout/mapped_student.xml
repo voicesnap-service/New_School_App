@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/ten_size"
+    android:id="@+id/StudentDetails"
+    android:background="@color/white">
+    <ImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="@dimen/fifty_size"
+        android:layout_height="@dimen/fifty_size"
+        android:layout_marginTop="@dimen/fifteen_size"
+        app:layout_constraintTop_toBottomOf="@+id/lblTitle"
+        android:background="@drawable/circle_blue_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/settings_profile"
+        />
+    <TextView
+        android:id="@+id/lblStudentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Varsha Reddy"
+        android:textStyle="normal"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sixteen"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:layout_marginStart="@dimen/twenty_size"
+        app:layout_constraintStart_toEndOf="@+id/imgProfile"
+        app:layout_constraintTop_toBottomOf="@+id/lblTitle"
+
+        />
+
+    <TextView
+        android:id="@+id/txtclass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/twenty_size"
+        android:text="Class"
+        android:textSize="@dimen/fifteen_size"
+        android:textColor="@color/clr_grey_light"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imgProfile"
+        app:layout_constraintTop_toBottomOf="@+id/lblStudentName" />
+
+    <TextView
+        android:id="@+id/txtclasscolon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_five"
+        android:text=":"
+        android:textSize="@dimen/fifteen_size"
+        android:textColor="@color/clr_grey_light"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/lblStudentName"
+        app:layout_constraintLeft_toRightOf="@+id/txtclass" />
+    <TextView
+        android:id="@+id/lblClass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="9"
+        android:textSize="@dimen/fifteen_size"
+        android:textColor="@color/clr_grey_light"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/lblStudentName"
+        app:layout_constraintLeft_toRightOf="@+id/txtclasscolon" />
+</androidx.constraintlayout.widget.ConstraintLayout>

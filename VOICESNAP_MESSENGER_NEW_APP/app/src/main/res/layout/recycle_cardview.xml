@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/ten_size"
+    android:layout_margin="@dimen/dimen_five">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+       android:paddingBottom="@dimen/twenty_size"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/ConstParent"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="@dimen/thirty_size"
+            android:layout_height="@dimen/thirty_size"
+            android:layout_marginTop="@dimen/thirty_size"
+            android:layout_marginBottom="@dimen/twenty_size"
+            android:src="@drawable/card_dumy"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/lblMenuName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ten_size"
+            android:text="Voicesnap"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgIcon">
+        </TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

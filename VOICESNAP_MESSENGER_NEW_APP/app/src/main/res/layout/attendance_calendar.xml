@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/seventy5_size"
+    android:layout_height="@dimen/dimen_eighty5_size"
+    android:layout_margin="5dp"
+    android:id="@+id/LayoutOverall"
+    android:background="@drawable/grey_box"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/lblDate"
+        android:layout_width="@dimen/seventy_size"
+        android:layout_height="wrap_content"
+        android:text="27"
+        android:textSize="@dimen/twenty_size"
+        android:padding="1dp"
+        android:layout_marginTop="@dimen/ten_size"
+        android:gravity="top|center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/lblDay"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text="Mon"
+        android:textSize="@dimen/sixteen"
+        android:padding="@dimen/dimen_two"
+        android:gravity="top|center"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/lblDate"
+        app:layout_constraintStart_toStartOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

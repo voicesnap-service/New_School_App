@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/ten_size"
+    android:layout_margin="@dimen/dimen_two">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutPreview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/lblSentAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_two"
+            android:layout_marginBottom="@dimen/ten_size"
+            android:text="Sent on 15th July 2020 at 21:10"
+            android:textColor="@color/transparent"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/lbltitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_two"
+            android:text="@string/lbl_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fourteen_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblSentAt">
+
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/lblVoiceTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_three"
+            android:orientation="horizontal"
+            android:text=""
+            android:padding="@dimen/dimen_two"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/lbltitle"
+            app:layout_constraintTop_toBottomOf="@+id/lbltitle" />
+
+        <TextView
+            android:id="@+id/VoiceFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_two"
+            android:orientation="horizontal"
+            android:text="@string/lbl_voice_file"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/lblVoiceTitle"
+            app:layout_constraintTop_toBottomOf="@+id/lblVoiceTitle" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/LayoutVoicePlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/twenty5_size"
+            android:background="@drawable/rectangle_orange"
+            android:padding="@dimen/eight_size"
+            app:layout_constraintTop_toBottomOf="@+id/VoiceFile">
+
+            <ImageView
+                android:id="@+id/imgplay"
+                android:layout_width="@dimen/thirty_size"
+                android:layout_height="@dimen/thirty_size"
+                android:src="@drawable/white_pause"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/lblvoicetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_five"
+                android:layout_marginTop="@dimen/dimen_five"
+                android:layout_toRightOf="@id/imgplay"
+                android:text="00:00"
+                android:textColor="@color/white"
+                android:textSize="@dimen/thirteen_size"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@+id/imgplay"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <me.jagar.chatvoiceplayerlibrary.PlayerVisualizerSeekbar
+                android:id="@+id/playseekbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/thirty5_size"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dimen_eighty_size"
+                android:layout_marginRight="@dimen/twenty_size"
+                android:layout_toRightOf="@id/lblvoicetime"
+                android:visibility="gone"
+                app:layout_constraintLeft_toRightOf="@+id/lblvoicetime"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/ReciptCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten_size"
+            android:text="@string/txt_Recpients"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twele_size"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/VoiceFile"
+            app:layout_constraintTop_toBottomOf="@+id/LayoutVoicePlay" />
+
+        <TextView
+            android:id="@+id/lblrecipient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ten_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:text=""
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twele_size"
+            android:visibility="visible"
+            app:layout_constraintLeft_toRightOf="@+id/ReciptCount"
+            app:layout_constraintTop_toBottomOf="@id/LayoutVoicePlay" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcyleRecipients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ten_size"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@id/ReciptCount"
+            app:layout_constraintTop_toBottomOf="@id/ReciptCount" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

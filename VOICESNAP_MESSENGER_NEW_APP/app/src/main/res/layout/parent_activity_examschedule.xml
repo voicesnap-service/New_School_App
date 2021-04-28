@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitegrey">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consExamType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/thirty_size"
+        android:layout_marginEnd="@dimen/thirty_size"
+        android:background="@drawable/parent_blue_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/fifteen_size"  >
+    <Spinner
+        android:id="@+id/SpinExamType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sixteen"
+        android:background="@null"
+        android:spinnerMode="dropdown"
+        android:entries="@array/ExamType"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:minHeight="@dimen/thirty5_size" />
+    <ImageView
+        android:layout_width="@dimen/twenty2_size"
+        android:layout_height="@dimen/twenty2_size"
+       android:layout_marginTop="@dimen/dimen_five"
+        android:layout_marginEnd="@dimen/twenty_size"
+        android:layout_marginRight="@dimen/twenty_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:src="@drawable/white_down" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyleExamSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        android:layout_margin="@dimen/ten_size"
+        android:padding="@dimen/dimen_five"
+        android:background="@color/whitegrey"
+        app:layout_constraintBottom_toTopOf="@+id/adds_layout"
+        app:layout_constraintTop_toBottomOf="@+id/consExamType">
+
+    </androidx.recyclerview.widget.RecyclerView>
+    <include
+        android:id="@+id/adds_layout"
+        layout="@layout/bottom_adds_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout" />
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/parent_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sixty3_size"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

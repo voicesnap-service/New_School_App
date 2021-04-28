@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/whitegrey"
+    android:layout_margin="@dimen/dimen_five"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_Title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fourteen_size"
+        android:padding="@dimen/dimen_five"
+        android:layout_marginStart="@dimen/fifteen_size"
+        android:textStyle="normal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/lblContent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fifty_size"
+        android:hint="@string/ed_enter_title"
+        android:layout_marginStart="@dimen/fifteen_size"
+        android:layout_marginEnd="@dimen/fifteen_size"
+        android:textColor="@color/dark_grey_black"
+        android:textColorHint="@color/clr_grey_light"
+        android:textSize="@dimen/twele_size"
+        android:background="@drawable/rectanlge_ed_whiteblack"
+        android:textStyle="normal"
+        android:layout_marginTop="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@+id/lblTitle"
+        android:orientation="horizontal"
+        android:padding="@dimen/eight_size">
+
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/lblDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_four"
+        android:layout_marginTop="@dimen/ten_size"
+        android:text="@string/txt_Description"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/lblContent"
+        app:layout_constraintTop_toBottomOf="@+id/lblContent" />
+
+    <EditText
+        android:id="@+id/edVideoDescription"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginStart="@dimen/fifteen_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/rectanlge_ed_whiteblack"
+        android:gravity="top"
+        android:hint="@string/ed_Typehere"
+        android:inputType="textMultiLine"
+        android:maxLength="460"
+        android:maxLines="15"
+        android:minLines="7"
+        android:padding="@dimen/dimen_five"
+        android:text=""
+        android:textColor="@color/dark_grey_black"
+        android:textColorHint="@color/clr_grey_light"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintTop_toBottomOf="@+id/lblDescription" />
+
+    <RelativeLayout
+        android:id="@+id/rytAddFiles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginTop="@dimen/twenty5_size"
+        android:layout_marginEnd="@dimen/fifteen_size"
+        app:layout_constraintTop_toBottomOf="@id/edVideoDescription"
+        app:layout_constraintStart_toStartOf="@id/edVideoDescription">
+
+        <TextView
+            android:id="@+id/lblAddVideo"
+            android:layout_width="@dimen/two_ten"
+            android:layout_height="@dimen/fourty5_size"
+            android:layout_marginStart="@dimen/twenty5_size"
+            android:background="@drawable/rectangle_orange"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="@string/btn_add_video"
+            android:textColor="@color/clr_white" />
+
+        <ImageView
+            android:id="@+id/imgAttach"
+            android:layout_width="@dimen/fifty_size"
+            android:layout_height="@dimen/fifty_size"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/img_attachment" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/lblattach"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_attachment"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fourteen_size"
+        android:padding="@dimen/dimen_five"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/ten_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/lblContent"
+        app:layout_constraintTop_toBottomOf="@id/rytAddFiles" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyleVideoFiles"
+        android:layout_margin="@dimen/fifteen_size"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btnnext"
+        app:layout_constraintTop_toBottomOf="@id/lblattach"/>
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="@dimen/two_hundred"
+        android:layout_height="@dimen/fourty5_size"
+        android:layout_marginStart="@dimen/eight_size"
+        android:layout_marginTop="@dimen/fifty_size"
+        android:layout_marginEnd="@dimen/eight_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:text="@string/btn_Next"
+        style="@style/btnConfirm"
+        android:enabled="false"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/activity_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_eighty_size"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

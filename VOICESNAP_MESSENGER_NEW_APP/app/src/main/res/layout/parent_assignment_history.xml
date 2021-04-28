@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/whitegrey">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/ten_size"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/LayoutDueTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten_size"
+            android:background="@drawable/parent_blue_bg"
+            android:padding="@dimen/dimen_five"
+            android:visibility="visible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/lblDueTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/dimen_five"
+                android:padding="@dimen/dimen_two"
+                android:text="Due On Aug 3,2020"
+                android:textAlignment="center"
+                android:textColor="@color/clr_white"
+                android:textSize="@dimen/twele_size"
+                android:textStyle="normal"
+                app:layout_constraintLeft_toRightOf="@+id/imgTime"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgTime"
+                android:layout_width="@dimen/eighteen"
+                android:layout_height="@dimen/eighteen"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="@dimen/dimen_two"
+                android:src="@drawable/time_clock"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/rytDaymonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/twenty_size"
+            android:background="@drawable/rectangle_orange"
+            android:padding="@dimen/dimen_three"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LayoutDueTime">
+
+            <TextView
+                android:id="@+id/lblDueOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="1dp"
+                android:layout_toRightOf="@+id/imgCalendar"
+                android:padding="@dimen/dimen_three"
+                android:text="Due On Aug 3,2020"
+                android:textAlignment="center"
+                android:textColor="@color/clr_white"
+                android:textSize="@dimen/fourteen_size"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imgCalendar"
+                android:layout_width="@dimen/twenty_size"
+                android:layout_height="@dimen/twenty_size"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="@dimen/dimen_three"
+                android:src="@drawable/calendar_white" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/lblheading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_Subject"
+            android:textColor="@color/clr_black"
+            android:textSize="@dimen/fourteen_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rytDaymonth" />
+
+        <TextView
+            android:id="@+id/lblSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_four"
+            android:padding="1dp"
+            android:text="Mathematics"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblheading"></TextView>
+
+
+        <TextView
+            android:id="@+id/lblDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fourteen_size"
+            android:text="@string/txt_teacher"
+            android:textColor="@color/clr_black"
+            android:textSize="@dimen/fourteen_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/lblSubject"
+            app:layout_constraintTop_toBottomOf="@+id/lblSubject" />
+
+        <TextView
+            android:id="@+id/lblTeacherName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:padding="1dp"
+            android:text="Mr.Bharath"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/lblDescription"
+            app:layout_constraintTop_toBottomOf="@+id/lblDescription" />
+
+        <TextView
+            android:id="@+id/lblAssignmnetTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fourteen_size"
+            android:text="@string/txt_aasignement"
+            android:textColor="@color/clr_black"
+            android:textSize="@dimen/fourteen_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/lblTeacherName"
+            app:layout_constraintTop_toBottomOf="@+id/lblTeacherName" />
+
+        <TextView
+            android:id="@+id/lblHomework"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="Do problems on written has ax+b=0."
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblAssignmnetTitle" />
+
+        <TextView
+            android:id="@+id/Attachment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fourteen_size"
+            android:text="@string/txt_attachment"
+            android:textColor="@color/clr_black"
+            android:textSize="@dimen/fourteen_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/lblHomework"
+            app:layout_constraintTop_toBottomOf="@+id/lblHomework" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rytViewImage"
+            android:layout_width="@dimen/two_hundred"
+            android:layout_height="@dimen/fourty_size"
+            android:layout_marginTop="@dimen/fifteen_size"
+            android:background="@drawable/rectangle_orange"
+            android:padding="@dimen/dimen_five"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Attachment">
+
+            <TextView
+                android:id="@+id/lblViewIamge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ten_size"
+                android:layout_marginTop="@dimen/dimen_five"
+                android:gravity="left"
+                android:text="@string/txt_view_imagePdf"
+                android:textColor="@color/clr_white"
+                android:textSize="@dimen/fourteen_size"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="@dimen/twenty3_size"
+                android:layout_height="@dimen/twenty3_size"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dimen_five"
+                android:src="@drawable/img_download_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/rytRecipients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eighteen"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/rytViewImage">
+
+            <TextView
+                android:id="@+id/lblname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_two"
+                android:text="@string/txt_Recpients"
+                android:textColor="@color/clr_black"
+                android:textSize="@dimen/twele_size"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/lblRecipients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ten_size"
+                android:layout_toRightOf="@+id/lblname"
+                android:padding="@dimen/dimen_two"
+                android:text="(4852)"
+                android:textColor="@color/clr_black"
+                android:textSize="@dimen/twele_size"
+                android:textStyle="normal" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcyleRecipients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fifteen_size"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/rytRecipients">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <LinearLayout
+            android:id="@+id/ParentLayoutButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ten_size"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen_three"
+            app:layout_constraintTop_toBottomOf="@+id/rcyleRecipients">
+
+            <Button
+                android:id="@+id/btnSubmit"
+
+                android:layout_width="@dimen/hundred"
+                android:layout_height="@dimen/fourty_size"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/ten_size"
+                android:background="@drawable/rectangle_orange"
+                android:backgroundTint="@color/clr_red"
+                android:text="@string/btn_Submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twele_size"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/btnSubmissions"
+
+                android:layout_width="100dp"
+                android:layout_height="@dimen/fourty_size"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/ten_size"
+                android:background="@drawable/rectangle_orange"
+                android:backgroundTint="@color/clr_card_one"
+                android:text="@string/btn_Submissions"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/twele_size"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/TeacherLayoutButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ten_size"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/twenty_size"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ParentLayoutButtons">
+            <Button
+                android:id="@+id/btnTotal"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/fourty_size"
+                android:layout_gravity="center"
+                android:background="@drawable/rectangle_orange"
+                android:backgroundTint="@color/clr_forward"
+                android:text="@string/btn_Total"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twele_size"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="@dimen/hundred"
+                android:layout_height="@dimen/fourty_size"
+                android:layout_marginStart="@dimen/ten_size"
+                android:background="@drawable/rectangle_orange"
+                android:backgroundTint="@color/clr_red"
+                android:text="@string/btn_delete"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twele_size"
+                android:visibility="visible"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnForward"
+                android:layout_width="@dimen/hundred"
+                android:layout_height="@dimen/fourty_size"
+                android:layout_marginStart="@dimen/ten_size"
+                android:background="@drawable/rectangle_orange"
+                android:backgroundTint="@color/clr_card_fourteen"
+
+                android:text="@string/forward"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twele_size"
+                android:visibility="visible"
+                app:layout_constraintLeft_toRightOf="@+id/btnSubmissions"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/adds_layout"
+        layout="@layout/bottom_adds_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <include
+            android:id="@+id/Parentbottomlayout"
+            layout="@layout/parent_bottom_menus"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sixty3_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <include
+            android:id="@+id/TeacherBottomLayout"
+            layout="@layout/activity_bottom_menus"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sixty3_size"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

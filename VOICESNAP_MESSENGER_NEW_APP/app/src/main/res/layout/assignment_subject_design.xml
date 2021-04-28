@@ -1,0 +1,21 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/whitegrey"
+    android:padding="@dimen/dimen_three">
+    <TextView
+        android:id="@+id/lblSelectedSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mathematics"
+        android:background="@drawable/greylight_bg"
+        android:textColor="@color/clr_dark_grey"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        android:layout_margin="@dimen/dimen_five"
+        android:padding="@dimen/ten_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

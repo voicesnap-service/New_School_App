@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "291989429263",
+    "project_id": "voicesnap-new-messenger",
+    "storage_bucket": "voicesnap-new-messenger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291989429263:android:590288d65c8afa1dd7177a",
+        "android_client_info": {
+          "package_name": "com.vsnapnewschool.voicesnapmessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "291989429263-64ielhm9a1lgndll8svkqgbfjvcjkiud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5OwiVyMobdDLiHSaBgCjR1oYxn7SgjIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "291989429263-64ielhm9a1lgndll8svkqgbfjvcjkiud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

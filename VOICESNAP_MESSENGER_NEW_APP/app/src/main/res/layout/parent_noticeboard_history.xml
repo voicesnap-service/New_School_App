@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitegrey">
+
+    <RelativeLayout
+        android:id="@+id/rytNotice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/twenty_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/rytHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ten_size"
+            android:background="@drawable/rectangle_yellow"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/lblTiming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="@dimen/fifteen_size"
+                android:layout_marginTop="@dimen/dimen_two"
+                android:padding="@dimen/dimen_two"
+                android:text="Sent on Jun 05 at 10.30 am"
+                android:textColor="@color/clr_dark_grey"
+                android:textSize="@dimen/twele_size"
+                android:textStyle="normal">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/lblHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblTiming"
+                android:layout_marginStart="@dimen/fifteen_size"
+                android:layout_marginTop="@dimen/dimen_two"
+                android:padding="@dimen/dimen_two"
+                android:text="Bus Fees Due"
+                android:textColor="@color/clr_black"
+                android:textSize="@dimen/fourteen_size"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/lblHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblHeading"
+                android:layout_marginStart="@dimen/twele_size"
+                android:layout_marginTop="@dimen/dimen_two"
+                android:padding="@dimen/dimen_five"
+                android:text="ViewPager in Android allows the user to flip left and right through pages of data. In our android ViewPager application we’ll implement."
+                android:textColor="@color/clr_black"
+                android:textSize="13dp"
+                android:textStyle="normal">
+            </TextView>
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="@dimen/fourty5_size"
+            android:layout_height="@dimen/fourty_size"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_pin" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rytViewNotice"
+        android:layout_width="230dp"
+        android:layout_height="@dimen/fourty_size"
+        android:background="@drawable/rectangle_orange"
+        android:padding="6dp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="@dimen/fifty_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rytNotice">
+        <TextView
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:textSize="@dimen/fourteen_size"
+            android:layout_marginTop="@dimen/dimen_two"
+            android:layout_marginStart="@dimen/twenty5_size"
+            android:textAlignment="center"
+            android:textColor="@color/clr_white"
+            android:text="@string/txt_view_imagePdf"
+            />
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dimen_three"
+            android:src="@drawable/img_download_white" />
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:id="@+id/lblname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:text="Reipients"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rytViewNotice"
+        android:textColor="@color/clr_black"
+        android:textSize="15dp"
+        android:layout_margin="10dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/lblRecipients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:layout_margin="10dp"
+        android:text="(4852)"
+        app:layout_constraintLeft_toRightOf="@+id/lblname"
+        android:textColor="@color/clr_black"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@+id/rytViewNotice"
+        android:textStyle="bold"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyleRecipients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@color/clr_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblname"
+        android:scrollbars="vertical" />
+    <include
+        android:id="@+id/adds_layout"
+        layout="@layout/bottom_adds_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout" />
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/parent_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sixty3_size"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:layout_marginBottom="@dimen/twenty_size">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_two"
+        android:background="@drawable/popup_choosefile_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/LayoutDocuments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/fifteen_size"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:layout_marginBottom="@dimen/sixty_size"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/imgFiles"
+                android:layout_width="@dimen/thirty_size"
+                android:layout_height="@dimen/thirty_size"
+                android:layout_margin="@dimen/dimen_five"
+                android:src="@drawable/document_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lblDocumentFile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_five"
+                android:layout_marginBottom="@dimen/dimen_five"
+                android:padding="@dimen/seven_size"
+                android:text="@string/txt_Choose_Doc_file"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fourteen_size"
+                android:textStyle="normal"
+                android:layout_margin="@dimen/dimen_three"
+                app:layout_constraintStart_toEndOf="@+id/imgFiles"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/LayoutCamera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fifteen_size"
+            app:layout_constraintBottom_toTopOf="@+id/LayoutDocuments">
+
+            <ImageView
+                android:id="@+id/imgCamera"
+                android:layout_width="@dimen/thirty_size"
+                android:layout_height="@dimen/thirty_size"
+                android:layout_margin="@dimen/dimen_five"
+                android:layout_marginRight="@dimen/thirty_size"
+                android:src="@drawable/camera_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lblChooseCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_five"
+                android:padding="@dimen/seven_size"
+                android:text="@string/txt_Choose_from_Camera"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fourteen_size"
+                android:layout_margin="@dimen/dimen_three"
+
+                android:textStyle="normal"
+                app:layout_constraintStart_toEndOf="@+id/imgCamera"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/LayoutGallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fifteen_size"
+            app:layout_constraintBottom_toTopOf="@+id/LayoutCamera">
+
+            <ImageView
+                android:id="@+id/imgGallery"
+                android:layout_width="@dimen/thirty_size"
+                android:layout_height="@dimen/thirty_size"
+                android:layout_marginStart="@dimen/dimen_three"
+                android:layout_marginRight="@dimen/dimen_three"
+                android:src="@drawable/gallery_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lblChooseImageGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/seven_size"
+            android:text="@string/txt_Choose_Image"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fourteen_size"
+            android:layout_marginStart="@dimen/dimen_five"
+            android:textStyle="normal"
+            android:layout_marginTop="@dimen/dimen_two"
+            app:layout_constraintStart_toEndOf="@+id/imgGallery"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/PopupTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ten_size"
+            android:layout_marginTop="@dimen/dimen_three"
+            android:layout_marginBottom="@dimen/twenty_size"
+            android:padding="@dimen/seven_size"
+            android:text="@string/txt_select_file"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sixteen"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/LayoutGallery"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <ImageView
+            android:id="@+id/popClose"
+            android:layout_width="@dimen/thirty_size"
+            android:layout_height="@dimen/thirty_size"
+            android:layout_marginTop="@dimen/dimen_three"
+            android:layout_marginRight="@dimen/twenty_size"
+            android:layout_marginBottom="@dimen/twenty_size"
+            android:src="@drawable/image_close"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/LayoutGallery"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

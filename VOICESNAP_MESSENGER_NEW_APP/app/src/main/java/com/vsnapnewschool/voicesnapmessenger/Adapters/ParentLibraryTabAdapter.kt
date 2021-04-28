@@ -1,0 +1,27 @@
+package com.vsnapnewschool.voicesnapmessenger.Adapters
+
+import android.content.Context
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import com.vsnapnewschool.voicesnapmessenger.Fragments.ParentBooksDue
+import com.vsnapnewschool.voicesnapmessenger.Fragments.ParentBooksReturned
+
+
+class ParentLibraryTabAdapter(private val myContext: Context, fm: FragmentManager, internal var totalTabs: Int) : FragmentPagerAdapter(fm) {
+    override fun getItem(position: Int): Fragment {
+        when (position) {
+            0 -> {
+                return ParentBooksDue()
+            }
+            1 -> {
+                return ParentBooksReturned()
+            }
+            else -> return ParentBooksDue()
+        }
+    }
+    override fun getCount(): Int {
+        return totalTabs
+    }
+
+}

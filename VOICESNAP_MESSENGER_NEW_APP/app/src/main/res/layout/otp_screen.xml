@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ConstParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash">
+
+
+    <ScrollView
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="@dimen/thirty_size"
+                android:layout_height="@dimen/thirty_size"
+                android:layout_marginLeft="@dimen/twenty_size"
+                android:layout_marginTop="@dimen/fifteen_size"
+                android:src="@drawable/left_arrow"
+                android:visibility="visible"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lblVerification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/twenty_size"
+                android:layout_marginTop="@dimen/fifteen_size"
+                android:text="Phone Verification"
+                android:textColor="@color/clr_school"
+                android:textSize="@dimen/twenty_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgBack"></TextView>
+
+
+            <TextView
+                android:id="@+id/lblNumberText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/twenty_size"
+                android:layout_marginTop="@dimen/fifteen_size"
+                android:text="Your phone number"
+                android:textColor="@color/clr_black"
+                android:textSize="@dimen/fifteen_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblVerification"></TextView>
+
+
+            <EditText
+                android:id="@+id/lblMobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fourty5_size"
+                android:layout_marginLeft="@dimen/twenty_size"
+                android:layout_marginTop="@dimen/fifteen_size"
+                android:layout_marginRight="@dimen/twenty_size"
+                android:padding="3dp"
+                android:textSize="@dimen/fifteen_size"
+                android:inputType="number"
+                android:background="@drawable/rect_stroke_blue"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/lblNumberText" />
+
+            <TextView
+                android:id="@+id/lblResend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Resend"
+                android:visibility="gone"
+                android:textColor="@color/clr_blue"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblMobileNumber" />
+
+            <Button
+                android:id="@+id/btnGetOTP"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/parent_blue_bg"
+                android:text="Get OTP"
+                android:visibility="gone"
+                android:textColor="@color/bpWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblMobileNumber" />
+
+            <TextView
+                android:id="@+id/lblEnter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/twenty_size"
+                android:layout_marginTop="@dimen/fifteen_size"
+                android:layout_marginRight="@dimen/ten_size"
+                android:text="Enter the 4 digit code sent to your phone"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fifteen_size"
+                app:layout_constraintTop_toBottomOf="@+id/btnGetOTP"></TextView>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/txtconst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/twenty_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblEnter">
+
+                <EditText
+                    android:id="@+id/txtEdit1"
+                    android:layout_width="@dimen/fourty5_size"
+                    android:layout_height="@dimen/fourty5_size"
+                    android:layout_marginLeft="@dimen/twenty_size"
+                    android:background="@drawable/rect_stroke_orange"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fifteen_size"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/txtEdit2"
+                    android:layout_width="@dimen/fourty5_size"
+                    android:layout_height="@dimen/fourty5_size"
+                    android:layout_marginLeft="@dimen/twenty_size"
+                    android:background="@drawable/rect_stroke_orange"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fifteen_size"
+                    app:layout_constraintLeft_toRightOf="@+id/txtEdit1"
+                    app:layout_constraintTop_toTopOf="@+id/txtEdit1" />
+
+                <EditText
+                    android:id="@+id/txtEdit3"
+                    android:layout_width="@dimen/fourty5_size"
+                    android:layout_height="@dimen/fourty5_size"
+                    android:layout_marginLeft="@dimen/twenty_size"
+                    android:background="@drawable/rect_stroke_orange"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fifteen_size"
+                    app:layout_constraintLeft_toRightOf="@+id/txtEdit2"
+                    app:layout_constraintTop_toTopOf="@+id/txtEdit2" />
+
+                <EditText
+                    android:id="@+id/txtEdit4"
+                    android:layout_width="@dimen/fourty5_size"
+                    android:layout_height="@dimen/fourty5_size"
+                    android:layout_marginLeft="@dimen/twenty_size"
+                    android:background="@drawable/rect_stroke_orange"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fifteen_size"
+                    app:layout_constraintLeft_toRightOf="@+id/txtEdit3"
+                    app:layout_constraintTop_toTopOf="@+id/txtEdit3" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <ImageView
+                android:id="@+id/imgNext"
+                android:layout_width="@dimen/fourty5_size"
+                android:layout_height="@dimen/fourty5_size"
+                android:layout_marginTop="@dimen/fifteen_size"
+                android:layout_marginRight="@dimen/twenty_size"
+                android:background="@drawable/circle_blue"
+                android:src="@drawable/right_white_icon"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtconst" />
+
+
+            <TextView
+                android:id="@+id/lblClickHere"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/twenty_size"
+                android:visibility="gone"
+                android:text="Note: (If you don`t receive OTP through SMS, please call below numbers to get a OTP)"
+                android:textSize="@dimen/fifteen_size"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/ten_size"
+                android:textColor="@color/clr_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgNext">
+            </TextView>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleNumbers"
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblClickHere"
+                android:layout_height="wrap_content"/>
+
+
+
+            <TextView
+                android:id="@+id/lblMissedCallFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/twenty_size"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:text="Please give a missed call from 9003769500"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fifteen_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recycleNumbers" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitegrey"
+    tools:context=".Activities.TeacherGenerealTextMessages">
+    <LinearLayout
+        android:id="@+id/lnrTabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/clr_white"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/sliding_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/app_color"
+            app:tabMode="fixed"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabSelectedTextColor="@color/app_color"
+            app:tabTextColor="@color/clr_black" />
+
+    </LinearLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_below="@+id/lnrTabs"
+        android:layout_marginBottom="@dimen/dimen_five"
+        android:background="@color/whitegrey" />
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/activity_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_eighty_size"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:visibility="visible" />
+
+
+</RelativeLayout>

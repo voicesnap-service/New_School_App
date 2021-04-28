@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitegrey">
+
+
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:padding="@dimen/dimen_five"
+        android:text="@string/txt_Title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+            android:id="@+id/edTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fourty5_size"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/twenty_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:background="@drawable/rectanlge_ed_whiteblack"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblTitle"
+            android:ems="10"
+            android:gravity="center|left"
+            android:hint="@string/ed_Typehere"
+            android:inputType="textMultiLine"
+            android:padding="@dimen/dimen_five"
+            android:textColor="@color/dark_grey_black"
+            android:textColorHint="@color/clr_grey_light"
+            android:textSize="@dimen/fourteen_size" />
+
+    <RelativeLayout
+        android:id="@+id/rytBrowse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twenty_size"
+        android:background="@drawable/image_background"
+        android:padding="@dimen/fifteen_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTitle">
+
+        <TextView
+            android:id="@+id/txttitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:text="Browse"
+            android:textColor="@color/clr_darkblue"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgDownload"
+            android:layout_width="@dimen/thirty5_size"
+            android:layout_height="@dimen/thirty5_size"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_rect_white"
+            android:padding="@dimen/eight_size"
+            android:src="@drawable/download_img"
+            android:visibility="gone"
+
+            />
+
+        <ImageView
+            android:id="@+id/imgCamera"
+            android:layout_width="@dimen/thirty5_size"
+            android:layout_height="@dimen/thirty5_size"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/eight_size"
+            android:layout_marginRight="@dimen/eight_size"
+            android:layout_toLeftOf="@+id/imgDownload"
+            android:background="@drawable/bg_rect_white"
+            android:padding="@dimen/ten_size"
+
+            android:src="@drawable/camera_img" />
+
+        <ImageView
+            android:id="@+id/imgGallery"
+            android:layout_width="@dimen/thirty5_size"
+            android:layout_height="@dimen/thirty5_size"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/twenty5_size"
+            android:layout_toLeftOf="@+id/imgCamera"
+            android:background="@drawable/bg_rect_white"
+            android:padding="@dimen/ten_size"
+
+            android:src="@drawable/folder_img" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/lblAddFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/twenty5_size"
+        android:layout_marginLeft="@dimen/twenty_size"
+        android:layout_marginTop="@dimen/twenty5_size"
+        android:text="@string/txt_attachment"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rytBrowse" />
+    <TextView
+        android:id="@+id/lblAttachment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/twenty5_size"
+        android:layout_marginLeft="@dimen/twenty_size"
+        android:layout_marginTop="@dimen/twenty5_size"
+        android:text="@string/txt_attachment"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:visibility="gone"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/rytBrowse" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyleSelectedImages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/twenty5_size"
+        android:layout_marginTop="@dimen/eight_size"
+        android:layout_marginEnd="@dimen/twenty_size"
+        android:layout_marginBottom="@dimen/twenty_size"
+        android:background="@drawable/rect_white_bg"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblAttachment">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="@dimen/two_hundred"
+        android:layout_height="@dimen/fourty5_size"
+        android:layout_marginStart="@dimen/eight_size"
+        android:layout_marginTop="@dimen/fifty_size"
+        android:layout_marginEnd="@dimen/eight_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:text="@string/btn_Next"
+        style="@style/btnConfirm"
+        android:enabled="false"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/activity_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_eighty_size"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

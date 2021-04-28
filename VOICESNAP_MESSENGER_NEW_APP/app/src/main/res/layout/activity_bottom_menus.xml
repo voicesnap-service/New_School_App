@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg_bottom_menu_shape"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgTeacherChat"
+        android:layout_width="@dimen/thirty_size"
+        android:layout_height="@dimen/thirty_size"
+        android:src="@drawable/teacher_chat_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:layout_marginLeft="@dimen/thirty_size"
+        android:layout_marginRight="@dimen/thirty_size"
+        android:layout_marginBottom="@dimen/eight_size" />
+
+    <ImageView
+        android:id="@+id/imgTeacherHomeMenu"
+        android:layout_width="@dimen/fourty_size"
+        android:layout_height="@dimen/fourty_size"
+        android:src="@drawable/teacher_home_white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgTeacherChat"
+        app:layout_constraintEnd_toStartOf="@id/imgTeacherSettings"
+        android:layout_marginLeft="@dimen/thirty_size"
+        android:layout_marginRight="@dimen/thirty_size"
+        android:layout_marginBottom="@dimen/twele_size"/>
+
+    <ImageView
+        android:id="@+id/imgTeacherSettings"
+        android:layout_width="@dimen/thirty_size"
+        android:layout_height="@dimen/thirty_size"
+        android:src="@drawable/teacher_profile_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:layout_marginLeft="@dimen/thirty_size"
+        android:layout_marginRight="@dimen/thirty_size"
+        android:layout_marginBottom="@dimen/eight_size"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

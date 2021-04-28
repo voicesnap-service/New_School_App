@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:CircleImageView="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/radial_gray_light"
+    tools:context=".Activities.CombinationHomeScreen">
+
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_size"
+        android:padding="@dimen/eight_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogout">
+
+        <TextView
+            android:id="@+id/lblMemberName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ten_size"
+            android:layout_marginTop="@dimen/dimen_two"
+            android:padding="@dimen/dimen_two"
+            android:text="Hello Rajeshwari !"
+            android:textColor="@color/clr_school"
+            android:textSize="@dimen/fourteen_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lblContentMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblPersonName"
+            android:layout_marginStart="@dimen/twele_size"
+            android:text="Welcome Back"
+            android:textColor="@color/clr_dark_grey"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblMemberName" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgMember"
+            android:layout_width="@dimen/fourty_size"
+            android:layout_height="@dimen/fourty_size"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/eight_size"
+            android:layout_marginEnd="@dimen/eight_size"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_profile"
+            CircleImageView:civ_border_color="#FF000000"
+            CircleImageView:civ_border_width="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/rytSchoolLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/twenty_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginEnd="@dimen/twenty_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:background="@drawable/rectangle_orange"
+        android:padding="@dimen/dimen_five"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/LayoutProfile">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgStaff"
+            android:layout_width="@dimen/fourty_size"
+            android:layout_height="@dimen/fourty_size"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="@dimen/dimen_five"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/dimen_five"
+            android:layout_marginBottom="@dimen/ten_size"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user"
+            CircleImageView:civ_border_color="#FF000000"
+            CircleImageView:civ_border_width="5dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/dimen_five"
+            android:layout_toRightOf="@+id/imgStaff">
+
+            <TextView
+                android:id="@+id/lblRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_five"
+                android:padding="@dimen/dimen_two"
+                android:text="Principal"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fourteen_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imgNext"
+            android:layout_width="@dimen/twenty5_size"
+            android:layout_height="@dimen/twenty5_size"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/ten_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:src="@drawable/right_white_icon" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rycle_roles"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/twenty_size"
+        android:layout_marginTop="@dimen/fifteen_size"
+        android:layout_marginEnd="@dimen/twenty_size"
+        android:layout_marginBottom="100dp"
+        android:scrollbarSize="5dp"
+        android:scrollbarThumbVertical="@drawable/rect_solid_orange"
+        android:scrollbars="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/adds_layout"
+        app:layout_constraintTop_toBottomOf="@+id/rytSchoolLayout" />
+
+    <include
+        android:id="@+id/adds_layout"
+        layout="@layout/bottom_adds_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/activity_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/seventy5_size"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

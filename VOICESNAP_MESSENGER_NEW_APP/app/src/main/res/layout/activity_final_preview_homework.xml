@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/ten_size"
+    android:background="@color/whitegrey">
+
+    <TextView
+        android:id="@+id/lblSentAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sent on 15th July 2020 at 21:10"
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblheading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginEnd="@dimen/fifteen_size"
+        android:text="@string/lbl_subject"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblSentAt" />
+
+    <TextView
+        android:id="@+id/lblSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_two"
+        android:hint=""
+        android:orientation="horizontal"
+        android:padding="1dp"
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblheading">
+
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/lbltitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten_size"
+        android:text="@string/lbl_title"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/lblSubject"
+        app:layout_constraintTop_toBottomOf="@+id/lblSubject" />
+
+    <TextView
+        android:id="@+id/lblhomeworkTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:text=""
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/lbltitle"
+        app:layout_constraintTop_toBottomOf="@+id/lbltitle" />
+
+    <TextView
+        android:id="@+id/homework"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten_size"
+        android:text="@string/lbl_description"
+        android:textColor="@color/clr_black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/lblhomeworkTitle"
+        app:layout_constraintTop_toBottomOf="@+id/lblhomeworkTitle" />
+
+
+    <TextView
+        android:id="@+id/lblHomeworkDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_two"
+        android:hint=""
+        android:orientation="horizontal"
+        android:padding="1dp"
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/homework"
+        app:layout_constraintTop_toBottomOf="@+id/homework" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutVoicePlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twenty_size"
+        android:background="@drawable/rectangle_orange"
+        android:padding="@dimen/eight_size"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/lblHomeworkDescription"
+        app:layout_constraintTop_toBottomOf="@+id/lblHomeworkDescription">
+
+        <ImageView
+            android:id="@+id/imgplaypause"
+            android:layout_width="@dimen/thirty_size"
+            android:layout_height="@dimen/thirty_size"
+            android:src="@drawable/white_pause"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/lblVoicetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_five"
+            android:layout_marginTop="@dimen/eight_size"
+            android:layout_toRightOf="@id/imgplaypause"
+            android:text="00:00"
+            android:textColor="@color/white"
+            android:textSize="@dimen/thirteen_size"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/imgplaypause"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <me.jagar.chatvoiceplayerlibrary.PlayerVisualizerSeekbar
+            android:id="@+id/playseekbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/thirty5_size"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dimen_eighty_size"
+            android:layout_marginRight="@dimen/twenty_size"
+            android:layout_toRightOf="@id/lblVoicetime"
+            android:visibility="gone"
+            app:layout_constraintLeft_toRightOf="@+id/lblvoicetime"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/lblRecipients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten_size"
+        android:text="@string/txt_Recpients"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LayoutVoicePlay" />
+
+    <TextView
+        android:id="@+id/lblrecipient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:text=""
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:visibility="visible"
+        app:layout_constraintLeft_toRightOf="@+id/lblRecipients"
+        app:layout_constraintTop_toBottomOf="@id/LayoutVoicePlay" />
+
+    <LinearLayout
+        android:id="@+id/lnrSelectedSubject"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_weight="1"
+        android:background="@drawable/rectangle_yellow"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblrecipient">
+        <TextView
+            android:id="@+id/lblselectedSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/seven_size"
+            android:text="8th standard"
+            android:textAlignment="center"
+            android:textColor="@color/clr_grey_rec"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal">
+        </TextView>
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyleRecipients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_three"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblRecipients">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

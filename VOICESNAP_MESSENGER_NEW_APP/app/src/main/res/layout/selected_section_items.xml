@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/lblStandardSectionName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:padding="@dimen/dimen_five"
+        android:layout_marginLeft="@dimen/seven_size"
+        android:layout_marginBottom="@dimen/seven_size"
+        android:layout_marginTop="@dimen/seven_size"
+        android:layout_marginRight="60dp"
+        android:text="III  ssf "
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <CheckBox
+        android:id="@+id/chbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/custom_checkbox"
+        android:layout_marginTop="@dimen/ten_size"
+        android:checked="false"
+        android:scaleX="1.20"
+        android:scaleY="1.20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/lblStandardSectionName"
+        app:layout_constraintTop_toTopOf="@+id/lblStandardSectionName" />
+
+    <View
+        android:id="@+id/viewOne"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/ten_size"
+        android:background="@color/clr_dullgrey"
+        app:layout_constraintTop_toBottomOf="@+id/lblStandardSectionName" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

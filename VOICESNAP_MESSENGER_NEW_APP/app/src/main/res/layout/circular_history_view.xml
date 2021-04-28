@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/whitegrey"
+    android:padding="@dimen/ten_size"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+>
+
+    <TextView
+        android:id="@+id/lblCircular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_circular"
+        android:textColor="@color/dark_grey_black"
+        android:textStyle="normal"
+        android:textSize="@dimen/twele_size"
+        android:padding="@dimen/dimen_two"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/lblContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ViewPager in Android"
+        android:textColor="@color/clr_grey_light"
+        android:textSize="@dimen/twele_size"
+        android:padding="@dimen/dimen_two"
+        android:layout_marginTop="@dimen/dimen_two"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:layout_marginRight="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@id/lblCircular"
+        app:layout_constraintStart_toStartOf="@id/lblCircular"/>
+
+    <TextView
+        android:id="@+id/lblupload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_UploadedFiles"
+        android:textColor="@color/dark_grey_black"
+        android:textStyle="normal"
+        android:textSize="@dimen/twele_size"
+        android:padding="@dimen/dimen_two"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@id/lblContent"
+        app:layout_constraintStart_toStartOf="@id/lblContent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rytViewNotice"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rectangle_orange"
+        android:padding="@dimen/ten_size"
+        android:layout_margin="@dimen/fifteen_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblupload">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/btnNext"
+        android:textStyle="bold"
+        android:textSize="@dimen/fourteen_size"
+        android:gravity="left|center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/white"
+        android:text="@string/txt_viewCircular"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_height="23dp"
+        android:layout_width="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/img_download_white"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/lblenrol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_enrollment_question"
+        android:textColor="@color/dark_grey_black"
+        android:textStyle="normal"
+        android:textSize="@dimen/twele_size"
+        android:padding="@dimen/dimen_two"
+        android:layout_marginTop="@dimen/thirty_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@id/rytViewNotice"
+        app:layout_constraintStart_toStartOf="@id/lblupload"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lnrQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:padding="@dimen/fifteen_size"
+        android:background="@drawable/blue_shadow"
+        app:layout_constraintTop_toBottomOf="@id/lblenrol"
+        app:layout_constraintStart_toStartOf="@id/lblenrol">
+        <TextView
+            android:id="@+id/lblQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Do you want to enroll with the school bus service ?"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fourteen_size"
+            android:textAlignment="center"
+            android:gravity="top"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/lblsign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_Signature"
+        android:textColor="@color/dark_grey_black"
+        android:textStyle="normal"
+        android:textSize="@dimen/fourteen_size"
+        android:padding="@dimen/dimen_two"
+        android:layout_marginTop="@dimen/twele_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@id/lnrQuestion"
+        app:layout_constraintStart_toStartOf="@id/lblupload"/>
+
+    <TextView
+        android:id="@+id/lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/fourteen_size"
+        android:padding="@dimen/dimen_two"
+        android:layout_margin="@dimen/twele_size"
+        app:layout_constraintTop_toBottomOf="@id/lnrQuestion"
+        app:layout_constraintStart_toEndOf="@id/lblsign"/>
+
+    <TextView
+        android:id="@+id/lblyes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="yes"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fourteen_size"
+        android:padding="@dimen/dimen_two"
+        android:layout_margin="@dimen/twele_size"
+        app:layout_constraintTop_toBottomOf="@id/lnrQuestion"
+        app:layout_constraintStart_toEndOf="@id/lbl"/>
+
+    <TextView
+        android:id="@+id/Recipients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_Recpients"
+        android:textColor="@color/dark_grey_black"
+        android:textStyle="normal"
+        android:textSize="@dimen/fourteen_size"
+        android:padding="@dimen/dimen_two"
+        android:layout_marginTop="@dimen/twenty2_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@id/lblsign"
+        app:layout_constraintStart_toStartOf="@id/lblsign"/>
+
+    <TextView
+        android:id="@+id/lblrecipients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(200)"
+        android:textColor="@color/dark_grey_black"
+        android:textStyle="normal"
+        android:textSize="@dimen/fourteen_size"
+        android:padding="@dimen/dimen_two"
+        android:layout_marginTop="@dimen/twenty2_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:layout_marginStart="@dimen/ten_size"
+        app:layout_constraintTop_toBottomOf="@id/lblsign"
+        app:layout_constraintLeft_toRightOf="@id/Recipients"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

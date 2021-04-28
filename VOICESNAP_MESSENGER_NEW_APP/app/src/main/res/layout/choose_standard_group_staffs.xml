@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lblSelectAll"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginRight="@dimen/ten_size"
+            app:layout_constraintRight_toLeftOf="@+id/chooseSelectAll"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/fifteen_size"
+            android:text="Select All"
+            android:layout_height="wrap_content"/>
+
+        <CheckBox
+            android:id="@+id/chooseSelectAll"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="@dimen/ten_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:checked="false"
+            android:scaleX="1.20"
+            android:scaleY="1.20"
+            android:button="@drawable/custom_checkbox"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNext"
+        android:id="@+id/recycleSections"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="@dimen/dimen_five"
+        android:layout_marginEnd="@dimen/dimen_five"
+
+        android:layout_marginBottom="90dp"
+        android:scrollbars="none"
+        android:visibility="visible"
+        android:background="@color/white"/>
+
+    <TextView
+        android:id="@+id/btnNext"
+        android:enabled="false"
+        style="@style/btnConfirm"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fourty5_size"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/twenty5_size"
+        android:layout_marginEnd="@dimen/twenty5_size"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:text="NEXT"
+        android:textColor="@color/clr_white" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

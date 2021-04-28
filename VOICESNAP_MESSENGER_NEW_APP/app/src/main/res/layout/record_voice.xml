@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/dimen_three"
+    android:background="@color/whitegrey"
+    android:padding="@dimen/dimen_five">
+
+
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_Title"
+        android:textColor="@color/black"
+        android:layout_marginStart="@dimen/fifteen_size"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/edTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fourty5_size"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:gravity="center|left"
+        app:layout_constraintTop_toBottomOf="@+id/lblTitle"
+        android:layout_marginEnd="@dimen/fifteen_size"
+        android:background="@drawable/rectanlge_ed_whiteblack"
+        android:hint="@string/ed_Typehere"
+        android:layout_marginStart="@dimen/fifteen_size"
+        android:layout_marginTop="@dimen/seven_size"
+        android:layout_marginRight="@dimen/fifteen_size"
+        android:textColor="@color/dark_grey_black"
+        android:textColorHint="@color/clr_grey_light"
+        android:inputType="textMultiLine"
+        android:padding="@dimen/dimen_five"
+        android:textSize="@dimen/fourteen_size" />
+    <TextView
+        android:id="@+id/lblvoicerectime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dimen_two"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:text="You can record voice message upto 3 minutes"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTitle" />
+    <TextView
+        android:id="@+id/lblvoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dimen_two"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:text="Record Voice"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblvoicerectime" />
+
+    <ImageView
+        android:id="@+id/imgRec"
+        android:layout_width="@dimen/seventy_size"
+        android:layout_height="@dimen/seventy_size"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:src="@drawable/voice_bg"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblvoice" />
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imgPlayPasue"-->
+    <!--        android:layout_width="@dimen/hundred"-->
+    <!--        android:layout_height="@dimen/hundred"-->
+    <!--        android:layout_marginTop="@dimen/dimen_five"-->
+    <!--        android:src="@drawable/voice_play"-->
+    <!--        android:visibility="gone"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/lblvoice" />-->
+
+    <TextView
+        android:id="@+id/lbltime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_five"
+        android:padding="@dimen/dimen_five"
+        android:text="00:00"
+        android:textColor="@color/app_color"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgRec"/>
+    <ImageView
+        android:id="@+id/imgPlayPasue"
+        android:layout_width="@dimen/fourty_size"
+        android:layout_height="@dimen/fourty_size"
+        android:layout_marginTop="@dimen/eighteen"
+        android:src="@drawable/orange_pause"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/lbltime"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <me.jagar.chatvoiceplayerlibrary.PlayerVisualizerSeekbar
+        android:id="@+id/imgwave"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fourty_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginRight="@dimen/eight_size"
+        android:layout_marginLeft="@dimen/sixty_size"
+        app:layout_constraintTop_toBottomOf="@+id/lbltime"
+
+        app:layout_constraintLeft_toRightOf="@+id/imgPlayPasue" />
+    <LinearLayout
+        android:id="@+id/lnrVoiceButtons"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fourty_size"
+        android:layout_margin="@dimen/twenty5_size"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/orange_circle_corners"
+        app:layout_constraintTop_toBottomOf="@id/imgwave">
+
+        <TextView
+            android:id="@+id/btnsend"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/fourty_size"
+            android:layout_weight="0.5"
+            android:text="@string/btn_Instant"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/btnschedule"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/fourty_size"
+            android:layout_weight="0.5"
+            android:layout_gravity="center"
+            android:text="@string/btn_schedule"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constScheduleDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_five"
+        android:layout_marginBottom="@dimen/seventy_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/lnrVoiceButtons"
+        app:layout_constraintTop_toBottomOf="@+id/lnrVoiceButtons">
+
+    <TextView
+        android:id="@+id/lblScheduleDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/thirteen_size"
+        android:textColor="@color/black"
+        android:text="@string/lbl_schedule_date_and_time"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/DateMonthLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fifteen_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginEnd="@dimen/fifteen_size"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@id/lblScheduleDate"
+        app:layout_constraintTop_toBottomOf="@+id/lblScheduleDate">
+
+        <ImageView
+            android:id="@+id/imgCalendar"
+            android:layout_width="@dimen/thirty_size"
+            android:layout_height="@dimen/thirty_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:src="@drawable/calendar_clock"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <RelativeLayout
+            android:id="@+id/rytMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/twenty_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:background="@drawable/editbox_round_corners"
+            android:padding="@dimen/dimen_four"
+            app:layout_constraintLeft_toRightOf="@id/imgCalendar"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/lblDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_four"
+                android:text="@string/lbl_select_date"
+                android:textColor="@color/clr_txtgrey_light"
+                android:textSize="@dimen/twele_size" />
+
+            <ImageView
+                android:id="@+id/imgdropdown"
+                android:layout_width="@dimen/twenty5_size"
+                android:layout_height="@dimen/twenty5_size"
+                android:layout_toRightOf="@+id/lblDate"
+                android:padding="@dimen/eight_size"
+                android:src="@drawable/dropdown"
+                app:layout_constraintLeft_toRightOf="@+id/lblDate" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rytTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/twenty_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:layout_marginEnd="@dimen/ten_size"
+            android:background="@drawable/editbox_round_corners"
+            android:padding="@dimen/dimen_three"
+            app:layout_constraintLeft_toRightOf="@+id/rytMonth"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/lblSelectTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_five"
+                android:text="@string/lbl_select_time"
+                android:textColor="@color/clr_txtgrey_light"
+                android:textSize="@dimen/twele_size" />
+
+            <ImageView
+                android:layout_width="@dimen/twenty5_size"
+                android:layout_height="@dimen/twenty5_size"
+                android:layout_toRightOf="@+id/lblSelectTime"
+                android:padding="@dimen/eight_size"
+                android:src="@drawable/dropdown"
+                app:layout_constraintLeft_toRightOf="@+id/lblSelectTime" />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/lblEndCallDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/thirteen_size"
+        android:text="@string/lbl_end_call_date_and_time"
+        android:layout_marginTop="@dimen/twele_size"
+        app:layout_constraintStart_toStartOf="@id/DateMonthLayout"
+        app:layout_constraintTop_toBottomOf="@+id/DateMonthLayout"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/DateMonthLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fifteen_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginEnd="@dimen/fifteen_size"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@id/lblEndCallDate"
+        app:layout_constraintTop_toBottomOf="@+id/lblEndCallDate">
+
+
+        <ImageView
+            android:id="@+id/imgCalendar1"
+            android:layout_width="@dimen/thirty_size"
+            android:layout_height="@dimen/thirty_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:src="@drawable/calendar_clock"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/rytEndMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/twenty_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:background="@drawable/editbox_round_corners"
+            android:padding="@dimen/dimen_four"
+            app:layout_constraintLeft_toRightOf="@id/imgCalendar1"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/lblEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_four"
+                android:text="@string/lbl_select_end_date"
+                android:textColor="@color/clr_txtgrey_light"
+                android:textSize="@dimen/twele_size" />
+
+            <ImageView
+                android:id="@+id/imgdropdown1"
+                android:layout_width="@dimen/twenty5_size"
+                android:layout_height="@dimen/twenty5_size"
+                android:layout_toRightOf="@+id/lblEndDate"
+                android:padding="@dimen/eight_size"
+                android:src="@drawable/dropdown"
+                app:layout_constraintLeft_toRightOf="@+id/lblEndDate" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rytEndTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/twenty_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:layout_marginEnd="@dimen/ten_size"
+            android:background="@drawable/editbox_round_corners"
+            android:padding="@dimen/dimen_three"
+            app:layout_constraintLeft_toRightOf="@+id/rytEndMonth"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/lblSelectEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_five"
+                android:text="@string/lbl_select_time"
+                android:textColor="@color/clr_txtgrey_light"
+                android:textSize="@dimen/twele_size" />
+
+            <ImageView
+                android:layout_width="@dimen/twenty5_size"
+                android:layout_height="@dimen/twenty5_size"
+                android:layout_toRightOf="@+id/lblSelectEndTime"
+                android:padding="@dimen/eight_size"
+                android:src="@drawable/dropdown"
+                app:layout_constraintLeft_toRightOf="@+id/lblSelectEndTime" />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

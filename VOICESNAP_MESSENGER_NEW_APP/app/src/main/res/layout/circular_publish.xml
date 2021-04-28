@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitegrey"
+    android:padding="@dimen/eight_size">
+
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ten_size"
+        android:text="@string/txt_Title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fourty5_size"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/ten_size"
+        android:background="@drawable/rectanlge_ed_whiteblack"
+        android:ems="10"
+        android:gravity="center|left"
+        android:hint="@string/ed_enter_title"
+        android:inputType="textMultiLine"
+        android:padding="@dimen/dimen_five"
+        android:textColor="@color/clr_txtgrey_light"
+        android:textColorHint="@color/clr_grey_light"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintStart_toStartOf="@+id/lblTitle"
+        app:layout_constraintTop_toBottomOf="@+id/lblTitle" />
+
+    <TextView
+        android:id="@+id/lblDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:text="@string/txt_Description"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTitle" />
+
+
+    <EditText
+        android:id="@+id/edDescription"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/one_twenty"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/ten_size"
+        android:layout_marginStart="@dimen/dimen_three"
+        android:layout_marginTop="@dimen/dimen_four"
+        android:layout_marginEnd="@dimen/dimen_three"
+        android:background="@drawable/rectanlge_ed_whiteblack"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/ed_Typehere"
+        android:inputType="textMultiLine"
+        android:maxLength="460"
+        android:maxLines="15"
+        android:minLines="7"
+        android:padding="@dimen/dimen_five"
+        android:textColor="@color/clr_txtgrey_light"
+        android:textColorHint="@color/clr_grey_light"
+        android:textSize="@dimen/twele_size"
+        app:layout_constraintStart_toStartOf="@+id/lblDescription"
+        app:layout_constraintTop_toBottomOf="@+id/lblDescription" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rytAddFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginTop="@dimen/twenty5_size"
+        android:layout_marginEnd="@dimen/ten_size"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/edDescription"
+        app:layout_constraintTop_toBottomOf="@+id/edDescription">
+
+        <TextView
+            android:id="@+id/lblAddFiles"
+            android:layout_width="@dimen/two_ten"
+            android:layout_height="@dimen/fourty5_size"
+            android:layout_marginStart="@dimen/twenty_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:background="@drawable/rectangle_orange"
+            android:gravity="center"
+            android:layout_marginEnd="@dimen/ten_size"
+            android:text="@string/btn_add_pdf"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgAttach"
+            android:layout_width="@dimen/fifty_size"
+            android:layout_height="@dimen/fifty_size"
+            android:layout_marginEnd="@dimen/thirty_size"
+            android:src="@drawable/img_attachment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/txtAttachments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/ten_size"
+        android:layout_marginLeft="@dimen/twenty_size"
+        android:layout_marginTop="@dimen/twenty5_size"
+        android:text="@string/txt_attachment"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rytAddFile" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyleSelectedFiles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/twele_size"
+        android:background="@drawable/rect_white_bg"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/txtAttachments">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/lblEnrol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:text="@string/txt_enrollment"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/rcyleSelectedFiles"
+        app:layout_constraintTop_toBottomOf="@+id/rcyleSelectedFiles" />
+
+    <RadioGroup
+        android:id="@+id/rbEnrol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_five"
+        android:orientation="horizontal"
+        android:visibility="gone"
+
+        app:layout_constraintStart_toStartOf="@id/lblEnrol"
+        app:layout_constraintTop_toBottomOf="@id/lblEnrol">
+
+        <RadioButton
+            android:id="@+id/rbYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="@dimen/ten_size"
+            android:gravity="center"
+            android:text="Yes"
+            android:textSize="@dimen/twele_size" />
+
+        <RadioButton
+            android:id="@+id/rbNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="@dimen/fourty_size"
+            android:text="No"
+            android:textSize="@dimen/twele_size" />
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/EnrollLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ten_size"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/rbEnrol"
+        app:layout_constraintTop_toBottomOf="@+id/rbEnrol">
+
+        <TextView
+            android:id="@+id/lblEnrolQue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="@string/txt_enrollment_question"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twele_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/lblQue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten_size"
+            android:background="@drawable/rectanlge_ed_whiteblack"
+            android:hint="Type your question here.."
+            android:padding="@dimen/ten_size"
+            android:textColor="@color/transparent"
+            android:textColorHint="@color/bpLight_gray"
+            android:textSize="@dimen/twele_size"
+            app:layout_constraintStart_toStartOf="@+id/lblEnrolQue"
+            app:layout_constraintTop_toBottomOf="@+id/lblEnrolQue" />
+
+
+        <TextView
+            android:id="@+id/lblSign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/twenty_size"
+            android:text="SIGNATURE"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twele_size"
+            app:layout_constraintTop_toBottomOf="@+id/lblQue"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <RadioGroup
+            android:id="@+id/rbSignature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/lblSign"
+            app:layout_constraintTop_toBottomOf="@id/lblSign">
+
+            <RadioButton
+                android:id="@+id/rbsignatureYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:text="Yes"
+                android:textSize="@dimen/twele_size" />
+
+            <RadioButton
+                android:id="@+id/rbsignatureNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginLeft="@dimen/fourty_size"
+                android:text="No"
+                android:textSize="@dimen/twele_size" />
+        </RadioGroup>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutSignature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_size"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/EnrollLayout"
+        app:layout_constraintTop_toBottomOf="@+id/EnrollLayout">
+
+
+
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            android:id="@+id/signaturePad"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="@dimen/fifteen_size"
+            android:background="@drawable/bg_editbox_black"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:penColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="100dp"
+            android:layout_height="@dimen/fourty_size"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/fifteen_size"
+            android:background="@drawable/bg_editbox_black"
+            android:enabled="true"
+            android:text="Clear"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sixteen"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signaturePad" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="@dimen/fourty_size"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/fifteen_size"
+            android:background="@drawable/rectangle_orange"
+            android:enabled="true"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sixteen"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signaturePad" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

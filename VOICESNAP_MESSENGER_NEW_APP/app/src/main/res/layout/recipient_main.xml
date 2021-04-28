@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnEntireSchool"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:background="@drawable/bgrecipientbox"
+        android:layout_marginLeft="@dimen/thirty_size"
+        android:layout_marginRight="@dimen/thirty_size"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fourty5_size">
+
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:text="Send to entire school"
+        android:textSize="@dimen/fourteen_size"
+        android:textColor="@color/clr_grey_rec"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/rightarrow_black"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnSpecificStandards"
+        app:layout_constraintTop_toBottomOf="@id/btnEntireSchool"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:background="@drawable/bgrecipientbox"
+        android:layout_marginLeft="@dimen/thirty_size"
+        android:layout_marginRight="@dimen/thirty_size"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fourty5_size">
+
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:text="Send to specific standards"
+        android:textSize="@dimen/fourteen_size"
+        android:textColor="@color/clr_grey_rec"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/rightarrow_black"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnSpecificGroups"
+        app:layout_constraintTop_toBottomOf="@id/btnSpecificStandards"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:background="@drawable/bgrecipientbox"
+        android:layout_marginLeft="@dimen/thirty_size"
+        android:layout_marginRight="@dimen/thirty_size"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fourty5_size">
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="Send to specific groups"
+            android:textSize="@dimen/fourteen_size"
+            android:textColor="@color/clr_grey_rec"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/rightarrow_black"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnSpecificSections"
+        app:layout_constraintTop_toBottomOf="@id/btnSpecificGroups"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:background="@drawable/bgrecipientbox"
+        android:layout_marginLeft="@dimen/thirty_size"
+        android:layout_marginRight="@dimen/thirty_size"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fourty5_size">
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="Send to specific sections"
+            android:textSize="@dimen/fourteen_size"
+            android:textColor="@color/clr_grey_rec"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/rightarrow_black"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnSpecificStudents"
+        app:layout_constraintTop_toBottomOf="@id/btnSpecificSections"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:background="@drawable/bgrecipientbox"
+        android:layout_marginLeft="@dimen/thirty_size"
+        android:layout_marginRight="@dimen/thirty_size"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fourty5_size">
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="Send to specific students"
+            android:textSize="@dimen/fourteen_size"
+            android:textColor="@color/clr_grey_rec"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/rightarrow_black"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnSpecificStaffs"
+        app:layout_constraintTop_toBottomOf="@id/btnSpecificStudents"
+        android:layout_marginTop="@dimen/twenty_size"
+        android:background="@drawable/bgrecipientbox"
+        android:layout_marginLeft="@dimen/thirty_size"
+        android:layout_marginRight="@dimen/thirty_size"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fourty5_size">
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="Send to specific staffs"
+            android:textSize="@dimen/fourteen_size"
+            android:textColor="@color/clr_grey_rec"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/rightarrow_black"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/activity_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/seventy5_size"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

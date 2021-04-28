@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/ten_size"
+    android:id="@+id/video"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+  <ImageView
+      android:id="@+id/imgplay"
+      android:layout_width="@dimen/twenty5_size"
+      android:layout_height="@dimen/twenty5_size"
+      android:src="@drawable/blue_pause"
+      android:padding="@dimen/dimen_two"
+      android:layout_margin="@dimen/twele_size"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10 MIN"
+        android:textSize="@dimen/twele_size"
+        android:layout_margin="@dimen/ten_size"
+        android:textColor="@color/clr_dark_grey"
+        app:layout_constraintTop_toBottomOf="@id/imgplay"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:id="@+id/lblsubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mathematics"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        android:layout_margin="@dimen/ten_size"
+        android:padding="@dimen/dimen_two"
+        android:textColor="@color/clr_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/lbltitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Introduction to Algebra"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:padding="@dimen/dimen_two"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/lblsubject"
+        app:layout_constraintStart_toStartOf="@id/lblsubject"/>
+
+    <TextView
+        android:id="@+id/lblsent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sent on 15 Aug 2020 at 11:00"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:textColor="@color/clr_dark_grey"
+        app:layout_constraintTop_toBottomOf="@id/lbltitle"
+        app:layout_constraintStart_toStartOf="@id/lbltitle"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
