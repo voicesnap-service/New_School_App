@@ -37,7 +37,7 @@
             android:textSize="@dimen/fifteen_size"
             android:textStyle="bold"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/black"
+            android:textColor="@color/bpBlue"
             app:layout_constraintTop_toBottomOf="@+id/imgClose"
             app:layout_constraintStart_toStartOf="parent">
         </TextView>

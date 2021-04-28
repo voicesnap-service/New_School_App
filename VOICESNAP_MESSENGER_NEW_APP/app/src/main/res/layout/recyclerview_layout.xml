@@ -36,7 +36,7 @@
         android:visibility="visible"
         android:background="@color/whitegrey"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintBottom_toTopOf="@+id/adds_layout" />
+        app:layout_constraintBottom_toTopOf="@+id/lblSeeMore" />
 
     <TextView
         android:id="@+id/lblNoRecordsFound"
@@ -50,6 +50,21 @@
         android:textColor="@color/clr_parent"
         android:textSize="@dimen/twenty5_size"
         android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/lblSeeMore"
+        app:layout_constraintBottom_toTopOf="@+id/adds_layout"
+        android:text="See More"
+        android:textColor="@color/bpBlue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/fifteen_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <include
         android:id="@+id/adds_layout"
         layout="@layout/bottom_adds_items"

@@ -4,4 +4,5 @@ import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetTextMessag
 
 interface GetTextMessagesCallBack {
     fun callBackTextMessages(responseBody: GetTextMessages)
+    fun callBackTextMessages_Archive(responseBody: GetTextMessages)
 }

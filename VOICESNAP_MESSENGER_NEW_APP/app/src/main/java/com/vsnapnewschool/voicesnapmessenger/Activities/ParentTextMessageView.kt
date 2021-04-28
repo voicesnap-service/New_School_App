@@ -12,6 +12,8 @@ import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetTextData
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetTextMessages
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.API_NORMAL
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.API_SEE_MORE
 import kotlinx.android.synthetic.main.bottom_adds_items.*
 import kotlinx.android.synthetic.main.parent_bottom_menus.*
 import kotlinx.android.synthetic.main.recyclerview_layout.*
@@ -20,7 +22,6 @@ import java.util.ArrayList
 class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessagesCallBack {
     internal lateinit var parentTextMessageAdapter: ParentTextMessageAdapter
     var textMessageList = ArrayList<GetTextData>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recyclerview_layout)
@@ -33,8 +34,8 @@ class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessage
         imgchat?.setOnClickListener(this)
         imgHomeMenu?.setOnClickListener(this)
         imgSettings?.setOnClickListener(this)
-        StudentAPIServices.getTextMessages(this@ParentTextMessageView,this)
-
+        lblSeeMore?.setOnClickListener(this)
+        StudentAPIServices.getTextMessages(this@ParentTextMessageView,this,API_NORMAL)
     }
 
     override fun onResume() {
@@ -50,9 +51,12 @@ class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessage
             }
             R.id.imgSettings -> {
                 UtilConstants.imgProfileIntent(this)
-            } }
+            }
+            R.id.lblSeeMore -> {
+                StudentAPIServices.getTextMessages(this@ParentTextMessageView,this,API_SEE_MORE)
+            }
+        }
     }
-
     override fun callBackTextMessages(responseBody: GetTextMessages) {
 
         textMessageList.clear()
@@ -68,6 +72,12 @@ class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessage
         recyclerview.layoutManager = mLayoutManager2
         recyclerview.itemAnimator = DefaultItemAnimator()
         recyclerview.adapter = parentTextMessageAdapter
+    }
+
+    override fun callBackTextMessages_Archive(responseBody: GetTextMessages) {
+        lblSeeMore.visibility=View.GONE
+        textMessageList.addAll(responseBody.data)
+        parentTextMessageAdapter.notifyDataSetChanged()
 
     }
 }
