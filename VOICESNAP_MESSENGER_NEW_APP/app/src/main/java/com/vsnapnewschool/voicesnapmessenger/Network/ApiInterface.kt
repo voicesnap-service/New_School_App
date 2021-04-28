@@ -1,4 +1,5 @@
 package com.vsnapnewschool.voicesnapmessenger.Network
+
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.*
@@ -17,7 +18,10 @@ interface ApiInterface {
     //Payment
 
     @GET("institute-fee-rate/student-fee-details-app")
-    fun getFeeDetails(@Query("ChildID") childid: String?, @Query("SchoolID") schollid: String?): Call<FeeDetailsItems?>?
+    fun getFeeDetails(
+        @Query("ChildID") childid: String?,
+        @Query("SchoolID") schollid: String?
+    ): Call<FeeDetailsItems?>?
 
     @POST("institute-fee-rate/student-fee-payment-app")
     fun feePayment(@Body jsonObject: JsonObject?): Call<JsonArray?>?
@@ -123,36 +127,55 @@ interface ApiInterface {
     //Non-Emergency Voice
     @Multipart
     @POST("sendvoice/api/send_voice/send_non_emergency_voice_to_entire_school")
-    fun sendNonEmergencyVoiceToEntireSchool(@Part("info") requestBody: RequestBody?, @Part file: MultipartBody.Part?): Call<StatusMessageResponse?>?
+    fun sendNonEmergencyVoiceToEntireSchool(
+        @Part("info") requestBody: RequestBody?,
+        @Part file: MultipartBody.Part?
+    ): Call<StatusMessageResponse?>?
 
     @Multipart
     @POST("sendvoice/api/send_voice/send_non_emergency_voice_to_standards")
-    fun sendNonEmergencyVoiceToStandards(@Part("info") requestBody: RequestBody?, @Part file: MultipartBody.Part?): Call<StatusMessageResponse?>?
+    fun sendNonEmergencyVoiceToStandards(
+        @Part("info") requestBody: RequestBody?,
+        @Part file: MultipartBody.Part?
+    ): Call<StatusMessageResponse?>?
 
     @Multipart
     @POST("sendvoice/api/send_voice/send_non_emergency_voice_to_sections")
-    fun sendNonEmergencyVoiceToSections(@Part("info") requestBody: RequestBody?, @Part file: MultipartBody.Part?): Call<StatusMessageResponse?>?
+    fun sendNonEmergencyVoiceToSections(
+        @Part("info") requestBody: RequestBody?,
+        @Part file: MultipartBody.Part?
+    ): Call<StatusMessageResponse?>?
 
     @Multipart
     @POST("sendvoice/api/send_voice/send_non_emergency_voice_to_groups")
-    fun sendNonEmergencyVoiceToGroups(@Part("info") requestBody: RequestBody?, @Part file: MultipartBody.Part?): Call<StatusMessageResponse?>?
+    fun sendNonEmergencyVoiceToGroups(
+        @Part("info") requestBody: RequestBody?,
+        @Part file: MultipartBody.Part?
+    ): Call<StatusMessageResponse?>?
 
 
     @Multipart
     @POST("sendvoice/api/send_voice/send_non_emergency_voice_to_students")
-    fun sendNonEmergencyVoiceToStudents(@Part("info") requestBody: RequestBody?, @Part file: MultipartBody.Part?): Call<StatusMessageResponse?>?
+    fun sendNonEmergencyVoiceToStudents(
+        @Part("info") requestBody: RequestBody?,
+        @Part file: MultipartBody.Part?
+    ): Call<StatusMessageResponse?>?
 
 
     @Multipart
     @POST("sendvoice/api/send_voice/send_non_emergency_voice_to_staffs")
-    fun sendNonEmergencyVoiceToStaffs(@Part("info") requestBody: RequestBody?, @Part file: MultipartBody.Part?): Call<StatusMessageResponse?>?
-
+    fun sendNonEmergencyVoiceToStaffs(
+        @Part("info") requestBody: RequestBody?,
+        @Part file: MultipartBody.Part?
+    ): Call<StatusMessageResponse?>?
 
 
     @Multipart
     @POST("sendvoice/api/send_voice/send_emergency_voice_to_schools")
-    fun sendEmergencyVoiceToSchools(@Part("info") requestBody: RequestBody?, @Part file: MultipartBody.Part?): Call<StatusMessageResponse?>?
-
+    fun sendEmergencyVoiceToSchools(
+        @Part("info") requestBody: RequestBody?,
+        @Part file: MultipartBody.Part?
+    ): Call<StatusMessageResponse?>?
 
 
     //TextApi
@@ -179,14 +202,19 @@ interface ApiInterface {
 
     @POST("sendevent/api/send_event/send_event_to_entire_school")
     fun sendEventToEntireSchool(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("sendevent/api/send_event/send_event_to_standards")
     fun sendEventToStandard(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("sendevent/api/send_event/send_event_to_students")
     fun sendEventToStudents(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("sendevent/api/send_event/send_event_to_staffs")
     fun sendEventToStaff(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("sendevent/api/send_event/send_event_to_sections")
     fun sendEventToSections(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("sendevent/api/send_event/send_event_to_groups")
     fun sendEventToGroups(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
@@ -195,28 +223,38 @@ interface ApiInterface {
 
     @POST("/sendfile/api/send_file/send_file_to_entire_school")
     fun sendFilesToEntireSchool(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("/sendfile/api/send_file/send_file_to_standards")
     fun sendFilesToStandard(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("/sendfile/api/send_file/send_file_to_sections")
     fun sendFilesToSection(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("/sendfile/api/send_file/send_file_to_students")
     fun sendFilesToStudents(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("/sendfile/api/send_file/send_file_to_groups")
     fun sendFilesToGroups(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("/sendfile/api/send_file/send_file_to_staffs")
     fun sendFilesToStaff(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
     //NoticeBoard
     @POST("/sendnotice/api/send_notice/send_notice_to_entire_school")
     fun sendNoticeToEntireSchool(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("/sendnotice/api/send_notice/send_notice_to_standards")
     fun sendNoticeToStandard(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("/sendnotice/api/send_notice/send_notice_to_sections")
     fun sendNoticeToSection(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("/sendnotice/api/send_notice/send_notice_to_groups")
     fun sendNoticeToStudents(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("/sendnotice/api/send_notice/send_notice_to_students")
     fun sendNoticeToGroups(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("/sendnotice/api/send_notice/send_notice_to_staffs")
     fun sendNoticeToStaff(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
@@ -228,14 +266,15 @@ interface ApiInterface {
     //Assignment
     @POST("/sendassignment/api/send_assignment/send_assignment_to_sections")
     fun sendAssignmentToSections(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("/sendassignment/api/send_assignment/send_assignment_to_students")
     fun sendAssignmentToStudents(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     @POST("/sendassignment/api/send_assignment/delete_assignment")
     fun DeleteAssignment(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
 
-
-    //VoiceHistory
+    //SendVoiceHistory
     @POST("/sendvoice/api/send_voice/send_non_emergency_voice_to_entire_school_from_history")
     fun sendNonEmergencyVoiceToEntireSchoolFromHistory(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
@@ -257,6 +296,8 @@ interface ApiInterface {
     @POST("/sendvoice/api/send_voice/send_emergency_voice_to_schools_from_history")
     fun SendEmergencyVoiceToSchoolFromhistory(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
-
+    //VoiceHistoryListApi
+    @POST("/sendhistory/api/send_history/staff_get_voice_history")
+    fun GetVoiceHistory(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
 }
