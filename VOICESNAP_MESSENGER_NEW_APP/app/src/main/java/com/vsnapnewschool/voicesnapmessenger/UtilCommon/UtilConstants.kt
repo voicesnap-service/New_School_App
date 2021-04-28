@@ -138,6 +138,10 @@ class UtilConstants {
         var filetype: String? = "image"
         var filetypePdf: String? = "pdf"
         var filetypeVideo: String? = "video"
+
+        var API_SEE_MORE: String? = "SEE_MORE"
+        var API_NORMAL: String? = "NORMAL"
+
         var BottomMenuHome:Boolean?=true
         var extension: String? = null
         var selectedSubjectID: String? = null
@@ -229,6 +233,36 @@ class UtilConstants {
             lblMessage.setText(msg)
             lblClose.setOnClickListener {
                 popupWindow.dismiss()
+            }
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
+        }
+
+        fun parentCustomFailureAlert(activity: Activity?, message: String, ApiType: String?) {
+            val inflater: LayoutInflater =
+                activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view: View = inflater.inflate(custom_alert_failure, null)
+            val popupWindow = PopupWindow(
+                view,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT, true
+            )
+            popupWindow.setContentView(view)
+            popupWindow.setTouchable(true)
+            popupWindow.setFocusable(false)
+            popupWindow.setOutsideTouchable(false)
+
+            val lblClose = view.findViewById<TextView>(R.id.lblClose)
+            val lblMessage = view.findViewById<TextView>(R.id.lblMessage)
+            lblMessage.setText(message)
+            lblClose.setOnClickListener {
+                if(ApiType.equals(API_NORMAL)){
+                    popupWindow.dismiss()
+                }
+                else{
+                    popupWindow.dismiss()
+                    activity.finish()
+                }
+
             }
             popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
         }
@@ -592,6 +626,23 @@ class UtilConstants {
                 }
             } else if (errorCode == 500) {
                 customFailureAlert(activity, errorResponseBody?.message)
+            }
+        }
+
+        fun handleParentErrorResponse(
+            activity: Activity?,
+            errorCode: Int?,
+            errorResponseBody: StatusMessageResponse?,
+            ApiType: String?
+        ) {
+            if (errorCode == 400) {
+                if (errorResponseBody?.status == 0) {
+                    parentCustomFailureAlert(activity, errorResponseBody.message, ApiType)
+                } else if (errorResponseBody?.status == 2) {
+                    tokenExpiredAlert(activity, errorResponseBody.message)
+                }
+            } else if (errorCode == 500) {
+                parentCustomFailureAlert(activity, errorResponseBody!!.message,ApiType)
             }
         }
 

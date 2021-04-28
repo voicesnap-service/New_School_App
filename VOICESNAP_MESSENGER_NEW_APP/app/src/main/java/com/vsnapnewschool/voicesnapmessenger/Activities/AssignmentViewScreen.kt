@@ -16,11 +16,7 @@ import java.util.*
     private val menulist = ArrayList<DayCLass>()
     var value: Boolean? = null
      var leaveClass: EventsImageClass? = null
-
-
-     ///github checkingdfsagggggggggfdgdfgfdgfdgh
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+     override fun onCreate(savedInstanceState: Bundle?) {
         value = intent.extras!!.getBoolean("type")
         if(value as Boolean){
             theme.applyStyle(R.style.AppThemeParent,true)

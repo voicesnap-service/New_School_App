@@ -10,6 +10,7 @@ import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetTextMessages
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.StatusMessageResponse
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.API_NORMAL
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.Util_shared_preferences
 import com.vsnapnewschool.voicesnapmessenger.Util_Common.GifLoading
 import retrofit2.Call
@@ -17,7 +18,7 @@ import retrofit2.Response
 
 object StudentAPIServices {
 
-    fun getTextMessages(activity: Activity?, callBack: GetTextMessagesCallBack) {
+    fun getTextMessages(activity: Activity?, callBack: GetTextMessagesCallBack, ApiType: String?) {
 
         val mobileNumber = Util_shared_preferences.getMobileNumber(activity)
         val loginToken = Util_shared_preferences.getLoginToken(activity)
@@ -34,25 +35,35 @@ object StudentAPIServices {
         jsonObject.addProperty("section_id", SectionID)
         Log.d("ParentTextMsgRequest", jsonObject.toString())
         GifLoading.loading(activity, true)
-        var apiInterface: ApiInterface =
-            APIClient.getApiClient()!!.create(ApiInterface::class.java)
-        apiInterface.getTextMessages(jsonObject)!!
-            .enqueue(object : retrofit2.Callback<GetTextMessages?> {
-                override fun onResponse(
-                    call: Call<GetTextMessages?>?,
-                    response: Response<GetTextMessages?>?
-                ) {
-                    try {
-                        GifLoading.loading(activity, false)
-                        val responseBody = response?.body()
-                        val gson = Gson()
-                        Log.d("logoutResponse", gson.toJson(response))
-                        if (response?.code() == 200) {
-                            if (responseBody!!.status == 1) {
+
+
+        var apiInterface: ApiInterface = APIClient.getApiClient()!!.create(ApiInterface::class.java)
+        var call:Call<GetTextMessages?>?
+        if(ApiType.equals(API_NORMAL)){
+            call= apiInterface.getTextMessages(jsonObject)
+        }
+        else{
+            call= apiInterface.getTextMessages_Archive(jsonObject)
+        }
+        call!!.enqueue(object :
+            retrofit2.Callback<GetTextMessages?> {
+            override fun onResponse(
+                call: Call<GetTextMessages?>?,
+                response: Response<GetTextMessages?>?
+            ) {
+                try {
+                    GifLoading.loading(activity, false)
+                    val responseBody = response?.body()
+                    val gson = Gson()
+                    Log.d("logoutResponse", gson.toJson(response))
+                    if (response?.code() == 200) {
+                        if (responseBody!!.status == 1) {
+                            if (ApiType.equals(API_NORMAL)) {
                                 callBack.callBackTextMessages(responseBody)
                             } else {
-                                UtilConstants.customFailureAlert(activity, responseBody.message)
+                                callBack.callBackTextMessages_Archive(responseBody)
                             }
+<<<<<<< HEAD
                         } else if (response?.code() == 400 || response?.code() == 500) {
                             val errorResponseBody = Gson().fromJson(
                                 response.errorBody()?.charStream(),
@@ -60,22 +71,37 @@ object StudentAPIServices {
                             )
                             UtilConstants.handleErrorResponse(activity, response.code(), errorResponseBody
                             )
+=======
+>>>>>>> f3d2e822fd1d1eb38f24910f8fcc33efc5eda1e0
                         } else {
-                            UtilConstants.normalToast(
-                                activity,
-                                activity?.getString(R.string.Service_unavailable)
-                            )
+                            UtilConstants.parentCustomFailureAlert(activity, responseBody.message,ApiType)
                         }
-                    } catch (e: Exception) {
-                        Log.d("Exception", e.toString())
+                    } else if (response?.code() == 400 || response?.code() == 500) {
+                        val errorResponseBody = Gson().fromJson(
+                            response.errorBody()?.charStream(),
+                            StatusMessageResponse::class.java
+                        )
+                        UtilConstants.handleParentErrorResponse(
+                            activity,
+                            response.code(),
+                            errorResponseBody,ApiType
+                        )
+                    } else {
+                        UtilConstants.normalToast(
+                            activity,
+                            activity?.getString(R.string.Service_unavailable)
+                        )
                     }
+                } catch (e: Exception) {
+                    Log.d("Exception", e.toString())
                 }
+            }
 
-                override fun onFailure(call: Call<GetTextMessages?>?, t: Throwable?) {
-                    GifLoading.loading(activity, false)
-                    Log.d("Failure", t.toString())
-                    UtilConstants.normalToast(activity, t.toString())
-                }
-            })
+            override fun onFailure(call: Call<GetTextMessages?>?, t: Throwable?) {
+                GifLoading.loading(activity, false)
+                Log.d("Failure", t.toString())
+                UtilConstants.normalToast(activity, t.toString())
+            }
+        })
     }
 }
