@@ -1,13 +1,10 @@
 package com.vsnapnewschool.voicesnapmessenger.Activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentCommunicationViewAdapter
 import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentTextMessageAdapter
-import com.vsnapnewschool.voicesnapmessenger.Interfaces.Refreshlistener
 import com.vsnapnewschool.voicesnapmessenger.Models.Voice_Class
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants

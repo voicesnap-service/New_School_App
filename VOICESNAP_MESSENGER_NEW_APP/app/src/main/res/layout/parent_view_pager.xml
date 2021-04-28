@@ -33,8 +33,7 @@
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/clr_parent"
             app:tabMode="fixed"
-
-            app:tabSelectedTextColor="@color/clr_parent"
+            app:tabSelectedTextColor="@color/white"
             app:tabTextColor="@color/clr_black" />
 
     </LinearLayout>

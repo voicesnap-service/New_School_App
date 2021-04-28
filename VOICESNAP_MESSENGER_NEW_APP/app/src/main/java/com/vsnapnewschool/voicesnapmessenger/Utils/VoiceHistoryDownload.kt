@@ -1,38 +1,26 @@
-@file:Suppress("DEPRECATION")
-
 package com.vsnapnewschool.voicesnapmessenger.Utils
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.AsyncTask
-import android.os.Build
 import android.os.Environment
 import android.util.Log
 import com.vsca.vsnapvoicecollege.Rest.APIClient
-import com.vsnapnewschool.voicesnapmessenger.Network.ApiInterface
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.Refreshlistener
-
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiInterface
 import com.vsnapnewschool.voicesnapmessenger.R
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.*
-import java.sql.DriverManager.println
+import java.sql.DriverManager
 
-object DownloadVoice {
+object VoiceHistoryDownload{
     var mProgressDialog: ProgressDialog? = null
-    fun downloadSampleFile(
-        activity: Context?,
-        urldata: String,
-        folder: String?,
-        fileName: String,
-        refreshlistener: Refreshlistener
-    ) {
+    fun downloadSampleFile(activity: Context?, urldata: String, folder: String?, fileName: String) {
         mProgressDialog = ProgressDialog(activity)
         mProgressDialog!!.isIndeterminate = true
         mProgressDialog!!.setMessage("Downloading...")
@@ -60,13 +48,8 @@ object DownloadVoice {
                         override fun onPostExecute(status: Boolean) {
                             super.onPostExecute(status)
                             if (status) {
-                                refreshlistener.refresh()
-                                AlertDownload(
-                                    activity,
-                                    "Success",
-                                    "File stored in: $folder/$fileName",
-                                    refreshlistener
-                                )
+                                Log.d("SucessDownloaded...", "sucess")
+
                             }
                         }
 
@@ -79,12 +62,6 @@ object DownloadVoice {
                         }
                     }.execute()
                 } else {
-                    AlertDownload(
-                        activity,
-                        "Exists",
-                        "This Voice is Already exists in your Folder: $folder/$fileName",
-                        refreshlistener
-                    )
 
                     Log.d("DOWNLOADING...", "server contact failed")
                 }
@@ -104,17 +81,17 @@ object DownloadVoice {
             val filepath = Environment.getExternalStorageDirectory().path
             val file = File(filepath, folder)
             val dir = File(file.absolutePath)
-            println("body: $body")
+            DriverManager.println("body: $body")
             if (!dir.exists()) {
                 dir.mkdirs()
-                println("Dir: $dir")
+                DriverManager.println("Dir: $dir")
             }
             var futureStudioIconFile = File(dir, fileName) //"Hai.mp3"
             if (!futureStudioIconFile.exists()) {
                 val futureStudioIconFile1 = File(dir, fileName)
                 futureStudioIconFile = futureStudioIconFile1
             }
-            println("futureStudioIconFile: $futureStudioIconFile")
+            DriverManager.println("futureStudioIconFile: $futureStudioIconFile")
 
             // todo change the file location/name according to your needs
             var inputStream: InputStream? = null
@@ -145,30 +122,9 @@ object DownloadVoice {
         }
     }
 
-    fun AlertDownload(
-        activity: Context?,
-        title: String?,
-        msg: String?,
-        refreshlistener: Refreshlistener
-    ) {
-        val alertDialog = AlertDialog.Builder(activity)
-        alertDialog.setCancelable(false)
-        alertDialog.setTitle(title)
-        alertDialog.setMessage(msg)
-        alertDialog.setPositiveButton(
-            R.string.teacher_btn_ok,
-            DialogInterface.OnClickListener { dialog,
-                                              which ->
-                dialog.cancel()
-                Log.d("rr", activity.toString())
-//             refreshlistener.refresh()
-//            activity?.let{
-//                val intent = Intent (it, ParentCommunicationView::class.java)
-//                it.startActivity(intent)
-//            }
-            })
-        alertDialog.show()
-    }
+
 
 
 }
+
+

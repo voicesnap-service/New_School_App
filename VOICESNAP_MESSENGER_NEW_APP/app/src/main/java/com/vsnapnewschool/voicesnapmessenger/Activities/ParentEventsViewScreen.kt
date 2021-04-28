@@ -24,7 +24,6 @@ class ParentEventsViewScreen : BaseActivity (),View.OnClickListener{
         val type: String = intent.getStringExtra("type")!!
         if (type.equals("0")) {
             layoutCreatedBy.visibility = View.VISIBLE
-            rcyleRecipients!!.visibility = View.GONE
         }
     }
 

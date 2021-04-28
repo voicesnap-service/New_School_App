@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsnapnewschool.voicesnapmessenger.Adapters.VoiceHistoryAdapter
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.voiceHistoryListener
 import com.vsnapnewschool.voicesnapmessenger.Models.Text_Class
+import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
 import com.vsnapnewschool.voicesnapmessenger.R
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.VoiceHistoryData
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import kotlinx.android.synthetic.main.recyclerview_layout.*
 import java.util.*
@@ -25,10 +27,11 @@ class VoiceHistory : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        ImageLength()
+
+        APIServices.getVoiceHistoryListApi(context as Activity?)
         adds_layout.visibility=View.GONE
-        voiceadapter = VoiceHistoryAdapter(menulist, activity, object : voiceHistoryListener {
-            override fun voiceHistoryClick(holder: VoiceHistoryAdapter.MyViewHolder, text_info: Text_Class) {
+        voiceadapter = VoiceHistoryAdapter(UtilConstants.voiceHistoryList, activity, object : voiceHistoryListener {
+            override fun voiceHistoryClick(holder: VoiceHistoryAdapter.MyViewHolder, text_info: VoiceHistoryData) {
 
                 holder.imgsendvoice.setOnClickListener({
                     UtilConstants.finalPreviewVoiceMessage((context as Activity?)!!,true)

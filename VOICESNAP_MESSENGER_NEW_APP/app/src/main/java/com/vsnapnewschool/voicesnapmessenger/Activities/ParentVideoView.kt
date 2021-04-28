@@ -21,7 +21,6 @@ class ParentVideoView : BaseActivity(),View.OnClickListener {
         parentActionbar()
         setTitle(getString(R.string.title_Video))
         enableSearch(false)
-        scrollAdds(this,imageSlider)
         imgchat?.setOnClickListener(this)
         imgHomeMenu?.setOnClickListener(this)
         imgSettings?.setOnClickListener(this)

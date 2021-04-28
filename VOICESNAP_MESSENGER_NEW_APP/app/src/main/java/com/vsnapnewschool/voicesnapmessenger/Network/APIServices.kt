@@ -13,6 +13,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.vsca.vsnapvoicecollege.Rest.APIClient
+import com.vsnapnewschool.voicesnapmessenger.Adapters.SubjectAdapter
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.GenerateOtpCallBack
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.ReturnGlobalValue
 import com.vsnapnewschool.voicesnapmessenger.R
@@ -37,12 +38,20 @@ import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.RecipientsType
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.ScheduleType
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.SchoolListDetails
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.VoiceHeaderId
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.VoiceHistoryFile
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.VoiceHistoryFilename
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.VoiceHistoryVoicefilepath
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.VoiceHistorycreatedOn
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.VoiceHistorydescription
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.contentTypeImg
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.contentTypePdf
 
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.selectedSubjectID
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.voiceHistoryList
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.Util_shared_preferences
 import com.vsnapnewschool.voicesnapmessenger.Util_Common.GifLoading
+import kotlinx.android.synthetic.main.choose_specific_sections.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -2552,6 +2561,76 @@ object APIServices {
         return jsonObject
 
     }
+
+        fun getVoiceHistoryListApi(activity: Activity?) {
+
+            val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
+            val Logintoken: String? = Util_shared_preferences.getLoginToken(activity)
+
+            val jsonObject = JsonObject()
+            jsonObject.addProperty("login_token", Logintoken)
+            jsonObject.addProperty("mobile_number", mobileNumber)
+            jsonObject.addProperty("school_id", UtilConstants.SchoolID)
+            jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+            Log.d("VoiceHistoryRequest", jsonObject.toString())
+
+            GifLoading.loading(activity, true)
+            var apiInterface: ApiInterface = APIClient.getApiClient()!!.create(ApiInterface::class.java)
+            apiInterface.GetVoiceHistory(jsonObject)!!
+                .enqueue(object : retrofit2.Callback<GetVoiceHistory?> {
+                    override fun onResponse(call: Call<GetVoiceHistory?>?, response: Response<GetVoiceHistory?>?) {
+                        try {
+                            GifLoading.loading(activity, false)
+                            val responseBody = response?.body()
+                            val gson = Gson()
+                            Log.d("VoiceHistory:Res", gson.toJson(response))
+
+                            if (response?.code() == 200) {
+                                if (responseBody!!.status == 1) {
+                                    voiceHistoryList = responseBody.data as ArrayList<VoiceHistoryData>
+
+
+
+//                                    VoiceHeaderId=responseBody.data[0].header_id
+//                                    VoiceHistoryFile=responseBody.data[0].voice_file
+//                                    VoiceHistorydescription=responseBody.data[0].description
+//                                    VoiceHistorycreatedOn=responseBody.data[0].created_on
+//                                    VoiceHistoryVoicefilepath=responseBody.data[0].voice_file_path
+//                                    VoiceHistoryFilename=responseBody.data[0].sub_or_file_name
+
+
+                                } else {
+                                    UtilConstants.customFailureAlert(activity, responseBody.message
+                                    )
+                                }
+                            } else if (response?.code() == 400 || response?.code() == 500) {
+                                val errorResponseBody = Gson().fromJson(
+                                    response.errorBody()?.charStream(),
+                                    StatusMessageResponse::class.java
+                                )
+                                UtilConstants.handleErrorResponse(
+                                    activity,
+                                    response.code(),
+                                    errorResponseBody
+                                )
+                            } else {
+                                UtilConstants.normalToast(activity,activity!!.getString(R.string.Service_unavailable))
+                            }
+                        } catch (e: Exception) {
+                            Log.d("Exception", e.toString())
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<GetVoiceHistory?>?, t: Throwable?) {
+                        GifLoading.loading(activity, false)
+                        Log.d("Failure", t.toString())
+                        UtilConstants.normalToast(activity, t.toString())
+                    }
+                })
+        }
+
+
 
 
 }

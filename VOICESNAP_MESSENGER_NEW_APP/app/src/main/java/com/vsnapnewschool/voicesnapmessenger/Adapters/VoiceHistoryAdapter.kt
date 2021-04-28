@@ -16,13 +16,17 @@ import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.voiceHistoryListener
-import com.vsnapnewschool.voicesnapmessenger.Models.Text_Class
 import com.vsnapnewschool.voicesnapmessenger.R
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.VoiceHistoryData
 import java.io.File
 import java.util.*
 
 
-class VoiceHistoryAdapter(private val imagelist: ArrayList<Text_Class>, private val context: Context?,val voiceHistoryListener: voiceHistoryListener) : RecyclerView.Adapter<VoiceHistoryAdapter.MyViewHolder>() {
+class VoiceHistoryAdapter(
+    private val voiceHistoryList: ArrayList<VoiceHistoryData>,
+    private val context: Context?,
+    val voiceHistoryListener: voiceHistoryListener
+) : RecyclerView.Adapter<VoiceHistoryAdapter.MyViewHolder>() {
     var mediaFileLengthInMilliseconds = 0
     var handler = Handler()
     var mExpandedPosition:Int= -1
@@ -39,6 +43,8 @@ class VoiceHistoryAdapter(private val imagelist: ArrayList<Text_Class>, private 
         val imgsendvoice: ImageView
         val lblrectime: TextView
         val lblduration: TextView
+        val lblsentTime: TextView
+        val lbltitle: TextView
         val rytVoice: RelativeLayout
         val rytVoicePlayer: RelativeLayout
         val seekbar: SeekBar
@@ -49,12 +55,15 @@ class VoiceHistoryAdapter(private val imagelist: ArrayList<Text_Class>, private 
             imgsendvoice = view.findViewById<View>(R.id.imgsendvoice) as ImageView
             lblrectime = view.findViewById<View>(R.id.lblrectime) as TextView
             lblduration = view.findViewById<View>(R.id.lblduration) as TextView
+            lblsentTime = view.findViewById<View>(R.id.lblsentTime) as TextView
+            lbltitle = view.findViewById<View>(R.id.lbltitle) as TextView
             rytVoice = view.findViewById<View>(R.id.rytVoice) as RelativeLayout
             rytVoicePlayer = view.findViewById<View>(R.id.rytVoicePlayer) as RelativeLayout
             seekbar = view.findViewById<View>(R.id.seekbar) as SeekBar
 
 
         }
+
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -63,20 +72,30 @@ class VoiceHistoryAdapter(private val imagelist: ArrayList<Text_Class>, private 
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val voice: Text_Class = imagelist.get(position)
+        val voiceData: VoiceHistoryData = voiceHistoryList.get(position)
+
+        holder.lblsentTime.text=voiceData.created_on
+        holder.lbltitle.text=voiceData.description
         val isExpanded = position == mExpandedPosition
+
+
         holder.rytVoicePlayer.setVisibility(if (isExpanded) View.VISIBLE else View.GONE)
         holder.rytVoice.setActivated(isExpanded)
 
         voicehisorylistener = voiceHistoryListener
-        voicehisorylistener?.voiceHistoryClick(holder,voice)
+        voicehisorylistener?.voiceHistoryClick(holder, voiceData)
 
         holder.rytVoice.setOnClickListener(View.OnClickListener {
-            msgcontent = voice.content
+            msgcontent = voiceData.voice_file
             mExpandedPosition = if (isExpanded) -1 else position
             notifyDataSetChanged()
+
+
+
+
+
             if (mediaPlayer != null && mediaPlayer.isPlaying) {
-                Log.d("test",mediaPlayer.toString())
+                Log.d("test", mediaPlayer.toString())
                 mediaPlayer.stop()
                 mediaPlayer.seekTo(0)
                 holder.imgPlayPause.setImageResource(R.drawable.orange_pause)
@@ -86,7 +105,7 @@ class VoiceHistoryAdapter(private val imagelist: ArrayList<Text_Class>, private 
                 mediaPlayer.seekTo(0)
                 holder.imgPlayPause.setImageResource(R.drawable.orange_pause)
 
-                Log.d("test_0",mediaPlayer.toString())
+                Log.d("test_0", mediaPlayer.toString())
 
             }
             holder.seekbar.setMax(99) // It means 100% .0-99
@@ -123,7 +142,10 @@ class VoiceHistoryAdapter(private val imagelist: ArrayList<Text_Class>, private 
                     dir.mkdirs()
                     println("Dir: $dir")
                 }
-                val fileName = msgcontent!!.substring(msgcontent!!.lastIndexOf('/') + 1, msgcontent!!.length)
+                val fileName = msgcontent!!.substring(
+                    msgcontent!!.lastIndexOf('/') + 1,
+                    msgcontent!!.length
+                )
                 println("FILE_PATH:$dir")
                 mediaPlayer.reset()
                 mediaPlayer.setDataSource(msgcontent)
@@ -155,12 +177,13 @@ class VoiceHistoryAdapter(private val imagelist: ArrayList<Text_Class>, private 
                     val notification = Runnable {
                         holder.imgPlayPause.setImageResource(R.drawable.orange_play)
 
-                        holder.lblduration.setText(milliSecondsToTimer(mediaPlayer.currentPosition.toLong())
+                        holder.lblduration.setText(
+                            milliSecondsToTimer(mediaPlayer.currentPosition.toLong())
                         )
                         primarySeekBarProgressUpdater(fileLength)
                     }
                     handler.postDelayed(notification, 1000)
-                }else{
+                } else {
                     holder.imgPlayPause.setImageResource(R.drawable.orange_pause)
 
                 }
@@ -169,7 +192,7 @@ class VoiceHistoryAdapter(private val imagelist: ArrayList<Text_Class>, private 
     }
 
     override fun getItemCount(): Int {
-        return imagelist.size
+        return voiceHistoryList.size
 
     }
 

@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.vsnapnewschool.voicesnapmessenger.Activities.BaseActivity
+import com.vsnapnewschool.voicesnapmessenger.Utils.CommonClass.Companion.isNetworkAvailable
 import okhttp3.internal.Util
 
 class MyWebViewClient(var context: Activity) : WebViewClient() {
@@ -20,7 +21,7 @@ class MyWebViewClient(var context: Activity) : WebViewClient() {
     }
 
     override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-        if (DownloadVoice.isNetworkAvailable(context)) {
+        if (isNetworkAvailable(context)) {
             view.loadUrl(url)
         } else {
             showAlert("Connectivity", "Check Internet Connection")

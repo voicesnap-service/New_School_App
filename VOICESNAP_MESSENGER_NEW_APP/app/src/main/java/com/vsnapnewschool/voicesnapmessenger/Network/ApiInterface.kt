@@ -273,6 +273,9 @@ interface ApiInterface {
     @POST("/sendassignment/api/send_assignment/delete_assignment")
     fun DeleteAssignment(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
+//    @POST("/sendassignment/api/send_assignment/delete_assignment")
+//    fun DeleteAssignment(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
 
     //SendVoiceHistory
     @POST("/sendvoice/api/send_voice/send_non_emergency_voice_to_entire_school_from_history")
@@ -298,6 +301,6 @@ interface ApiInterface {
 
     //VoiceHistoryListApi
     @POST("/sendhistory/api/send_history/staff_get_voice_history")
-    fun GetVoiceHistory(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+    fun GetVoiceHistory(@Body jsonObject: JsonObject?): Call<GetVoiceHistory?>?
 
 }

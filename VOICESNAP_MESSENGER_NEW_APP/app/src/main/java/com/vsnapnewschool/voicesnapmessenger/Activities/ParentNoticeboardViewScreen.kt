@@ -27,7 +27,6 @@ class ParentNoticeboardViewScreen : BaseActivity(),View.OnClickListener {
             if(type.equals("0")){
                 lblname.visibility= View.GONE
                 lblRecipients.visibility= View.GONE
-                rcyleRecipients!!.visibility= View.GONE
                 rytViewNotice.setBackgroundResource(R.drawable.parent_blue_bg)
             }
 

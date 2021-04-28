@@ -45,7 +45,6 @@ import java.util.*
             ParentLayoutButtons.visibility=View.VISIBLE
             TeacherLayoutButtons.visibility=View.GONE
 
-            rcyleRecipients!!.visibility=View.GONE
             rytDaymonth.visibility=View.GONE
             rytRecipients.visibility=View.GONE
             Parentbottomlayout.visibility=View.VISIBLE

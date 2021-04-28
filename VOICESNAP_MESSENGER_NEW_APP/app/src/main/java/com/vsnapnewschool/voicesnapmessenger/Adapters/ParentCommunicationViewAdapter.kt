@@ -348,13 +348,7 @@ class ParentCommunicationViewAdapter(private val imagelist: ArrayList<Voice_Clas
             holder.rlvoice.setVisibility(VISIBLE)
             holder.lblcountvoice.setVisibility(VISIBLE)
             holder.imgdownload.setOnClickListener({
-                DownloadVoice.downloadSampleFile(
-                    this.context,
-                    info.content!!,
-                    VOICE_FOLDER,
-                    fileName,
-                    refreshlistener
-                )
+                DownloadVoice.downloadSampleFile(this.context, info.content!!, VOICE_FOLDER, fileName, refreshlistener)
             })
             holder.bind(info)
             Log.d("possel",info.id.toString()+ " " + selectposition.toString())
