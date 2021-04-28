@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsnapnewschool.voicesnapmessenger.Adapters.ApproveLeaveAdapter
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.ApproveLeaveListener
 import com.vsnapnewschool.voicesnapmessenger.Models.EventsImageClass
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.ApproveLeaveData
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.ApproveLeaveId
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
 import kotlinx.android.synthetic.main.approve_leave_adapter.*
 import kotlinx.android.synthetic.main.approve_leave_request.*
@@ -29,21 +32,31 @@ class TeacherApproveLeave : BaseActivity(), View.OnClickListener {
         imgTeacherChat?.setOnClickListener(this)
         imgTeacherHomeMenu?.setOnClickListener(this)
         imgTeacherSettings?.setOnClickListener(this)
-        ImageLength()
-        approveLeaveAdapter = ApproveLeaveAdapter(menulist, this, object : ApproveLeaveListener {
-            override fun onapproveleveClick(
-                holder: ApproveLeaveAdapter.MyViewHolder,
-                text_info: EventsImageClass
-            ) {
+
+        SchoolAPIServices.getApproveLeaveList(this)
+
+        approveLeaveAdapter = ApproveLeaveAdapter(UtilConstants.ApproveLeaveList, this, object : ApproveLeaveListener {
+            override fun onapproveleveClick(holder: ApproveLeaveAdapter.MyViewHolder, item: ApproveLeaveData) {
 
                 holder.btnApprove.setOnClickListener {
-                    Toast.makeText(
-                        this@TeacherApproveLeave,
-                        "Button Approve Click",
-                        Toast.LENGTH_SHORT
+                    //Approve=1
+
+                    ApproveLeaveId=item.leave_id
+                    UtilConstants.ApproveLeaveTypeStatus="1"
+
+                    SchoolAPIServices.approveLeaveStatus(this@TeacherApproveLeave)
+
+
+                    Toast.makeText(this@TeacherApproveLeave, "Button Approve Click", Toast.LENGTH_SHORT
                     ).show()
                 }
                 holder.btnReject.setOnClickListener({
+                    ApproveLeaveId=item.leave_id
+                    UtilConstants.ApproveLeaveTypeStatus="2"
+
+                    SchoolAPIServices.approveLeaveStatus(this@TeacherApproveLeave)
+
+
                     Toast.makeText(
                         this@TeacherApproveLeave,
                         btnReject.text.toString(),
@@ -60,40 +73,6 @@ class TeacherApproveLeave : BaseActivity(), View.OnClickListener {
 
     }
 
-    private fun ImageLength() {
-        var movieModel = EventsImageClass(
-            R.drawable.man,
-            "Student 1",
-            "234",
-            "2 days sick leave",
-            "Due To Feeling Not well", ""
-        )
-        menulist.add(movieModel)
-        movieModel = EventsImageClass(
-            R.drawable.album6,
-            "Student 2",
-            "005",
-            "10 days casual leave",
-            "Main Audiotorium", ""
-        )
-        menulist.add(movieModel)
-        movieModel = EventsImageClass(
-            R.drawable.album9,
-            "Student 3",
-            "8955",
-            "1 day festive leave",
-            "Due To Deewali", ""
-        )
-        menulist.add(movieModel)
-        movieModel = EventsImageClass(
-            R.drawable.event4,
-            "Student 4",
-            "475",
-            "2 days rain leave",
-            "Leave ue to Rain", ""
-        )
-        menulist.add(movieModel)
-    }
 
     override fun onClick(v: View?) {
         when (v!!.id) {

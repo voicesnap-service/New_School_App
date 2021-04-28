@@ -146,6 +146,9 @@ class UtilConstants {
         var SelectedSectionsForSubjects: String? = null
         var selectedSectionsListforSubjecject = ArrayList<Section>()
          var voiceHistoryList = ArrayList<VoiceHistoryData>()
+         var ApproveLeaveList = ArrayList<ApproveLeaveData>()
+        var ApproveLeaveTypeStatus: String? = null
+        var ApproveLeaveId: String? = null
 
         var VoiceHeaderId:String?=null
         var VoiceHistoryFile:String?=null

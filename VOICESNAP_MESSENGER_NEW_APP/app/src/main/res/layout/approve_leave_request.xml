@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,6 +14,9 @@
         android:layout_marginTop="@dimen/ten_size"
         android:background="@drawable/rectangle_orange"
         android:padding="@dimen/dimen_five"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:textColor="@android:color/white">
 
         <TextView
@@ -47,16 +51,15 @@
         android:id="@+id/rcyleApproveleave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bottom_layout"
-        android:layout_below="@+id/rytPendingLeave"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="@dimen/ten_size" />
-
     <include
         android:id="@+id/bottom_layout"
         layout="@layout/activity_bottom_menus"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_eighty_size"
-        android:layout_alignParentBottom="true"
+        android:layout_height="@dimen/seventy5_size"
         android:layout_marginTop="@dimen/dimen_five"
-        android:visibility="visible" />
-</RelativeLayout>
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

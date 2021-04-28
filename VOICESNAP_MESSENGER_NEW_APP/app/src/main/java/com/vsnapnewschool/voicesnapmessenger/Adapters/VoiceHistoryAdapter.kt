@@ -24,7 +24,7 @@ import java.util.*
 
 class VoiceHistoryAdapter(
     private val voiceHistoryList: ArrayList<VoiceHistoryData>,
-    private val context: Context?,
+     val context: Context,
     val voiceHistoryListener: voiceHistoryListener
 ) : RecyclerView.Adapter<VoiceHistoryAdapter.MyViewHolder>() {
     var mediaFileLengthInMilliseconds = 0
@@ -33,6 +33,7 @@ class VoiceHistoryAdapter(
     var msgcontent: String? = null
     var mediaPlayer = MediaPlayer()
     var iMediaDuration:Int = 0
+    var Voicefilepath:String? = null
 
     companion object {
         var voicehisorylistener: voiceHistoryListener? = null
@@ -90,7 +91,7 @@ class VoiceHistoryAdapter(
             mExpandedPosition = if (isExpanded) -1 else position
             notifyDataSetChanged()
 
-
+            Voicefilepath=voiceData.voice_file
 
 
 

@@ -32,7 +32,7 @@ object StudentAPIServices {
         jsonObject.addProperty("student_id", StudentID)
         jsonObject.addProperty("class_id", ClassID)
         jsonObject.addProperty("section_id", SectionID)
-        Log.d("Request", jsonObject.toString())
+        Log.d("ParentTextMsgRequest", jsonObject.toString())
         GifLoading.loading(activity, true)
         var apiInterface: ApiInterface =
             APIClient.getApiClient()!!.create(ApiInterface::class.java)
@@ -58,10 +58,7 @@ object StudentAPIServices {
                                 response.errorBody()?.charStream(),
                                 StatusMessageResponse::class.java
                             )
-                            UtilConstants.handleErrorResponse(
-                                activity,
-                                response.code(),
-                                errorResponseBody
+                            UtilConstants.handleErrorResponse(activity, response.code(), errorResponseBody
                             )
                         } else {
                             UtilConstants.normalToast(

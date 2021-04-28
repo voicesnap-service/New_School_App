@@ -12,11 +12,12 @@ import com.bumptech.glide.Glide
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.ApproveLeaveListener
 import com.vsnapnewschool.voicesnapmessenger.Models.EventsImageClass
 import com.vsnapnewschool.voicesnapmessenger.R
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.ApproveLeaveData
 import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 
 
-class ApproveLeaveAdapter(private val listname: ArrayList<EventsImageClass>,
+class ApproveLeaveAdapter(private val listname: ArrayList<ApproveLeaveData>,
                           private val context: Context?,
                           val approvelistener:ApproveLeaveListener) : RecyclerView.Adapter<ApproveLeaveAdapter.MyViewHolder>() {
     companion object {
@@ -30,6 +31,8 @@ class ApproveLeaveAdapter(private val listname: ArrayList<EventsImageClass>,
         internal var lblFromDate: TextView
         internal var lblToDate: TextView
         internal var lblReason: TextView
+        internal var lblClass: TextView
+        internal var lblSection: TextView
         internal var btnApprove: Button
         internal var btnReject: Button
         internal var imgMember: CircleImageView
@@ -42,6 +45,8 @@ class ApproveLeaveAdapter(private val listname: ArrayList<EventsImageClass>,
             lblReason = view.findViewById<View>(R.id.lblReason) as TextView
             lblFromDate = view.findViewById<View>(R.id.lblFromDate) as TextView
             lblToDate = view.findViewById<View>(R.id.lblToDate) as TextView
+            lblClass = view.findViewById<View>(R.id.lblClass) as TextView
+            lblSection = view.findViewById<View>(R.id.lblSection) as TextView
             imgMember = view.findViewById<View>(R.id.imgMember) as CircleImageView
             FromDateLayout = view.findViewById<View>(R.id.FromDateLayout) as ConstraintLayout
             ToDateLayout = view.findViewById<View>(R.id.ToDateLayout) as ConstraintLayout
@@ -57,14 +62,18 @@ class ApproveLeaveAdapter(private val listname: ArrayList<EventsImageClass>,
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val text_info = listname[position]
-        holder.lblStudentName.text = text_info.Day
-        holder.lblRollNo.text = text_info.Month
-        holder.lblDayCount.text = text_info.Content
-        holder.lblReason.text = text_info.description
+        holder.lblStudentName.text = text_info.student_name
+//        holder.lblRollNo.text = text_info.Month
+        holder.lblDayCount.text = text_info.leave_type
+        holder.lblFromDate.text = text_info.leave_from
+        holder.lblToDate.text = text_info.leave_to
+        holder.lblClass.text = text_info.`class`
+        holder.lblSection.text = text_info.section
+       // holder.lblReason.text = text_info.description
         leavelistenrer = approvelistener
         leavelistenrer?.onapproveleveClick(holder,text_info)
         Glide.with(context!!)
-            .load(text_info.image)
+            .load(R.drawable.man)
             .into(holder.imgMember)
     }
     override fun getItemCount(): Int {
