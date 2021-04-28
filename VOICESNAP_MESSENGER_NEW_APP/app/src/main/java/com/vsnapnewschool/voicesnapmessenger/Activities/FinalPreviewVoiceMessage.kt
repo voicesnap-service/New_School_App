@@ -12,7 +12,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vsnapnewschool.voicesnapmessenger.Models.Text_Class
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.VoiceFilePath
@@ -178,15 +178,15 @@ class FinalPreviewVoiceMessage : BaseActivity(), View.OnClickListener {
                     UtilConstants.recipientsActivity(this)
                 } else {
                     if (UtilConstants.RecipientsType == UtilConstants.Students) {
-                        APIServices.sendNonEmergencyVoiceStd_Sec_Grp_Stud_Satff(this)
+                        SchoolAPIServices.sendNonEmergencyVoiceStd_Sec_Grp_Stud_Satff(this)
                     } else if (UtilConstants.RecipientsType == UtilConstants.Standard) {
-                        APIServices.sendNonEmergencyVoiceStd_Sec_Grp_Stud_Satff(this)
+                        SchoolAPIServices.sendNonEmergencyVoiceStd_Sec_Grp_Stud_Satff(this)
                     } else if (UtilConstants.RecipientsType == UtilConstants.StandardSection) {
-                        APIServices.sendNonEmergencyVoiceStd_Sec_Grp_Stud_Satff(this)
+                        SchoolAPIServices.sendNonEmergencyVoiceStd_Sec_Grp_Stud_Satff(this)
                     } else if (UtilConstants.RecipientsType == UtilConstants.Group) {
-                        APIServices.sendNonEmergencyVoiceStd_Sec_Grp_Stud_Satff(this)
+                        SchoolAPIServices.sendNonEmergencyVoiceStd_Sec_Grp_Stud_Satff(this)
                     } else if (UtilConstants.RecipientsType == UtilConstants.Staff) {
-                        APIServices.sendNonEmergencyVoiceStd_Sec_Grp_Stud_Satff(this)
+                        SchoolAPIServices.sendNonEmergencyVoiceStd_Sec_Grp_Stud_Satff(this)
                     }
                 }
 

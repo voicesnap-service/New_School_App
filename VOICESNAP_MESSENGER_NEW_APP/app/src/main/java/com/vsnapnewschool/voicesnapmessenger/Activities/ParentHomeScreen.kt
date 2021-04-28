@@ -48,6 +48,8 @@ class ParentHomeScreen : BaseActivity(), View.OnClickListener {
         recyclerView = findViewById(R.id.recyclerView)
         getMenuList()
         scrollAdds(this, imageSlider)
+
+
         if(UtilConstants.BottomMenuHome!!){
             imgHomeMenu.setImageResource(R.drawable.prnt_group)
 
@@ -55,9 +57,6 @@ class ParentHomeScreen : BaseActivity(), View.OnClickListener {
             imgHomeMenu.setImageResource(R.drawable.prnt_group_white)
 
         }
-
-
-
     }
 
     private fun getMenuList() {
@@ -122,8 +121,7 @@ class ParentHomeScreen : BaseActivity(), View.OnClickListener {
             object : parentHomeMenuClickListener {
                 override fun onClick(
                     holder: ParentHomeGridAdapter.QuestionViewHolder,
-                    item: MenuListData
-                ) {
+                    item: MenuListData) {
                     holder.containerView.setOnClickListener({
                         UtilConstants.PARENT_MENU_TYPE = item.id.toInt()
                         Util_shared_preferences.putModuleType(this@ParentHomeScreen, item.module)
@@ -151,8 +149,6 @@ class ParentHomeScreen : BaseActivity(), View.OnClickListener {
                     UtilConstants.combinationHomeScreen(this)
 
                 }
-
-
             }
             R.id.imgSettings -> {
                 UtilConstants.imgProfileIntent(this)

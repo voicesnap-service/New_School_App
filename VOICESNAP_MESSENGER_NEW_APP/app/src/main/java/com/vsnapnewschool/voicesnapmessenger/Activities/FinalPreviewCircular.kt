@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.Group
@@ -15,7 +14,6 @@ import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.Students
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
 import kotlinx.android.synthetic.main.activity_final_preview_circular.*
-import kotlinx.android.synthetic.main.activity_final_preview_images.*
 import kotlinx.android.synthetic.main.scroll_preview_circular.*
 
 class FinalPreviewCircular : BaseActivity(), View.OnClickListener {

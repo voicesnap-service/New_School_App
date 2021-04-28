@@ -303,4 +303,10 @@ interface ApiInterface {
     @POST("/sendhistory/api/send_history/staff_get_voice_history")
     fun GetVoiceHistory(@Body jsonObject: JsonObject?): Call<GetVoiceHistory?>?
 
+
+    //Parent
+    @POST("/receivercommunication/api/receiver/get_text_messages")
+    fun getTextMessages(@Body jsonObject: JsonObject?): Call<GetTextMessages?>?
+
+
 }

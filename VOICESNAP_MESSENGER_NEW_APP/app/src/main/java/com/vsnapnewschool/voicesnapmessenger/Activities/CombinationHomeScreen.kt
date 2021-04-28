@@ -15,6 +15,7 @@ import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.IsParent
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.IsPrincipal
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.IsStaff
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.Util_shared_preferences
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
 import kotlinx.android.synthetic.main.activity_home_combination.*
 import kotlinx.android.synthetic.main.bottom_adds_items.*
@@ -44,8 +45,8 @@ class CombinationHomeScreen : BaseActivity(), View.OnClickListener {
             object : childmemberListener { override fun onchildmemberclick(holder: ChildRoleAdapter.MyViewHolder, child_info: ChildDetailData) {
                     holder.layoutchildmember.setOnClickListener({
                         BottomMenuHome=false
-
                         if (child_info.is_not_Allow.equals("0")) {
+                            Util_shared_preferences.putChildInfo(this@CombinationHomeScreen,child_info)
                             UtilConstants.parentHomeScreen(this@CombinationHomeScreen)
                         }
                     })

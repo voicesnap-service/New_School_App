@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.Util_shared_preferences
@@ -30,7 +30,7 @@ class ForgotPassword : AppCompatActivity(), View.OnClickListener {
             R.id.btnNext -> {
                 if(!txtOTP.text.toString().isEmpty()) {
                     val MobileNumber:String?=Util_shared_preferences.getMobileNumber(this)
-                    APIServices.validateOTP(this, MobileNumber, txtOTP.text.toString())
+                    SchoolAPIServices.validateOTP(this, MobileNumber, txtOTP.text.toString())
                 }
                 else{
                     UtilConstants.normalToast(this,"Please enter the OTP")

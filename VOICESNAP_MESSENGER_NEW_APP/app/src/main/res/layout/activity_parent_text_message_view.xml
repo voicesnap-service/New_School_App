@@ -4,22 +4,11 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dimen_three"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView
-        android:id="@+id/lblunread"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="1 unread messages"
-        android:textAllCaps="true"
-        android:textSize="@dimen/thirteen_size"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:padding="@dimen/dimen_five"
-        android:background="@color/clr_grey_light"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+
 
     <TextView
-        android:id="@+id/lbltime"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/lblCreatedOn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="yesterday 2:30 PM"
@@ -28,7 +17,6 @@
         android:textColor="@color/clr_dark_grey"
         android:gravity="end"
         android:padding="@dimen/dimen_five"
-        app:layout_constraintTop_toBottomOf="@id/lblunread"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
@@ -43,13 +31,12 @@
         android:layout_marginTop="@dimen/seven_size"
         android:layout_marginBottom="@dimen/dimen_five"
         android:padding="@dimen/fifteen_size"
-
         android:background="@drawable/parent_blue_bg"
-        app:layout_constraintTop_toBottomOf="@id/lbltime"
+        app:layout_constraintTop_toBottomOf="@id/lblCreatedOn"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/lblcountmsg"
+        android:id="@+id/lblCreatedBySort"
         android:layout_width="@dimen/thirty5_size"
         android:layout_height="@dimen/thirty5_size"
         android:text="SP"

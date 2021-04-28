@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.vsnapnewschool.voicesnapmessenger.Adapters.ForgotDialNumbers
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.GenerateOtpCallBack
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.OtpData
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
@@ -144,7 +144,7 @@ class OTPScreen : BaseActivity(), View.OnClickListener,
                     txtEdit1.text.toString() + txtEdit2.text.toString() + txtEdit3.text.toString() + txtEdit4.text.toString()
 
                 if (!otp!!.isEmpty()) {
-                    APIServices.validateOTP(this, MobileNumber, otp)
+                    SchoolAPIServices.validateOTP(this, MobileNumber, otp)
                 } else {
                     normalToast(this, "Enter the OTP")
                 }
@@ -153,10 +153,10 @@ class OTPScreen : BaseActivity(), View.OnClickListener,
                 onBackPressed()
             }
             R.id.btnGetOTP -> {
-                APIServices.generateOTP(this, "new", MobileNumber, this)
+                SchoolAPIServices.generateOTP(this, "new", MobileNumber, this)
             }
             R.id.lblResend -> {
-                APIServices.generateOTP(this, "resend", MobileNumber, this)
+                SchoolAPIServices.generateOTP(this, "resend", MobileNumber, this)
             }
         }
     }

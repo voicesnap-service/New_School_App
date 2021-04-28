@@ -6,7 +6,7 @@ import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.View
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.GenerateOtpCallBack
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.OtpData
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
@@ -37,7 +37,7 @@ class PasswordScreen : BaseActivity(), View.OnClickListener, GenerateOtpCallBack
             }
 
             R.id.lblForgotPassword -> {
-                APIServices.generateOTP(this,"forgot",MobileNumber,this)
+                SchoolAPIServices.generateOTP(this,"forgot",MobileNumber,this)
             }
             R.id.imgEye ->
             {
@@ -66,10 +66,10 @@ class PasswordScreen : BaseActivity(), View.OnClickListener, GenerateOtpCallBack
         if (txtPassword?.text?.isNotEmpty() == true) {
             val token:String?= Util_shared_preferences.getLoginToken(this)
             if(token?.isNotEmpty() == true){
-                APIServices.validateLoginToken(this,MobileNumber,txtPassword.text.toString(),false)
+                SchoolAPIServices.validateLoginToken(this,MobileNumber,txtPassword.text.toString(),false)
             }
             else{
-                APIServices.generateNewLoginToken(this,MobileNumber,txtPassword.text.toString())
+                SchoolAPIServices.generateNewLoginToken(this,MobileNumber,txtPassword.text.toString())
             }
         }
         else

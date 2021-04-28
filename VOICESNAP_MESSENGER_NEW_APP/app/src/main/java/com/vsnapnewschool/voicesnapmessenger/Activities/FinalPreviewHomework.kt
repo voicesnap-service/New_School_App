@@ -11,7 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.VoiceFilePath
@@ -199,7 +199,7 @@ class FinalPreviewHomework : BaseActivity(), View.OnClickListener {
 
 
                 if (UtilConstants.MENU_TYPE == UtilConstants.MENU_TEXT_HOMEWORK) {
-                    APIServices.sendHomeWork(this)
+                    SchoolAPIServices.sendHomeWork(this)
                 } else if (UtilConstants.MENU_TYPE == UtilConstants.MENU_VOICE_HOMEWORK) {
                     UtilConstants.SelcetedFileList.add(VoiceFilePath!!)
 

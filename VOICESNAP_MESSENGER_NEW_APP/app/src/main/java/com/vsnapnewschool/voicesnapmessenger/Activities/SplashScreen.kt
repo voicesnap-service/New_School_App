@@ -36,7 +36,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.vsca.vsnapvoicecollege.Rest.APIClient
 import com.vsnapnewschool.voicesnapmessenger.Adapters.CountryListAdapter
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiInterface
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.*
@@ -308,7 +308,7 @@ class SplashScreen : BaseActivity(), CountryListAdapter.OnItemClickListener {
         if (Util_shared_preferences.getExistingUser(this) == true) {
             val ForgotPassword:Boolean?=Util_shared_preferences.getForgotPassword(this)
             if(ForgotPassword == true){
-                APIServices.checkMobileNumber(this)
+                SchoolAPIServices.checkMobileNumber(this)
             }
             else {
                 appVersioncheck()
@@ -634,10 +634,10 @@ class SplashScreen : BaseActivity(), CountryListAdapter.OnItemClickListener {
             {
                 val token:String?=Util_shared_preferences.getLoginToken(this@SplashScreen)
                 if(token?.isNotEmpty() == true){
-                    APIServices.validateLoginToken(this@SplashScreen,MobileNumber,Password,true)
+                    SchoolAPIServices.validateLoginToken(this@SplashScreen,MobileNumber,Password,true)
                 }
                 else{
-                    APIServices.generateNewLoginToken(this@SplashScreen,MobileNumber,Password)
+                    SchoolAPIServices.generateNewLoginToken(this@SplashScreen,MobileNumber,Password)
                 }
             } else {
                 UtilConstants.openSignInScreen(this@SplashScreen)

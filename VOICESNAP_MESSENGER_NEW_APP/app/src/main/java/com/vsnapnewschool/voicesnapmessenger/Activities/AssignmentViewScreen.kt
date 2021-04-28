@@ -17,6 +17,9 @@ import java.util.*
     var value: Boolean? = null
      var leaveClass: EventsImageClass? = null
 
+
+     ///github checkingdfsagggggggggfdgdfgfdgfdgh
+
     override fun onCreate(savedInstanceState: Bundle?) {
         value = intent.extras!!.getBoolean("type")
         if(value as Boolean){

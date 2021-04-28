@@ -14,11 +14,9 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
 
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
-import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.contentTypeVoice
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
 import kotlinx.android.synthetic.main.homework_publish.*
 import kotlinx.android.synthetic.main.homework_publish.edDescription

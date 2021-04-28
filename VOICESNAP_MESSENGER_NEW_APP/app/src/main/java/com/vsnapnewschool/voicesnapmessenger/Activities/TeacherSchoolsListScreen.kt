@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsnapnewschool.voicesnapmessenger.Adapters.SchoolListAdapter
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.checkSchoolListListener
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.schoolClickListener
-import com.vsnapnewschool.voicesnapmessenger.Network.APIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.StaffDetailData
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
@@ -88,7 +88,7 @@ class TeacherSchoolsListScreen : BaseActivity(), checkSchoolListListener,View.On
         when (view!!.id) {
             R.id.btnNext -> {
                 UtilConstants.SelectedFinalSchoolsList=SelectedSchoolsList
-              APIServices.sendEmergencyVoiceToSchools(this)
+              SchoolAPIServices.sendEmergencyVoiceToSchools(this)
             }
             R.id.imgTeacherChat -> {
                 //  setChatClick(imgChat?, imgHome?, imgProfile?)
