@@ -83,8 +83,9 @@ class SettingScreen : BaseActivity(), View.OnClickListener {
                 UtilConstants.imgHomeIntent(this)
             }
             R.id.Logout -> {
-                Util_shared_preferences.putUserLoggedIn(this, false)
-                SchoolAPIServices.logoutFromSameDevice(this)
+
+                UtilConstants.exitApplicationAlert(this,"Logout")
+
             }
             R.id.imgTeacherChat -> {
 

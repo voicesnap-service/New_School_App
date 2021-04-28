@@ -18,9 +18,9 @@ import kotlinx.android.synthetic.main.recyclerview_layout.*
 import java.util.ArrayList
 
 class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessagesCallBack {
-
     internal lateinit var parentTextMessageAdapter: ParentTextMessageAdapter
     var textMessageList = ArrayList<GetTextData>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recyclerview_layout)
@@ -34,6 +34,11 @@ class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessage
         imgHomeMenu?.setOnClickListener(this)
         imgSettings?.setOnClickListener(this)
         StudentAPIServices.getTextMessages(this@ParentTextMessageView,this)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
 
     }
     override fun onClick(v: View?) {
@@ -55,8 +60,7 @@ class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessage
         parentTextMessageAdapter = ParentTextMessageAdapter(textMessageList, this,object : TextMessagesClickListener {
             override fun onTextClick(holder: ParentTextMessageAdapter.MyViewHolder, text_info: GetTextData) {
                 holder.lblmessage.setOnClickListener({
-
-
+                      UtilConstants.viewMessagePopup(this@ParentTextMessageView,text_info)
                 })
             }
         })

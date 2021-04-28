@@ -64,7 +64,7 @@ class CombinationHomeScreen : BaseActivity(), View.OnClickListener {
     }
 
     override fun onBackPressed() {
-        UtilConstants.exitApplicationAlert(this@CombinationHomeScreen)
+        UtilConstants.exitApplicationAlert(this@CombinationHomeScreen,"Exit")
     }
 
     private fun setLoginTypes() {

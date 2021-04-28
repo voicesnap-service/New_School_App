@@ -365,6 +365,31 @@ class UtilConstants {
             popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
         }
 
+        fun viewMessagePopup(activity: Activity?, text_info: GetTextData) {
+            val inflater: LayoutInflater =
+                activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view: View = inflater.inflate(message_view_popup, null)
+            val popupWindow = PopupWindow(
+                view,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                true
+            )
+
+            popupWindow.setContentView(view)
+            popupWindow.setTouchable(true)
+            popupWindow.setFocusable(true)
+            popupWindow.setOutsideTouchable(false)
+            val lblMessage = view.findViewById<TextView>(R.id.lblMessage)
+            val imgClose = view.findViewById<ImageView>(R.id.imgClose)
+            lblMessage.setText(text_info.content)
+            imgClose.setOnClickListener {
+                popupWindow.dismiss()
+            }
+            popupWindow.animationStyle = R.style.AnimationPopup
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
+        }
+
         fun tokenExpiredAlert(activity: Activity?, message: String?) {
             val inflater: LayoutInflater =
                 activity!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -392,10 +417,9 @@ class UtilConstants {
             popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
         }
 
-        fun exitApplicationAlert(activity: Activity) {
+        fun exitApplicationAlert(activity: Activity, type: String) {
 
-            val inflater: LayoutInflater =
-                activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val inflater: LayoutInflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view: View = inflater.inflate(exit_application_alert, null)
             val popupWindow = PopupWindow(
                 view,
@@ -410,11 +434,19 @@ class UtilConstants {
             val lblClose = view.findViewById<TextView>(R.id.lblClose)
             val lblCancel = view.findViewById<TextView>(R.id.lblCancel)
             val lblMessage = view.findViewById<TextView>(R.id.lblMessage)
+
             lblMessage.setText(activity.getString(R.string.exit_app))
             lblClose.setOnClickListener {
-                popupWindow.dismiss()
-                activity.moveTaskToBack(true);
-                exitProcess(-1)
+
+                if(type.equals("Logout")){
+                    Util_shared_preferences.putUserLoggedIn(activity, false)
+                    SchoolAPIServices.logoutFromSameDevice(activity)
+                }
+             else {
+                    popupWindow.dismiss()
+                    activity.moveTaskToBack(true);
+                    exitProcess(-1)
+                }
 
             }
             lblCancel.setOnClickListener {
