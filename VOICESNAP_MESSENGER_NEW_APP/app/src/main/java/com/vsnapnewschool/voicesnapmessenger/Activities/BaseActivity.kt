@@ -281,11 +281,17 @@ open class BaseActivity : AppCompatActivity() {
     fun choosePdfFilesOnly(activity: Activity) {
 
         //  SelcetedFileList.clear()
-        val intent = Intent()
+//        val intent = Intent()
+//        intent.type = "application/pdf"
+//        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+//        intent.setAction(Intent.ACTION_OPEN_DOCUMENT)
+//        startActivityForResult(intent, SELECT_PDF)
+
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "application/pdf"
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        intent.setAction(Intent.ACTION_OPEN_DOCUMENT)
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         startActivityForResult(intent, SELECT_PDF)
+
 
     }
 
@@ -356,8 +362,9 @@ open class BaseActivity : AppCompatActivity() {
 
             val intent = Intent()
             intent.type = "application/pdf"
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
             intent.setAction(Intent.ACTION_OPEN_DOCUMENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
             startActivityForResult(intent, SELECT_PDF)
 
 //            val mimeTypes = arrayOf(
@@ -408,24 +415,22 @@ open class BaseActivity : AppCompatActivity() {
                 }
             } else if (requestCode == SELECT_PDF && resultCode == RESULT_OK && data != null) {
                 Apifiletype = filetypePdf
-
                 if (data!!.clipData != null) {
-
-                    Log.d("resultcode", resultCode.toString())
-
                     val mClipData = data.clipData
                     val mArrayUri = ArrayList<Uri>()
+
+
                     for (i in 0 until mClipData!!.itemCount) {
                         val item = mClipData!!.getItemAt(i)
                         val uri = item.uri
                         mArrayUri.add(uri)
 
                         Apifiletype = filetypePdf
-                        val extension = uri.toString().substring(uri.toString().lastIndexOf("."))
-                        Log.d("extensionpdf", extension)
                         outputDir = externalCacheDir!!
+
                         Log.d("outputDir", outputDir!!.path.toString())
-                        ReadAndWriteFile(uri, extension!!)
+
+                        ReadAndWriteFile(uri,".pdf")
 
                     }
                 }
@@ -512,9 +517,11 @@ open class BaseActivity : AppCompatActivity() {
                     try {
 
                         Apifiletype = filetypePdf
-                        PDFTempFileWrite = File.createTempFile("NEWSCHOOL_APP", type, outputDir)
+                        PDFTempFileWrite = File.createTempFile("NEWSCHOOLAPP", type, outputDir)
                         var pdfPath: String = PDFTempFileWrite?.path!!
-                        SelcetedFileList.add(PDFTempFileWrite?.path.toString())
+                         extension = pdfPath.substring(pdfPath.toString().lastIndexOf("."))
+                        Log.d("extensionpdf", extension!!)
+                        SelcetedFileList.add(pdfPath)
 
                     } catch (e: IOException) {
                         e.printStackTrace()
@@ -601,15 +608,25 @@ open class BaseActivity : AppCompatActivity() {
                                         if (UtilConstants.RecipientsType == UtilConstants.EntireSchool) {
                                             SchoolAPIServices.sendEventsToEntireSchool(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.StandardSection) {
-                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(activity)
+                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(
+                                                activity
+                                            )
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Standard) {
-                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(activity)
+                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(
+                                                activity
+                                            )
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Students) {
-                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(activity)
+                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(
+                                                activity
+                                            )
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Staff) {
-                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(activity)
+                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(
+                                                activity
+                                            )
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Group) {
-                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(activity)
+                                            SchoolAPIServices.sendEventsToStdGrpStaffStudSection(
+                                                activity
+                                            )
                                         }
 
                                     } else if ((MENU_TYPE == MENU_IMGAE_PDF) || (MENU_TYPE == MENU_PDF_UPLOAD)) {
@@ -631,15 +648,25 @@ open class BaseActivity : AppCompatActivity() {
                                         if (UtilConstants.RecipientsType == UtilConstants.EntireSchool) {
                                             SchoolAPIServices.sendNoticeboardToEntireSchool(activity)
                                         } else if (UtilConstants.RecipientsType == UtilConstants.StandardSection) {
-                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(
+                                                activity
+                                            )
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Standard) {
-                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(
+                                                activity
+                                            )
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Students) {
-                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(
+                                                activity
+                                            )
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Staff) {
-                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(
+                                                activity
+                                            )
                                         } else if (UtilConstants.RecipientsType == UtilConstants.Group) {
-                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(activity)
+                                            SchoolAPIServices.sendNoticeboardTostudentGrpStaffSec(
+                                                activity
+                                            )
                                         }
 
                                     } else if (MENU_TYPE == MENU_VOICE_HOMEWORK) {

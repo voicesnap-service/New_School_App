@@ -79,13 +79,15 @@ class TeacherCirculars : BaseActivity(), View.OnClickListener {
             }
             R.id.rytAddFile -> {
                 HideKeyboard_Fragment(this)
-                if (SelcetedFileList.size <= 1) {
-                    choosePdfFilesOnly(this@TeacherCirculars)
 
-                } else {
-                    Toast.makeText(this, "Only two images allowed to send", Toast.LENGTH_SHORT).show()
-                    lblAddFiles.setText(getString(R.string.txt_change_pdf))
-                }
+                choosePdfFilesOnly(this@TeacherCirculars)
+//                if (SelcetedFileList.size <= 1) {
+//                    choosePdfFilesOnly(this@TeacherCirculars)
+//
+//                } else {
+//                    Toast.makeText(this, "Only two images allowed to send", Toast.LENGTH_SHORT).show()
+//                    lblAddFiles.setText(getString(R.string.txt_change_pdf))
+//                }
             }
             R.id.imgTeacherChat -> {
                 //  setChatClick(imgChat?, imgHome?, imgProfile?)

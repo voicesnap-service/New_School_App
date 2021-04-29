@@ -54,11 +54,10 @@ class AlbumImageAdapter(private val imagelist: ArrayList<String>, val FileType: 
         mClickListener = btnlistener
         val text_info = imagelist[position]
         Log.d("adapterfileType",FileType)
-       var extension = UtilConstants.uploadFilePath.substring(UtilConstants.uploadFilePath.lastIndexOf("."))
 
        // if(FileType.equals(filetype) && FileType.equals(filetypePdf)){
 
-        if (FileType.equals(UtilConstants.filetypePdf)) {
+        if (FileType.equals("pdf")) {
             holder.ImageLayout.visibility = View.VISIBLE
             if (context != null) {
                 Glide.with(context)
@@ -68,7 +67,7 @@ class AlbumImageAdapter(private val imagelist: ArrayList<String>, val FileType: 
 
             }
         }
-        if (FileType.equals(UtilConstants.filetype)) {
+        if (FileType.equals("image")) {
             holder.ImageLayout.visibility = View.VISIBLE
             if (context != null) {
                 Glide.with(context)
@@ -84,7 +83,8 @@ class AlbumImageAdapter(private val imagelist: ArrayList<String>, val FileType: 
 
             }
         //}
-        } else {
+        }
+        if(FileType.equals("video")) {
             holder.ImageLayout.visibility = View.VISIBLE
             if (context != null) {
                 Glide.with(context)
