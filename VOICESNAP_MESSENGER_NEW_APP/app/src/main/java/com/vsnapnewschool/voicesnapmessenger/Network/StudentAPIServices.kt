@@ -63,7 +63,7 @@ object StudentAPIServices {
                             } else {
                                 callBack.callBackTextMessages_Archive(responseBody)
                             }
-<<<<<<< HEAD
+
                         } else if (response?.code() == 400 || response?.code() == 500) {
                             val errorResponseBody = Gson().fromJson(
                                 response.errorBody()?.charStream(),
@@ -71,8 +71,7 @@ object StudentAPIServices {
                             )
                             UtilConstants.handleErrorResponse(activity, response.code(), errorResponseBody
                             )
-=======
->>>>>>> f3d2e822fd1d1eb38f24910f8fcc33efc5eda1e0
+
                         } else {
                             UtilConstants.parentCustomFailureAlert(activity, responseBody.message,ApiType)
                         }

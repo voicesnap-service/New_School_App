@@ -1395,8 +1395,9 @@ object SchoolAPIServices {
                     Log.d("SectionID", sectionID!!)
                     jsonsIds.addProperty("id", it.student_id)
                     jsonsIds.addProperty("section_id", sectionID)
+                    jsonSchoolArray.add(jsonsIds)
+
                 }
-                jsonSchoolArray.add(jsonsIds)
 
             }
 

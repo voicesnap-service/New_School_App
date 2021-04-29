@@ -303,7 +303,7 @@ interface ApiInterface {
     @POST("/sendhistory/api/send_history/staff_get_voice_history")
     fun GetVoiceHistory(@Body jsonObject: JsonObject?): Call<GetVoiceHistory?>?
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
     //LeaveRequestList
 
     @POST("/sendleave/api/leave/staff_get_student_leave")
@@ -312,9 +312,9 @@ interface ApiInterface {
     @POST("/sendleave/api/leave/staff_update_leave_status")
     fun StaffApproveLeaveStatusUpdate(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
-
-=======
->>>>>>> f3d2e822fd1d1eb38f24910f8fcc33efc5eda1e0
+//
+//=======
+//>>>>>>> f3d2e822fd1d1eb38f24910f8fcc33efc5eda1e0
     //Parent
     @POST("/receivercommunication/api/receiver/get_text_messages")
     fun getTextMessages(@Body jsonObject: JsonObject?): Call<GetTextMessages?>?
