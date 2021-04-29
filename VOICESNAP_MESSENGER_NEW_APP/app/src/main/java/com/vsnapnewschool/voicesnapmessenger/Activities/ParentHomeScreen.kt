@@ -6,12 +6,14 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.vsca.vsnapvoicecollege.Rest.APIClient
 import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentHomeGridAdapter
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.parentHomeMenuClickListener
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiInterface
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetMenuList
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.MenuListData
@@ -49,7 +51,12 @@ class ParentHomeScreen : BaseActivity(), View.OnClickListener {
         getMenuList()
         scrollAdds(this, imageSlider)
 
-
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isComplete) {
+                var FcmDeviceToken = it.result.toString()
+                SchoolAPIServices.updateDeviceToken(this,FcmDeviceToken)
+            }
+        }
         if(UtilConstants.BottomMenuHome!!){
             imgHomeMenu.setImageResource(R.drawable.prnt_group)
 

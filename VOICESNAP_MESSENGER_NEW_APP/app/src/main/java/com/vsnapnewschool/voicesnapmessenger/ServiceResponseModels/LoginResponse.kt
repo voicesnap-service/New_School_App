@@ -33,7 +33,9 @@ data class ChildDetailData(
     val school_id: String,
     val school_logo_url: String,
     val school_name: String,
+    val section_id: String,
     val section_name: String,
+    val standard_id: String,
     val standard_name: String
 )
 

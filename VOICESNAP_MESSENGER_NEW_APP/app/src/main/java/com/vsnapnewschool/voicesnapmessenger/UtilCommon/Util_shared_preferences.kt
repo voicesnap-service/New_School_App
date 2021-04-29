@@ -58,7 +58,6 @@ class Util_shared_preferences {
         var StudentSectionID: String? = "StudentSectionID"
 
 
-
         fun putChildInfo(activity: Activity?, child_info: ChildDetailData) {
             val sharedPreferences: SharedPreferences =
                 activity!!.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
@@ -66,8 +65,8 @@ class Util_shared_preferences {
             editor.putString(StudentName, child_info.child_name)
             editor.putString(StudentSchoolID, child_info.school_id)
             editor.putString(StudentID, child_info.child_id)
-            editor.putString(StudentClassID, child_info.child_id)
-            editor.putString(StudentSectionID, child_info.child_id)
+            editor.putString(StudentClassID, child_info.standard_id)
+            editor.putString(StudentSectionID, child_info.section_id)
             editor.commit()
         }
 

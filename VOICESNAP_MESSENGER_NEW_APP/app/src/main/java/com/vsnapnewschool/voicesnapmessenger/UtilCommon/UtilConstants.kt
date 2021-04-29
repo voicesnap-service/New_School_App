@@ -141,6 +141,7 @@ class UtilConstants {
 
         var API_SEE_MORE: String? = "SEE_MORE"
         var API_NORMAL: String? = "NORMAL"
+        var CLICKED_SEE_MORE: Boolean? = false
 
         var BottomMenuHome:Boolean?=true
         var extension: String? = null
@@ -260,7 +261,7 @@ class UtilConstants {
                 }
                 else{
                     popupWindow.dismiss()
-                    activity.finish()
+                    //activity.finish()
                 }
 
             }
@@ -418,7 +419,10 @@ class UtilConstants {
             popupWindow.setFocusable(true)
             popupWindow.setOutsideTouchable(false)
             val lblMessage = view.findViewById<TextView>(R.id.lblMessage)
+            val lblCreatedBy = view.findViewById<TextView>(R.id.lblCreatedBy)
             val imgClose = view.findViewById<ImageView>(R.id.imgClose)
+
+            lblCreatedBy.setText("Created By  :  "+ text_info.created_by)
             lblMessage.setText(text_info.content)
             imgClose.setOnClickListener {
                 popupWindow.dismiss()

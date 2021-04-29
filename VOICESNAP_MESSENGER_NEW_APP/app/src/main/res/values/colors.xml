@@ -76,4 +76,6 @@
     <color name="clr_login">#FFE1E3E4</color>
     <color name="clr_combination_bg">#fefefe</color>
 
+    <color name="colorGrey">#dddddd</color>
+
 </resources>

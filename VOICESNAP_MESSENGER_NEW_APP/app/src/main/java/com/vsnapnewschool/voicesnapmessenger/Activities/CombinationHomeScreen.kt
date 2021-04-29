@@ -1,11 +1,14 @@
 package com.vsnapnewschool.voicesnapmessenger.Activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.messaging.FirebaseMessaging
 import com.vsnapnewschool.voicesnapmessenger.Adapters.ChildRoleAdapter
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.childmemberListener
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.ChildDetailData
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
@@ -38,9 +41,14 @@ class CombinationHomeScreen : BaseActivity(), View.OnClickListener {
         rytSchoolLayout?.setOnClickListener(this)
 
 
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isComplete) {
+                var FcmDeviceToken = it.result.toString()
+                SchoolAPIServices.updateDeviceToken(this,FcmDeviceToken)
+            }
+        }
+
         imgTeacherHomeMenu.setImageResource(R.drawable.teacher_home_orange)
-
-
         childmemberadapter = ChildRoleAdapter(UtilConstants.ChildListDetails, this, true,
             object : childmemberListener { override fun onchildmemberclick(holder: ChildRoleAdapter.MyViewHolder, child_info: ChildDetailData) {
                     holder.layoutchildmember.setOnClickListener({
@@ -72,18 +80,23 @@ class CombinationHomeScreen : BaseActivity(), View.OnClickListener {
             rytSchoolLayout.visibility = View.VISIBLE
             lblRole.text = "Login as Principal"
             lblMemberName.text = "Principal"
+            lblSchoolName.text= UtilConstants.SchoolListDetails[0].school_name
+
         } else if (IsStaff == 1 && IsParent == 1) {
             rytSchoolLayout.visibility = View.VISIBLE
             lblRole.text = "Login as Staff"
             lblMemberName.text = "Staff"
+            lblSchoolName.text= UtilConstants.SchoolListDetails[0].school_name
         } else if (IsGroupHead == 1 && IsParent == 1) {
             rytSchoolLayout.visibility = View.VISIBLE
             lblRole.text = "Login as Group Head"
             lblMemberName.text = "Group head"
+            lblSchoolName.text= UtilConstants.SchoolListDetails[0].school_name
         } else if (IsAdmin == 1 && IsParent == 1) {
             rytSchoolLayout.visibility = View.VISIBLE
             lblRole.text = "Login as Admin"
             lblMemberName.text = "Admin"
+            lblSchoolName.text= UtilConstants.SchoolListDetails[0].school_name
         } else {
             rytSchoolLayout.visibility = View.GONE
             lblMemberName.text = "Parent"

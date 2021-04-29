@@ -11,6 +11,7 @@ import com.google.gson.JsonObject
 import com.vsca.vsnapvoicecollege.Rest.APIClient
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.GenerateOtpCallBack
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.ReturnGlobalValue
+import com.vsnapnewschool.voicesnapmessenger.Interfaces.TextMessagesClickListener
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.*
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
@@ -844,12 +845,12 @@ object SchoolAPIServices {
             })
     }
 
-    fun updateDeviceToken(activity: Activity?) {
+    fun updateDeviceToken(activity: Activity?,devicetoken:String?) {
         val MobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val jsonObject = JsonObject()
         jsonObject.addProperty("mobile_number", MobileNumber)
-        jsonObject.addProperty("device_token", "")
-        Log.d("Request", jsonObject.toString())
+        jsonObject.addProperty("device_token", devicetoken)
+        Log.d("DeviceTokenRequest", jsonObject.toString())
 
         var apiInterface: ApiInterface =
             APIClient.getApiClient()!!.create(ApiInterface::class.java)
@@ -893,6 +894,8 @@ object SchoolAPIServices {
                 }
             })
     }
+
+
 
     fun sendNonEmergencyVoiceToEntireSchool(activity: Activity?) {
         val file = File(UtilConstants.VoiceFilePath!!)
