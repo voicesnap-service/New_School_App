@@ -6,6 +6,12 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.vsca.vsnapvoicecollege.Rest.APIClient
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.GetTextMessagesCallBack
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.CLASS_ID
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.LOGIN_TOKEN
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.MOBILE_NUMBER
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.SCHOOL_ID
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.SECTION_ID
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.STUDENT_ID
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetTextMessages
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.StatusMessageResponse
@@ -27,12 +33,12 @@ object StudentAPIServices {
         val ClassID = Util_shared_preferences.getStudentClassID(activity)
         val SectionID = Util_shared_preferences.getStudentSectionID(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", loginToken)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", schoolID)
-        jsonObject.addProperty("student_id", StudentID)
-        jsonObject.addProperty("class_id", ClassID)
-        jsonObject.addProperty("section_id", SectionID)
+        jsonObject.addProperty(LOGIN_TOKEN, loginToken)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, schoolID)
+        jsonObject.addProperty(STUDENT_ID, StudentID)
+        jsonObject.addProperty(CLASS_ID, ClassID)
+        jsonObject.addProperty(SECTION_ID, SectionID)
         Log.d("ParentTextMsgRequest", jsonObject.toString())
         GifLoading.loading(activity, true)
 
