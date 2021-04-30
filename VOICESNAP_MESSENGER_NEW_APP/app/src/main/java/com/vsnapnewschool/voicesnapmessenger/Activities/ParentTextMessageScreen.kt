@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentTextMessageAdapter
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.GetTextMessagesCallBack
+import com.vsnapnewschool.voicesnapmessenger.CallBacks.ReadStatusCallBacak
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.TextMessagesClickListener
 import com.vsnapnewschool.voicesnapmessenger.Network.StudentAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
@@ -25,9 +26,8 @@ import kotlinx.android.synthetic.main.parent_bottom_menus.*
 import kotlinx.android.synthetic.main.recyclerview_layout.*
 import java.util.*
 
-class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessagesCallBack {
+class ParentTextMessageScreen : BaseActivity(),View.OnClickListener,GetTextMessagesCallBack, ReadStatusCallBacak {
     internal lateinit var parentTextMessageAdapter: ParentTextMessageAdapter
-
     var textMessageList = ArrayList<GetTextData>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,11 +42,10 @@ class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessage
         imgHomeMenu?.setOnClickListener(this)
         imgSettings?.setOnClickListener(this)
         lblSeeMore?.setOnClickListener(this)
-
         CLICKED_SEE_MORE=false
-        StudentAPIServices.getTextMessages(this@ParentTextMessageView, this, API_NORMAL)
-    }
+        StudentAPIServices.getTextMessages(this@ParentTextMessageScreen, this, API_NORMAL,recyclerview,shimmerFrameLayout)
 
+    }
     override fun onResume() {
         super.onResume()
         shimmerFrameLayout.startShimmerAnimation()
@@ -76,13 +75,18 @@ class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessage
                 UtilConstants.imgProfileIntent(this)
             }
             R.id.lblSeeMore -> {
-                StudentAPIServices.getTextMessages(this@ParentTextMessageView, this, API_SEE_MORE)
+                StudentAPIServices.getTextMessages(
+                    this@ParentTextMessageScreen,
+                    this,
+                    API_SEE_MORE,
+                    recyclerview,
+                    shimmerFrameLayout
+                )
             }
         }
     }
     override fun callBackTextMessages(responseBody: GetTextMessages) {
 
-        shimmerFrameLayout.stopShimmerAnimation()
         textMessageList.clear()
         textMessageList= responseBody!!.data as ArrayList<GetTextData>
         parentTextMessageAdapter = ParentTextMessageAdapter(
@@ -93,20 +97,16 @@ class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessage
                     holder: ParentTextMessageAdapter.MyViewHolder,
                     text_info: GetTextData) {
                     holder.lblContainer.setOnClickListener({
-                        UtilConstants.viewMessagePopup(this@ParentTextMessageView, text_info)
+                        UtilConstants.viewMessagePopup(this@ParentTextMessageScreen, text_info)
                         if(text_info.is_archive == 0){
-                            StudentAPIServices.updateReadStatus(this@ParentTextMessageView,text_info.header_id,text_info.detail_id, API_NORMAL,this)
+                            StudentAPIServices.updateReadStatus(this@ParentTextMessageScreen,text_info.header_id,text_info.detail_id, API_NORMAL,this@ParentTextMessageScreen)
                         }
                         else{
-                            StudentAPIServices.updateReadStatus(this@ParentTextMessageView,text_info.header_id,text_info.detail_id, API_SEE_MORE,this)
+                            StudentAPIServices.updateReadStatus(this@ParentTextMessageScreen,text_info.header_id,text_info.detail_id, API_SEE_MORE,this@ParentTextMessageScreen)
                         }
                     })
                 }
-                override fun callBackReadStatus(updateStatus: Boolean?) {
-                    if(updateStatus == true){
-                        getTextMessagesAfterReadList()
-                    }
-                }
+
             })
         val mLayoutManager2 = LinearLayoutManager(this)
         recyclerview.layoutManager = mLayoutManager2
@@ -114,13 +114,17 @@ class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessage
         recyclerview.adapter = parentTextMessageAdapter
 
         if(CLICKED_SEE_MORE == true){
-            StudentAPIServices.getTextMessages(this@ParentTextMessageView, this, API_SEE_MORE)
-
+            StudentAPIServices.getTextMessages(
+                this@ParentTextMessageScreen,
+                this,
+                API_SEE_MORE,
+                recyclerview,
+                shimmerFrameLayout
+            )
         }
     }
 
     override fun callBackTextMessages_Archive(responseBody: GetTextMessages) {
-
         CLICKED_SEE_MORE=true
         lblSeeMore.visibility=View.GONE
         textMessageList.addAll(responseBody.data)
@@ -128,6 +132,18 @@ class ParentTextMessageView : BaseActivity(),View.OnClickListener,GetTextMessage
     }
 
     private fun getTextMessagesAfterReadList() {
-        StudentAPIServices.getTextMessages(this@ParentTextMessageView, this, API_NORMAL)
+        StudentAPIServices.getTextMessages(
+            this@ParentTextMessageScreen,
+            this,
+            API_NORMAL,
+            recyclerview,
+            shimmerFrameLayout
+        )
+    }
+
+    override fun callBackReadStatus(updateStatus: Boolean?) {
+        if(updateStatus == true){
+            getTextMessagesAfterReadList()
+        }
     }
 }

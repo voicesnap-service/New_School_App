@@ -2,11 +2,15 @@ package com.vsnapnewschool.voicesnapmessenger.Network
 
 import android.app.Activity
 import android.util.Log
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.vsca.vsnapvoicecollege.Rest.APIClient
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.GetTextMessagesCallBack
-import com.vsnapnewschool.voicesnapmessenger.Interfaces.TextMessagesClickListener
+import com.vsnapnewschool.voicesnapmessenger.CallBacks.GetVoiceMessageCallBack
+import com.vsnapnewschool.voicesnapmessenger.CallBacks.ReadStatusCallBacak
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.CLASS_ID
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.LOGIN_TOKEN
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.MOBILE_NUMBER
@@ -15,23 +19,22 @@ import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.STUDENT_ID
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetTextMessages
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetVoiceMessages
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.StatusMessageResponse
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.API_NORMAL
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.Util_shared_preferences
-import com.vsnapnewschool.voicesnapmessenger.Util_Common.GifLoading
+import kotlinx.android.synthetic.main.recyclerview_layout.*
 import retrofit2.Call
 import retrofit2.Response
 
 object StudentAPIServices {
-
-
     fun updateReadStatus(
         activity: Activity?,
         header_id: String?,
         detail_id: String?,
         ApiType: String?,
-        callBack: TextMessagesClickListener
+        callBack: ReadStatusCallBacak?
     ){
 
         val loginToken: String? = Util_shared_preferences.getLoginToken(activity)
@@ -74,11 +77,11 @@ object StudentAPIServices {
                     Log.d("updateReadStatus", gson.toJson(response))
                     if (response?.code() == 200) {
                         if (responseBody?.status == 1) {
-                            callBack.callBackReadStatus(true)
+                            callBack?.callBackReadStatus(true)
                         }
                     }
                     else if (response?.code() == 400 || response?.code() == 500) {
-                        callBack.callBackReadStatus(false)
+                        callBack?.callBackReadStatus(false)
                         val errorResponseBody = Gson().fromJson(
                             response.errorBody()?.charStream(),
                             StatusMessageResponse::class.java
@@ -89,7 +92,7 @@ object StudentAPIServices {
                             errorResponseBody
                         )
                     } else {
-                        callBack.callBackReadStatus(false)
+                        callBack?.callBackReadStatus(false)
                         UtilConstants.normalToast(
                             activity,
                             activity?.getString(R.string.Service_unavailable)
@@ -107,7 +110,13 @@ object StudentAPIServices {
         })
     }
 
-    fun getTextMessages(activity: Activity?, callBack: GetTextMessagesCallBack, ApiType: String?) {
+    fun getTextMessages(
+        activity: Activity?,
+        callBack: GetTextMessagesCallBack,
+        ApiType: String?,
+        recyclerview: RecyclerView,
+        shimmerFrameLayout: ShimmerFrameLayout
+    ) {
 
         val mobileNumber = Util_shared_preferences.getMobileNumber(activity)
         val loginToken = Util_shared_preferences.getLoginToken(activity)
@@ -136,12 +145,15 @@ object StudentAPIServices {
             retrofit2.Callback<GetTextMessages?> {
             override fun onResponse(
                 call: Call<GetTextMessages?>?,
-                response: Response<GetTextMessages?>?
-            ) {
+                response: Response<GetTextMessages?>?) {
                 try {
+                    shimmerFrameLayout.stopShimmerAnimation()
+                    recyclerview.visibility=View.VISIBLE
+                    shimmerFrameLayout.visibility=View.GONE
+
                     val responseBody = response?.body()
                     val gson = Gson()
-                    Log.d("logoutResponse", gson.toJson(response))
+                    Log.d("TextMessageResponse", gson.toJson(response))
                     if (response?.code() == 200) {
                         if (responseBody!!.status == 1) {
                             if (ApiType.equals(API_NORMAL)) {
@@ -183,6 +195,97 @@ object StudentAPIServices {
             }
 
             override fun onFailure(call: Call<GetTextMessages?>?, t: Throwable?) {
+                Log.d("Failure", t.toString())
+                UtilConstants.normalToast(activity, t.toString())
+            }
+        })
+    }
+
+    fun getVoiceMessages(
+        activity: Activity?,
+        callBack: GetVoiceMessageCallBack,
+        ApiType: String?,
+        recyclerview: RecyclerView,
+        shimmerFrameLayout: ShimmerFrameLayout
+    ) {
+
+        val mobileNumber = Util_shared_preferences.getMobileNumber(activity)
+        val loginToken = Util_shared_preferences.getLoginToken(activity)
+        val schoolID = Util_shared_preferences.getStudentSchoolID(activity)
+        val StudentID = Util_shared_preferences.getStudentID(activity)
+        val ClassID = Util_shared_preferences.getStudentClassID(activity)
+        val SectionID = Util_shared_preferences.getStudentSectionID(activity)
+        val jsonObject = JsonObject()
+        jsonObject.addProperty(LOGIN_TOKEN, loginToken)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, schoolID)
+        jsonObject.addProperty(STUDENT_ID, StudentID)
+        jsonObject.addProperty(CLASS_ID, ClassID)
+        jsonObject.addProperty(SECTION_ID, SectionID)
+        Log.d("ParentVoiceMsgRequest", jsonObject.toString())
+
+        var apiInterface: ApiInterface = APIClient.getApiClient()!!.create(ApiInterface::class.java)
+        var call:Call<GetVoiceMessages?>?
+        if(ApiType.equals(API_NORMAL)){
+            call= apiInterface.getVoiceMessages(jsonObject)
+        }
+        else{
+            call= apiInterface.getVoiceMessages_Archive(jsonObject)
+        }
+        call!!.enqueue(object :
+            retrofit2.Callback<GetVoiceMessages?> {
+            override fun onResponse(
+                call: Call<GetVoiceMessages?>?,
+                response: Response<GetVoiceMessages?>?) {
+                try {
+                    shimmerFrameLayout.stopShimmerAnimation()
+                    recyclerview.visibility=View.VISIBLE
+                    shimmerFrameLayout.visibility=View.GONE
+
+                    val responseBody = response?.body()
+                    val gson = Gson()
+                    Log.d("VoiceMessageResponse", gson.toJson(response))
+                    if (response?.code() == 200) {
+                        if (responseBody!!.status == 1) {
+                            if (ApiType.equals(API_NORMAL)) {
+                                callBack.callBackVoiceMessages(responseBody)
+                            } else {
+                                callBack.callBackVoiceMessages_Archive(responseBody)
+                            }
+
+                        } else if (response?.code() == 400 || response?.code() == 500) {
+                            val errorResponseBody = Gson().fromJson(
+                                response.errorBody()?.charStream(),
+                                StatusMessageResponse::class.java
+                            )
+                            UtilConstants.handleParentErrorResponse(activity, response.code(), errorResponseBody,ApiType
+                            )
+
+                        } else {
+                            UtilConstants.parentCustomFailureAlert(activity, responseBody.message,ApiType)
+                        }
+                    } else if (response?.code() == 400 || response?.code() == 500) {
+                        val errorResponseBody = Gson().fromJson(
+                            response.errorBody()?.charStream(),
+                            StatusMessageResponse::class.java
+                        )
+                        UtilConstants.handleParentErrorResponse(
+                            activity,
+                            response.code(),
+                            errorResponseBody,ApiType
+                        )
+                    } else {
+                        UtilConstants.normalToast(
+                            activity,
+                            activity?.getString(R.string.Service_unavailable)
+                        )
+                    }
+                } catch (e: Exception) {
+                    Log.d("Exception", e.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<GetVoiceMessages?>?, t: Throwable?) {
                 Log.d("Failure", t.toString())
                 UtilConstants.normalToast(activity, t.toString())
             }

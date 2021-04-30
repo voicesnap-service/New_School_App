@@ -32,13 +32,11 @@ class ParentNoticeBoard : BaseActivity(),View.OnClickListener  {
         imgSettings?.setOnClickListener(this)
         NoticeBoardAdapter = ParentNoticeBoardAdapter(menulist, this,"0", object : noticeboardListener {
             override fun noticeboardClick (holder: ParentNoticeBoardAdapter.MyViewHolder, text_info: Image_Class) {
-
                 holder.rytHistory.setOnClickListener(object : View.OnClickListener{
                     override fun onClick(v: View) {
 
                         val pos = holder.adapterPosition
                        // val context=holder.rytHistory.context
-
                         UtilConstants.parentNoticeboardHistoryActivity(this@ParentNoticeBoard)
 
 

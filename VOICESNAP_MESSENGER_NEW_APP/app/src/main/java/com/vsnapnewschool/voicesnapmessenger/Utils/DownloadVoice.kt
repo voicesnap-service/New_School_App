@@ -61,17 +61,12 @@ object DownloadVoice {
                             super.onPostExecute(status)
                             if (status) {
                                 refreshlistener.refresh()
-                                AlertDownload(
-                                    activity,
-                                    "Success",
-                                    "File stored in: $folder/$fileName",
-                                    refreshlistener
-                                )
+
+                                //AlertDownload(activity, "Success", "File stored in: $folder/$fileName", refreshlistener)
                             }
                         }
 
                         override fun doInBackground(vararg params: Void?): Boolean? {
-//                            TODO("Not yet implemented")
                             val writtenToDisk =
                                 writeResponseBodyToDisk(activity!!,response.body(), folder, fileName)
                             Log.d("DOWNLOADING...", "file download was a success? $writtenToDisk")
@@ -169,12 +164,7 @@ object DownloadVoice {
             DialogInterface.OnClickListener { dialog,
                                               which ->
                 dialog.cancel()
-                Log.d("rr", activity.toString())
-//             refreshlistener.refresh()
-//            activity?.let{
-//                val intent = Intent (it, ParentCommunicationView::class.java)
-//                it.startActivity(intent)
-//            }
+
             })
         alertDialog.show()
     }
