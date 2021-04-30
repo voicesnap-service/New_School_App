@@ -4,7 +4,7 @@ package com.vsnapnewschool.voicesnapmessenger.Network
 @Suppress("DEPRECATION")
 class ApiRequestValues {
     companion object {
-        
+
         var LOGIN_TOKEN: String? = "login_token"
         var MOBILE_NUMBER: String? = "mobile_number"
         var SCHOOL_ID: String? = "school_id"

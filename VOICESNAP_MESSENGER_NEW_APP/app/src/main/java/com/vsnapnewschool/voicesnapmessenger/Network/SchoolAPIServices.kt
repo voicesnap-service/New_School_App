@@ -849,12 +849,15 @@ object SchoolAPIServices {
             })
     }
 
-    fun updateDeviceToken(activity: Activity?) {
+    fun updateDeviceToken(activity: Activity?,devicetoken:String?) {
         val MobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val jsonObject = JsonObject()
         jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
         jsonObject.addProperty("device_token", "")
         Log.d("Request", jsonObject.toString())
+        jsonObject.addProperty("mobile_number", MobileNumber)
+        jsonObject.addProperty("device_token", devicetoken)
+        Log.d("DeviceTokenRequest", jsonObject.toString())
 
         var apiInterface: ApiInterface =
             APIClient.getApiClient()!!.create(ApiInterface::class.java)
@@ -898,6 +901,8 @@ object SchoolAPIServices {
                 }
             })
     }
+
+
 
     fun sendNonEmergencyVoiceToEntireSchool(activity: Activity?) {
         val file = File(UtilConstants.VoiceFilePath!!)

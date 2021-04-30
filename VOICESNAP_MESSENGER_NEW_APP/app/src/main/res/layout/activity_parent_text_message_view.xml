@@ -5,6 +5,12 @@
     android:layout_margin="@dimen/dimen_three"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lblContainer"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
 
     <TextView
         app:layout_constraintTop_toTopOf="parent"
@@ -19,6 +25,18 @@
         android:padding="@dimen/dimen_five"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+        <TextView
+            android:id="@+id/lblNew"
+            app:layout_constraintTop_toBottomOf="@+id/lblCreatedOn"
+            android:layout_marginRight="@dimen/fifteen_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="New"
+            android:background="@drawable/rectangle_red"
+            android:padding="3dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     <TextView
         android:id="@+id/lblmessage"
         android:layout_width="match_parent"
@@ -31,8 +49,10 @@
         android:layout_marginTop="@dimen/seven_size"
         android:layout_marginBottom="@dimen/dimen_five"
         android:padding="@dimen/fifteen_size"
+        android:autoLink="web"
+        android:linksClickable="true"
         android:background="@drawable/parent_blue_bg"
-        app:layout_constraintTop_toBottomOf="@id/lblCreatedOn"
+        app:layout_constraintTop_toBottomOf="@id/lblNew"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
@@ -53,4 +73,6 @@
         app:layout_constraintTop_toTopOf="@id/lblmessage"
         app:layout_constraintStart_toStartOf="parent"
         />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

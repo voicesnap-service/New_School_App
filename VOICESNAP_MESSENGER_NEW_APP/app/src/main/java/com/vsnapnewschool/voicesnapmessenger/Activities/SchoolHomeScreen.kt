@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.vsca.vsnapvoicecollege.Rest.APIClient
@@ -12,6 +13,7 @@ import com.vsnapnewschool.voicesnapmessenger.Adapters.SchoolHomeGridAdapter
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.schoolHomeMenuClicklistener
 import com.vsnapnewschool.voicesnapmessenger.Models.HomeMenus
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiInterface
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetMenuList
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.MenuListData
@@ -61,7 +63,12 @@ class SchoolHomeScreen : BaseActivity(), View.OnClickListener {
         imgTeacherChat?.setOnClickListener(this)
         imgTeacherHomeMenu?.setOnClickListener(this)
         imgTeacherSettings?.setOnClickListener(this)
-
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isComplete) {
+                var FcmDeviceToken = it.result.toString()
+                SchoolAPIServices.updateDeviceToken(this,FcmDeviceToken)
+            }
+        }
         if(BottomMenuHome!!){
             imgTeacherHomeMenu.setImageResource(R.drawable.teacher_home_orange)
         }else{

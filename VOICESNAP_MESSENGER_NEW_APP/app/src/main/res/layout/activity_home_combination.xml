@@ -111,10 +111,23 @@
                 android:padding="@dimen/dimen_two"
                 android:text="Principal"
                 android:textColor="@color/white"
-                android:textSize="@dimen/fourteen_size"
+                android:textSize="@dimen/seventeen_size"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/lblSchoolName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_five"
+                android:padding="@dimen/dimen_two"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/fourteen_size"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/lblRole"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
