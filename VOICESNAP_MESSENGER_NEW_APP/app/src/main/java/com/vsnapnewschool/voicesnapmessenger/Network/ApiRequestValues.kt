@@ -11,7 +11,6 @@ class ApiRequestValues {
         var STUDENT_ID: String? = "student_id"
         var CLASS_ID: String? = "class_id"
         var SECTION_ID: String? = "section_id"
-
-
+        var STAFF_ID: String? = "staff_id"
     }
 }

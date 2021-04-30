@@ -30,7 +30,7 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <!-- Adding 15 rows of placeholders -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,8 +97,6 @@
         android:textColor="@color/clr_parent"
         android:textSize="@dimen/twenty5_size"
         android:visibility="gone" />
-
-
     <TextView
         android:id="@+id/lblSeeMore"
         app:layout_constraintBottom_toTopOf="@+id/adds_layout"
@@ -145,6 +143,4 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

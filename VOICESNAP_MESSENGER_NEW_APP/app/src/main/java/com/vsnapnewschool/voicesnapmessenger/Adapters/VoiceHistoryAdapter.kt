@@ -2,6 +2,8 @@ package com.vsnapnewschool.voicesnapmessenger.Adapters
 
 import android.content.Context
 import android.media.MediaPlayer
+import android.os.Build
+import android.os.Environment
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,31 +11,35 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.SeekBar
+import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.voiceHistoryListener
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.VoiceHistoryData
+import kotlinx.android.synthetic.main.activity_final_preview_voice.*
 import java.io.File
 import java.util.*
 
 
 class VoiceHistoryAdapter(
     private val voiceHistoryList: ArrayList<VoiceHistoryData>,
-     val context: Context,
+    val context: Context,
     val voiceHistoryListener: voiceHistoryListener
 ) : RecyclerView.Adapter<VoiceHistoryAdapter.MyViewHolder>() {
     var mediaFileLengthInMilliseconds = 0
     var handler = Handler()
     var mExpandedPosition:Int= -1
     var msgcontent: String? = null
-    var mediaPlayer = MediaPlayer()
+    var mediaPlayer: MediaPlayer? = null
+    var futureStudioIconFile: File? = null
+
     var iMediaDuration:Int = 0
-    var Voicefilepath:String? = null
+    var path:String? = null
+    var filename:String? = null
+    val VOICE_FOLDER_NAME = "NewSchool"
+    val VOICE_FILE_NAME = "schoolVoice.mp3"
+    private val VOICE_FOLDER: String? = "School Voice/Voice"
 
     companion object {
         var voicehisorylistener: voiceHistoryListener? = null
@@ -42,24 +48,28 @@ class VoiceHistoryAdapter(
         val imgplayvoice: ImageView
         val imgPlayPause: ImageView
         val imgsendvoice: ImageView
-        val lblrectime: TextView
+        val lblVoiceDuration: TextView
         val lblduration: TextView
         val lblsentTime: TextView
+        val lblTotalVoiceTime: TextView
         val lbltitle: TextView
         val rytVoice: RelativeLayout
         val rytVoicePlayer: RelativeLayout
+        val lnrExpandVoice: LinearLayout
         val seekbar: SeekBar
 
         init {
             imgplayvoice = view.findViewById<View>(R.id.imgplayvoice) as ImageView
             imgPlayPause = view.findViewById<View>(R.id.imgPlayPause) as ImageView
             imgsendvoice = view.findViewById<View>(R.id.imgsendvoice) as ImageView
-            lblrectime = view.findViewById<View>(R.id.lblrectime) as TextView
+            lblVoiceDuration = view.findViewById<View>(R.id.lblVoiceDuration) as TextView
             lblduration = view.findViewById<View>(R.id.lblduration) as TextView
             lblsentTime = view.findViewById<View>(R.id.lblsentTime) as TextView
             lbltitle = view.findViewById<View>(R.id.lbltitle) as TextView
+            lblTotalVoiceTime = view.findViewById<View>(R.id.lblTotalVoiceTime) as TextView
             rytVoice = view.findViewById<View>(R.id.rytVoice) as RelativeLayout
             rytVoicePlayer = view.findViewById<View>(R.id.rytVoicePlayer) as RelativeLayout
+            lnrExpandVoice = view.findViewById<View>(R.id.lnrExpandVoice) as LinearLayout
             seekbar = view.findViewById<View>(R.id.seekbar) as SeekBar
 
 
@@ -75,40 +85,47 @@ class VoiceHistoryAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val voiceData: VoiceHistoryData = voiceHistoryList.get(position)
 
-        holder.lblsentTime.text=voiceData.created_on
-        holder.lbltitle.text=voiceData.description
         val isExpanded = position == mExpandedPosition
-
-
         holder.rytVoicePlayer.setVisibility(if (isExpanded) View.VISIBLE else View.GONE)
-        holder.rytVoice.setActivated(isExpanded)
+        holder.lnrExpandVoice.setActivated(isExpanded)
 
         voicehisorylistener = voiceHistoryListener
         voicehisorylistener?.voiceHistoryClick(holder, voiceData)
+        holder.lblsentTime.text=voiceData.created_on
+        holder.lbltitle.text=voiceData.description
+        val voiceduration: Int = voiceData.duration.toInt()
+        val hours = (voiceduration / 3600).toString()
+        val minutes = voiceduration % 3600 / 60
+        val seconds = voiceduration % 60
+        val timeString = String.format("%02d:%02d", minutes, seconds)
+        holder.lblVoiceDuration.setText(timeString)
+        filename=voiceData.sub_or_file_name
 
         holder.rytVoice.setOnClickListener(View.OnClickListener {
-            msgcontent = voiceData.voice_file
+            msgcontent = voiceData.voice_file_path
             mExpandedPosition = if (isExpanded) -1 else position
+
             notifyDataSetChanged()
-
-            Voicefilepath=voiceData.voice_file
-
+            holder.lblTotalVoiceTime.text = timeString
 
 
-            if (mediaPlayer != null && mediaPlayer.isPlaying) {
-                Log.d("test", mediaPlayer.toString())
-                mediaPlayer.stop()
-                mediaPlayer.seekTo(0)
+//            VoiceHistoryDownload.downloadHistoryFile(
+//                this.context,
+//                voiceData.voice_file,
+//                VOICE_FOLDER,
+//                fileName
+//            )
+            mediaPlayer = MediaPlayer()
+
+            fetchSong()
+
+
+            mediaPlayer!!.setOnCompletionListener {
+                mediaPlayer!!.seekTo(0)
                 holder.imgPlayPause.setImageResource(R.drawable.orange_pause)
 
             }
-            mediaPlayer.setOnCompletionListener {
-                mediaPlayer.seekTo(0)
-                holder.imgPlayPause.setImageResource(R.drawable.orange_pause)
 
-                Log.d("test_0", mediaPlayer.toString())
-
-            }
             holder.seekbar.setMax(99) // It means 100% .0-99
             holder.seekbar.setOnTouchListener(object : OnTouchListener {
                 override fun onTouch(v: View, event: MotionEvent): Boolean {
@@ -117,7 +134,7 @@ class VoiceHistoryAdapter(
                             val sb = v as SeekBar
                             val playPositionInMillisecconds =
                                 mediaFileLengthInMilliseconds / 100 * sb.progress
-                            mediaPlayer.seekTo(playPositionInMillisecconds)
+                            mediaPlayer!!.seekTo(playPositionInMillisecconds)
                         }
                     }
                     return false
@@ -127,59 +144,41 @@ class VoiceHistoryAdapter(
                 override fun onStopTrackingTouch(seekBar: SeekBar) {}
                 override fun onStartTrackingTouch(seekBar: SeekBar) {}
                 override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                    if (mediaPlayer != null && fromUser) {
+                    if (mediaPlayer!! != null && fromUser) {
                         val playPositionInMillisecconds: Int =
                             mediaFileLengthInMilliseconds / 100 * holder.seekbar.getProgress()
-                        mediaPlayer.seekTo(playPositionInMillisecconds)
+                        mediaPlayer!!.seekTo(playPositionInMillisecconds)
                     }
                 }
             })
             Log.d("FetchSong", "Start***************************************")
-            try {
-                val filepath = msgcontent!!
 
-                val dir = File(filepath)
-                if (!dir.exists()) {
-                    dir.mkdirs()
-                    println("Dir: $dir")
-                }
-                val fileName = msgcontent!!.substring(
-                    msgcontent!!.lastIndexOf('/') + 1,
-                    msgcontent!!.length
-                )
-                println("FILE_PATH:$dir")
-                mediaPlayer.reset()
-                mediaPlayer.setDataSource(msgcontent)
-                mediaPlayer.prepare()
-                iMediaDuration = (mediaPlayer.duration / 1000.0).toInt()
-            } catch (e: Exception) {
-                Log.d("in Fetch Song", e.toString())
-            }
-            Log.d("FetchSong", "END***************************************")
         })
 
         holder.imgPlayPause.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
-                mediaFileLengthInMilliseconds = mediaPlayer.duration
-                if (!mediaPlayer.isPlaying) {
-                    mediaPlayer.start()
+
+                mediaFileLengthInMilliseconds = mediaPlayer!!.duration
+                if (!mediaPlayer!!.isPlaying) {
+                    mediaPlayer!!.start()
                     holder.imgPlayPause.setImageResource(R.drawable.orange_play)
                 } else {
-                    mediaPlayer.start()
+                    mediaPlayer!!.start()
+                    //     mediaPlayer.pause()
                     holder.imgPlayPause.setImageResource(R.drawable.orange_pause)
                 }
                 primarySeekBarProgressUpdater(mediaFileLengthInMilliseconds)
             }
 
             private fun primarySeekBarProgressUpdater(fileLength: Int) {
-                val iProgress = (mediaPlayer.currentPosition.toFloat() / fileLength * 100).toInt()
+                val iProgress = (mediaPlayer!!.currentPosition.toFloat() / fileLength * 100).toInt()
                 holder.seekbar.setProgress(iProgress)
-                if (mediaPlayer.isPlaying) {
+                if (mediaPlayer!!.isPlaying) {
                     val notification = Runnable {
                         holder.imgPlayPause.setImageResource(R.drawable.orange_play)
 
                         holder.lblduration.setText(
-                            milliSecondsToTimer(mediaPlayer.currentPosition.toLong())
+                            milliSecondsToTimer(mediaPlayer!!.currentPosition.toLong())
                         )
                         primarySeekBarProgressUpdater(fileLength)
                     }
@@ -196,6 +195,44 @@ class VoiceHistoryAdapter(
         return voiceHistoryList.size
 
     }
+
+
+    fun fetchSong() {
+
+        try {
+            val filepath: String
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                filepath=context.applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.getPath()
+
+            } else {
+
+                filepath = Environment.getExternalStorageDirectory().getPath();
+            }
+
+
+            val file = File(filepath, VOICE_FOLDER)
+            val fileDir = File(file.absolutePath)
+
+            if (!fileDir.exists()) {
+                fileDir.mkdirs()
+                println("Dir: $fileDir")
+            }
+
+            futureStudioIconFile = File(fileDir, VOICE_FILE_NAME)
+            mediaPlayer!!.reset()
+            mediaPlayer!!.setDataSource(futureStudioIconFile!!.path)
+            mediaPlayer!!.prepare()
+            iMediaDuration = (mediaPlayer!!.duration / 1000.0).toInt()
+
+
+        } catch (e: Exception) {
+            Log.d("in Fetch Song", e.toString())
+        }
+        Log.d("FetchSong", "END***************************************")
+    }
+
+
+
 
     fun milliSecondsToTimer(milliseconds: Long): String? {
         var finalTimerString = ""

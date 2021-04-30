@@ -8,8 +8,7 @@ import com.vsnapnewschool.voicesnapmessenger.Fragments.VoiceHistory
 import com.vsnapnewschool.voicesnapmessenger.Fragments.VoiceRecord
 
 
-class VoiceTabAdapter(private val myContext: Context,
-                      fm: FragmentManager, internal var totalTabs: Int) : FragmentPagerAdapter(fm) {
+class VoiceTabAdapter(private val myContext: Context, fm: FragmentManager, internal var totalTabs: Int) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         when (position) {

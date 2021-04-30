@@ -1,32 +1,29 @@
 package com.vsnapnewschool.voicesnapmessenger.Utils
 
-import android.app.AlertDialog
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.os.AsyncTask
+import android.os.Build
 import android.os.Environment
 import android.util.Log
 import com.vsca.vsnapvoicecollege.Rest.APIClient
-import com.vsnapnewschool.voicesnapmessenger.Interfaces.Refreshlistener
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiInterface
-import com.vsnapnewschool.voicesnapmessenger.R
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.*
-import java.sql.DriverManager
 
-object VoiceHistoryDownload{
+object VoiceHistoryDownload {
     var mProgressDialog: ProgressDialog? = null
-    fun downloadSampleFile(activity: Context?, urldata: String, folder: String?, fileName: String) {
+    fun downloadHistoryFile(activity: Context?, urldata: String, folder: String?, fileName: String) {
         mProgressDialog = ProgressDialog(activity)
         mProgressDialog!!.isIndeterminate = true
         mProgressDialog!!.setMessage("Downloading...")
         mProgressDialog!!.setCancelable(false)
         mProgressDialog!!.show()
-        Log.d("File URL", urldata)
+        Log.d("FileHistoryURL", urldata)
 
         var apiInterface: ApiInterface = APIClient.getApiClient()!!.create(ApiInterface::class.java)
 
@@ -40,7 +37,7 @@ object VoiceHistoryDownload{
                     object : AsyncTask<Void?, Void?, Boolean>() {
                         protected fun doInBackground(vararg voids: Void): Boolean {
                             val writtenToDisk =
-                                writeResponseBodyToDisk(response.body(), folder, fileName)
+                                writeResponseBodyToDisk(activity!!,response.body(), folder, fileName)
                             Log.d("DOWNLOADING...", "file download was a success? $writtenToDisk")
                             return writtenToDisk
                         }
@@ -56,7 +53,7 @@ object VoiceHistoryDownload{
                         override fun doInBackground(vararg params: Void?): Boolean? {
 //                            TODO("Not yet implemented")
                             val writtenToDisk =
-                                writeResponseBodyToDisk(response.body(), folder, fileName)
+                                writeResponseBodyToDisk(activity!!,response.body(), folder, fileName)
                             Log.d("DOWNLOADING...", "file download was a success? $writtenToDisk")
                             return writtenToDisk
                         }
@@ -76,22 +73,36 @@ object VoiceHistoryDownload{
     }
 
 
-    fun writeResponseBodyToDisk(body: ResponseBody?, folder: String?, fileName: String?): Boolean {
+    fun writeResponseBodyToDisk(activity:Context,body: ResponseBody?, folder: String?, fileName: String?): Boolean {
         return try {
-            val filepath = Environment.getExternalStorageDirectory().path
+
+            //String filepath = Environment.getExternalStorageDirectory().getPath();
+
+
+            //String filepath = Environment.getExternalStorageDirectory().getPath();
+            val filepath: String
+
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                filepath=activity.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.getPath()
+            } else {
+                filepath = Environment.getExternalStorageDirectory().getPath()
+            }
+
+
             val file = File(filepath, folder)
             val dir = File(file.absolutePath)
-            DriverManager.println("body: $body")
+            println("Dir: $dir")
             if (!dir.exists()) {
                 dir.mkdirs()
-                DriverManager.println("Dir: $dir")
+                println("Dir: $dir")
             }
             var futureStudioIconFile = File(dir, fileName) //"Hai.mp3"
             if (!futureStudioIconFile.exists()) {
                 val futureStudioIconFile1 = File(dir, fileName)
                 futureStudioIconFile = futureStudioIconFile1
             }
-            DriverManager.println("futureStudioIconFile: $futureStudioIconFile")
+            println("futureStudioIconFile: $futureStudioIconFile")
+
 
             // todo change the file location/name according to your needs
             var inputStream: InputStream? = null
@@ -121,8 +132,6 @@ object VoiceHistoryDownload{
             false
         }
     }
-
-
 
 
 }

@@ -9,9 +9,14 @@ import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.vsca.vsnapvoicecollege.Rest.APIClient
+import com.vsnapnewschool.voicesnapmessenger.Activities.BaseActivity
+import com.vsnapnewschool.voicesnapmessenger.Activities.TeacherApproveLeave
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.GenerateOtpCallBack
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.ReturnGlobalValue
-import com.vsnapnewschool.voicesnapmessenger.Interfaces.TextMessagesClickListener
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.LOGIN_TOKEN
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.MOBILE_NUMBER
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.SCHOOL_ID
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.STAFF_ID
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.*
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
@@ -57,7 +62,7 @@ object SchoolAPIServices {
         val CountryID = Util_shared_preferences.getCountryID(activity)
         val MobileNumber = Util_shared_preferences.getMobileNumber(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("mobile_number", MobileNumber)
+        jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
         jsonObject.addProperty("country_id", CountryID.toString())
         Log.d("Request", jsonObject.toString())
         GifLoading.loading(activity, true)
@@ -138,7 +143,7 @@ object SchoolAPIServices {
 
         val CountryID = Util_shared_preferences.getCountryID(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("mobile_number", mobileNumber)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
         jsonObject.addProperty("country_id", CountryID.toString())
         jsonObject.addProperty("otp_type", otpType)
         Log.d("Request", jsonObject.toString())
@@ -208,7 +213,7 @@ object SchoolAPIServices {
 
     fun validateOTP(activity: Activity?, MobileNumber: String?, OTP: String?) {
         val jsonObject = JsonObject()
-        jsonObject.addProperty("mobile_number", MobileNumber)
+        jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
         jsonObject.addProperty("otp", OTP)
         Log.d("Request", jsonObject.toString())
         GifLoading.loading(activity, true)
@@ -265,7 +270,7 @@ object SchoolAPIServices {
 
     fun setNewPassword(activity: Activity?, password: String?, MobileNumber: String?) {
         val jsonObject = JsonObject()
-        jsonObject.addProperty("mobile_number", MobileNumber)
+        jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
         jsonObject.addProperty("new_password", password)
         Log.d("Request", jsonObject.toString())
         GifLoading.loading(activity, true)
@@ -322,7 +327,7 @@ object SchoolAPIServices {
     fun changePassword(activity: Activity?, password: String?) {
         val MobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("mobile_number", MobileNumber)
+        jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
         jsonObject.addProperty("new_password", password)
         jsonObject.addProperty("old_password", password)
         Log.d("Request", jsonObject.toString())
@@ -434,7 +439,7 @@ object SchoolAPIServices {
 
     fun logoutfromOtherDevice(activity: Activity?, mobileNumber: String?, Password: String?) {
         val jsonObject = JsonObject()
-        jsonObject.addProperty("mobile_number", mobileNumber)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
         Log.d("Request", jsonObject.toString())
         GifLoading.loading(activity, true)
         var apiInterface: ApiInterface =
@@ -493,7 +498,7 @@ object SchoolAPIServices {
     ) {
 
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
         Log.d("Request", jsonObject.toString())
         GifLoading.loading(activity, true)
         var apiInterface: ApiInterface =
@@ -534,8 +539,7 @@ object SchoolAPIServices {
                                 MaxGeneralVoiceDuration =
                                     responseBody.data[0].max_general_voice_duration
                                 MaxHomeWorkVoiceDuration = responseBody.data[0].max_hw_voiceduration
-                                SchoolListDetails =
-                                    responseBody.data[0].staff_details as ArrayList<StaffDetailData>
+                                SchoolListDetails = responseBody.data[0].staff_details as ArrayList<StaffDetailData>
                                 ChildListDetails =
                                     responseBody.data[0].child_details as ArrayList<ChildDetailData>
 
@@ -600,7 +604,7 @@ object SchoolAPIServices {
         val secureID: String =
             Settings.Secure.getString(activity!!.contentResolver, Settings.Secure.ANDROID_ID)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("mobile_number", MobileNumber)
+        jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
         jsonObject.addProperty("encrypted_password", Password)
         jsonObject.addProperty("device_type", "ANDROID")
         jsonObject.addProperty("imei_number", secureID)
@@ -672,8 +676,8 @@ object SchoolAPIServices {
 
         val LoginToken: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", LoginToken)
-        jsonObject.addProperty("mobile_number", MobileNumber)
+        jsonObject.addProperty(LOGIN_TOKEN, LoginToken)
+        jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
         jsonObject.addProperty("encrypted_password", Password)
         Log.d("Request", jsonObject.toString())
         GifLoading.loading(activity, true)
@@ -848,6 +852,9 @@ object SchoolAPIServices {
     fun updateDeviceToken(activity: Activity?,devicetoken:String?) {
         val MobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val jsonObject = JsonObject()
+        jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
+        jsonObject.addProperty("device_token", "")
+        Log.d("Request", jsonObject.toString())
         jsonObject.addProperty("mobile_number", MobileNumber)
         jsonObject.addProperty("device_token", devicetoken)
         Log.d("DeviceTokenRequest", jsonObject.toString())
@@ -960,10 +967,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         if (ScheduleType.equals("instant")) {
             jsonObjectRequest.addProperty("voice_type", ScheduleType)
@@ -1066,10 +1073,10 @@ object SchoolAPIServices {
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         Log.d("testRequst", mobileNumber.toString())
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         if (ScheduleType.equals("instant")) {
             jsonObjectRequest.addProperty("voice_type", ScheduleType)
@@ -1219,10 +1226,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.StaffID)
-        jsonObject.addProperty("staff_id", UtilConstants.SchoolID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.StaffID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.SchoolID)
         val jsonObjectRequest = JsonObject()
         jsonObjectRequest.addProperty("description", UtilConstants.Title)
         jsonObjectRequest.addProperty("duration", UtilConstants.VoiceDuration)
@@ -1298,10 +1305,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         jsonObjectRequest.addProperty("content", UtilConstants.Title)
         jsonObjectRequest.addProperty("description", UtilConstants.Description)
@@ -1381,10 +1388,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         jsonObjectRequest.addProperty("content", UtilConstants.Title)
         jsonObjectRequest.addProperty("description", UtilConstants.Description)
@@ -1509,10 +1516,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         jsonObjectRequest.addProperty("topic", UtilConstants.Title)
         jsonObjectRequest.addProperty("description", UtilConstants.Description)
@@ -1598,10 +1605,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         jsonObjectRequest.addProperty("topic", UtilConstants.Title)
         jsonObjectRequest.addProperty("description", UtilConstants.Description)
@@ -1725,10 +1732,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         jsonObjectRequest.addProperty("description", UtilConstants.Title)
         jsonObjectRequest.addProperty("event_date", UtilConstants.Date)
@@ -1812,10 +1819,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         jsonObjectRequest.addProperty("description", UtilConstants.Title)
         jsonObjectRequest.addProperty("file_type", UtilConstants.Apifiletype)
@@ -1940,10 +1947,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         jsonObjectRequest.addProperty("topic", UtilConstants.Title)
         jsonObjectRequest.addProperty("description", UtilConstants.Title)
@@ -2025,10 +2032,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         jsonObjectRequest.addProperty("topic", UtilConstants.Title)
         jsonObjectRequest.addProperty("description", UtilConstants.Description)
@@ -2154,10 +2161,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         jsonObjectRequest.addProperty("sub_code", selectedSubjectID)
         jsonObjectRequest.addProperty("homework_text", UtilConstants.Title)
@@ -2239,10 +2246,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         jsonObjectRequest.addProperty("title", UtilConstants.Title)
         jsonObjectRequest.addProperty("end_date", UtilConstants.Date)
@@ -2357,10 +2364,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         if (ScheduleType.equals("instant")) {
             jsonObjectRequest.addProperty("voice_type", ScheduleType)
@@ -2470,10 +2477,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", token)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         if (ScheduleType.equals("instant")) {
             jsonObjectRequest.addProperty("voice_type", ScheduleType)
@@ -2562,10 +2569,10 @@ object SchoolAPIServices {
         val Logintoken: String? = Util_shared_preferences.getLoginToken(activity)
 
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", Logintoken)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, Logintoken)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         Log.d("VoiceHistoryRequest", jsonObject.toString())
 
         GifLoading.loading(activity, true)
@@ -2585,6 +2592,7 @@ object SchoolAPIServices {
                         if (response?.code() == 200) {
                             if (responseBody!!.status == 1) {
                                 voiceHistoryList = responseBody.data as ArrayList<VoiceHistoryData>
+                                Log.d("testHistory", voiceHistoryList.size.toString())
                             } else {
                                 UtilConstants.customFailureAlert(
                                     activity, responseBody.message
@@ -2626,10 +2634,10 @@ object SchoolAPIServices {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val Logintoken: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", Logintoken)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, Logintoken)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, "10000620")
         Log.d("ApproveLeaveListReq:", jsonObject.toString())
 
         GifLoading.loading(activity, true)
@@ -2649,6 +2657,11 @@ object SchoolAPIServices {
                         if (response?.code() == 200) {
                             if (responseBody!!.status == 1) {
                                 ApproveLeaveList = responseBody.data as ArrayList<ApproveLeaveData>
+                                val approveLeave: TeacherApproveLeave
+                                approveLeave = TeacherApproveLeave()
+                                approveLeave.setAdapterLeaveStatus()
+                                Log.d("testApprveleave","test")
+
 
                             } else {
                                 UtilConstants.customFailureAlert(
@@ -2688,6 +2701,8 @@ object SchoolAPIServices {
     fun approveLeaveStatus(activity: Activity?) {
 
         val jsonApproveLeaveRequest = jsonApproveLeaveStatusRequest(activity)
+        Log.d("ApproveLeaveStatus:Req",jsonApproveLeaveRequest.toString())
+
         GifLoading.loading(activity, true)
         var apiInterface: ApiInterface = APIClient.getApiClient()!!.create(ApiInterface::class.java)
         apiInterface.StaffApproveLeaveStatusUpdate(jsonApproveLeaveRequest)!!
@@ -2700,7 +2715,7 @@ object SchoolAPIServices {
                         GifLoading.loading(activity, false)
                         val responseBody = response?.body()
                         val gson = Gson()
-                        Log.d("VoiceHistory:Res", gson.toJson(response))
+                        Log.d("ApproveLeaveStatus:Res", gson.toJson(response))
 
                         if (response?.code() == 200) {
                             if (responseBody?.status == 1) {
@@ -2744,13 +2759,13 @@ object SchoolAPIServices {
         val Logintoken: String? = Util_shared_preferences.getLoginToken(activity)
 
         val jsonObject = JsonObject()
-        jsonObject.addProperty("login_token", Logintoken)
-        jsonObject.addProperty("mobile_number", mobileNumber)
-        jsonObject.addProperty("school_id", UtilConstants.SchoolID)
-        jsonObject.addProperty("staff_id", UtilConstants.StaffID)
+        jsonObject.addProperty(LOGIN_TOKEN, Logintoken)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
 
         val jsonObjectRequest = JsonObject()
-        jsonObjectRequest.addProperty("leave_id", ApproveLeaveTypeStatus)
+        jsonObjectRequest.addProperty("leave_id", UtilConstants.ApproveLeaveId)
         jsonObjectRequest.addProperty("status", ApproveLeaveTypeStatus)
 
         jsonObject.add("request", jsonObjectRequest)

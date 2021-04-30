@@ -299,7 +299,7 @@ interface ApiInterface {
     @POST("/sendvoice/api/send_voice/send_emergency_voice_to_schools_from_history")
     fun SendEmergencyVoiceToSchoolFromhistory(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
-    //VoiceHistoryListApi
+    //VoiceHistoryListAp
     @POST("/sendhistory/api/send_history/staff_get_voice_history")
     fun GetVoiceHistory(@Body jsonObject: JsonObject?): Call<GetVoiceHistory?>?
 
@@ -309,7 +309,6 @@ interface ApiInterface {
 
     @POST("/sendleave/api/leave/staff_update_leave_status")
     fun StaffApproveLeaveStatusUpdate(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
-
 
 
     //Parent

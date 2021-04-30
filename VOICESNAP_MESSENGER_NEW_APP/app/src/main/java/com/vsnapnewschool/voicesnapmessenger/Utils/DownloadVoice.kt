@@ -2,6 +2,7 @@
 
 package com.vsnapnewschool.voicesnapmessenger.Utils
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
@@ -51,8 +52,7 @@ object DownloadVoice {
 
                     object : AsyncTask<Void?, Void?, Boolean>() {
                         protected fun doInBackground(vararg voids: Void): Boolean {
-                            val writtenToDisk =
-                                writeResponseBodyToDisk(response.body(), folder, fileName)
+                            val writtenToDisk = writeResponseBodyToDisk(activity!!,response.body(), folder, fileName)
                             Log.d("DOWNLOADING...", "file download was a success? $writtenToDisk")
                             return writtenToDisk
                         }
@@ -68,7 +68,7 @@ object DownloadVoice {
 
                         override fun doInBackground(vararg params: Void?): Boolean? {
                             val writtenToDisk =
-                                writeResponseBodyToDisk(response.body(), folder, fileName)
+                                writeResponseBodyToDisk(activity!!,response.body(), folder, fileName)
                             Log.d("DOWNLOADING...", "file download was a success? $writtenToDisk")
                             return writtenToDisk
                         }
@@ -94,9 +94,18 @@ object DownloadVoice {
     }
 
 
-    fun writeResponseBodyToDisk(body: ResponseBody?, folder: String?, fileName: String?): Boolean {
+    fun writeResponseBodyToDisk(activity:Context,body: ResponseBody?, folder: String?, fileName: String?): Boolean {
         return try {
-            val filepath = Environment.getExternalStorageDirectory().path
+           // val filepath = Environment.getExternalStorageDirectory().path
+            val filepath: String
+
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                filepath=activity.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.getPath()
+            } else {
+                filepath = Environment.getExternalStorageDirectory().getPath()
+            }
+
+
             val file = File(filepath, folder)
             val dir = File(file.absolutePath)
             println("body: $body")

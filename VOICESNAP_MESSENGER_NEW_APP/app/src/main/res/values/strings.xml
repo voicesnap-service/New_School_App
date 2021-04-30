@@ -272,5 +272,7 @@
     <string name="lbl_get_subjects">Get Subjects</string>
     <string name="lbl_selectedSubject">Selected Subject</string>
     <string name="str_selectSubject">Please Select Subject</string>
+    <string name="lbl_approved">Approved</string>
+    <string name="lbl_rejected">Rejected</string>
 
 </resources>
