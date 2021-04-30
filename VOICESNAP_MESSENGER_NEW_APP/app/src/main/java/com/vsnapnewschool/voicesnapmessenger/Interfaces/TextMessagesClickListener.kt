@@ -5,6 +5,4 @@ import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetTextData
 
 interface TextMessagesClickListener {
     fun onTextClick(holder: ParentTextMessageAdapter.MyViewHolder, item: GetTextData)
-    fun callBackReadStatus(updateStatus: Boolean?)
-
 }

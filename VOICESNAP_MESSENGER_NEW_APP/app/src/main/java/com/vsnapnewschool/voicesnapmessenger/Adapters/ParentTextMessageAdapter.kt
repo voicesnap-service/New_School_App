@@ -8,13 +8,19 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.TextMessagesClickListener
+import com.vsnapnewschool.voicesnapmessenger.Models.EventsImageClass
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetTextData
 import java.util.ArrayList
 
-class ParentTextMessageAdapter(private val listname: ArrayList<GetTextData>, private val context: Context,val textClickListener: TextMessagesClickListener) : RecyclerView.Adapter<ParentTextMessageAdapter.MyViewHolder>() {
+class ParentTextMessageAdapter(private var listname: ArrayList<GetTextData>, private val context: Context,val textClickListener: TextMessagesClickListener) : RecyclerView.Adapter<ParentTextMessageAdapter.MyViewHolder>() {
     companion object {
         var clickListener: TextMessagesClickListener? = null
+    }
+
+    fun update(updateTextList: ArrayList<GetTextData>) {
+        listname = updateTextList
+        notifyDataSetChanged()
     }
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         internal var lblmessage: TextView

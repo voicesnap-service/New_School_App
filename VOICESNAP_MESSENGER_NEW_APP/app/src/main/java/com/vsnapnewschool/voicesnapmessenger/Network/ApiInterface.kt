@@ -326,4 +326,11 @@ interface ApiInterface {
     @POST("/receivercommunication/api/receiver/get_text_messages_archive")
     fun getTextMessages_Archive(@Body jsonObject: JsonObject?): Call<GetTextMessages?>?
 
+
+    @POST("/receivercommunication/api/receiver/get_voice_messages")
+    fun getVoiceMessages(@Body jsonObject: JsonObject?): Call<GetVoiceMessages?>?
+
+    @POST("/receivercommunication/api/receiver/get_voice_messages_archive")
+    fun getVoiceMessages_Archive(@Body jsonObject: JsonObject?): Call<GetVoiceMessages?>?
+
 }

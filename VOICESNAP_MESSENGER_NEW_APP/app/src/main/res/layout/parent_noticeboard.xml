@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
-android:id="@+id/notice">
+     android:id="@+id/notice">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -21,7 +21,6 @@ android:id="@+id/notice">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/twele_size"
-
             android:background="@drawable/rectangle_yellow"
             android:orientation="horizontal"
             android:padding="@dimen/dimen_five">

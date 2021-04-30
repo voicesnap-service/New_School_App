@@ -936,11 +936,7 @@ class UtilConstants {
             activity?.startActivity(intent)
         }
 
-        fun parentCommunicationActivity(activity: Activity?) {
-            val intent = Intent(activity, ParentCommunication::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            activity?.startActivity(intent)
-        }
+
 
         fun parentAttendanceActivity(activity: Activity?) {
             val intent = Intent(activity, ParentAttendance::class.java)
@@ -968,14 +964,14 @@ class UtilConstants {
             activity?.startActivity(intent)
         }
 
-        fun parentVoiceCommunicationView(activity: Activity?) {
-            val intent = Intent(activity, ParentCommunicationView::class.java)
+        fun parentVoiceScreen(activity: Activity?) {
+            val intent = Intent(activity, ParentVoiceMessageScreen::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
         }
 
         fun parentTextMessageView(activity: Activity?) {
-            val intent = Intent(activity, ParentTextMessageView::class.java)
+            val intent = Intent(activity, ParentTextMessageScreen::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
         }
@@ -1234,7 +1230,7 @@ class UtilConstants {
         fun openParentMenuScreens(activity: Activity?) {
 
             if (PARENT_MENU_TYPE == PARENT_MENU_VOICE) {
-                parentVoiceCommunicationView(activity)
+                parentVoiceScreen(activity)
             } else if (PARENT_MENU_TYPE == PARENT_MENU_TEXT) {
                 parentTextMessageView(activity)
 

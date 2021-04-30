@@ -12,22 +12,11 @@
         android:layout_height="wrap_content">
 
 
-    <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/lblCreatedOn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="yesterday 2:30 PM"
-        android:textAllCaps="true"
-        android:textSize="@dimen/twele_size"
-        android:textColor="@color/clr_dark_grey"
-        android:gravity="end"
-        android:padding="@dimen/dimen_five"
-        app:layout_constraintEnd_toEndOf="parent"/>
+
 
         <TextView
             android:id="@+id/lblNew"
-            app:layout_constraintTop_toBottomOf="@+id/lblCreatedOn"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_marginRight="@dimen/fifteen_size"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="New"
@@ -73,6 +62,19 @@
         app:layout_constraintTop_toTopOf="@id/lblmessage"
         app:layout_constraintStart_toStartOf="parent"
         />
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/lblmessage"
+            android:id="@+id/lblCreatedOn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="yesterday 2:30 PM"
+            android:textAllCaps="true"
+            android:textSize="@dimen/twele_size"
+            android:textColor="@color/clr_dark_grey"
+            android:gravity="end"
+            android:padding="@dimen/dimen_five"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

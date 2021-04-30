@@ -51,15 +51,15 @@ class ParentCommunicationViewAdapter(private val imagelist: ArrayList<Voice_Clas
         internal var rlvoice: RelativeLayout
 
         init {
-            lblcountvoice = view.findViewById<View>(R.id.lblcountvoice) as TextView
+            lblcountvoice = view.findViewById<View>(R.id.lblCreatedBy) as TextView
             lblunread = view.findViewById<View>(R.id.lblunread) as TextView
             lbltime = view.findViewById<View>(R.id.lbltime) as TextView
             lblvoicetime = view.findViewById<View>(R.id.lblvoicetime) as TextView
             lbltime = view.findViewById<View>(R.id.lbltime) as TextView
             imgplay = view.findViewById<View>(R.id.imgplay) as ImageView
-            imgdownload = view.findViewById<View>(R.id.imgdownload) as ImageView
+            imgdownload = view.findViewById<View>(R.id.imgplay) as ImageView
             imgwave = view.findViewById<View>(R.id.imgwave) as PlayerVisualizerSeekbar
-            rlvoice = view.findViewById<View>(R.id.rlvoice) as RelativeLayout
+            rlvoice = view.findViewById<View>(R.id.rytContainer) as RelativeLayout
         }
 
         @RequiresApi(Build.VERSION_CODES.M)
@@ -313,8 +313,6 @@ class ParentCommunicationViewAdapter(private val imagelist: ArrayList<Voice_Clas
             }
 
         }
-
-
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -328,8 +326,6 @@ class ParentCommunicationViewAdapter(private val imagelist: ArrayList<Voice_Clas
         val info: Voice_Class = imagelist[position]
         holder.lblunread.setVisibility(GONE)
         holder.lbltime.setText(info.time)
-
-
 
 
         if (info.status.equals("voice")) {
@@ -354,9 +350,9 @@ class ParentCommunicationViewAdapter(private val imagelist: ArrayList<Voice_Clas
             Log.d("possel",info.id.toString()+ " " + selectposition.toString())
             Log.d("posselstatus",info.selectstatus.toString()+ " " + position.toString())
             holder.changeToSelect(if (selectposition==info.id && info.selectstatus==1) R.drawable.white_play else R.drawable.white_pause,info)
+        }
 
-
-        } else {
+        else {
             holder.rlvoice.setVisibility(GONE)
             holder.lblcountvoice.setVisibility(GONE)
         }

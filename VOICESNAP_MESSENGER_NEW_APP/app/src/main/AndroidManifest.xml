@@ -322,19 +322,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeParent"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+
         <activity
-            android:name=".Activities.ParentCommunication"
+            android:name=".Activities.ParentVoiceMessageScreen"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeParent"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-        <activity
-            android:name=".Activities.ParentCommunicationView"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeParent"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-        <activity android:name=".Activities.ParentTextMessageView"
+
+        <activity android:name=".Activities.ParentTextMessageScreen"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeParent"

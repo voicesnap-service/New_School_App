@@ -79,9 +79,7 @@ class ParentAssignmentDue : Fragment() {
             val value: String = d.Day!!.toLowerCase() + d.Content!!.toLowerCase() + d.description!!.toLowerCase()
             if (value.contains(s.toLowerCase())) {
                 assignment.add(d)
-//                lblNoRecordsFound.setVisibility(View.GONE)
             } else if (!value.contains(s) && assignment.size == 0) {
-//                lblNoRecordsFound.setVisibility(View.VISIBLE)
             }
         }
         if (menulist.size != 0)
