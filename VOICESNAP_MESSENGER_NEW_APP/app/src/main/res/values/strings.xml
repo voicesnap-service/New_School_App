@@ -274,5 +274,6 @@
     <string name="str_selectSubject">Please Select Subject</string>
     <string name="lbl_approved">Approved</string>
     <string name="lbl_rejected">Rejected</string>
+    <string name="lbl_remaining">Remaining</string>
 
 </resources>

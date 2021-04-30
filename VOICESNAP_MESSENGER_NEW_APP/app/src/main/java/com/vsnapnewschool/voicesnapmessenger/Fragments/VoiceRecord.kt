@@ -24,7 +24,10 @@ import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_EMERGENCY
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_TYPE
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_VOICE
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_VOICE_HOMEWORK
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MaxEmergencyVoiceDuration
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MaxGeneralVoiceDuration
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MaxHomeWorkVoiceDuration
 import kotlinx.android.synthetic.main.record_voice.*
 import kotlinx.android.synthetic.main.voice_scroll_publish.*
 import me.jagar.chatvoiceplayerlibrary.FileUtils
@@ -46,7 +49,7 @@ class VoiceRecord : Fragment(), OnClickListener {
     var recTimerHandler = Handler()
     var iMediaDuration = 0
     var futureStudioIconFile: File? = null
-    var iMaxRecDur = 180
+    var iMaxRecDur = 0
     val VOICE_FOLDER_NAME = "NewSchool"
     val VOICE_FILE_NAME = "schoolVoice.mp3"
 
@@ -69,6 +72,14 @@ class VoiceRecord : Fragment(), OnClickListener {
         imgPlayPasue?.setOnClickListener(this)
         rytEndMonth?.setOnClickListener(this)
         rytEndTime?.setOnClickListener(this)
+
+        if(MENU_TYPE== MENU_EMERGENCY){
+            iMaxRecDur=MaxEmergencyVoiceDuration!!
+        }else if(MENU_TYPE==MENU_VOICE){
+            iMaxRecDur=MaxGeneralVoiceDuration!!
+        }else if(MENU_TYPE== MENU_VOICE_HOMEWORK){
+            iMaxRecDur=MaxHomeWorkVoiceDuration!!
+        }
 
         setupAudioPlayer()
     }
@@ -172,9 +183,12 @@ class VoiceRecord : Fragment(), OnClickListener {
         var filepath: String
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             filepath=activity!!.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.getPath()
+            Log.d("File12 11",filepath!!)
 
         } else {
             filepath = Environment.getExternalStorageDirectory().getPath()
+            Log.d("File 123",filepath!!)
+
         }
 
         val fileDir = File(filepath,VOICE_FOLDER_NAME)
@@ -201,7 +215,7 @@ class VoiceRecord : Fragment(), OnClickListener {
                 imgRec.setEnabled(true)
             }
             recTime = recTime + 1
-            if (recTime != MaxGeneralVoiceDuration) {
+            if (recTime != iMaxRecDur) {
                 recTimerHandler.postDelayed(this, 1000)
             } else {
                 stop_RECORD()
@@ -241,9 +255,15 @@ class VoiceRecord : Fragment(), OnClickListener {
         try {
             val filepath:String
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+
                 filepath=activity!!.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.getPath()
+                Log.d("File 11",filepath!!)
+
             } else {
+
                 filepath = Environment.getExternalStorageDirectory().getPath()
+                Log.d("File 10",filepath!!)
+
             }
 
             val fileDir = File(filepath,VOICE_FOLDER_NAME)

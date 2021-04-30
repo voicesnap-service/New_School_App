@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.voiceHistoryListener
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.VoiceHistoryData
+import com.vsnapnewschool.voicesnapmessenger.Utils.VoiceHistoryDownload
 import kotlinx.android.synthetic.main.activity_final_preview_voice.*
 import java.io.File
 import java.util.*
@@ -29,21 +30,20 @@ class VoiceHistoryAdapter(
 ) : RecyclerView.Adapter<VoiceHistoryAdapter.MyViewHolder>() {
     var mediaFileLengthInMilliseconds = 0
     var handler = Handler()
-    var mExpandedPosition:Int= -1
+    var mExpandedPosition: Int = -1
     var msgcontent: String? = null
     var mediaPlayer: MediaPlayer? = null
     var futureStudioIconFile: File? = null
 
-    var iMediaDuration:Int = 0
-    var path:String? = null
-    var filename:String? = null
-    val VOICE_FOLDER_NAME = "NewSchool"
-    val VOICE_FILE_NAME = "schoolVoice.mp3"
-    private val VOICE_FOLDER: String? = "School Voice/Voice"
+    var iMediaDuration: Int = 0
+    var path: String? = null
+    var filename: String? = null
+    private val VOICE_FOLDER: String? = "NewSchool/Voice"
 
     companion object {
         var voicehisorylistener: voiceHistoryListener? = null
     }
+
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imgplayvoice: ImageView
         val imgPlayPause: ImageView
@@ -76,6 +76,7 @@ class VoiceHistoryAdapter(
         }
 
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.voice_history, parent, false)
@@ -91,15 +92,15 @@ class VoiceHistoryAdapter(
 
         voicehisorylistener = voiceHistoryListener
         voicehisorylistener?.voiceHistoryClick(holder, voiceData)
-        holder.lblsentTime.text=voiceData.created_on
-        holder.lbltitle.text=voiceData.description
+        holder.lblsentTime.text = voiceData.created_on
+        holder.lbltitle.text = voiceData.description
         val voiceduration: Int = voiceData.duration.toInt()
         val hours = (voiceduration / 3600).toString()
         val minutes = voiceduration % 3600 / 60
         val seconds = voiceduration % 60
         val timeString = String.format("%02d:%02d", minutes, seconds)
         holder.lblVoiceDuration.setText(timeString)
-        filename=voiceData.sub_or_file_name
+        filename = voiceData.header_id
 
         holder.rytVoice.setOnClickListener(View.OnClickListener {
             msgcontent = voiceData.voice_file_path
@@ -109,16 +110,15 @@ class VoiceHistoryAdapter(
             holder.lblTotalVoiceTime.text = timeString
 
 
-//            VoiceHistoryDownload.downloadHistoryFile(
-//                this.context,
-//                voiceData.voice_file,
-//                VOICE_FOLDER,
-//                fileName
-//            )
+            VoiceHistoryDownload.downloadHistoryFile(
+                context,
+                voiceData.voice_file,
+                VOICE_FOLDER,
+                filename + "_" + ".mp3"
+            )
+
             mediaPlayer = MediaPlayer()
-
             fetchSong()
-
 
             mediaPlayer!!.setOnCompletionListener {
                 mediaPlayer!!.seekTo(0)
@@ -202,15 +202,17 @@ class VoiceHistoryAdapter(
         try {
             val filepath: String
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                filepath=context.applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.getPath()
-
+                filepath =
+                    context.applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!
+                        .getPath()
+                Log.d("filepath", filepath)
             } else {
 
                 filepath = Environment.getExternalStorageDirectory().getPath();
             }
 
 
-            val file = File(filepath, VOICE_FOLDER)
+            val file = File(filepath, VOICE_FOLDER!!)
             val fileDir = File(file.absolutePath)
 
             if (!fileDir.exists()) {
@@ -218,20 +220,20 @@ class VoiceHistoryAdapter(
                 println("Dir: $fileDir")
             }
 
-            futureStudioIconFile = File(fileDir, VOICE_FILE_NAME)
+            futureStudioIconFile = File(fileDir, filename + "_" + ".mp3")
             mediaPlayer!!.reset()
             mediaPlayer!!.setDataSource(futureStudioIconFile!!.path)
             mediaPlayer!!.prepare()
             iMediaDuration = (mediaPlayer!!.duration / 1000.0).toInt()
 
+            Log.d("adapterfile", futureStudioIconFile!!.path)
+            mediaFileLengthInMilliseconds = mediaPlayer!!.duration
 
         } catch (e: Exception) {
             Log.d("in Fetch Song", e.toString())
         }
         Log.d("FetchSong", "END***************************************")
     }
-
-
 
 
     fun milliSecondsToTimer(milliseconds: Long): String? {

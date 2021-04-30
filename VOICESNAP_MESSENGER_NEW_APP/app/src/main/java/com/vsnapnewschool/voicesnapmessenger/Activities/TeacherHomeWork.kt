@@ -17,10 +17,10 @@ import android.view.WindowManager
 
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MaxHomeWorkSMSCount
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
 import kotlinx.android.synthetic.main.homework_publish.*
 import kotlinx.android.synthetic.main.homework_publish.edDescription
-import kotlinx.android.synthetic.main.homework_publish.edTitle
 import kotlinx.android.synthetic.main.homework_publish.imgPlayPasue
 import kotlinx.android.synthetic.main.homework_publish.imgRec
 import kotlinx.android.synthetic.main.homework_publish.lblRemaining
@@ -60,7 +60,10 @@ class TeacherHomeWork : BaseActivity(), View.OnClickListener {
         btnHomeworkNext?.setOnClickListener(this)
         imgRec?.setOnClickListener(this)
         imgPlayPasue?.setOnClickListener(this)
+        setEditTextMaxLength(edDescription, MaxHomeWorkSMSCount!!)
+
         EditTextWatcher(btnHomeworkNext, edDescription)
+
 
 
         if (UtilConstants.MENU_TYPE == UtilConstants.MENU_TEXT_HOMEWORK) {
@@ -68,6 +71,9 @@ class TeacherHomeWork : BaseActivity(), View.OnClickListener {
         } else if (UtilConstants.MENU_TYPE == UtilConstants.MENU_VOICE_HOMEWORK) {
             LayoutHomeworkVoice.visibility = View.VISIBLE
         }
+
+     //   edDescription.maxEms= MaxHomeWorkSMSCount!!
+        lblRemaining.text=MaxHomeWorkSMSCount?.toString()+" "+getString(R.string.lbl_remaining)
         edDescription.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
@@ -78,8 +84,8 @@ class TeacherHomeWork : BaseActivity(), View.OnClickListener {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s!!.length > 0) {
-                    lblRemaining.setText("" + (460 - s.length))
+                if (s!!.length > 0 && edHomeWorkTitle.text.length > 0) {
+                    lblRemaining.setText("" + (UtilConstants.MaxHomeWorkSMSCount!! - s.length))
 
                     btnHomeworkNext.setEnabled(true)
                 } else {
@@ -322,7 +328,7 @@ class TeacherHomeWork : BaseActivity(), View.OnClickListener {
             R.id.btnHomeworkNext -> {
                 HideKeyboard_Fragment(this)
                 if (UtilConstants.MENU_TYPE == UtilConstants.MENU_TEXT_HOMEWORK) {
-                    UtilConstants.Title = edTitle.text.toString()
+                    UtilConstants.Title = edHomeWorkTitle.text.toString()
                 } else if (UtilConstants.MENU_TYPE == UtilConstants.MENU_VOICE_HOMEWORK) {
                     UtilConstants.Title = edVoiceTitle.text.toString()
                 }

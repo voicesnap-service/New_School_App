@@ -1,6 +1,8 @@
+@file:Suppress("DEPRECATION")
+
 package com.vsnapnewschool.voicesnapmessenger.Utils
 
-import android.app.Activity
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.AsyncTask
@@ -9,6 +11,7 @@ import android.os.Environment
 import android.util.Log
 import com.vsca.vsnapvoicecollege.Rest.APIClient
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiInterface
+import com.vsnapnewschool.voicesnapmessenger.R
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,17 +26,13 @@ object VoiceHistoryDownload {
         mProgressDialog!!.setMessage("Downloading...")
         mProgressDialog!!.setCancelable(false)
         mProgressDialog!!.show()
-        Log.d("FileHistoryURL", urldata)
 
         var apiInterface: ApiInterface = APIClient.getApiClient()!!.create(ApiInterface::class.java)
-
         val call: Call<ResponseBody?>? = apiInterface.downloadFileWithDynamicUrlAsync(urldata)
         call!!.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
                 mProgressDialog!!.dismiss()
                 if (response.isSuccessful) {
-                    Log.d("DOWNLOADING...", "server contacted and has file")
-
                     object : AsyncTask<Void?, Void?, Boolean>() {
                         protected fun doInBackground(vararg voids: Void): Boolean {
                             val writtenToDisk =
@@ -45,6 +44,8 @@ object VoiceHistoryDownload {
                         override fun onPostExecute(status: Boolean) {
                             super.onPostExecute(status)
                             if (status) {
+
+                                showAlert(activity, "Success", "File stored in: $folder/$fileName")
                                 Log.d("SucessDownloaded...", "sucess")
 
                             }
@@ -76,12 +77,7 @@ object VoiceHistoryDownload {
     fun writeResponseBodyToDisk(activity:Context,body: ResponseBody?, folder: String?, fileName: String?): Boolean {
         return try {
 
-            //String filepath = Environment.getExternalStorageDirectory().getPath();
-
-
-            //String filepath = Environment.getExternalStorageDirectory().getPath();
             val filepath: String
-
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 filepath=activity.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.getPath()
             } else {
@@ -89,14 +85,14 @@ object VoiceHistoryDownload {
             }
 
 
-            val file = File(filepath, folder)
+            val file = File(filepath, folder!!)
             val dir = File(file.absolutePath)
             println("Dir: $dir")
             if (!dir.exists()) {
                 dir.mkdirs()
                 println("Dir: $dir")
             }
-            var futureStudioIconFile = File(dir, fileName) //"Hai.mp3"
+            var futureStudioIconFile = File(dir, fileName!!) //"Hai.mp3"
             if (!futureStudioIconFile.exists()) {
                 val futureStudioIconFile1 = File(dir, fileName)
                 futureStudioIconFile = futureStudioIconFile1
@@ -133,6 +129,16 @@ object VoiceHistoryDownload {
         }
     }
 
+    fun showAlert(activity: Context?, title: String?, msg: String?) {
+        val alertDialog = AlertDialog.Builder(activity)
+        alertDialog.setCancelable(false)
+        alertDialog.setTitle(title)
+        alertDialog.setMessage(msg)
+        alertDialog.setIcon(R.drawable.folder_img)
+        alertDialog.setNeutralButton("OK") { dialog, which ->
+        }
+        alertDialog.show()
+    }
 
 }
 

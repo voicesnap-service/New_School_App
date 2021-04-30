@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.vsnapnewschool.voicesnapmessenger.Models.SelectedFilesClass
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.filetype
@@ -18,7 +19,7 @@ import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.
 import de.hdodenhof.circleimageview.CircleImageView
 
 
-class AlbumImageAdapter(private val imagelist: ArrayList<String>, val FileType: String, private val context: Context?, val btnlistener: AlbumImageAdapter.BtnClickListener) : RecyclerView.Adapter<AlbumImageAdapter.MyViewHolder>() {
+class AlbumImageAdapter(private val imagelist: ArrayList<SelectedFilesClass>, val FileType: String, private val context: Context?, val btnlistener: AlbumImageAdapter.BtnClickListener) : RecyclerView.Adapter<AlbumImageAdapter.MyViewHolder>() {
 
     companion object {
         var mClickListener: BtnClickListener? = null
@@ -52,27 +53,26 @@ class AlbumImageAdapter(private val imagelist: ArrayList<String>, val FileType: 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         mClickListener = btnlistener
-        val text_info = imagelist[position]
+        val text_info:SelectedFilesClass = imagelist[position]
         Log.d("adapterfileType",FileType)
-       var extension = UtilConstants.uploadFilePath.substring(UtilConstants.uploadFilePath.lastIndexOf("."))
 
-       // if(FileType.equals(filetype) && FileType.equals(filetypePdf)){
 
-        if (FileType.equals(filetypePdf)) {
+
+        if(text_info.contentype.equals("pdf")) {
             holder.ImageLayout.visibility = View.VISIBLE
             if (context != null) {
                 Glide.with(context)
-                    .load(R.drawable.circle_document)
+                    .load(text_info.filepath)
                     .into(holder.imgPhoto)
-                holder.lblSelectedPath.text = text_info.toString()
+                holder.lblSelectedPath.text = text_info.filepath
 
             }
         }
-        if (FileType.equals(filetype)) {
+        if (text_info.contentype.equals("image")) {
             holder.ImageLayout.visibility = View.VISIBLE
             if (context != null) {
                 Glide.with(context)
-                    .load(text_info)
+                    .load(text_info.filepath)
                     .into(holder.imgPhoto)
 
 //                val Filename = File.separator + text_info.substring(text_info.lastIndexOf('/') + 1)
@@ -80,11 +80,12 @@ class AlbumImageAdapter(private val imagelist: ArrayList<String>, val FileType: 
 //                val name = separated[0] //"/"
 //                val FileName = separated[1]
 //                holder.lblSelectedPath.text =FileName
-                holder.lblSelectedPath.text = text_info.toString()
+                holder.lblSelectedPath.text =text_info.filepath
 
             }
         //}
-        } else {
+        }
+        if (text_info.contentype.equals("video")){
             holder.ImageLayout.visibility = View.VISIBLE
             if (context != null) {
                 Glide.with(context)
@@ -92,7 +93,7 @@ class AlbumImageAdapter(private val imagelist: ArrayList<String>, val FileType: 
                     .load(text_info)
                     .into(holder.imgPhoto)
             }
-            holder.lblSelectedPath.text = text_info.toString()
+            holder.lblSelectedPath.text = text_info.filepath
         }
         holder.imgClose.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -101,13 +102,7 @@ class AlbumImageAdapter(private val imagelist: ArrayList<String>, val FileType: 
                     mClickListener?.onBtnClick(position)
             }
         })
-        holder.imgPdfclose.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                notifyDataSetChanged()
-                if (mClickListener != null)
-                    mClickListener?.onBtnClick(position)
-            }
-        })
+
     }
 
     interface BtnClickListener {

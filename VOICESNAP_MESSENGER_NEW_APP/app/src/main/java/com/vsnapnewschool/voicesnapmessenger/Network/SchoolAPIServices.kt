@@ -13,10 +13,41 @@ import com.vsnapnewschool.voicesnapmessenger.Activities.BaseActivity
 import com.vsnapnewschool.voicesnapmessenger.Activities.TeacherApproveLeave
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.GenerateOtpCallBack
 import com.vsnapnewschool.voicesnapmessenger.CallBacks.ReturnGlobalValue
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.COUNTRY_ID
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.DESCRIPTION
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.DEVICE_TOKEN
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.DEVICE_TYPE
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.DURATION
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.ENCRYPT_PASSWORD
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.END_HOUR
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.END_MINUTE
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.GROUP_DATA
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.ID
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.ID_SCHOOL
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.IMEI_NUMBER
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.KEY_NAME
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.LEAVE_ID
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.LOGIN_TOKEN
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.MOBILE_NUMBER
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.NEW_PASSWORD
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.OLD_PASSWORD
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.OTP_TYPE
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.REQUEST
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.SCHEDULE_DATE
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.SCHEDULE_HOUR
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.SCHEDULE_MINUTE
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.SCHOOL_ID
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.SECTION_DATA
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.SECTION_ID
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.SECURE_ID
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.STAFF_DATA
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.STAFF_ID
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.STANDARD_DATA
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.STATUS
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.STUDENT_DATA
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.TOKEN
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.VOICE_FILEPATH
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiRequestValues.Companion.VOICE_TYPE
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.*
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
@@ -24,6 +55,7 @@ import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.ApproveLeaveList
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.ApproveLeaveTypeStatus
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.ChildListDetails
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.EndMinute
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.IsAdmin
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.IsGroupHead
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.IsParent
@@ -41,6 +73,7 @@ import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.RecipientsType
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.ScheduleType
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.SchoolListDetails
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.VoiceFilePath
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.contentTypeImg
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.contentTypePdf
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.selectedSubjectID
@@ -144,9 +177,9 @@ object SchoolAPIServices {
         val CountryID = Util_shared_preferences.getCountryID(activity)
         val jsonObject = JsonObject()
         jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
-        jsonObject.addProperty("country_id", CountryID.toString())
-        jsonObject.addProperty("otp_type", otpType)
-        Log.d("Request", jsonObject.toString())
+        jsonObject.addProperty(COUNTRY_ID, CountryID.toString())
+        jsonObject.addProperty(OTP_TYPE, otpType)
+        Log.d("generateOTPRequest", jsonObject.toString())
         GifLoading.loading(activity, true)
 
         var apiInterface: ApiInterface =
@@ -211,11 +244,11 @@ object SchoolAPIServices {
     }
 
 
-    fun validateOTP(activity: Activity?, MobileNumber: String?, OTP: String?) {
+    fun validateOTP(activity: Activity?, MobileNumber: String?, otp: String?) {
         val jsonObject = JsonObject()
         jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
-        jsonObject.addProperty("otp", OTP)
-        Log.d("Request", jsonObject.toString())
+        jsonObject.addProperty(ApiRequestValues.OTP, otp)
+        Log.d("ValidateOtp:Request", jsonObject.toString())
         GifLoading.loading(activity, true)
 
         var apiInterface: ApiInterface =
@@ -271,8 +304,8 @@ object SchoolAPIServices {
     fun setNewPassword(activity: Activity?, password: String?, MobileNumber: String?) {
         val jsonObject = JsonObject()
         jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
-        jsonObject.addProperty("new_password", password)
-        Log.d("Request", jsonObject.toString())
+        jsonObject.addProperty(NEW_PASSWORD, password)
+        Log.d("setNewPasswordRequest", jsonObject.toString())
         GifLoading.loading(activity, true)
 
         var apiInterface: ApiInterface =
@@ -328,9 +361,9 @@ object SchoolAPIServices {
         val MobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val jsonObject = JsonObject()
         jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
-        jsonObject.addProperty("new_password", password)
-        jsonObject.addProperty("old_password", password)
-        Log.d("Request", jsonObject.toString())
+        jsonObject.addProperty(NEW_PASSWORD, password)
+        jsonObject.addProperty(OLD_PASSWORD, password)
+        Log.d("changePassword:Request", jsonObject.toString())
         GifLoading.loading(activity, true)
 
         var apiInterface: ApiInterface =
@@ -385,8 +418,8 @@ object SchoolAPIServices {
     fun logoutFromSameDevice(activity: Activity?) {
         val token: String? = Util_shared_preferences.getLoginToken(activity)
         val jsonObject = JsonObject()
-        jsonObject.addProperty("token", token)
-        Log.d("Request", jsonObject.toString())
+        jsonObject.addProperty(TOKEN, token)
+        Log.d("logoutFromSameDeviceReq", jsonObject.toString())
         GifLoading.loading(activity, true)
 
         var apiInterface: ApiInterface =
@@ -440,10 +473,9 @@ object SchoolAPIServices {
     fun logoutfromOtherDevice(activity: Activity?, mobileNumber: String?, Password: String?) {
         val jsonObject = JsonObject()
         jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
-        Log.d("Request", jsonObject.toString())
+        Log.d("logoutfromOtherRequest", jsonObject.toString())
         GifLoading.loading(activity, true)
-        var apiInterface: ApiInterface =
-            APIClient.getApiClient()!!.create(ApiInterface::class.java)
+        var apiInterface: ApiInterface = APIClient.getApiClient()!!.create(ApiInterface::class.java)
         apiInterface.logoutfromOtherDevice(jsonObject)!!
             .enqueue(object : retrofit2.Callback<StatusMessageResponse?> {
                 override fun onResponse(
@@ -499,7 +531,7 @@ object SchoolAPIServices {
 
         val jsonObject = JsonObject()
         jsonObject.addProperty(LOGIN_TOKEN, token)
-        Log.d("Request", jsonObject.toString())
+        Log.d("LoginDetailsByTokenReq", jsonObject.toString())
         GifLoading.loading(activity, true)
         var apiInterface: ApiInterface =
             APIClient.getApiClient()!!.create(ApiInterface::class.java)
@@ -539,7 +571,8 @@ object SchoolAPIServices {
                                 MaxGeneralVoiceDuration =
                                     responseBody.data[0].max_general_voice_duration
                                 MaxHomeWorkVoiceDuration = responseBody.data[0].max_hw_voiceduration
-                                SchoolListDetails = responseBody.data[0].staff_details as ArrayList<StaffDetailData>
+                                SchoolListDetails =
+                                    responseBody.data[0].staff_details as ArrayList<StaffDetailData>
                                 ChildListDetails =
                                     responseBody.data[0].child_details as ArrayList<ChildDetailData>
 
@@ -605,11 +638,11 @@ object SchoolAPIServices {
             Settings.Secure.getString(activity!!.contentResolver, Settings.Secure.ANDROID_ID)
         val jsonObject = JsonObject()
         jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
-        jsonObject.addProperty("encrypted_password", Password)
-        jsonObject.addProperty("device_type", "ANDROID")
-        jsonObject.addProperty("imei_number", secureID)
-        jsonObject.addProperty("secureid", secureID)
-        Log.d("Request", jsonObject.toString())
+        jsonObject.addProperty(ENCRYPT_PASSWORD, Password)
+        jsonObject.addProperty(DEVICE_TYPE, "ANDROID")
+        jsonObject.addProperty(IMEI_NUMBER, secureID)
+        jsonObject.addProperty(SECURE_ID, secureID)
+        Log.d("NewloginRequest", jsonObject.toString())
         GifLoading.loading(activity, true)
         var apiInterface: ApiInterface =
             APIClient.getApiClient()!!.create(ApiInterface::class.java)
@@ -678,8 +711,8 @@ object SchoolAPIServices {
         val jsonObject = JsonObject()
         jsonObject.addProperty(LOGIN_TOKEN, LoginToken)
         jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
-        jsonObject.addProperty("encrypted_password", Password)
-        Log.d("Request", jsonObject.toString())
+        jsonObject.addProperty(ENCRYPT_PASSWORD, Password)
+        Log.d("validateLoginTokenReq", jsonObject.toString())
         GifLoading.loading(activity, true)
         var apiInterface: ApiInterface =
             APIClient.getApiClient()!!.create(ApiInterface::class.java)
@@ -752,8 +785,8 @@ object SchoolAPIServices {
 
     fun getGlobalValues(activity: Activity?, type: String?, callback: ReturnGlobalValue) {
         val jsonObject = JsonObject()
-        jsonObject.addProperty("key_name", type)
-        Log.d("Request", jsonObject.toString())
+        jsonObject.addProperty(KEY_NAME, type)
+        Log.d("GlobalValuesRequest", jsonObject.toString())
         GifLoading.loading(activity, true)
 
         var apiInterface: ApiInterface =
@@ -849,14 +882,12 @@ object SchoolAPIServices {
             })
     }
 
-    fun updateDeviceToken(activity: Activity?,devicetoken:String?) {
+    fun updateDeviceToken(activity: Activity?, devicetoken: String?) {
         val MobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
-        val jsonObject = JsonObject()
-        jsonObject.addProperty(MOBILE_NUMBER, MobileNumber)
-        jsonObject.addProperty("device_token", "")
-        Log.d("Request", jsonObject.toString())
-        jsonObject.addProperty("mobile_number", MobileNumber)
-        jsonObject.addProperty("device_token", devicetoken)
+        val jsonObject = JsonObject().also {
+            it.addProperty(MOBILE_NUMBER, MobileNumber)
+            it.addProperty(DEVICE_TOKEN, "")
+        }
         Log.d("DeviceTokenRequest", jsonObject.toString())
 
         var apiInterface: ApiInterface =
@@ -901,7 +932,6 @@ object SchoolAPIServices {
                 }
             })
     }
-
 
 
     fun sendNonEmergencyVoiceToEntireSchool(activity: Activity?) {
@@ -973,25 +1003,26 @@ object SchoolAPIServices {
         jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         if (ScheduleType.equals("instant")) {
-            jsonObjectRequest.addProperty("voice_type", ScheduleType)
-            jsonObjectRequest.addProperty("schedule_date", "")
-            jsonObjectRequest.addProperty("schedule_hour", "")
-            jsonObjectRequest.addProperty("schedule_minute", "")
-            jsonObjectRequest.addProperty("end_hour", "")
-            jsonObjectRequest.addProperty("end_minute", "")
-            jsonObjectRequest.addProperty("duration", UtilConstants.VoiceDuration)
-            jsonObjectRequest.addProperty("description", UtilConstants.Title)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.addProperty(VOICE_TYPE, ScheduleType)
+            jsonObjectRequest.addProperty(SCHEDULE_DATE, "")
+            jsonObjectRequest.addProperty(SCHEDULE_HOUR, "")
+            jsonObjectRequest.addProperty(SCHEDULE_MINUTE, "")
+            jsonObjectRequest.addProperty(END_HOUR, "")
+            jsonObjectRequest.addProperty(END_MINUTE, "")
+            jsonObjectRequest.addProperty(DURATION, UtilConstants.VoiceDuration)
+            jsonObjectRequest.addProperty(DESCRIPTION, UtilConstants.Title)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (ScheduleType.equals("schedule")) {
-            jsonObjectRequest.addProperty("voice_type", ScheduleType)
-            jsonObjectRequest.addProperty("schedule_date", UtilConstants.Date)
-            jsonObjectRequest.addProperty("schedule_hour", UtilConstants.Hour)
-            jsonObjectRequest.addProperty("schedule_minute", UtilConstants.Minute)
-            jsonObjectRequest.addProperty("end_hour", UtilConstants.EndHour)
-            jsonObjectRequest.addProperty("end_minute", UtilConstants.EndMinute)
-            jsonObjectRequest.addProperty("duration", UtilConstants.VoiceDuration)
-            jsonObjectRequest.addProperty("description", UtilConstants.Title)
-            jsonObject.add("request", jsonObjectRequest)
+
+            jsonObjectRequest.addProperty(VOICE_TYPE, ScheduleType)
+            jsonObjectRequest.addProperty(SCHEDULE_DATE, UtilConstants.Date)
+            jsonObjectRequest.addProperty(SCHEDULE_HOUR, UtilConstants.Hour)
+            jsonObjectRequest.addProperty(SCHEDULE_MINUTE, UtilConstants.Minute)
+            jsonObjectRequest.addProperty(END_HOUR, UtilConstants.EndHour)
+            jsonObjectRequest.addProperty(END_MINUTE, UtilConstants.EndMinute)
+            jsonObjectRequest.addProperty(DURATION, UtilConstants.VoiceDuration)
+            jsonObjectRequest.addProperty(DESCRIPTION, UtilConstants.Title)
+            jsonObject.add(REQUEST, jsonObjectRequest)
 
         }
 
@@ -1071,7 +1102,7 @@ object SchoolAPIServices {
     private fun jsonNonEmergencyVoice(activity: Activity?): JsonObject {
         val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
         val token: String? = Util_shared_preferences.getLoginToken(activity)
-        Log.d("testRequst", mobileNumber.toString())
+        Log.d("NonEmergencyVoiceReq", mobileNumber.toString())
         val jsonObject = JsonObject()
         jsonObject.addProperty(LOGIN_TOKEN, token)
         jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
@@ -1079,23 +1110,26 @@ object SchoolAPIServices {
         jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         if (ScheduleType.equals("instant")) {
-            jsonObjectRequest.addProperty("voice_type", ScheduleType)
-            jsonObjectRequest.addProperty("schedule_date", "")
-            jsonObjectRequest.addProperty("schedule_hour", "")
-            jsonObjectRequest.addProperty("schedule_minute", "")
-            jsonObjectRequest.addProperty("end_hour", "")
-            jsonObjectRequest.addProperty("end_minute", "")
-            jsonObjectRequest.addProperty("duration", UtilConstants.VoiceDuration)
-            jsonObjectRequest.addProperty("description", UtilConstants.Title)
+
+            jsonObjectRequest.addProperty(VOICE_TYPE, ScheduleType)
+            jsonObjectRequest.addProperty(SCHEDULE_DATE, "")
+            jsonObjectRequest.addProperty(SCHEDULE_HOUR, "")
+            jsonObjectRequest.addProperty(SCHEDULE_MINUTE, "")
+            jsonObjectRequest.addProperty(END_HOUR, "")
+            jsonObjectRequest.addProperty(END_MINUTE, "")
+            jsonObjectRequest.addProperty(DURATION, UtilConstants.VoiceDuration)
+            jsonObjectRequest.addProperty(DESCRIPTION, UtilConstants.Title)
+
         } else if (ScheduleType.equals("schedule")) {
-            jsonObjectRequest.addProperty("voice_type", ScheduleType)
-            jsonObjectRequest.addProperty("schedule_date", UtilConstants.Date)
-            jsonObjectRequest.addProperty("schedule_hour", UtilConstants.Hour)
-            jsonObjectRequest.addProperty("schedule_minute", UtilConstants.Minute)
-            jsonObjectRequest.addProperty("end_hour", UtilConstants.EndHour)
-            jsonObjectRequest.addProperty("end_minute", UtilConstants.EndMinute)
-            jsonObjectRequest.addProperty("duration", UtilConstants.VoiceDuration)
-            jsonObjectRequest.addProperty("description", UtilConstants.Title)
+
+            jsonObjectRequest.addProperty(VOICE_TYPE, ScheduleType)
+            jsonObjectRequest.addProperty(SCHEDULE_DATE, UtilConstants.Date)
+            jsonObjectRequest.addProperty(SCHEDULE_HOUR, UtilConstants.Hour)
+            jsonObjectRequest.addProperty(SCHEDULE_MINUTE, UtilConstants.Minute)
+            jsonObjectRequest.addProperty(END_HOUR, UtilConstants.EndHour)
+            jsonObjectRequest.addProperty(END_MINUTE, UtilConstants.EndMinute)
+            jsonObjectRequest.addProperty(DURATION, UtilConstants.VoiceDuration)
+            jsonObjectRequest.addProperty(DESCRIPTION, UtilConstants.Title)
 
         }
 
@@ -1103,56 +1137,52 @@ object SchoolAPIServices {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalSectionList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.sectionID)
+                jsonsIds.addProperty(ID, it.sectionID)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("section_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(SECTION_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Students) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStudentList.forEach {
                 val jsonsIds = JsonObject()
                 val sectionID = it.sectionID
                 it.studentData.forEach {
-                    Log.d("SectionID", sectionID!!)
-                    jsonsIds.addProperty("id", it.student_id)
-                    jsonsIds.addProperty("section_id", sectionID)
+                    jsonsIds.addProperty(ID, it.student_id)
+                    jsonsIds.addProperty(SECTION_ID, sectionID)
                     jsonSchoolArray.add(jsonsIds)
                 }
             }
-            Log.d("selectedStudentid", jsonSchoolArray.toString())
-            jsonObjectRequest.add("student_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STUDENT_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Standard) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStandardList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.standard_id)
+                jsonsIds.addProperty(ID, it.standard_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("standard_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STANDARD_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
 
-            Log.d("StandardRequst", jsonObjectRequest.toString())
         } else if (UtilConstants.RecipientsType == UtilConstants.Group) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalGroupsList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.group_id)
+                jsonsIds.addProperty(ID, it.group_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("group_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
-            Log.d("Group", jsonSchoolArray.toString())
+            jsonObjectRequest.add(GROUP_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Staff) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStaffsList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.staff_id)
+                jsonsIds.addProperty(ID, it.staff_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("staff_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STAFF_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
 
         }
         return jsonObject
@@ -1164,12 +1194,9 @@ object SchoolAPIServices {
         val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
         val bodyFile = MultipartBody.Part.createFormData("voice", file.name, requestFile)
         val jsonEmergencyVoiceSchool = jsonEmergencyVoiceSchool(activity)
-        val requestBody = RequestBody.create(
-            MultipartBody.FORM,
-            jsonEmergencyVoiceSchool.toString()
-        )
+        val requestBody =
+            RequestBody.create(MultipartBody.FORM, jsonEmergencyVoiceSchool.toString())
         Log.d("EmergencyVoiceReq", jsonEmergencyVoiceSchool.toString())
-
         GifLoading.loading(activity, true)
 
         var apiInterface: ApiInterface = APIClient.getApiClient()!!.create(ApiInterface::class.java)
@@ -1228,20 +1255,20 @@ object SchoolAPIServices {
         val jsonObject = JsonObject()
         jsonObject.addProperty(LOGIN_TOKEN, token)
         jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
-        jsonObject.addProperty(SCHOOL_ID, UtilConstants.StaffID)
-        jsonObject.addProperty(STAFF_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
-        jsonObjectRequest.addProperty("description", UtilConstants.Title)
-        jsonObjectRequest.addProperty("duration", UtilConstants.VoiceDuration)
+        jsonObjectRequest.addProperty(DESCRIPTION, UtilConstants.Title)
+        jsonObjectRequest.addProperty(DURATION, UtilConstants.VoiceDuration)
 
         val jsonSchoolArray = JsonArray()
         UtilConstants.SelectedFinalSchoolsList.forEach {
             val jsonsIds = JsonObject()
-            jsonsIds.addProperty("id", it.school_id)
+            jsonsIds.addProperty(ID, it.school_id)
             jsonSchoolArray.add(jsonsIds)
         }
-        jsonObjectRequest.add("schools_id", jsonSchoolArray)
-        jsonObject.add("request", jsonObjectRequest)
+        jsonObjectRequest.add(ID_SCHOOL, jsonSchoolArray)
+        jsonObject.add(REQUEST, jsonObjectRequest)
 
         return jsonObject
 
@@ -1312,7 +1339,7 @@ object SchoolAPIServices {
         val jsonObjectRequest = JsonObject()
         jsonObjectRequest.addProperty("content", UtilConstants.Title)
         jsonObjectRequest.addProperty("description", UtilConstants.Description)
-        jsonObject.add("request", jsonObjectRequest)
+        jsonObject.add(REQUEST, jsonObjectRequest)
         return jsonObject
 
     }
@@ -1403,8 +1430,8 @@ object SchoolAPIServices {
                 val sectionID = it.sectionID
                 it.studentData.forEach {
                     Log.d("SectionID", sectionID!!)
-                    jsonsIds.addProperty("id", it.student_id)
-                    jsonsIds.addProperty("section_id", sectionID)
+                    jsonsIds.addProperty(ID, it.student_id)
+                    jsonsIds.addProperty(SECTION_ID, sectionID)
                     jsonSchoolArray.add(jsonsIds)
 
                 }
@@ -1412,47 +1439,47 @@ object SchoolAPIServices {
             }
 
 
-            jsonObjectRequest.add("student_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STUDENT_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Standard) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStandardList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.standard_id)
+                jsonsIds.addProperty(ID, it.standard_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("standard_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STANDARD_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
 
             Log.d("StandardRequst", jsonObjectRequest.toString())
         } else if (UtilConstants.RecipientsType == UtilConstants.StandardSection) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalSectionList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.sectionID)
+                jsonsIds.addProperty(ID, it.sectionID)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("section_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(SECTION_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Group) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalGroupsList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.group_id)
+                jsonsIds.addProperty(ID, it.group_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("group_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(GROUP_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
             Log.d("Group", jsonSchoolArray.toString())
         } else if (UtilConstants.RecipientsType == UtilConstants.Staff) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStaffsList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.staff_id)
+                jsonsIds.addProperty(ID, it.staff_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("staff_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STAFF_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
             Log.d("Staff", jsonSchoolArray.toString())
 
         }
@@ -1533,7 +1560,7 @@ object SchoolAPIServices {
             jsonarray.add(jsonsIds)
         }
         jsonObjectRequest.add("event_photos", jsonarray)
-        jsonObject.add("request", jsonObjectRequest)
+        jsonObject.add(REQUEST, jsonObjectRequest)
         return jsonObject
 
     }
@@ -1629,50 +1656,50 @@ object SchoolAPIServices {
                 val sectionID = it.sectionID
                 it.studentData.forEach {
                     Log.d("SectionID", sectionID!!)
-                    jsonsIds.addProperty("id", it.student_id)
-                    jsonsIds.addProperty("section_id", sectionID)
+                    jsonsIds.addProperty(ID, it.student_id)
+                    jsonsIds.addProperty(SECTION_ID, sectionID)
                     jsonSchoolArray.add(jsonsIds)
                 }
             }
-            jsonObjectRequest.add("student_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STUDENT_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Standard) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStandardList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.standard_id)
+                jsonsIds.addProperty(ID, it.standard_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("standard_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STANDARD_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
 
         } else if (UtilConstants.RecipientsType == UtilConstants.StandardSection) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalSectionList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.sectionID)
+                jsonsIds.addProperty(ID, it.sectionID)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("section_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(SECTION_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Group) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalGroupsList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.group_id)
+                jsonsIds.addProperty(ID, it.group_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("group_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(GROUP_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Staff) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStaffsList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.staff_id)
+                jsonsIds.addProperty(ID, it.staff_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("staff_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STAFF_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         }
         return jsonObject
     }
@@ -1748,7 +1775,7 @@ object SchoolAPIServices {
             jsonarray.add(jsonsIds)
         }
         jsonObjectRequest.add("event_photos", jsonarray)
-        jsonObject.add("request", jsonObjectRequest)
+        jsonObject.add(REQUEST, jsonObjectRequest)
         return jsonObject
 
     }
@@ -1840,11 +1867,11 @@ object SchoolAPIServices {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStandardList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.standard_id)
+                jsonsIds.addProperty(ID, it.standard_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("standard_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STANDARD_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
 
         } else if (UtilConstants.RecipientsType == UtilConstants.Students) {
             val jsonSchoolArray = JsonArray()
@@ -1854,40 +1881,40 @@ object SchoolAPIServices {
 
                 it.studentData.forEach {
                     Log.d("SectionID", sectionID!!)
-                    jsonsIds.addProperty("id", it.student_id)
-                    jsonsIds.addProperty("section_id", sectionID)
+                    jsonsIds.addProperty(ID, it.student_id)
+                    jsonsIds.addProperty(SECTION_ID, sectionID)
                     jsonSchoolArray.add(jsonsIds)
                 }
             }
-            jsonObjectRequest.add("student_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STUDENT_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.StandardSection) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalSectionList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.sectionID)
+                jsonsIds.addProperty(ID, it.sectionID)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("section_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(SECTION_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Group) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalGroupsList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.group_id)
+                jsonsIds.addProperty(ID, it.group_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("group_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(GROUP_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Staff) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStaffsList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.staff_id)
+                jsonsIds.addProperty(ID, it.staff_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("staff_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STAFF_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         }
         return jsonObject
     }
@@ -1961,7 +1988,7 @@ object SchoolAPIServices {
             jsonarray.add(jsonsIds)
         }
         jsonObjectRequest.add("notice_files", jsonarray)
-        jsonObject.add("request", jsonObjectRequest)
+        jsonObject.add(REQUEST, jsonObjectRequest)
         return jsonObject
 
     }
@@ -2052,11 +2079,11 @@ object SchoolAPIServices {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStandardList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.standard_id)
+                jsonsIds.addProperty(ID, it.standard_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("standard_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STANDARD_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
 
         } else if (UtilConstants.RecipientsType == UtilConstants.Students) {
             val jsonSchoolArray = JsonArray()
@@ -2066,40 +2093,40 @@ object SchoolAPIServices {
 
                 it.studentData.forEach {
                     Log.d("SectionID", sectionID!!)
-                    jsonsIds.addProperty("id", it.student_id)
-                    jsonsIds.addProperty("section_id", sectionID)
+                    jsonsIds.addProperty(ID, it.student_id)
+                    jsonsIds.addProperty(SECTION_ID, sectionID)
                     jsonSchoolArray.add(jsonsIds)
                 }
             }
-            jsonObjectRequest.add("student_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STUDENT_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.StandardSection) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalSectionList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.sectionID)
+                jsonsIds.addProperty(ID, it.sectionID)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("section_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(SECTION_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Group) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalGroupsList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.group_id)
+                jsonsIds.addProperty(ID, it.group_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("group_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(GROUP_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Staff) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStaffsList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.staff_id)
+                jsonsIds.addProperty(ID, it.staff_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("staff_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STAFF_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         }
         return jsonObject
     }
@@ -2173,19 +2200,19 @@ object SchoolAPIServices {
         val jsonarray = JsonArray()
         UtilConstants.selectedSectionsListforSubjecject.forEach {
             val jsonsIds = JsonObject()
-            jsonsIds.addProperty("id", it.section_id)
+            jsonsIds.addProperty(ID, it.section_id)
             jsonarray.add(jsonsIds)
         }
-        jsonObjectRequest.add("section_data", jsonarray)
+        jsonObjectRequest.add(SECTION_DATA, jsonarray)
         if (MENU_TYPE == MENU_TEXT_HOMEWORK) {
             jsonObjectRequest.addProperty("homework_voice", "")
         } else if (MENU_TYPE == MENU_VOICE_HOMEWORK) {
 
-            UtilConstants.AWSUploadedFilesList.forEach {
+            AWSUploadedFilesList.forEach {
                 jsonObjectRequest.addProperty("homework_voice", it.filepath)
             }
         }
-        jsonObject.add("request", jsonObjectRequest)
+        jsonObject.add(REQUEST, jsonObjectRequest)
         return jsonObject
 
     }
@@ -2288,23 +2315,23 @@ object SchoolAPIServices {
 
                 it.studentData.forEach {
                     Log.d("SectionID", sectionID!!)
-                    jsonsIds.addProperty("id", it.student_id)
+                    jsonsIds.addProperty(ID, it.student_id)
                     jsonsIds.addProperty("student_array", sectionID)
                     jsonSchoolArray.add(jsonsIds)
                 }
             }
-            jsonObjectRequest.add("student_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STUDENT_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (RecipientsType == UtilConstants.StandardSection) {
             Log.d("standardsection", RecipientsType.toString())
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalSectionList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.sectionID)
+                jsonsIds.addProperty(ID, it.sectionID)
                 jsonSchoolArray.add(jsonsIds)
             }
             jsonObjectRequest.add("section_array", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         }
         return jsonObject
     }
@@ -2370,31 +2397,27 @@ object SchoolAPIServices {
         jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
         if (ScheduleType.equals("instant")) {
-            jsonObjectRequest.addProperty("voice_type", ScheduleType)
-            jsonObjectRequest.addProperty("voice_file_path", UtilConstants.VoiceFilePath)
-            jsonObjectRequest.addProperty("schedule_date", "")
-            jsonObjectRequest.addProperty("schedule_hour", "")
-            jsonObjectRequest.addProperty("schedule_minute", "")
-            jsonObjectRequest.addProperty("end_hour", "")
-            jsonObjectRequest.addProperty("end_minute", "")
-            jsonObjectRequest.addProperty("duration", UtilConstants.VoiceDuration)
-            jsonObjectRequest.addProperty("description", UtilConstants.Title)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.addProperty(VOICE_TYPE, ScheduleType)
+            jsonObjectRequest.addProperty(VOICE_FILEPATH, VoiceFilePath)
+            jsonObjectRequest.addProperty(SCHEDULE_DATE, "")
+            jsonObjectRequest.addProperty(SCHEDULE_HOUR, "")
+            jsonObjectRequest.addProperty(SCHEDULE_MINUTE, "")
+            jsonObjectRequest.addProperty(END_HOUR, "")
+            jsonObjectRequest.addProperty(END_MINUTE, "")
+            jsonObjectRequest.addProperty(DURATION, UtilConstants.VoiceDuration)
+            jsonObjectRequest.addProperty(DESCRIPTION, UtilConstants.Title)
         } else if (ScheduleType.equals("schedule")) {
-            jsonObjectRequest.addProperty("voice_type", ScheduleType)
-            jsonObjectRequest.addProperty("voice_file_path", UtilConstants.VoiceFilePath)
-            jsonObjectRequest.addProperty("schedule_date", UtilConstants.Date)
-            jsonObjectRequest.addProperty("schedule_hour", UtilConstants.Hour)
-            jsonObjectRequest.addProperty("schedule_minute", UtilConstants.Minute)
-            jsonObjectRequest.addProperty("end_hour", UtilConstants.EndHour)
-            jsonObjectRequest.addProperty("end_minute", UtilConstants.EndMinute)
-            jsonObjectRequest.addProperty("duration", UtilConstants.VoiceDuration)
-            jsonObjectRequest.addProperty("description", UtilConstants.Title)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.addProperty(VOICE_TYPE, ScheduleType)
+            jsonObjectRequest.addProperty(VOICE_FILEPATH, VoiceFilePath)
+            jsonObjectRequest.addProperty(SCHEDULE_DATE, UtilConstants.Date)
+            jsonObjectRequest.addProperty(SCHEDULE_HOUR, UtilConstants.Hour)
+            jsonObjectRequest.addProperty(SCHEDULE_MINUTE, UtilConstants.Minute)
+            jsonObjectRequest.addProperty(END_HOUR, UtilConstants.EndHour)
+            jsonObjectRequest.addProperty(END_MINUTE, UtilConstants.EndMinute)
+            jsonObjectRequest.addProperty(DURATION, UtilConstants.VoiceDuration)
+            jsonObjectRequest.addProperty(DESCRIPTION, UtilConstants.Title)
 
         }
-
-
         return jsonObject
 
     }
@@ -2482,83 +2505,156 @@ object SchoolAPIServices {
         jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
         jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         val jsonObjectRequest = JsonObject()
+
         if (ScheduleType.equals("instant")) {
-            jsonObjectRequest.addProperty("voice_type", ScheduleType)
-            jsonObjectRequest.addProperty("voice_file_path", UtilConstants.VoiceFilePath)
-            jsonObjectRequest.addProperty("schedule_date", "")
-            jsonObjectRequest.addProperty("schedule_hour", "")
-            jsonObjectRequest.addProperty("schedule_minute", "")
-            jsonObjectRequest.addProperty("end_hour", "")
-            jsonObjectRequest.addProperty("end_minute", "")
-            jsonObjectRequest.addProperty("duration", UtilConstants.VoiceDuration)
-            jsonObjectRequest.addProperty("description", UtilConstants.Title)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.addProperty(VOICE_TYPE, ScheduleType)
+            jsonObjectRequest.addProperty(VOICE_FILEPATH, VoiceFilePath)
+            jsonObjectRequest.addProperty(SCHEDULE_DATE, "")
+            jsonObjectRequest.addProperty(SCHEDULE_HOUR, "")
+            jsonObjectRequest.addProperty(SCHEDULE_MINUTE, "")
+            jsonObjectRequest.addProperty(END_HOUR, "")
+            jsonObjectRequest.addProperty(END_MINUTE, "")
+            jsonObjectRequest.addProperty(DURATION, UtilConstants.VoiceDuration)
+            jsonObjectRequest.addProperty(DESCRIPTION, UtilConstants.Title)
         } else if (ScheduleType.equals("schedule")) {
-            jsonObjectRequest.addProperty("voice_type", ScheduleType)
-            jsonObjectRequest.addProperty("voice_file_path", UtilConstants.VoiceFilePath)
-            jsonObjectRequest.addProperty("schedule_date", UtilConstants.Date)
-            jsonObjectRequest.addProperty("schedule_hour", UtilConstants.Hour)
-            jsonObjectRequest.addProperty("schedule_minute", UtilConstants.Minute)
-            jsonObjectRequest.addProperty("end_hour", UtilConstants.EndHour)
-            jsonObjectRequest.addProperty("end_minute", UtilConstants.EndMinute)
-            jsonObjectRequest.addProperty("duration", UtilConstants.VoiceDuration)
-            jsonObjectRequest.addProperty("description", UtilConstants.Title)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.addProperty(VOICE_TYPE, ScheduleType)
+            jsonObjectRequest.addProperty(VOICE_FILEPATH, VoiceFilePath)
+            jsonObjectRequest.addProperty(SCHEDULE_DATE, UtilConstants.Date)
+            jsonObjectRequest.addProperty(SCHEDULE_HOUR, UtilConstants.Hour)
+            jsonObjectRequest.addProperty(SCHEDULE_MINUTE, UtilConstants.Minute)
+            jsonObjectRequest.addProperty(END_HOUR, UtilConstants.EndHour)
+            jsonObjectRequest.addProperty(END_MINUTE, UtilConstants.EndMinute)
+            jsonObjectRequest.addProperty(DURATION, UtilConstants.VoiceDuration)
+            jsonObjectRequest.addProperty(DESCRIPTION, UtilConstants.Title)
 
         }
-
 
         if (RecipientsType == UtilConstants.StandardSection) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalSectionList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.sectionID)
+                jsonsIds.addProperty(ID, it.sectionID)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("section_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(SECTION_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (RecipientsType == UtilConstants.Students) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStudentList.forEach {
                 val jsonsIds = JsonObject()
                 val sectionID = it.sectionID
                 it.studentData.forEach {
-                    jsonsIds.addProperty("id", it.student_id)
-                    jsonsIds.addProperty("section_id", sectionID)
+                    jsonsIds.addProperty(ID, it.student_id)
+                    jsonsIds.addProperty(SECTION_ID, sectionID)
                     jsonSchoolArray.add(jsonsIds)
                 }
             }
-            jsonObjectRequest.add("student_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STUDENT_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (UtilConstants.RecipientsType == UtilConstants.Standard) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStandardList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.standard_id)
+                jsonsIds.addProperty(ID, it.standard_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("standard_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STANDARD_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (RecipientsType == UtilConstants.Group) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalGroupsList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.group_id)
+                jsonsIds.addProperty(ID, it.group_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("group_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(GROUP_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
         } else if (RecipientsType == UtilConstants.Staff) {
             val jsonSchoolArray = JsonArray()
             UtilConstants.selectedFinalStaffsList.forEach {
                 val jsonsIds = JsonObject()
-                jsonsIds.addProperty("id", it.staff_id)
+                jsonsIds.addProperty(ID, it.staff_id)
                 jsonSchoolArray.add(jsonsIds)
             }
-            jsonObjectRequest.add("staff_data", jsonSchoolArray)
-            jsonObject.add("request", jsonObjectRequest)
+            jsonObjectRequest.add(STAFF_DATA, jsonSchoolArray)
+            jsonObject.add(REQUEST, jsonObjectRequest)
 
         }
+        return jsonObject
+
+    }
+
+    fun sendEmergencyVoiceHistoryTOSChools(activity: Activity?) {
+        val jsonEnergencyVoiceHistoryRequest = jsonEmergencyVoiceHistoryToSchools(activity)
+        Log.d("EmergencyHistorySchl", jsonEnergencyVoiceHistoryRequest.toString())
+        GifLoading.loading(activity, true)
+        val apiInterface: ApiInterface = APIClient.getApiClient()!!.create(ApiInterface::class.java)
+        apiInterface.SendEmergencyVoiceToSchoolFromhistory(jsonEnergencyVoiceHistoryRequest)!!
+            .enqueue(object : retrofit2.Callback<StatusMessageResponse?> {
+                override fun onResponse(
+                    call: Call<StatusMessageResponse?>?,
+                    response: Response<StatusMessageResponse?>?
+                ) {
+                    try {
+                        GifLoading.loading(activity, false)
+                        val responseBody = response?.body()
+                        val gson = Gson()
+                        Log.d("EmergencyHistorySchlRes", gson.toJson(response))
+                        if (response?.code() == 200) {
+                            if (responseBody?.status == 1) {
+                                UtilConstants.customSuccessAlert(activity, responseBody.message)
+                            } else {
+                                UtilConstants.customFailureAlert(activity, responseBody!!.message)
+
+                            }
+                        } else if (response?.code() == 400 || response?.code() == 500) {
+                            val errorResponseBody = Gson().fromJson(
+                                response.errorBody()?.charStream(),
+                                StatusMessageResponse::class.java
+                            )
+                            UtilConstants.handleErrorResponse(
+                                activity,
+                                response.code(),
+                                errorResponseBody
+                            )
+                        } else {
+                            UtilConstants.normalToast(
+                                activity,
+                                activity?.getString(R.string.Service_unavailable)
+                            )
+                        }
+                    } catch (e: Exception) {
+                        Log.d("Exception", e.toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<StatusMessageResponse?>?, t: Throwable?) {
+                    Log.d("Failure", t.toString())
+                    UtilConstants.normalToast(activity, t.toString())
+                }
+            })
+    }
+
+    private fun jsonEmergencyVoiceHistoryToSchools(activity: Activity?): JsonObject {
+        val mobileNumber: String? = Util_shared_preferences.getMobileNumber(activity)
+        val token: String? = Util_shared_preferences.getLoginToken(activity)
+
+        val jsonObject = JsonObject()
+        jsonObject.addProperty(LOGIN_TOKEN, token)
+        jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
+        jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
+        val jsonObjectRequest = JsonObject()
+        jsonObjectRequest.addProperty(DESCRIPTION, UtilConstants.Title)
+        jsonObjectRequest.addProperty(DURATION, UtilConstants.VoiceDuration)
+        val jsonSchoolArray = JsonArray()
+        UtilConstants.SelectedFinalSchoolsList.forEach {
+            val jsonsIds = JsonObject()
+            jsonsIds.addProperty(ID, it.school_id)
+            jsonSchoolArray.add(jsonsIds)
+        }
+        jsonObjectRequest.add(ID_SCHOOL, jsonSchoolArray)
+        jsonObject.add(REQUEST, jsonObjectRequest)
         return jsonObject
 
     }
@@ -2637,7 +2733,8 @@ object SchoolAPIServices {
         jsonObject.addProperty(LOGIN_TOKEN, Logintoken)
         jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
         jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
-        jsonObject.addProperty(STAFF_ID, "10000620")
+//        jsonObject.addProperty(STAFF_ID, "10000620")
+        jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
         Log.d("ApproveLeaveListReq:", jsonObject.toString())
 
         GifLoading.loading(activity, true)
@@ -2660,7 +2757,7 @@ object SchoolAPIServices {
                                 val approveLeave: TeacherApproveLeave
                                 approveLeave = TeacherApproveLeave()
                                 approveLeave.setAdapterLeaveStatus()
-                                Log.d("testApprveleave","test")
+                                Log.d("testApprveleave", "test")
 
 
                             } else {
@@ -2701,7 +2798,7 @@ object SchoolAPIServices {
     fun approveLeaveStatus(activity: Activity?) {
 
         val jsonApproveLeaveRequest = jsonApproveLeaveStatusRequest(activity)
-        Log.d("ApproveLeaveStatus:Req",jsonApproveLeaveRequest.toString())
+        Log.d("ApproveLeaveStatus:Req", jsonApproveLeaveRequest.toString())
 
         GifLoading.loading(activity, true)
         var apiInterface: ApiInterface = APIClient.getApiClient()!!.create(ApiInterface::class.java)
@@ -2763,18 +2860,14 @@ object SchoolAPIServices {
         jsonObject.addProperty(MOBILE_NUMBER, mobileNumber)
         jsonObject.addProperty(SCHOOL_ID, UtilConstants.SchoolID)
         jsonObject.addProperty(STAFF_ID, UtilConstants.StaffID)
-
         val jsonObjectRequest = JsonObject()
-        jsonObjectRequest.addProperty("leave_id", UtilConstants.ApproveLeaveId)
-        jsonObjectRequest.addProperty("status", ApproveLeaveTypeStatus)
-
-        jsonObject.add("request", jsonObjectRequest)
-
-
+        jsonObjectRequest.addProperty(LEAVE_ID, UtilConstants.ApproveLeaveId)
+        jsonObjectRequest.addProperty(STATUS, ApproveLeaveTypeStatus)
+        jsonObject.add(REQUEST, jsonObjectRequest)
         return jsonObject
 
     }
-
+///Delete Assignment
 
 }
 

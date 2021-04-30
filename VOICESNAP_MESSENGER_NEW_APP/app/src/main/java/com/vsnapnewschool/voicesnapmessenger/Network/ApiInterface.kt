@@ -273,8 +273,6 @@ interface ApiInterface {
     @POST("/sendassignment/api/send_assignment/delete_assignment")
     fun DeleteAssignment(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
-//    @POST("/sendassignment/api/send_assignment/delete_assignment")
-//    fun DeleteAssignment(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
 
     //SendVoiceHistory

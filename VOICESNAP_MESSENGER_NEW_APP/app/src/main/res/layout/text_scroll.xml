@@ -80,12 +80,12 @@
         android:layout_marginRight="@dimen/twenty_size"
         android:layout_marginBottom="@dimen/ten_size"
         android:gravity="right"
-        android:text="460 Characters Remaining"
+        android:text=""
         android:textColor="@color/clr_txt_grey"
         android:textSize="@dimen/twele_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/edDescription"
-        app:layout_constraintTop_toBottomOf="@id/edDescription" />
+        app:layout_constraintTop_toBottomOf="@id/edDescription"/>
 
     <TextView
         android:id="@+id/ReciptCount"

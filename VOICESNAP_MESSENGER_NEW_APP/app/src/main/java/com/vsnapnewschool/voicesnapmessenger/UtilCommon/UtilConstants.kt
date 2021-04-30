@@ -105,6 +105,8 @@ class UtilConstants {
         var fileName: File? = null
         var filename: String? = null
         var SelcetedFileList = ArrayList<String>()
+        var pathlist = ArrayList<SelectedFilesClass>()
+
         var OTPScreenType: String? = null
         var RecipientsType: Int? = 0
         var Standard: Int? = 1
@@ -292,8 +294,7 @@ class UtilConstants {
         }
 
         fun showEntireSchoolConfirmationAlert(activity: Activity?) {
-            val inflater: LayoutInflater =
-                activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val inflater: LayoutInflater = activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view: View = inflater.inflate(confirmation_alert, null)
             EntireSchoolPopupWindow = PopupWindow(
                 view,
@@ -332,6 +333,7 @@ class UtilConstants {
                 baseActivity = BaseActivity()
                 baseActivity?.awsFileUpload(activity, 0)
             }
+
         }
 
         fun forgotDialNumberPopup(activity: Activity?, otpData: OtpData) {

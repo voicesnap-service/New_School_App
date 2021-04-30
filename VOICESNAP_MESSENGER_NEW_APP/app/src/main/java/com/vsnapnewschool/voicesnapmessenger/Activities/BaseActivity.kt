@@ -17,6 +17,8 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.text.Editable
+import android.text.InputFilter
+import android.text.InputFilter.LengthFilter
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
@@ -41,6 +43,7 @@ import com.vsnapnewschool.voicesnapmessenger.Adapters.AlbumImageAdapter
 import com.vsnapnewschool.voicesnapmessenger.Adapters.ImageSliderAdapter
 import com.vsnapnewschool.voicesnapmessenger.Adapters.RecipientsAdapter
 import com.vsnapnewschool.voicesnapmessenger.Models.AWSUploadedFiles
+import com.vsnapnewschool.voicesnapmessenger.Models.SelectedFilesClass
 import com.vsnapnewschool.voicesnapmessenger.Models.SliderItem
 import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
@@ -66,6 +69,7 @@ import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.filetype
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.filetypePdf
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.filetypeVideo
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.pathlist
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.selectedFinalStudentList
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.uploadFilePath
 import com.vsnapnewschool.voicesnapmessenger.Util_Common.GifLoading
@@ -176,6 +180,16 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    open fun setEditTextMaxLength(editText: EditText, length: Int) {
+        val FilterArray = arrayOfNulls<InputFilter>(1)
+        FilterArray[0] = LengthFilter(length)
+        editText.filters = FilterArray
+    }
+//    fun EditTextLength(){
+//        fun EditText.setMaxLength(maxLength: Int) {
+//            filters = arrayOf(InputFilter.LengthFilter(maxLength))
+//        }
+//    }
     fun AssignmentsetTextStyle(
         lblDays: TextView,
         lblTotalDays: TextView,
@@ -396,7 +410,8 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
+        SelcetedFileList.clear()
+        pathlist.clear()
         if (resultCode != Activity.RESULT_CANCELED) {
             lblAttachment?.visibility = View.VISIBLE
             rcyleSelectedFiles?.visibility = View.VISIBLE
@@ -410,6 +425,13 @@ open class BaseActivity : AppCompatActivity() {
                 if (data != null) {
                     SelcetedFileList = data.getStringArrayListExtra("images")!!
                     Apifiletype = filetype
+                    pathlist.clear()
+
+                   SelcetedFileList.forEach {
+                       var path=it
+                       pathlist.add(SelectedFilesClass(path, filetype))
+                    }
+
                 }
             } else if (requestCode == SELECT_PDF && resultCode == RESULT_OK && data != null) {
                 Apifiletype = filetypePdf
@@ -425,17 +447,28 @@ open class BaseActivity : AppCompatActivity() {
 
                         Apifiletype = filetypePdf
                         outputDir = externalCacheDir!!
+                        ReadAndWriteFile(uri, ".pdf")
 
-                        Log.d("outputDir", outputDir!!.path.toString())
-
-                        ReadAndWriteFile(uri,".pdf")
 
                     }
+
+                }else if(data!!.data != null){
+                    Apifiletype = filetypePdf
+                    val fileuri = data!!.data
+                    outputDir = externalCacheDir!!
+
+                    ReadAndWriteFile(fileuri, ".pdf")
                 }
             } else if (requestCode == REQUEST_Video) {
                 if (data != null) {
                     SelcetedFileList = data.getStringArrayListExtra("images")!!
                     Apifiletype = filetypeVideo
+                    pathlist.clear()
+
+                    SelcetedFileList.forEach {
+                        var path=it
+                        pathlist.add(SelectedFilesClass(path, filetypeVideo))
+                    }
 
                 }
             }
@@ -457,13 +490,13 @@ open class BaseActivity : AppCompatActivity() {
             }
 
 
-            selectedadapter = AlbumImageAdapter(SelcetedFileList, Apifiletype!!, this,
+            selectedadapter = AlbumImageAdapter(pathlist, Apifiletype!!, this,
                 object : AlbumImageAdapter.BtnClickListener {
                     override fun onBtnClick(position: Int) {
-                        SelcetedFileList.removeAt(position)
+                        pathlist.removeAt(position)
                         selectedadapter.notifyItemRemoved(position)
 
-                        if (SelcetedFileList.size == 0) {
+                        if (pathlist.size == 0) {
 //                            lblAddFile?.setText(getString(R.string.btn_addimg_pdf))
 
                             if (filetype.equals(Apifiletype)) {
@@ -510,13 +543,20 @@ open class BaseActivity : AppCompatActivity() {
                 contentResolver?.openInputStream(it).use { `in` ->
                     if (`in` == null) return
                     try {
-
                         Apifiletype = filetypePdf
                         PDFTempFileWrite = File.createTempFile("NEWSCHOOLAPP", type, outputDir)
                         var pdfPath: String = PDFTempFileWrite?.path!!
-                         extension = pdfPath.substring(pdfPath.toString().lastIndexOf("."))
+                        extension = pdfPath.substring(pdfPath.toString().lastIndexOf("."))
                         Log.d("extensionpdf", extension!!)
+                        Log.d("PDFTempFileWrite", PDFTempFileWrite.toString()!!)
                         SelcetedFileList.add(pdfPath)
+                        pathlist.clear()
+
+                        SelcetedFileList.forEach {
+                            var path=it
+                            Log.d("test", path)
+                            pathlist.add(SelectedFilesClass(path, filetypePdf))
+                        }
 
                     } catch (e: IOException) {
                         e.printStackTrace()

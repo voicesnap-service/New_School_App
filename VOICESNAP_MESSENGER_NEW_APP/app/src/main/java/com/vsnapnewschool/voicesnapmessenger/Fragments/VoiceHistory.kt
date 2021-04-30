@@ -43,6 +43,7 @@ class VoiceHistory : Fragment() {
         getVoiceHistoryListApi()
         adds_layout.visibility = View.GONE
         lblSeeMore.visibility = View.GONE
+        recyclerview.visibility = View.VISIBLE
 
     }
 

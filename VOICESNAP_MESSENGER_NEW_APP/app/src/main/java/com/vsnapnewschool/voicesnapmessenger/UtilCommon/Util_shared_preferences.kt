@@ -49,13 +49,13 @@ class Util_shared_preferences {
         var MobileNumberScreen: String? = "MobileNumberScreen"
         var MemberType: String? = "MemberType"
         var ModuleType: String? = "ModuleType"
-        var VoiceHistory: Boolean = false
 
         var StudentName: String? = "StudentName"
         var StudentSchoolID: String? = "StudentSchoolID"
         var StudentID: String? = "StudentID"
         var StudentClassID: String? = "StudentClassID"
         var StudentSectionID: String? = "StudentSectionID"
+        var VoiceType: String? = "VoiceType"
 
 
         fun putChildInfo(activity: Activity?, child_info: ChildDetailData) {
@@ -75,7 +75,7 @@ class Util_shared_preferences {
                 ?.getString(StudentName, "")
             return member
         }
-
+//XCXCXC
         fun getStudentID(activity: Activity?): String? {
             val member = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
                 ?.getString(StudentID, "")
@@ -384,6 +384,20 @@ class Util_shared_preferences {
             val ApiKey = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
                 ?.getString(RazorpayApiKey, "")
             return ApiKey
+        }
+
+        fun putVoiceType(activity: Activity?, voiceType: Boolean) {
+            val sharedPreferences: SharedPreferences = activity!!.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putBoolean(VoiceType, voiceType)
+
+            editor.commit()
+        }
+
+        fun getVoiceType(activity: Activity?): Boolean? {
+            val member = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+                ?.getBoolean(VoiceType, false)
+            return member
         }
     }
 }

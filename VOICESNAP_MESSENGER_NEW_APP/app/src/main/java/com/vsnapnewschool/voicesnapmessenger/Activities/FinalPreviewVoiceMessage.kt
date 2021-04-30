@@ -16,6 +16,7 @@ import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.VoiceFilePath
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.Util_shared_preferences
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
 import kotlinx.android.synthetic.main.activity_final_preview_voice.*
 import kotlinx.android.synthetic.main.record_voice.*
@@ -56,12 +57,16 @@ class FinalPreviewVoiceMessage : BaseActivity(), View.OnClickListener {
         imgTeacherSettings?.setOnClickListener(this)
 
         VoiceType = intent.extras!!.getBoolean("Voicetype")
+        Util_shared_preferences.putVoiceType(this,VoiceType!!)
 
         if (VoiceType as Boolean) {
             setTitle(getString(R.string.forward))
             btnPublish.text = getString(R.string.forward)
             btnPublish.isEnabled = true
             lblSentAt.visibility = View.VISIBLE
+            ReciptCount.visibility = View.GONE
+            lblrecipient!!.visibility = View.GONE
+            rcyleRecipients!!.visibility = View.GONE
 
         } else {
             setTitle(getString(R.string.txt_Preview))
