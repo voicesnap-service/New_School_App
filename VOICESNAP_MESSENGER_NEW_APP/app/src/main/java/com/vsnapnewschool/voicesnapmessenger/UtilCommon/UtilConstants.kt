@@ -154,12 +154,6 @@ class UtilConstants {
         var ApproveLeaveTypeStatus: String? = null
         var ApproveLeaveId: String? = null
 
-        var VoiceHeaderId:String?=null
-        var VoiceHistoryFile:String?=null
-        var VoiceHistorydescription:String?=null
-        var VoiceHistorycreatedOn:String?=null
-        var VoiceHistoryVoicefilepath:String?=null
-        var VoiceHistoryFilename:String?=null
 
         internal lateinit var dialNumbersAdapter: ForgotDialNumbers
 

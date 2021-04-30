@@ -9,6 +9,7 @@ data class GetVoiceHistory(
 data class VoiceHistoryData(
     val created_on: String,
     val description: String,
+    val duration: String,
     val header_id: String,
     val sub_or_file_name: String,
     val voice_file: String,

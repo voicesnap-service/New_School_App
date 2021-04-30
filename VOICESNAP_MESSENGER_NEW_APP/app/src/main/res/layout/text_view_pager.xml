@@ -21,7 +21,7 @@
             app:tabIndicatorColor="@color/app_color"
             app:tabMode="fixed"
             app:tabBackground="@drawable/tab_selector"
-            app:tabSelectedTextColor="@color/app_color"
+            app:tabSelectedTextColor="@color/white"
             app:tabTextColor="@color/clr_black" />
 
     </LinearLayout>

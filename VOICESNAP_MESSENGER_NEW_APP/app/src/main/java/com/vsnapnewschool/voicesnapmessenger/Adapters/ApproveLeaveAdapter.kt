@@ -17,9 +17,11 @@ import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 
 
-class ApproveLeaveAdapter(private val listname: ArrayList<ApproveLeaveData>,
-                          private val context: Context?,
-                          val approvelistener:ApproveLeaveListener) : RecyclerView.Adapter<ApproveLeaveAdapter.MyViewHolder>() {
+class ApproveLeaveAdapter(
+    private val listname: ArrayList<ApproveLeaveData>,
+    private val context: Context?,
+    val approvelistener: ApproveLeaveListener
+) : RecyclerView.Adapter<ApproveLeaveAdapter.MyViewHolder>() {
     companion object {
         var leavelistenrer: ApproveLeaveListener? = null
     }
@@ -33,11 +35,13 @@ class ApproveLeaveAdapter(private val listname: ArrayList<ApproveLeaveData>,
         internal var lblReason: TextView
         internal var lblClass: TextView
         internal var lblSection: TextView
+        internal var lblstatus: TextView
         internal var btnApprove: Button
         internal var btnReject: Button
         internal var imgMember: CircleImageView
         internal var FromDateLayout: ConstraintLayout
         internal var ToDateLayout: ConstraintLayout
+
         init {
             lblStudentName = view.findViewById<View>(R.id.lblStudentName) as TextView
             lblRollNo = view.findViewById<View>(R.id.lblRollNo) as TextView
@@ -47,6 +51,7 @@ class ApproveLeaveAdapter(private val listname: ArrayList<ApproveLeaveData>,
             lblToDate = view.findViewById<View>(R.id.lblToDate) as TextView
             lblClass = view.findViewById<View>(R.id.lblClass) as TextView
             lblSection = view.findViewById<View>(R.id.lblSection) as TextView
+            lblstatus = view.findViewById<View>(R.id.lblstatus) as TextView
             imgMember = view.findViewById<View>(R.id.imgMember) as CircleImageView
             FromDateLayout = view.findViewById<View>(R.id.FromDateLayout) as ConstraintLayout
             ToDateLayout = view.findViewById<View>(R.id.ToDateLayout) as ConstraintLayout
@@ -55,27 +60,54 @@ class ApproveLeaveAdapter(private val listname: ArrayList<ApproveLeaveData>,
 
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.approve_leave_adapter, parent, false)
         return MyViewHolder(itemView)
     }
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val text_info = listname[position]
         holder.lblStudentName.text = text_info.student_name
 //        holder.lblRollNo.text = text_info.Month
-        holder.lblDayCount.text = text_info.leave_type
+        holder.lblDayCount.text = text_info.no_of_days + " " + text_info.leave_type
         holder.lblFromDate.text = text_info.leave_from
         holder.lblToDate.text = text_info.leave_to
         holder.lblClass.text = text_info.`class`
         holder.lblSection.text = text_info.section
-       // holder.lblReason.text = text_info.description
+        holder.lblReason.text = text_info.reason
+        holder.lblstatus.text = text_info.status
+
+        if(text_info.status.equals("1")){
+            holder.lblstatus.text = context!!.getString(R.string.lbl_approved)
+            holder.lblstatus.setBackgroundResource(R.drawable.bg_approve_leave)
+
+
+        }else if(text_info.status.equals("2")){
+            holder.lblstatus.text = context!!.getString(R.string.lbl_rejected)
+            holder.lblstatus.setBackgroundResource(R.drawable.rectangle_half_red)
+
+        }
+
+        if (text_info.status.equals("0")) {
+            holder.btnApprove.visibility = View.VISIBLE
+            holder.btnReject.visibility = View.VISIBLE
+
+        } else {
+            holder.btnApprove.visibility = View.GONE
+            holder.btnReject.visibility = View.GONE
+
+        }
+
+
         leavelistenrer = approvelistener
-        leavelistenrer?.onapproveleveClick(holder,text_info)
+        leavelistenrer?.onapproveleveClick(holder, text_info)
         Glide.with(context!!)
             .load(R.drawable.man)
             .into(holder.imgMember)
     }
+
     override fun getItemCount(): Int {
         return listname.size
     }

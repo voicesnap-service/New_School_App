@@ -330,8 +330,6 @@ class ParentCommunicationViewAdapter(private val imagelist: ArrayList<Voice_Clas
         holder.lbltime.setText(info.time)
 
 
-
-
         if (info.status.equals("voice")) {
             path = Environment.getExternalStorageDirectory().toString() + File.separator + "School Voice/Voice/" + info.voiceid+".mp3"
 

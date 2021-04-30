@@ -3,14 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/ten_size"
+    android:layout_margin="@dimen/dimen_five"
     android:orientation="vertical"
     android:background="@drawable/rect_white_bg"
     android:padding="@dimen/ten_size">
+    <LinearLayout
+        android:id="@+id/lnrExpandVoice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
     <RelativeLayout
         android:id="@+id/rytVoice"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_two">
         <ImageView
             android:id="@+id/imgsendvoice"
             android:layout_width="@dimen/twenty5_size"
@@ -31,7 +38,7 @@
             android:src="@drawable/voice_list_playicon" />
 
         <TextView
-            android:id="@+id/lblrectime"
+            android:id="@+id/lblVoiceDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/eight_size"
@@ -47,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_margin="@dimen/dimen_five"
-            android:layout_toLeftOf="@+id/lblrectime"
+            android:layout_toLeftOf="@+id/lblVoiceDuration"
             android:text="Tomorrow Holiday"
             android:textColor="@color/black"
             android:textSize="@dimen/twele_size"
@@ -143,7 +150,7 @@
                 android:textSize="10dp" />
 
             <TextView
-                android:id="@+id/txtEmgtoduration"
+                android:id="@+id/lblTotalVoiceTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_grey_black"
@@ -151,5 +158,6 @@
                 android:text="02:10"/>
         </LinearLayout>
     </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

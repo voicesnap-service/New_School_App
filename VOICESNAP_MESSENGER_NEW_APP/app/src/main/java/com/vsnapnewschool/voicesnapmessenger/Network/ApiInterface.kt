@@ -311,7 +311,6 @@ interface ApiInterface {
     fun StaffApproveLeaveStatusUpdate(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
 
-
     //Parent
     @POST("/receivercommunication/api/receiver/get_text_messages")
     fun getTextMessages(@Body jsonObject: JsonObject?): Call<GetTextMessages?>?

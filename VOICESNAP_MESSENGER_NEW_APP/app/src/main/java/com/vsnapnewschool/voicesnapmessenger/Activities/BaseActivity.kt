@@ -360,10 +360,8 @@ open class BaseActivity : AppCompatActivity() {
         dialog.LayoutDocuments.setOnClickListener({
             //     SelcetedFileList.clear()
 
-            val intent = Intent()
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "application/pdf"
-            intent.setAction(Intent.ACTION_OPEN_DOCUMENT)
-            intent.addCategory(Intent.CATEGORY_OPENABLE)
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
             startActivityForResult(intent, SELECT_PDF)
 
@@ -459,10 +457,7 @@ open class BaseActivity : AppCompatActivity() {
             }
 
 
-            selectedadapter = AlbumImageAdapter(
-                SelcetedFileList,
-                Apifiletype!!,
-                this,
+            selectedadapter = AlbumImageAdapter(SelcetedFileList, Apifiletype!!, this,
                 object : AlbumImageAdapter.BtnClickListener {
                     override fun onBtnClick(position: Int) {
                         SelcetedFileList.removeAt(position)

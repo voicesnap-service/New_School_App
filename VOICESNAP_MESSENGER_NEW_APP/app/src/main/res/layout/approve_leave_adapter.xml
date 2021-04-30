@@ -10,6 +10,21 @@
     android:layout_marginBottom="@dimen/ten_size"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/shadow_bg">
+    <TextView
+        android:id="@+id/lblstatus"
+        android:layout_width="@dimen/dimen_eighty_size"
+        android:layout_height="@dimen/twenty_seven"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/dimen_three"
+        android:background="@drawable/bg_approve_leave"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="status"
+        android:textColor="@color/white"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="bold" />
+
 
     <RelativeLayout
         android:id="@+id/rytProfile"
@@ -20,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/bg_circle_orange"
         android:padding="@dimen/dimen_five"
-        app:layout_constraintTop_toBottomOf="@+id/lblDayDate">
+        app:layout_constraintTop_toBottomOf="@+id/lblstatus">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgMember"
@@ -35,15 +50,17 @@
 
         <TextView
             android:id="@+id/lblStudentName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/fifteen_size"
             android:layout_marginTop="@dimen/ten_size"
-            android:text="Voice Snap"
+            android:layout_marginEnd="@dimen/dimen_five"
+            android:text=""
             android:textSize="@dimen/fourteen_size"
             android:textColor="@color/clr_black"
             android:textStyle="normal"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/lblstatus"
             app:layout_constraintLeft_toRightOf="@+id/rytProfile" />
 
     <TextView
@@ -53,6 +70,7 @@
         android:layout_marginStart="@dimen/fifteen_size"
         android:text="(0084)"
         android:textSize="@dimen/thirteen_size"
+        android:visibility="gone"
         android:textColor="@color/clr_dark_grey"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/lblStudentName"

@@ -24,7 +24,7 @@
         android:layout_marginEnd="@dimen/eight_size"
         android:layout_marginTop="@dimen/dimen_five"
         android:scaleType="centerCrop"
-        android:src="@drawable/circle_document"
+        android:src="@drawable/folder_img"
         CircleImageView:civ_border_color="#FF000000"
         CircleImageView:civ_border_width="5dp"
         app:layout_constraintTop_toTopOf="parent"
