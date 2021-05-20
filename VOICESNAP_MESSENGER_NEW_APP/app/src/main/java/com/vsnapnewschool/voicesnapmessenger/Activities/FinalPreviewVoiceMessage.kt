@@ -16,6 +16,7 @@ import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.VoiceFilePath
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.voicehistorygroup
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.Util_shared_preferences
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
 import kotlinx.android.synthetic.main.activity_final_preview_voice.*
@@ -31,11 +32,10 @@ class FinalPreviewVoiceMessage : BaseActivity(), View.OnClickListener {
     val VOICE_FOLDER_NAME = "NewSchool"
     val VOICE_FILE_NAME = "schoolVoice.mp3"
     var iMediaDuration = 0
-    var futureStudioIconFile: File? = null
+    //    var futureStudioIconFile: File? = null
     var iMaxRecDur = 180
     var recTime = 0
     var recTimerHandler = Handler()
-    var voiceclass: Text_Class? = null
     var FilePath: String? = null
     var VoiceType: Boolean? = null
 
@@ -58,8 +58,13 @@ class FinalPreviewVoiceMessage : BaseActivity(), View.OnClickListener {
 
         VoiceType = intent.extras!!.getBoolean("Voicetype")
         Util_shared_preferences.putVoiceType(this,VoiceType!!)
-
-        if (VoiceType as Boolean) {
+        if(voicehistorygroup.equals("VoiceGroup")){
+            rcyleRecipients!!.visibility = View.VISIBLE
+            lblrecipient!!.visibility = View.VISIBLE
+            setTitle(getString(R.string.forward))
+            btnPublish.text = getString(R.string.btn_Publish)
+        }
+        else if (VoiceType as Boolean) {
             setTitle(getString(R.string.forward))
             btnPublish.text = getString(R.string.forward)
             btnPublish.isEnabled = true
@@ -85,27 +90,27 @@ class FinalPreviewVoiceMessage : BaseActivity(), View.OnClickListener {
     fun fetchSong() {
 
         try {
-            val filepath: String
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-             //   filepath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath()
-                filepath=this.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.getPath()
-
-            } else {
-
-                filepath = Environment.getExternalStorageDirectory().getPath();
-            }
-
-            val fileDir = File(filepath, VOICE_FOLDER_NAME)
-
-            if (!fileDir.exists()) {
-                fileDir.mkdirs()
-            }
-
-            futureStudioIconFile = File(fileDir, VOICE_FILE_NAME)
-            VoiceFilePath = futureStudioIconFile?.path
-            Log.d("VoiceFilePath",VoiceFilePath!!)
+//            val filepath: String
+//            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//             //   filepath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath()
+//                filepath=this.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.getPath()
+//
+//            } else {
+//
+//                filepath = Environment.getExternalStorageDirectory().getPath();
+//            }
+//
+//            val fileDir = File(filepath, VOICE_FOLDER_NAME)
+//
+//            if (!fileDir.exists()) {
+//                fileDir.mkdirs()
+//            }
+//
+//            futureStudioIconFile = File(fileDir, VOICE_FILE_NAME)
+//            VoiceFilePath = futureStudioIconFile?.path
+//            Log.d("VoiceFilePath",VoiceFilePath!!)
             mediaPlayer!!.reset()
-            mediaPlayer!!.setDataSource(futureStudioIconFile!!.path)
+            mediaPlayer!!.setDataSource(VoiceFilePath)
             mediaPlayer!!.prepare()
             iMediaDuration = (mediaPlayer!!.duration / 1000.0).toInt()
             UtilConstants.VoiceDuration = iMediaDuration.toString()
@@ -177,11 +182,26 @@ class FinalPreviewVoiceMessage : BaseActivity(), View.OnClickListener {
                 recplaypause()
             }
             R.id.btnPublish -> {
-                if (VoiceType!!) {
-
-
+                if(voicehistorygroup.equals("VoiceGroup")){
+                    if (UtilConstants.RecipientsType == UtilConstants.Students) {
+                        SchoolAPIServices.sendNonVoiceFromHistoryToStdSecGrpStaffStud(this)
+                    } else if (UtilConstants.RecipientsType == UtilConstants.Standard) {
+                        SchoolAPIServices.sendNonVoiceFromHistoryToStdSecGrpStaffStud(this)
+                    } else if (UtilConstants.RecipientsType == UtilConstants.StandardSection) {
+                        SchoolAPIServices.sendNonVoiceFromHistoryToStdSecGrpStaffStud(this)
+                    } else if (UtilConstants.RecipientsType == UtilConstants.Group) {
+                        SchoolAPIServices.sendNonVoiceFromHistoryToStdSecGrpStaffStud(this)
+                    } else if (UtilConstants.RecipientsType == UtilConstants.Staff) {
+                        SchoolAPIServices.sendNonVoiceFromHistoryToStdSecGrpStaffStud(this)
+                    }
+                }
+                else if (VoiceType!!) {
+                    UtilConstants.voicehistoryentire = "VoiceEntire"
+                    UtilConstants.voicehistorygroup = "VoiceGroup"
                     UtilConstants.recipientsActivity(this)
-                } else {
+
+                }
+                else{
                     if (UtilConstants.RecipientsType == UtilConstants.Students) {
                         SchoolAPIServices.sendNonEmergencyVoiceStd_Sec_Grp_Stud_Satff(this)
                     } else if (UtilConstants.RecipientsType == UtilConstants.Standard) {
@@ -194,6 +214,7 @@ class FinalPreviewVoiceMessage : BaseActivity(), View.OnClickListener {
                         SchoolAPIServices.sendNonEmergencyVoiceStd_Sec_Grp_Stud_Satff(this)
                     }
                 }
+
 
             }
             R.id.imgTeacherChat -> {

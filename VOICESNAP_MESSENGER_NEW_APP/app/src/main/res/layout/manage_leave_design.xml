@@ -13,6 +13,7 @@
         android:layout_marginLeft="@dimen/ten_size"
         android:padding="@dimen/dimen_five"
         android:text="Yesterday"
+        android:visibility="invisible"
         android:textColor="@color/black"
         android:textSize="@dimen/fourteen_size"
         app:layout_constraintStart_toStartOf="parent"

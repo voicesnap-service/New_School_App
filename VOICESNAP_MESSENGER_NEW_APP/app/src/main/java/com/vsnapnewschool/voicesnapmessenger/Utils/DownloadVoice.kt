@@ -16,6 +16,7 @@ import android.util.Log
 import com.vsca.vsnapvoicecollege.Rest.APIClient
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiInterface
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.Refreshlistener
+import com.vsnapnewschool.voicesnapmessenger.Interfaces.VoiceMessagesClickListener
 
 import com.vsnapnewschool.voicesnapmessenger.R
 import okhttp3.ResponseBody
@@ -32,7 +33,7 @@ object DownloadVoice {
         urldata: String,
         folder: String?,
         fileName: String,
-        refreshlistener: Refreshlistener
+        refreshlistener: VoiceMessagesClickListener
     ) {
         mProgressDialog = ProgressDialog(activity)
         mProgressDialog!!.isIndeterminate = true
@@ -54,13 +55,14 @@ object DownloadVoice {
                         protected fun doInBackground(vararg voids: Void): Boolean {
                             val writtenToDisk = writeResponseBodyToDisk(activity!!,response.body(), folder, fileName)
                             Log.d("DOWNLOADING...", "file download was a success? $writtenToDisk")
+
                             return writtenToDisk
                         }
 
                         override fun onPostExecute(status: Boolean) {
                             super.onPostExecute(status)
                             if (status) {
-                                refreshlistener.refresh()
+                                refreshlistener.onrefresh()
 
                                 //AlertDownload(activity, "Success", "File stored in: $folder/$fileName", refreshlistener)
                             }
@@ -96,7 +98,7 @@ object DownloadVoice {
 
     fun writeResponseBodyToDisk(activity:Context,body: ResponseBody?, folder: String?, fileName: String?): Boolean {
         return try {
-           // val filepath = Environment.getExternalStorageDirectory().path
+            // val filepath = Environment.getExternalStorageDirectory().path
             val filepath: String
 
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -153,7 +155,7 @@ object DownloadVoice {
         activity: Context?,
         title: String?,
         msg: String?,
-        refreshlistener: Refreshlistener
+        refreshlistener: VoiceMessagesClickListener
     ) {
         val alertDialog = AlertDialog.Builder(activity)
         alertDialog.setCancelable(false)

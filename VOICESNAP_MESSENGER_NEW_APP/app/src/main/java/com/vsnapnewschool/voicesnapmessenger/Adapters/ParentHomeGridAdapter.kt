@@ -90,6 +90,10 @@ class ParentHomeGridAdapter(private val context: Context, private val mMenusList
             holder.rytCardMenu?.setBackgroundResource(R.drawable.rect_menu_two)
             holder.imgIcon?.setImageResource(R.drawable.home_video)
         }
+        else if(mMenusList[position].id?.equals("217")!!){
+            holder.rytCardMenu?.setBackgroundResource(R.drawable.rect_menu_six)
+            holder.imgIcon?.setImageResource(R.drawable.home_attedance)
+        }
     }
     override fun getItemCount(): Int {
         return mMenusList.size

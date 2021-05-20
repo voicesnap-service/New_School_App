@@ -1,80 +1,65 @@
 package com.vsnapnewschool.voicesnapmessenger.Activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
-import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentImageAdapter
-import com.vsnapnewschool.voicesnapmessenger.Interfaces.imageListener
-import com.vsnapnewschool.voicesnapmessenger.Models.EventsImageClass
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentImageListAdapter
+import com.vsnapnewschool.voicesnapmessenger.CallBacks.GetImageListCallBack
+import com.vsnapnewschool.voicesnapmessenger.CallBacks.ReadStatusCallBacak
+import com.vsnapnewschool.voicesnapmessenger.Interfaces.parentImageListListener
+import com.vsnapnewschool.voicesnapmessenger.Models.FilesImagePDF
+import com.vsnapnewschool.voicesnapmessenger.Network.StudentAPIServices
+import com.vsnapnewschool.voicesnapmessenger.ParentServiceModelResponse.GetImageFilesResponse
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
-import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.SelcetedFileList
-import kotlinx.android.synthetic.main.activity_image_grid.*
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.ListFilesImages
+
+import kotlinx.android.synthetic.main.activity_image_grid.parent_bottom_layout
 import kotlinx.android.synthetic.main.bottom_adds_items.*
 import kotlinx.android.synthetic.main.parent_bottom_menus.*
+import kotlinx.android.synthetic.main.recyclerview_layout.*
+import java.util.ArrayList
 
 
-class ParentImagesScreen : BaseActivity(),View.OnClickListener {
-    var imageadapter:ParentImageAdapter? = null
-    private val menulist = ArrayList<EventsImageClass>()
-
+class ParentImagesScreen : BaseActivity(), View.OnClickListener, GetImageListCallBack,
+    ReadStatusCallBacak {
+    var imageadapter: ParentImageListAdapter? = null
+    var imageList = ArrayList<GetImageFilesResponse.GetImageData>()
+    var imageFilelist = ArrayList<GetImageFilesResponse.GetImageData.FileArray>()
+    var path:String?=null
+    var filename:String?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_image_grid)
+        setContentView(R.layout.recyclerview_layout)
         enableCrashLytics()
-        scrollAdds(this,imageSlider)
+        scrollAdds(this, imageSlider)
         parentActionbar()
-        setTitle(getString(R.string.title_Images))
         enableSearch(true)
-        btnNext.visibility=View.GONE
-        parent_bottom_layout.visibility=View.VISIBLE
+        setTitle(getString(R.string.title_Images))
         imgchat?.setOnClickListener(this)
         imgHomeMenu?.setOnClickListener(this)
         imgSettings?.setOnClickListener(this)
-        recyleImages.layoutManager = GridLayoutManager(this,3)
+        lblSeeMore?.setOnClickListener(this)
+        recyle_parent_bottom_layout.visibility = View.VISIBLE
 
-        imageadapter = ParentImageAdapter(SelcetedFileList, this, object : imageListener {
-            override fun onimageClick (holder: ParentImageAdapter.MyViewHolder, text_info: String) {
 
-                holder.imgGrid.setOnClickListener(object : View.OnClickListener{
-                    override fun onClick(v: View) {
-                        UtilConstants.ImageViewScreen(this@ParentImagesScreen,true,text_info)
-
-                    }
-                })
-            }
-        })
-        recyleImages.adapter = imageadapter
-        ImageLength()
-
-    }
-    private fun ImageLength() {
-        var movieModel = EventsImageClass(R.drawable.event1,"05","Aug","AnnualDay 2020","Main Audiotorium","image")
-        menulist.add(movieModel)
-
-        movieModel = EventsImageClass(R.drawable.event2,"30","Jun","AnnualDay 2020","Main Audiotorium","image")
-        menulist.add(movieModel)
-
-        movieModel = EventsImageClass( R.drawable.event3,"09","Sep","AnnualDay 2020","Main Audiotorium","image")
-        menulist.add(movieModel)
-
-        movieModel = EventsImageClass( R.drawable.event4,"06","Aug","AnnualDay 2020","Main Audiotorium","image")
-        menulist.add(movieModel)
-
-        movieModel = EventsImageClass( R.drawable.album6,"06","Aug","AnnualDay 2020","Main Audiotorium","image")
-        menulist.add(movieModel)
-
-        movieModel = EventsImageClass( R.drawable.album9,"06","Aug","AnnualDay 2020","Main Audiotorium","image")
-        menulist.add(movieModel)
-
-        movieModel = EventsImageClass( R.drawable.man,"06","Aug","AnnualDay 2020","Main Audiotorium","image")
-        menulist.add(movieModel)
-
-        movieModel = EventsImageClass( R.drawable.event4,"06","Aug","AnnualDay 2020","Main Audiotorium","")
-        menulist.add(movieModel)
+        imgchat?.setOnClickListener(this)
+        imgHomeMenu?.setOnClickListener(this)
+        imgSettings?.setOnClickListener(this)
+        UtilConstants.CLICKED_SEE_MORE = false
+        StudentAPIServices.getImageFiles(
+            this,
+            this,
+            UtilConstants.API_NORMAL,
+            recyclerview,
+            shimmerFrameLayout
+        )
 
     }
+
 
     override fun onClick(v: View?) {
         when (v!!.id) {
@@ -87,6 +72,112 @@ class ParentImagesScreen : BaseActivity(),View.OnClickListener {
             R.id.imgSettings -> {
                 UtilConstants.imgProfileIntent(this)
             }
+            R.id.lblSeeMore -> {
+                StudentAPIServices.getImageFiles(
+                    this,
+                    this,
+                    UtilConstants.API_SEE_MORE,
+                    recyclerview,
+                    shimmerFrameLayout
+                )
+            }
         }
     }
+
+    override fun callBackImageFiles(responseBody: GetImageFilesResponse) {
+
+        imageList.clear()
+        imageList = responseBody!!.data as ArrayList<GetImageFilesResponse.GetImageData>
+        imageadapter = ParentImageListAdapter(imageList, this,
+            object : parentImageListListener {
+                override fun onImageListClick(
+                    holder: ParentImageListAdapter.MyViewHolder,
+                    item: GetImageFilesResponse.GetImageData
+                ) {
+                    holder.lblImageCount.setOnClickListener {
+
+                        imageFilelist= item.file_array as ArrayList<GetImageFilesResponse.GetImageData.FileArray>
+                        ListFilesImages.clear()
+                        imageFilelist.forEach {
+                            path = it.file_path
+                             filename = it.original_file_name
+                            ListFilesImages.add(FilesImagePDF(path!!, filename, "image",""))
+
+                        }
+                        if(imageFilelist.size==1){
+                            Log.d("1 image",imageFilelist.size.toString())
+                            UtilConstants.FileViewPopUPImagePdf(
+                                this@ParentImagesScreen,path!!,
+                                "image",""
+                            )
+                        }else{
+
+                            UtilConstants.viewFileActivity(
+                                this@ParentImagesScreen,
+                                ListFilesImages,
+                                true,"Images"
+                            )
+                        }
+
+
+                        if (item.is_archive == 0) {
+                            StudentAPIServices.updateReadStatus(
+                                this@ParentImagesScreen,
+                                item.header_id,
+                                item.detail_id,
+                                UtilConstants.API_NORMAL, this@ParentImagesScreen
+                            )
+                        } else {
+                            StudentAPIServices.updateReadStatus(
+                                this@ParentImagesScreen,
+                                item.header_id,
+                                item.detail_id,
+                                UtilConstants.API_SEE_MORE,
+                                this@ParentImagesScreen
+                            )
+                        }
+                    }
+                }
+
+            })
+        val mLayoutManager2 = LinearLayoutManager(this)
+        recyclerview.layoutManager = mLayoutManager2
+        recyclerview.itemAnimator = DefaultItemAnimator()
+        recyclerview.adapter = imageadapter
+
+        if (UtilConstants.CLICKED_SEE_MORE == true) {
+            StudentAPIServices.getImageFiles(
+                this,
+                this,
+                UtilConstants.API_SEE_MORE,
+                recyclerview,
+                shimmerFrameLayout
+            )
+        }
+    }
+
+    override fun callBackImageFiles_Archive(responseBody: GetImageFilesResponse) {
+
+        UtilConstants.CLICKED_SEE_MORE = true
+        lblSeeMore.visibility = View.GONE
+        imageList.addAll(responseBody.data)
+        imageadapter!!.notifyDataSetChanged()
+    }
+
+    override fun callBackReadStatus(updateStatus: Boolean?) {
+        if (updateStatus == true) {
+            getImagesAfterReadList()
+        }
+    }
+
+    private fun getImagesAfterReadList() {
+        StudentAPIServices.getImageFiles(
+            this,
+            this,
+            UtilConstants.API_NORMAL,
+            recyclerview,
+            shimmerFrameLayout
+        )
+    }
+
 }

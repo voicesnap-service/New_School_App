@@ -56,13 +56,21 @@
         android:padding="@dimen/ten_size"
         android:layout_marginBottom="@dimen/dimen_five"
         android:layout_height="70dp">
-
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/imgDownload"
+            android:layout_width="@dimen/thirty_size"
+            android:layout_height="@dimen/thirty_size"
+            android:layout_marginLeft="@dimen/ten_size"
+            android:visibility="gone"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/download_img"/>
         <ImageView
             android:layout_centerVertical="true"
             android:id="@+id/imgplay"
             android:layout_width="@dimen/thirty_size"
             android:layout_height="@dimen/thirty_size"
-            android:layout_marginLeft="@dimen/twenty_size"
+            android:layout_marginLeft="@dimen/ten_size"
              android:visibility="visible"
              android:layout_alignParentLeft="true"
             android:src="@drawable/white_pause"/>
@@ -72,7 +80,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00:00"
-            android:layout_marginLeft="@dimen/twenty_size"
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/dimen_five"
             android:layout_marginTop="@dimen/dimen_three"
             android:textSize="@dimen/sixteen"
             android:layout_toRightOf="@+id/imgplay"
@@ -85,8 +94,8 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="@dimen/fourty_size"
-            android:layout_marginRight="@dimen/dimen_eighty_size"
-            android:layout_marginLeft="@dimen/dimen_eighty_size"
+            android:layout_marginRight="@dimen/eight_size"
+            android:layout_marginLeft="@dimen/eight_size"
             android:layout_toRightOf="@id/lblDuration"/>
     </RelativeLayout>
 

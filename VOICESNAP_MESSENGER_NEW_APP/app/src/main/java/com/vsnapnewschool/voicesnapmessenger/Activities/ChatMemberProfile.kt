@@ -9,6 +9,7 @@ import com.vsnapnewschool.voicesnapmessenger.Adapters.ChatMembersAdapter
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.chatmemberListener
 import com.vsnapnewschool.voicesnapmessenger.Models.class_chat
 import com.vsnapnewschool.voicesnapmessenger.R
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.StaffChatClassDetail
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
 import kotlinx.android.synthetic.main.activity_chatmember.*
@@ -16,7 +17,7 @@ import java.util.*
 
 class ChatMemberProfile : BaseActivity(),View.OnClickListener {
     internal lateinit var chatmemberAdapter: ChatMembersAdapter
-    private val menulist = ArrayList<class_chat>()
+    var StaffClassDetails = ArrayList<StaffChatClassDetail>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +27,11 @@ class ChatMemberProfile : BaseActivity(),View.OnClickListener {
         setTitle(getString(R.string.title_Chat))
         enableSearch(true)
 
-        ContentMethod()
         imgTeacherChat?.setOnClickListener(this)
         imgTeacherHomeMenu?.setOnClickListener(this)
         imgTeacherSettings?.setOnClickListener(this)
-        chatmemberAdapter = ChatMembersAdapter(menulist, this, false,object : chatmemberListener {
-            override fun onchatclickListener(holder: ChatMembersAdapter.MyViewHolder, text_info: class_chat) {
+        chatmemberAdapter = ChatMembersAdapter(StaffClassDetails, this, false,object : chatmemberListener {
+            override fun onchatclickListener(holder: ChatMembersAdapter.MyViewHolder, text_info: StaffChatClassDetail) {
                 holder.overall.setOnClickListener({
                     val context=holder.overall.context
 
@@ -68,14 +68,14 @@ class ChatMemberProfile : BaseActivity(),View.OnClickListener {
 
 
 
-    private fun ContentMethod() {
-        val Icons = intArrayOf(R.drawable.man, R.drawable.man, R.drawable.album9)
-        var menus = class_chat("Syaid Editaz", "Not able to get the syllaby",  Icons[0],"5 mins")
-        menulist.add(menus)
-        menus = class_chat("Sanjita Akter", "Chat is Closed",  Icons[1],"15 min")
-        menulist.add(menus)
-        menus = class_chat("Sayed Eftioz", "Can you Please Share the name  ", Icons[2], "1hour")
-        menulist.add(menus)
-    }
+//    private fun ContentMethod() {
+//        val Icons = intArrayOf(R.drawable.man, R.drawable.man, R.drawable.album9)
+//        var menus = class_chat("Syaid Editaz", "Not able to get the syllaby",  Icons[0],"5 mins")
+//        menulist.add(menus)
+//        menus = class_chat("Sanjita Akter", "Chat is Closed",  Icons[1],"15 min")
+//        menulist.add(menus)
+//        menus = class_chat("Sayed Eftioz", "Can you Please Share the name  ", Icons[2], "1hour")
+//        menulist.add(menus)
+//    }
 
 }

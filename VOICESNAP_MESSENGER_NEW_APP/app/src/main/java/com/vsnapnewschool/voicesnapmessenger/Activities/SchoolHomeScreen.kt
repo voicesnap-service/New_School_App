@@ -102,6 +102,8 @@ class SchoolHomeScreen : BaseActivity(), View.OnClickListener {
                     Util_shared_preferences.putModuleType(this@SchoolHomeScreen,item.module)
 
                     if(MENU_TYPE== MENU_EMERGENCY){
+                        UtilConstants.SchoolID = SchoolListDetails.get(0).school_id
+                        UtilConstants.StaffID = SchoolListDetails.get(0).staff_id
                         openSchoolMenuScreens(this@SchoolHomeScreen)
                     }
                     else if(MENU_TYPE == MENU_FEEDBACK){

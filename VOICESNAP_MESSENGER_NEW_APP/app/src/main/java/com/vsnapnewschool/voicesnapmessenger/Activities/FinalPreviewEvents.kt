@@ -42,8 +42,6 @@ class FinalPreviewEvents : BaseActivity(), View.OnClickListener {
 
         lblEventTitle.text = UtilConstants.Title
         lblEventDetails.text = UtilConstants.Description
-        lblEventDay.text = UtilConstants.Date
-        lblEventTime.text = UtilConstants.EventTime
 
         if(SelcetedFileList.size==0){
             recyleImages.visibility=View.GONE

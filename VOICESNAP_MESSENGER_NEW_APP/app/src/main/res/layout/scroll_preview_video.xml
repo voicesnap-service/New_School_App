@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/one_thirty"
         android:scrollbars="none"
-        app:layout_constraintBottom_toTopOf="@id/btnNext"
+        app:layout_constraintBottom_toTopOf="@id/btnPublishVideo"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="6dp">
@@ -30,7 +30,7 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/btnNext"
+        android:id="@+id/btnPublishVideo"
         android:layout_width="@dimen/two_ten"
         android:layout_height="@dimen/fourty5_size"
         android:enabled="true"

@@ -1,16 +1,21 @@
 package com.vsnapnewschool.voicesnapmessenger.Activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.google.android.material.tabs.TabLayout
 import com.vsnapnewschool.voicesnapmessenger.Adapters.VoiceTabAdapter
+import com.vsnapnewschool.voicesnapmessenger.CallBacks.TeacherVoiceHistoryCallBack
 import com.vsnapnewschool.voicesnapmessenger.R
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetVoiceHistory
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.TabPosition
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.Util_shared_preferences
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
 import kotlinx.android.synthetic.main.activity_view_pager.*
 
 
-class TeacherVoiceMessages : BaseActivity(), View.OnClickListener{
+class TeacherVoiceMessages : BaseActivity(), View.OnClickListener,TeacherVoiceHistoryCallBack{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_pager)
@@ -26,6 +31,7 @@ class TeacherVoiceMessages : BaseActivity(), View.OnClickListener{
         val adapter = VoiceTabAdapter(this, supportFragmentManager, sliding_tabs!!.tabCount)
         viewPager.adapter = adapter
         viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(sliding_tabs))
+
         sliding_tabs!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -35,10 +41,19 @@ class TeacherVoiceMessages : BaseActivity(), View.OnClickListener{
                     HideKeyboard_Fragment(this@TeacherVoiceMessages)
 
                     enableSearch(false)
+//                    tab.position==1
+//                    TabPosition=1
+//                    Log.d("TabPosition",TabPosition.toString())
+
                 } else{
                     HideKeyboard_Fragment(this@TeacherVoiceMessages)
-
                     enableSearch(true)
+                    TabPosition=tab.position
+                    Log.d("tabposition",tab.position.toString())
+                    Util_shared_preferences.putTabposition(this@TeacherVoiceMessages,tab.position)
+
+
+//                    SchoolAPIServices.getVoiceHistoryListApi(this@TeacherVoiceMessages)
                 }
             }
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -61,6 +76,10 @@ class TeacherVoiceMessages : BaseActivity(), View.OnClickListener{
                 UtilConstants.imgProfileIntent(this)
             }
         }
+    }
+
+    override fun callBackHistoryList(responseBody: GetVoiceHistory) {
+
     }
 
 }

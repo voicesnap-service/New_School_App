@@ -2,13 +2,13 @@ package com.vsnapnewschool.voicesnapmessenger.Network
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.vsnapnewschool.voicesnapmessenger.ParentServiceModelResponse.*
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.*
 import com.vsnapnewschool.voicesnapmessenger.payment.Model.FeeDetailsItems
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.http.*
 
 
@@ -274,6 +274,15 @@ interface ApiInterface {
     fun DeleteAssignment(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
 
+    @POST("/sendassignment/api/send_assignment/staff_get_assignment_list")
+    fun getAssingmentList(@Body jsonObject: JsonObject?): Call<GetAssingmentResponse?>?
+
+    @POST("/sendassignment/api/send_assignment/staff_get_assignment_member_list")
+    fun getMemberAssingmentList(@Body jsonObject: JsonObject?): Call<GetAssingmentMemberSubmissions?>?
+
+
+    @POST("/sendassignment/api/send_assignment/staff_get_submitted_assignment_files")
+    fun getSubmittedAssingmentViewFiles(@Body jsonObject: JsonObject?): Call<GetAssingmentSubmittedFiles?>?
 
     //SendVoiceHistory
     @POST("/sendvoice/api/send_voice/send_non_emergency_voice_to_entire_school_from_history")
@@ -309,6 +318,52 @@ interface ApiInterface {
     fun StaffApproveLeaveStatusUpdate(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
 
 
+    @POST("/managementmessage/api/sender/get_staff_text")
+    fun MessageFomManagementText(@Body jsonObject: JsonObject?): Call<MessageFromManagementTextResponse?>?
+
+    @POST("/managementmessage/api/sender/get_staff_text_archive")
+    fun MessageFomManagementText_Archive(@Body jsonObject: JsonObject?): Call<MessageFromManagementTextResponse?>?
+
+    @POST("/managementmessage/api/sender/get_staff_voice")
+    fun MessageFomManagementVoice(@Body jsonObject: JsonObject?): Call<MessageFromManagementVoiceResponse?>?
+
+    @POST("/managementmessage/api/sender/get_staff_voice_archive")
+    fun MessageFomManagementVoice_Archive(@Body jsonObject: JsonObject?): Call<MessageFromManagementVoiceResponse?>?
+
+    @POST("/managementmessage/api/sender/get_staff_image")
+    fun MessageFomManagementImage(@Body jsonObject: JsonObject?): Call<MessageFromMangementImageResponse?>?
+
+    @POST("/managementmessage/api/sender/get_staff_image_archive")
+    fun MessageFomManagementImage_Archive(@Body jsonObject: JsonObject?): Call<MessageFromMangementImageResponse?>?
+
+    @POST("/managementmessage/api/sender/get_staff_pdf")
+    fun MessageFomManagementPdf(@Body jsonObject: JsonObject?): Call<MessageFromManagementPdfResponse?>?
+
+    @POST("/managementmessage/api/sender/get_staff_pdf_archive")
+    fun MessageFomManagementPdf_Archive(@Body jsonObject: JsonObject?): Call<MessageFromManagementPdfResponse?>?
+
+    @POST("/managementmessage/api/sender/get_staff_video")
+    fun MessageFomManagementVideo(@Body jsonObject: JsonObject?): Call<MessageFromManagementVideoResponse?>?
+
+    @POST("/managementmessage/api/sender/get_staff_video_archive")
+    fun MessageFomManagementVideo_Archive(@Body jsonObject: JsonObject?): Call<MessageFromManagementVideoResponse?>?
+
+    @POST("/strength/api/sender/get_overall_strength")
+    fun getOverAllStrength(@Body jsonObject: JsonObject?): Call<GetOverallStrength?>?
+
+    @POST("/strength/api/sender/get_class_wise_strength")
+    fun getClassWiseStrength(@Body jsonObject: JsonObject?): Call<GetClassWiseStrength?>?
+
+    @POST("/strength/api/sender/get_section_wise_strength")
+    fun getSectionWiseStrength(@Body jsonObject: JsonObject?): Call<GetSectionWiseStrength?>?
+
+
+    @POST("/conferencecall/api/sender/app_get_all_staff")
+    fun getStaffForConferenceCall(@Body jsonObject: JsonObject?): Call<ConferenceStaffResponse?>?
+
+    @POST("/conferencecall/api/sender/app_inititate_conference_call")
+    fun sendConferneceCall(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
     //Parent
 
     @POST("/readstatus/api/receiver/update_read_status")
@@ -329,5 +384,145 @@ interface ApiInterface {
 
     @POST("/receivercommunication/api/receiver/get_voice_messages_archive")
     fun getVoiceMessages_Archive(@Body jsonObject: JsonObject?): Call<GetVoiceMessages?>?
+
+    @POST("/sendleave/api/leave/list_student_leave_type")
+    fun getLeaveType(@Body jsonObject: JsonObject?): Call<GetLeaveType?>?
+
+    @POST("/sendleave/api/leave/student_request_leave")
+    fun studentApplyLeave(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
+    @POST("/receivereventnotice/api/receiver/get_upcoming_events")
+    fun getUpcomingEvents(@Body jsonObject: JsonObject?): Call<UpcomingEventsResponse?>?
+
+
+    @POST("/receivereventnotice/api/receiver/get_past_events")
+    fun getPastEvents(@Body jsonObject: JsonObject?): Call<UpcomingEventsResponse?>?
+
+    @POST("/receivereventnotice/api/receiver/get_event_photos")
+    fun getEventPhotos(@Body jsonObject: JsonObject?): Call<GetEventPhotos?>?
+
+    @POST("/receivereventnotice/api/receiver/get_notice_board")
+    fun getNoticeBoard(@Body jsonObject: JsonObject?): Call<GetNoticeBoardResponse?>?
+
+    @POST("/managementmessage/api/sender/get_unread_count_for_staff")
+    fun getUnReadCountForManagement(@Body jsonObject: JsonObject?): Call<GetCountForManagement?>?
+
+    @POST("/receiverfile/api/receiver/get_image_list")
+    fun getParentImageFiles(@Body jsonObject: JsonObject?): Call<GetImageFilesResponse?>?
+
+    @POST("/receiverfile/api/receiver/get_image_list_archive")
+    fun getParentImageFilesArchive(@Body jsonObject: JsonObject?): Call<GetImageFilesResponse?>?
+
+    @POST("/receiverfile/api/receiver/get_pdf_list")
+    fun getParentPdfList(@Body jsonObject: JsonObject?): Call<GetPdfFilesResponse?>
+
+    @POST("/receiverfile/api/receiver/get_pdf_list_archive")
+    fun getParentPdfListArchive(@Body jsonObject: JsonObject?): Call<GetPdfFilesResponse?>?
+
+    @POST("/receiverassignment/api/receiver/get_assignment")
+    fun getParentAssingment(@Body jsonObject: JsonObject?): Call<GetParentAssignmentResponse?>?
+
+    @POST("/receiverassignment/api/receiver/get_assignment_archive")
+    fun getParentAssingmentArchive(@Body jsonObject: JsonObject?): Call<GetParentAssignmentResponse?>?
+
+    @POST("/receiverassignment/api/receiver/get_submitted_assignment_files")
+    fun parentSubmittedAssignmentFiles(@Body jsonObject: JsonObject?): Call<GetParentAssingmentFiles?>?
+
+    @POST("/receiversubmitassign/api/receiver/submit_assignment")
+    fun parentSubmitAssingment(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
+    //VIDEO
+
+    @POST("/sendvideo/api/send_video/send_video_to_entire_school")
+    fun sendVideoToEntireSchool(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
+    @POST("/sendvideo/api/send_video/send_video_to_standards")
+    fun sendVideoToStandards(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
+    @POST("/sendvideo/api/send_video/send_video_to_sections")
+    fun sendVideoToSections(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
+    @POST("/sendvideo/api/send_video/send_video_to_groups")
+    fun sendVideoToGroups(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
+    @POST("/sendvideo/api/send_video/send_video_to_students")
+    fun sendVideoToStudents(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
+    @POST("/sendvideo/api/send_video/send_video_to_staffs")
+    fun sendVideoToStaffs(@Body jsonObject: JsonObject?): Call<StatusMessageResponse?>?
+
+    //Video Parent
+
+
+    @POST(" /receivervideo/api/receiver/get_videos")
+    fun ParentVideos(@Body jsonObject: JsonObject?): Call<ParentVideoResponse?>?
+
+    //Vimeo Video Upload
+
+    @Headers(
+        "Content-Type: application/json",
+        "Accept: application/vnd.vimeo.*+json;version=3.4"
+    )
+    @POST("/me/videos")
+    fun VideoUpload(
+        @Body jsonObject: JsonObject?,
+        @Header("Authorization") head: String?
+    ): Call<JsonObject>
+
+
+    @Headers(
+        "Tus-Resumable: 1.0.0",
+        "Upload-Offset: 0",
+        "Content-Type: application/offset+octet-stream",
+        "Accept: application/vnd.vimeo.*+json;version=3.4"
+    )
+    @PUT("upload")
+    fun patchVimeoVideoMetaData(
+        @Query("ticket_id") ticketid: String?,
+        @Query("video_file_id") videoid: String?,
+        @Query("signature") signatureid: String?,
+        @Query("v6") v6id: String?,
+        @Query("redirect_url") redirecturl: String?,
+        @Body file: RequestBody?
+    ): Call<ResponseBody>
+
+
+    //CHAT - Teacher
+    @POST(" /sendchat/api/chat/get_staff_classes_for_chat")
+    fun staffClassesforChat(@Body jsonObject: JsonObject?): Call<StaffChatClassResponse?>?
+
+    @POST("/sendchat/api/chat/get_staff_chat_screen")
+    fun staffChatScreen(@Body jsonObject: JsonObject?): Call<StaffChatScreenResponse?>?
+
+    @POST("/sendchat/api/chat/answer_student_question")
+    fun answerStudentQuestion(@Body jsonObject: JsonObject?): Call<StaffChatAnswerResponse?>?
+
+
+    //CHAT - Parent
+
+    @POST("/sendchat/api/chat/student_get_staff_classes")
+    fun StudentStaffsforChat(@Body jsonObject: JsonObject?): Call<StudentStaffChatResponse?>?
+
+    @POST("/sendchat/api/chat/get_student_chat_screen")
+    fun studentChatScreen(@Body jsonObject: JsonObject?): Call<StudentChatScreenResponse?>?
+
+    @POST("/sendchat/api/chat/student_ask_question")
+    fun studentAskQuestion(@Body jsonObject: JsonObject?): Call<StudentChatScreenResponse?>?
+
+    //parent homework
+    @POST("/receiverhomework/api/receiver/get_days_for_homework")
+    fun getDaysforHomework(@Body jsonObject: JsonObject?): Call<GetDatesHomeWorkListResponse?>?
+
+    @POST("/receiverhomework/api/receiver/get_homework")
+    fun getHomework(@Body jsonObject: JsonObject?): Call<GetHomeWorkListResponse?>?
+
+    //parent timetable
+
+    @POST("/timetable/api/receiver/get_week_days")
+    fun getTimeTabledays(@Body jsonObject: JsonObject?): Call<GetDaysTimeTable?>?
+
+    @POST("/timetable/api/receiver/get_student_timetable")
+    fun getStudentTimeTable(@Body jsonObject: JsonObject?): Call<GetTimeTableList?>?
+
 
 }

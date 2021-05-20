@@ -70,6 +70,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-base:17.5.0'
     implementation 'com.google.android.gms:play-services-auth-api-phone:17.0.0'
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'wu.seal.jsontokotlin:library:3.6.1'
 
     // Apply the Crashlytics Gradle plugin
     apply plugin: 'com.google.firebase.crashlytics'
@@ -113,6 +114,9 @@ dependencies {
     implementation 'com.amazonaws:aws-android-sdk-cognito:2.6.31'
     implementation 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.2.+'
     implementation 'org.jetbrains:annotations-java5:15.0'
+
+    //VideoSize Transcoder
+    implementation 'net.ypresto.androidtranscoder:android-transcoder:0.2.0'
 
 
 }

@@ -12,159 +12,171 @@
         android:layout_margin="@dimen/fifteen_size"
         app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/lblSentAt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sent on 15th July 2020 at 21:10"
-        android:textColor="@color/transparent"
-        android:textSize="@dimen/twele_size"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:id="@+id/lblheading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ten_size"
-        android:layout_marginEnd="@dimen/fifteen_size"
-        android:text="@string/txt_Subject"
-        android:textColor="@color/clr_black"
-        android:textSize="@dimen/twele_size"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblSentAt" />
-
-    <TextView
-        android:id="@+id/lblSubject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_two"
-        android:hint="Mathematics"
-        android:orientation="horizontal"
-        android:padding="1dp"
-        android:textColor="@color/transparent"
-        android:textSize="@dimen/twele_size"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblheading">
-
-    </TextView>
-
-
-    <TextView
-        android:id="@+id/lblDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ten_size"
-        android:text="@string/txt_teacher"
-        android:textColor="@color/clr_black"
-        android:textSize="@dimen/twele_size"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="@+id/lblSubject"
-        app:layout_constraintTop_toBottomOf="@+id/lblSubject" />
-
-    <TextView
-        android:id="@+id/lblTeacherName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_five"
-        android:text="Mr.Bharath"
-        android:textColor="@color/transparent"
-        android:textSize="@dimen/twele_size"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="@+id/lblDescription"
-        app:layout_constraintTop_toBottomOf="@+id/lblDescription" />
-
-    <TextView
-        android:id="@+id/homework"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ten_size"
-        android:text="@string/txt_homework"
-        android:textColor="@color/clr_black"
-        android:textSize="@dimen/twele_size"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="@+id/lblTeacherName"
-        app:layout_constraintTop_toBottomOf="@+id/lblTeacherName" />
-
-
-
-    <TextView
-        android:id="@+id/lblHomework"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_two"
-        android:hint="Do  problems on Linear Equations. Equatios is  written has ax+b=0."
-        android:orientation="horizontal"
-        android:padding="1dp"
-        android:textColor="@color/transparent"
-        android:textSize="@dimen/twele_size"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="@+id/homework"
-        app:layout_constraintTop_toBottomOf="@+id/homework"/>
-
-    <TextView
-        android:id="@+id/Attachment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/twenty_size"
-        android:text="@string/txt_homework_title"
-        android:textColor="@color/clr_black"
-        android:textSize="@dimen/twele_size"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="@+id/lblHomework"
-        app:layout_constraintTop_toBottomOf="@+id/lblHomework" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/LayoutVoicePlay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/twenty_size"
-        android:background="@drawable/parent_blue_bg"
-        android:padding="@dimen/eight_size"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="@+id/Attachment"
-        app:layout_constraintTop_toBottomOf="@+id/Attachment">
-
-        <ImageView
-            android:id="@+id/imgplaypause"
-            android:layout_width="@dimen/thirty_size"
-            android:layout_height="@dimen/thirty_size"
-            android:src="@drawable/white_pause"
-            android:visibility="visible"
+        <TextView
+            android:id="@+id/lblSentAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sent on 15th July 2020 at 21:10"
+            android:textColor="@color/transparent"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/lblheading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginEnd="@dimen/fifteen_size"
+            android:text="@string/txt_Subject"
+            android:textColor="@color/clr_black"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/lblSentAt" />
+
+        <TextView
+            android:id="@+id/lblSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_two"
+            android:hint="Mathematics"
+            android:orientation="horizontal"
+            android:padding="1dp"
+            android:textColor="@color/transparent"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblheading">
+
+        </TextView>
 
 
         <TextView
-            android:id="@+id/lblVoicetime"
+            android:id="@+id/lblDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_five"
-            android:layout_marginTop="@dimen/eight_size"
-            android:layout_toRightOf="@id/imgplaypause"
-            android:text="00:00"
-            android:textColor="@color/white"
-            android:textSize="@dimen/thirteen_size"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toRightOf="@+id/imgplaypause"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="@dimen/ten_size"
+            android:text="@string/txt_teacher"
+            android:textColor="@color/clr_black"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/lblSubject"
+            app:layout_constraintTop_toBottomOf="@+id/lblSubject" />
 
-        <me.jagar.chatvoiceplayerlibrary.PlayerVisualizerSeekbar
-            android:id="@+id/playseekbar"
+        <TextView
+            android:id="@+id/lblTeacherName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="Mr.Bharath"
+            android:textColor="@color/transparent"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/lblDescription"
+            app:layout_constraintTop_toBottomOf="@+id/lblDescription" />
+
+        <TextView
+            android:id="@+id/homework"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten_size"
+            android:text="@string/txt_homework"
+            android:textColor="@color/clr_black"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/lblTeacherName"
+            app:layout_constraintTop_toBottomOf="@+id/lblTeacherName" />
+
+
+
+        <TextView
+            android:id="@+id/lblHomework"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_two"
+            android:hint="Do  problems on Linear Equations. Equatios is  written has ax+b=0."
+            android:orientation="horizontal"
+            android:padding="1dp"
+            android:textColor="@color/transparent"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/homework"
+            app:layout_constraintTop_toBottomOf="@+id/homework"/>
+
+        <TextView
+            android:id="@+id/Attachment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/twenty_size"
+            android:text="@string/txt_homework_title"
+            android:textColor="@color/clr_black"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/lblHomework"
+            app:layout_constraintTop_toBottomOf="@+id/lblHomework" />
+
+        <TextView
+            android:id="@+id/lblhomeworktitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="Mr.Bharath"
+            android:textColor="@color/transparent"
+            android:textSize="@dimen/twele_size"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/Attachment"
+            app:layout_constraintTop_toBottomOf="@+id/Attachment" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/LayoutVoicePlay"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/thirty5_size"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/dimen_eighty_size"
-            android:layout_marginRight="@dimen/twenty_size"
-            android:layout_toRightOf="@id/lblVoicetime"
-            android:visibility="gone"
-            app:layout_constraintLeft_toRightOf="@+id/lblvoicetime"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/twenty_size"
+            android:background="@drawable/parent_blue_bg"
+            android:padding="@dimen/eight_size"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/lblhomeworktitle"
+            app:layout_constraintTop_toBottomOf="@+id/lblhomeworktitle">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/imgplaypause"
+                android:layout_width="@dimen/thirty_size"
+                android:layout_height="@dimen/thirty_size"
+                android:src="@drawable/white_pause"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/lblVoicetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_five"
+                android:layout_marginTop="@dimen/eight_size"
+                android:layout_toRightOf="@id/imgplaypause"
+                android:text="00:00"
+                android:textColor="@color/white"
+                android:textSize="@dimen/thirteen_size"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@+id/imgplaypause"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <me.jagar.chatvoiceplayerlibrary.PlayerVisualizerSeekbar
+                android:id="@+id/playseekbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/thirty5_size"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dimen_eighty_size"
+                android:layout_marginRight="@dimen/twenty_size"
+                android:layout_toRightOf="@id/lblVoicetime"
+                android:visibility="gone"
+                app:layout_constraintLeft_toRightOf="@+id/lblvoicetime"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include

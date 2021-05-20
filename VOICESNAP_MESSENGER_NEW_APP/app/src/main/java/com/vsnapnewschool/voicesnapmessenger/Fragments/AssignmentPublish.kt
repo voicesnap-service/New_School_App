@@ -70,7 +70,6 @@ class Assignment_PublishFragment : Fragment(), View.OnClickListener {
                 (activity as BaseActivity?)!!.HideKeyboard_Fragment(context as Activity?)
                 UtilConstants.Title = edTitle.text.toString()
                 UtilConstants.Description = edDescription.text.toString()
-                UtilConstants.Date = lblDate.text.toString()
                 UtilConstants.recipientsActivity(context as Activity?)
             }
             R.id.rytMonth -> {

@@ -7,6 +7,7 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.PopupWindow
+import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -76,8 +77,12 @@ class ChooseSpecificStudents : BaseActivity(), checkStudentListener, checkFinalS
 
         if (UtilConstants.MENU_TYPE == UtilConstants.MENU_ASSIGNMENT) {
             btnGetSubject.visibility = View.VISIBLE
+            lblStudent.visibility = View.VISIBLE
+            recycleStudents.visibility = View.VISIBLE
         } else {
             btnGetSubject.visibility = View.GONE
+            lblStudent.visibility = View.VISIBLE
+            recycleStudents.visibility = View.VISIBLE
         }
 
 
@@ -164,11 +169,7 @@ class ChooseSpecificStudents : BaseActivity(), checkStudentListener, checkFinalS
                     id: Long
                 ) {
                     SelectedStandardID = StandardSectionList.get(position).standard_id
-                    SelectedStandardIDName =
-                        StandardSectionList.get(position).standard_id + "," + StandardSectionList.get(
-                            position
-                        ).standard_name
-
+                    SelectedStandardIDName = StandardSectionList.get(position).standard_id + "," + StandardSectionList.get(position).standard_name
 
                     loadSections(position)
                 }
@@ -443,18 +444,39 @@ class ChooseSpecificStudents : BaseActivity(), checkStudentListener, checkFinalS
             R.id.btnNext -> {
                 getSelectedStandardsSectionsStudents()
                 selectedFinalStudentList = selectedPreviewStudentList
-                if (selectedFinalStudentList != null) {
-                    UtilConstants.previewScreens(this)
 
-                } else {
-                    UtilConstants.normalToast(this, "Please select the atleast one student")
+                if (UtilConstants.MENU_TYPE == UtilConstants.MENU_TEXT_HOMEWORK || UtilConstants.MENU_TYPE == UtilConstants.MENU_VOICE_HOMEWORK || UtilConstants.MENU_TYPE == UtilConstants.MENU_ASSIGNMENT) {
+
+                    if (UtilConstants.selectedFinalSectionList != null) {
+                        if (UtilConstants.selectedSubjectName != null) {
+                            UtilConstants.previewScreens(this)
+                        } else {
+                            Toast.makeText(
+                                this,
+                                getString(R.string.str_selectSubject),
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+
+                    }
+                }else{
+
+                    if (selectedFinalStudentList != null) {
+                        UtilConstants.previewScreens(this)
+
+                    } else {
+                        UtilConstants.normalToast(this, "Please select the atleast one student")
+                    }
                 }
+
+
             }
             R.id.btnGetSubject -> {
-                recycleSubject.visibility = View.GONE
-                getAllSubjects(SelectedStandardID, SelectedSectionID)
+                recycleSubject.visibility = View.VISIBLE
 
+                getAllSubjects(SelectedStandardID,SelectedSectionID)
             }
+
         }
     }
 

@@ -49,6 +49,7 @@ class Util_shared_preferences {
         var MobileNumberScreen: String? = "MobileNumberScreen"
         var MemberType: String? = "MemberType"
         var ModuleType: String? = "ModuleType"
+        var VoiceHistory: Boolean = false
 
         var StudentName: String? = "StudentName"
         var StudentSchoolID: String? = "StudentSchoolID"
@@ -56,6 +57,18 @@ class Util_shared_preferences {
         var StudentClassID: String? = "StudentClassID"
         var StudentSectionID: String? = "StudentSectionID"
         var VoiceType: String? = "VoiceType"
+        var TextCount: String? = "CountText"
+        var VoiceCount: String? = "CountVoice"
+        var ImageCount: String? = "CountImage"
+        var PdfCount: String? = "CountPdf"
+        var VideoCount: String? = "CountVideo"
+
+        var Teacher: String? = "Teacher"
+        var Student: String? = "Student"
+        var Girls: String? = "Girls"
+        var Boys: String? = "Boys"
+        var Unspecified: String? = "Unspecified"
+        var TabPosition: Int? = 0
 
 
         fun putChildInfo(activity: Activity?, child_info: ChildDetailData) {
@@ -75,7 +88,8 @@ class Util_shared_preferences {
                 ?.getString(StudentName, "")
             return member
         }
-//XCXCXC
+
+        //XCXCXC
         fun getStudentID(activity: Activity?): String? {
             val member = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
                 ?.getString(StudentID, "")
@@ -171,7 +185,6 @@ class Util_shared_preferences {
                 ?.getBoolean(userLoggedIn, false)
             return name
         }
-
 
 
         fun putUserMobileandPassword(activity: Activity?, number: String?, password: String?) {
@@ -316,7 +329,6 @@ class Util_shared_preferences {
         }
 
 
-
         @JvmStatic
         fun putPaymentDetails(
             activity: Activity?,
@@ -387,7 +399,8 @@ class Util_shared_preferences {
         }
 
         fun putVoiceType(activity: Activity?, voiceType: Boolean) {
-            val sharedPreferences: SharedPreferences = activity!!.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+            val sharedPreferences: SharedPreferences =
+                activity!!.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.putBoolean(VoiceType, voiceType)
 
@@ -395,9 +408,134 @@ class Util_shared_preferences {
         }
 
         fun getVoiceType(activity: Activity?): Boolean? {
-            val member = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+            val voicetype = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
                 ?.getBoolean(VoiceType, false)
-            return member
+            return voicetype
+        }
+
+        fun putTabposition(activity: Activity?, tabposition: Int) {
+            val sharedPreferences: SharedPreferences =
+                activity!!.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putInt("tab", tabposition)
+
+            editor.commit()
+        }
+
+        fun getTabPosition(activity: Activity?): Int? {
+            val position =
+                activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)?.getInt("tab", 0)
+            return position
+        }
+
+        fun putCountDetails(
+            activity: Activity?,
+            text: String?,
+            voice: String?,
+            image: String?,
+            pdf: String?,
+            video: String?
+        ) {
+            val sharedPreferences: SharedPreferences =
+                activity!!.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString(TextCount, text)
+            editor.putString(VoiceCount, voice)
+            editor.putString(ImageCount, image)
+            editor.putString(PdfCount, pdf)
+            editor.putString(VideoCount, video)
+            editor.commit()
+        }
+
+        fun getTextCount(activity: Activity?): String? {
+            val text = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)?.getString(
+                TextCount, ""
+            )
+            return text
+        }
+
+        fun getVoiceCount(activity: Activity?): String? {
+            val Voice = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)?.getString(
+                VoiceCount, ""
+            )
+            return Voice
+        }
+
+        fun getImageCount(activity: Activity?): String? {
+            val text = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)?.getString(
+                ImageCount, ""
+            )
+            return text
+        }
+
+        fun getPdfCount(activity: Activity?): String? {
+            val text = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)?.getString(
+                PdfCount, ""
+            )
+            return text
+        }
+
+        fun getVideoCount(activity: Activity?): String? {
+            val text = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)?.getString(
+                VideoCount, ""
+            )
+            return text
+        }
+
+
+        fun putStrengthDetails(
+            activity: Activity?,
+            teacher: String?,
+            student: String?,
+            girls: String?,
+            boys: String?,
+            unspecified: String?
+        ) {
+            val sharedPreferences: SharedPreferences =
+                activity!!.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString(Teacher, teacher)
+            editor.putString(Student, student)
+            editor.putString(Girls, girls)
+            editor.putString(Boys, boys)
+            editor.putString(Unspecified, unspecified)
+            editor.commit()
+        }
+
+        fun getTeacherCount(activity: Activity?): String? {
+            val teacher = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)?.getString(
+                Teacher, ""
+            )
+            return teacher
+        }
+
+        fun getStudentCount(activity: Activity?): String? {
+            val student = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)?.getString(
+                Student, ""
+            )
+            return student
+        }
+
+        fun getGirlsCount(activity: Activity?): String? {
+            val girls = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)?.getString(
+                Girls, ""
+            )
+            return girls
+        }
+
+        fun getBoysCount(activity: Activity?): String? {
+            val boys = activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)?.getString(
+                Boys, ""
+            )
+            return boys
+        }
+
+        fun getUnspecifiedCount(activity: Activity?): String? {
+            val unspecific =
+                activity?.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)?.getString(
+                    Unspecified, ""
+                )
+            return unspecific
         }
     }
 }

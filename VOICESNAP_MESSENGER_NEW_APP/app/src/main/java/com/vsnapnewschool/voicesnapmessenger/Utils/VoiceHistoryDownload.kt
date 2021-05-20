@@ -2,6 +2,7 @@
 
 package com.vsnapnewschool.voicesnapmessenger.Utils
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
@@ -12,6 +13,7 @@ import android.util.Log
 import com.vsca.vsnapvoicecollege.Rest.APIClient
 import com.vsnapnewschool.voicesnapmessenger.Network.ApiInterface
 import com.vsnapnewschool.voicesnapmessenger.R
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +22,13 @@ import java.io.*
 
 object VoiceHistoryDownload {
     var mProgressDialog: ProgressDialog? = null
-    fun downloadHistoryFile(activity: Context?, urldata: String, folder: String?, fileName: String) {
+    fun downloadHistoryFile(
+        activity: Context?,
+        urldata: String,
+        folder: String?,
+        fileName: String,
+        type: String
+    ) {
         mProgressDialog = ProgressDialog(activity)
         mProgressDialog!!.isIndeterminate = true
         mProgressDialog!!.setMessage("Downloading...")
@@ -44,8 +52,7 @@ object VoiceHistoryDownload {
                         override fun onPostExecute(status: Boolean) {
                             super.onPostExecute(status)
                             if (status) {
-
-                                showAlert(activity, "Success", "File stored in: $folder/$fileName")
+                                showAlert(activity, "Success", "File stored in: $folder/$fileName",type)
                                 Log.d("SucessDownloaded...", "sucess")
 
                             }
@@ -129,13 +136,16 @@ object VoiceHistoryDownload {
         }
     }
 
-    fun showAlert(activity: Context?, title: String?, msg: String?) {
+    fun showAlert(activity: Context?, title: String?, msg: String?,type: String) {
         val alertDialog = AlertDialog.Builder(activity)
         alertDialog.setCancelable(false)
         alertDialog.setTitle(title)
         alertDialog.setMessage(msg)
         alertDialog.setIcon(R.drawable.folder_img)
         alertDialog.setNeutralButton("OK") { dialog, which ->
+            if(type.equals("History")){
+                UtilConstants.finalPreviewVoiceHistory(activity as Activity?, true)
+            }
         }
         alertDialog.show()
     }

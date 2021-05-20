@@ -17,7 +17,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="9:00"
-          android:textColor="@color/clr_grey_light"
+          android:textColor="@color/clr_txtgrey_light"
           android:textSize="@dimen/thirteen_size"
           app:layout_constraintLeft_toLeftOf="parent"
           app:layout_constraintRight_toRightOf="parent"
@@ -41,7 +41,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="9:30"
-          android:textColor="@color/clr_grey_light"
+          android:textColor="@color/clr_txtgrey_light"
           android:textSize="@dimen/fifteen_size"
           android:layout_marginTop="@dimen/dimen_three"
           app:layout_constraintLeft_toLeftOf="parent"
@@ -59,7 +59,7 @@
        android:background="@color/clr_grey_light"
        android:orientation="vertical"
 
-       android:layout_marginLeft="20dp"
+       android:layout_marginLeft="10dp"
        app:layout_constraintStart_toEndOf="@id/TimingLayout"
        app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,7 +67,7 @@
        android:id="@+id/lnrSubject"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_marginLeft="120dp"
+       android:layout_marginLeft="110dp"
        android:layout_marginRight="10dp"
        android:layout_marginTop="3dp"
        android:background="@drawable/timetable_shadow"
@@ -75,6 +75,7 @@
        app:layout_constraintTop_toTopOf="parent">
 
       <TextView
+          android:id="@+id/lblSubject"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginLeft="10dp"
@@ -82,11 +83,12 @@
           android:layout_marginRight="10dp"
           android:padding="2dp"
           android:text="Chemistry"
-          android:textColor="@color/transparent"
+          android:textColor="@color/clr_parent"
           android:textSize="14dp"
           android:textStyle="bold" />
 
       <TextView
+          android:id="@+id/lblHourName"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginLeft="10dp"
@@ -94,8 +96,9 @@
           android:layout_marginBottom="20dp"
           android:padding="2dp"
           android:text="Class A"
-          android:textColor="@color/clr_txt_grey"
+          android:textColor="@color/black"
           android:textSize="14dp" />
+
 
    </LinearLayout>
 

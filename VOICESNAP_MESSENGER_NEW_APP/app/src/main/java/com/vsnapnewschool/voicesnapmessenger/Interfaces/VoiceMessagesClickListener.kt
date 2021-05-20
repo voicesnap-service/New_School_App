@@ -6,4 +6,6 @@ import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetVoiceData
 interface VoiceMessagesClickListener {
     fun onVoiceClick(holder: ParentVoiceAdapter.MyViewHolder, item: GetVoiceData)
 
+    fun onrefresh()
+
 }

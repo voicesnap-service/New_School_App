@@ -11,6 +11,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Typeface
+import android.media.MediaPlayer
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
@@ -46,6 +47,7 @@ import com.vsnapnewschool.voicesnapmessenger.Models.AWSUploadedFiles
 import com.vsnapnewschool.voicesnapmessenger.Models.SelectedFilesClass
 import com.vsnapnewschool.voicesnapmessenger.Models.SliderItem
 import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
+import com.vsnapnewschool.voicesnapmessenger.Network.StudentAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.AWSUploadedFilesList
@@ -58,6 +60,9 @@ import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_TEXT_HOMEWORK
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_TYPE
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_VOICE_HOMEWORK
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.PARENT_MENU_ASSIGNMENT
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.PARENT_MENU_TYPE
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.ParentAssingmentFileType
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.SelcetedFileList
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.contentType
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.contentTypeImg
@@ -90,17 +95,21 @@ open class BaseActivity : AppCompatActivity() {
     var slideadapter: ImageSliderAdapter? = null
     var sliderItemList: MutableList<SliderItem> = ArrayList()
     var cal = Calendar.getInstance()
-    lateinit var fromdate: String
-    lateinit var Todate: String
+     var fromdate: String?=null
+     var Todate: String?=null
     var searchView: SearchView? = null
     var cart: ImageButton? = null
     var title: TextView? = null
     var lblAttachment: TextView? = null
     var lblAddFile: TextView? = null
     var lblAddImage: TextView? = null
+    var lblAssingmentAddFile: TextView? = null
     var lblAddPDF: TextView? = null
     var rcyleSelectedFiles: RecyclerView? = null
     var lblrecipient: TextView? = null
+    var datefrom: Date? = null
+    val myCalendar = Calendar.getInstance()
+
     val SelectedReceipientsList = ArrayList<String>()
     var recipientsAdapter: RecipientsAdapter? = null
     var rcyleRecipients: RecyclerView? = null
@@ -161,6 +170,43 @@ open class BaseActivity : AppCompatActivity() {
         cart?.setVisibility(View.VISIBLE)
         cart?.setOnClickListener {
             finish()
+        }
+    }
+    open fun parentActionbarforVoice(mediaPlayer: MediaPlayer) {
+        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+        supportActionBar?.setCustomView(R.layout.parent_custom_actionbar)
+        supportActionBar?.elevation = 0f
+        val view = supportActionBar!!.customView
+        cart = view.findViewById<ImageButton>(R.id.action_bar_cart)
+        searchView = view.findViewById<SearchView>(R.id.action_bar_search)
+        title = view.findViewById<TextView>(R.id.nav_title)
+        cart?.setVisibility(View.VISIBLE)
+        cart?.setOnClickListener {
+            if(mediaPlayer.isPlaying) {
+                mediaPlayer.stop()
+            }
+            finish()
+
+        }
+    }
+
+    open fun teacherActionbarforVoice(mediaPlayer: MediaPlayer) {
+        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+        supportActionBar?.setCustomView(R.layout.parent_custom_actionbar)
+        supportActionBar?.elevation = 0f
+        val view = supportActionBar!!.customView
+        cart = view.findViewById<ImageButton>(R.id.action_bar_cart)
+        searchView = view.findViewById<SearchView>(R.id.action_bar_search)
+        title = view.findViewById<TextView>(R.id.nav_title)
+        cart?.setVisibility(View.VISIBLE)
+        cart?.setOnClickListener {
+            if(mediaPlayer.isPlaying) {
+                mediaPlayer.stop()
+            }
+            finish()
+
         }
     }
 
@@ -334,17 +380,20 @@ open class BaseActivity : AppCompatActivity() {
         wm.updateViewLayout(container, p)
 
         if (filetype.equals("pdf")) {
-            dialog.LayoutGallery.visibility = View.GONE
-            dialog.LayoutCamera.visibility = View.GONE
+            dialog.LayoutGallery.visibility = View.VISIBLE
+            dialog.LayoutCamera.visibility = View.VISIBLE
+            dialog.LayoutDocuments.visibility = View.VISIBLE
         } else {
             dialog.LayoutGallery.visibility = View.VISIBLE
             dialog.LayoutCamera.visibility = View.VISIBLE
+            dialog.LayoutDocuments.visibility = View.GONE
+
         }
         dialog.popClose.setOnClickListener {
             FilePopup?.dismiss()
         }
         dialog.LayoutGallery.setOnClickListener {
-
+            ParentAssingmentFileType="IMAGE"
             val intent1 = Intent(this, AlbumSelectActivity::class.java)
             intent1.putExtra("Gallery", "Images")
             startActivityForResult(intent1, REQUEST_GAllery)
@@ -353,6 +402,8 @@ open class BaseActivity : AppCompatActivity() {
 
         }
         dialog.LayoutCamera.setOnClickListener {
+            ParentAssingmentFileType="IMAGE"
+
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             try {
                 photoTempFileWrite = createImageFile()
@@ -373,11 +424,13 @@ open class BaseActivity : AppCompatActivity() {
         }
         dialog.LayoutDocuments.setOnClickListener({
             //     SelcetedFileList.clear()
+            ParentAssingmentFileType="PDF"
 
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "application/pdf"
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
             startActivityForResult(intent, SELECT_PDF)
+
 
 //            val mimeTypes = arrayOf(
 //                "application/msword",
@@ -463,6 +516,10 @@ open class BaseActivity : AppCompatActivity() {
                 if (data != null) {
                     SelcetedFileList = data.getStringArrayListExtra("images")!!
                     Apifiletype = filetypeVideo
+
+                    UtilConstants.VideoFilePath= SelcetedFileList.get(0)
+
+
                     pathlist.clear()
 
                     SelcetedFileList.forEach {
@@ -477,11 +534,13 @@ open class BaseActivity : AppCompatActivity() {
             if (filetype.equals(Apifiletype)) {
                 lblAddFile?.setText(getString(R.string.txt_change_img))
                 lblAddImage?.setText(getString(R.string.txt_change_img))
+                lblAssingmentAddFile?.setText(getString(R.string.txt_change_file))
 
             }
             if (filetypePdf.equals(Apifiletype)) {
                 lblAddFile?.setText(getString(R.string.txt_change_pdf))
                 lblAddPDF?.setText(getString(R.string.txt_change_pdf))
+                lblAssingmentAddFile?.setText(getString(R.string.txt_change_file))
 
             }
             if (filetypeVideo.equals(Apifiletype)) {
@@ -639,6 +698,7 @@ open class BaseActivity : AppCompatActivity() {
                                 awsFileUpload(activity, pathIndex + 1)
 
                                 if (SelcetedFileList.size == AWSUploadedFilesList.size) {
+
                                     if (MENU_TYPE == MENU_EVENTS) {
                                         if (UtilConstants.RecipientsType == UtilConstants.EntireSchool) {
                                             SchoolAPIServices.sendEventsToEntireSchool(activity)
@@ -709,6 +769,13 @@ open class BaseActivity : AppCompatActivity() {
 
                                     } else if (MENU_TYPE == MENU_ASSIGNMENT) {
                                         SchoolAPIServices.sendAssignment(activity)
+
+                                    }
+
+
+                                    if (PARENT_MENU_TYPE == PARENT_MENU_ASSIGNMENT) {
+                                        Log.d("test","testmenu")
+                                        StudentAPIServices.parentSubmitAssingment(activity)
 
                                     }
                                 }
@@ -957,13 +1024,15 @@ open class BaseActivity : AppCompatActivity() {
                     val myFormat = "dd MMM yyyy" //In which you need put here
                     val sdf = SimpleDateFormat(myFormat, Locale.US)
                     lblDate.text = sdf.format(myCalendar.time)
-
+                    val myFormatapi = "dd/MM/yyyy"//In which you need put here
+                    val sdfapi = SimpleDateFormat(myFormatapi, Locale.US)
+                    val dateapi=sdfapi.format(myCalendar.time)
                     if (endcall == 1) {
-                        UtilConstants.EndDate = "" + dayOfMonth + "/" + monthOfYear + "/" + year
+                        UtilConstants.EndDate = dateapi
                         Log.d("testDate", UtilConstants.EndDate!!)
 
                     } else {
-                        UtilConstants.Date = "" + dayOfMonth + "/" + monthOfYear + "/" + year
+                        UtilConstants.Date = dateapi
                         Log.d("ScheduleDate", UtilConstants.Date!!)
 
                     }
@@ -987,6 +1056,7 @@ open class BaseActivity : AppCompatActivity() {
                     val sdf = SimpleDateFormat(myFormat, Locale.US)
                     lblDate.text = sdf.format(myCalendar.time)
                     fromdate = lblDate.text.toString()
+                    Log.d("fromdate",fromdate!!)
 
 
                 },
@@ -1046,35 +1116,77 @@ open class BaseActivity : AppCompatActivity() {
     }
 
 
-    fun EndDate(context: Context, lblenddate: TextView) {
+    fun EndDate(context: Activity, lblenddate: TextView) {
+Log.d("tesrt","test")
+        val date =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                myCalendar.set(Calendar.YEAR, year)
+                myCalendar.set(Calendar.MONTH, monthOfYear)
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                Log.d("tesrt","test")
 
-        val date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                ToDate(lblenddate)
+            }
 
-            cal.set(Calendar.YEAR, year)
-            cal.set(Calendar.MONTH, monthOfYear)
-            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-        }
-        val datePickerDialog = context.let { it1 ->
-            DatePickerDialog(
-                it1, R.style.ParentCalendarTheme, date,
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH)
+            val datePickerDialog = DatePickerDialog(context,
+                R.style.DialogThemeparent,
+                date,
+                myCalendar.get(Calendar.YEAR),
+                myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)
             )
-        }
 
-        val myFormat = "dd/MM/yyyy"
-        val sdf = SimpleDateFormat(myFormat, Locale.FRANCE)
-        var datefrom: Date? = null
-        try {
-            datefrom = sdf.parse(fromdate)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
+                val myFormat = "dd/MM/yyyy"
+                val sdf =
+                    SimpleDateFormat(myFormat, Locale.FRANCE)
+                var datefrom: Date? = null
+                try {
+                    datefrom = sdf.parse(fromdate!!)
+                    //                     dateto = sdf.parse(TOdate);
+                } catch (e: ParseException) {
+                    e.printStackTrace()
+                }
+                datePickerDialog.datePicker.minDate = datefrom!!.time
+                //                datePickerDialog.getDatePicker().setMaxDate(dateto.getTime());
+                datePickerDialog.show()
 
-        ToDate(lblenddate)
-        datePickerDialog.datePicker.minDate = datefrom!!.time
-        datePickerDialog.show()
+
+//        val myCalendar = Calendar.getInstance()
+//Log.d("test","test")
+//        val datePickerDialog: DatePickerDialog = DatePickerDialog(context, R.style.ParentCalendarTheme, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+//                myCalendar[Calendar.YEAR] = year
+//                myCalendar[Calendar.MONTH] = monthOfYear
+//                myCalendar[Calendar.DAY_OF_MONTH] = dayOfMonth
+//
+//            Log.d("test123","test")
+//
+//                val myFormat = "dd/MM/yyyy"
+//                val sdf = SimpleDateFormat(myFormat, Locale.US)
+//                try {
+//                    Log.d("datefrom","test")
+//
+//                    datefrom = sdf.parse(fromdate)
+//                } catch (e: ParseException) {
+//                    e.printStackTrace()
+//                }
+//
+//                lblenddate.text = sdf.format(myCalendar.time)
+//                Todate = lblenddate.text.toString()
+//
+//
+//            },
+//            myCalendar[Calendar.YEAR],
+//            myCalendar[Calendar.MONTH],
+//            myCalendar[Calendar.DAY_OF_MONTH]
+//        )
+//        datePickerDialog.datePicker.minDate = datefrom!!.time
+//        Log.d("datefrom", datefrom?.toString()!!)
+//
+//        datePickerDialog.show()
+//
+
+
+
 
     }
 

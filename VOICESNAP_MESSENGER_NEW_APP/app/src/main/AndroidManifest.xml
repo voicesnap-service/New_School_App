@@ -20,16 +20,15 @@
         android:name=".App.MyApp"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:requestLegacyExternalStorage="true"
-        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:noHistory="true"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
-   >
-
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.TeacherAssignmentForward"></activity>
         <activity
             android:name=".Activities.SplashScreen"
             android:launchMode="singleTop">
@@ -41,6 +40,55 @@
         </activity>
         <activity
             android:name=".Activities.CombinationHomeScreen"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.MessageFromMangementMenuScreen"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.MessageFromManagementImage"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.MessageFromManagementPdf"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.MessageMangementPdfViewScreen"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.MessageFromManagementVideo"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.FinalPreviewVoiceHistory"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.MessageFromManageMentText"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.MessageFromManagementVoice"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
@@ -173,6 +221,24 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
+            android:name=".Activities.TeacherSectionWiseStrength"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"></activity>
+        <activity
+            android:name=".Activities.TeacherSchoolStrength"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.TeacherConferenceScreen"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
             android:name=".Activities.TeacherNoticeBorad"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -208,7 +274,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-
         <activity
             android:name=".Activities.OfferNewProductOnlineBook"
             android:launchMode="singleTop"
@@ -249,7 +314,7 @@
             android:name=".Activities.TimeTable"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/ParentActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".Activities.ParentApplyLeave"
@@ -265,6 +330,27 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".Activities.AssignmentViewScreen"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.ParentAssingmentViewFileScreen"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.ParentAssingnmentSubmitScreen"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeParent"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.ViewFileImageScreen"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.AssingmentTotalAndSubmissions"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
@@ -322,21 +408,23 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeParent"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-
         <activity
             android:name=".Activities.ParentVoiceMessageScreen"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeParent"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-
-        <activity android:name=".Activities.ParentTextMessageScreen"
+        <activity
+            android:name=".Activities.ParentTextMessageScreen"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeParent"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".Activities.ViewFileScreen"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".Activities.ParentNoticeboardViewScreen"
             android:launchMode="singleTop"
@@ -377,13 +465,13 @@
             android:name=".Activities.SettingScreen"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".Activities.ParentFeesDetails"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeParent"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".Activities.ParentExamList"
             android:launchMode="singleTop"
@@ -409,7 +497,7 @@
             android:theme="@style/AppThemeParent"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
-            android:name=".Activities.ViewFileScreen"
+            android:name=".Activities.ImagePdfFilesListScreen"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />

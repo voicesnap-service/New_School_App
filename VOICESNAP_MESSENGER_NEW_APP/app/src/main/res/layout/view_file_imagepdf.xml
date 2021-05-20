@@ -4,17 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/whitegrey"
     android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutparentPdf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_margin="@dimen/ten_size"
+        app:layout_constraintTop_toTopOf="parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleParentpdf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="@dimen/ten_size"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/ten_size">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/GridImageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/twenty5_size"
+        android:background="@color/whitegrey"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/lblImageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/clr_black"
+            android:textSize="@dimen/fourteen_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleFiles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rect_white"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="@dimen/ten_size"
+            android:layout_marginTop="@dimen/ten_size"
+            app:layout_constraintTop_toBottomOf="@+id/lblImageTitle">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lnrImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -23,9 +75,10 @@
                 android:id="@+id/imgView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/man">
+                android:scaleType="fitXY">
+
             </ImageView>
+
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
@@ -40,8 +93,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|top"
                 android:layout_margin="@dimen/twenty5_size"
-                android:visibility="visible"
-                android:src="@drawable/download_floating" />
+                android:src="@drawable/download_floating"
+                android:visibility="visible" />
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -60,18 +113,18 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:max="100"
-            android:backgroundTint="@color/white"
-            android:indeterminateTint="#1a09d6"
             android:layout_marginTop="-7dp"
+            android:backgroundTint="@color/white"
+            android:indeterminate="true"
+            android:indeterminateTint="#1a09d6"
+            android:max="100"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
-           />
+            />
 
 
         <WebView

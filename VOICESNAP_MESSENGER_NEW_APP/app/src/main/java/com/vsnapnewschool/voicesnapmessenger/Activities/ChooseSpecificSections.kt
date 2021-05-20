@@ -217,11 +217,7 @@ class ChooseSpecificSections : BaseActivity(), checkSectionsListener, checkFinal
     override fun add(sections: Section?) {
         selectedSectionsListforSubjecject.add(sections!!)
 
-        if (SelectedMutableSatandardSectionList.get(
-                StandardSectionList.get(Position).standard_id + "-" + StandardSectionList.get(
-                    Position
-                ).standard_name
-            ) == null
+        if (SelectedMutableSatandardSectionList.get(StandardSectionList.get(Position).standard_id + "-" + StandardSectionList.get(Position).standard_name) == null
         ) {
             SelectedMutableSatandardSectionList.get(
                 StandardSectionList.get(Position).standard_id + "-" + StandardSectionList.get(
@@ -275,19 +271,28 @@ class ChooseSpecificSections : BaseActivity(), checkSectionsListener, checkFinal
             R.id.btnNext -> {
                 getSelectedStandardsSections()
                 selectedFinalSectionList = selectedPreviewSectionList
-                if (selectedFinalSectionList != null) {
-                    if(UtilConstants.selectedSubjectName!= null){
-                        UtilConstants.previewScreens(this)
-                    }else{
-                        Toast.makeText(this,getString(R.string.str_selectSubject), Toast.LENGTH_LONG).show();
+                if (MENU_TYPE == MENU_TEXT_HOMEWORK || MENU_TYPE == MENU_VOICE_HOMEWORK || MENU_TYPE == MENU_ASSIGNMENT) {
+
+                    if (selectedFinalSectionList != null) {
+                        if (UtilConstants.selectedSubjectName != null) {
+                            UtilConstants.previewScreens(this)
+                        } else {
+                            Toast.makeText(
+                                this,
+                                getString(R.string.str_selectSubject),
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+
                     }
+                }else{
+                    UtilConstants.previewScreens(this)
 
                 }
 
             }
             R.id.btnGetSubjects -> {
                 recycleSubjects.visibility = View.VISIBLE
-
                 SelectedSectionsForSubjects=""
                 sections=""
                 selectedSectionsListforSubjecject.forEach {

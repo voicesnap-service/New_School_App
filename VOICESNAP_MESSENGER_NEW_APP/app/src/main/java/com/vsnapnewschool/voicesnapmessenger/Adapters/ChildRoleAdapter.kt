@@ -31,6 +31,7 @@ class ChildRoleAdapter(private val childDetails: ArrayList<ChildDetailData>, pri
         internal var imgSchoologo: ImageView
         internal var layoutchildmember: ConstraintLayout
         internal var lblDisplayMessage: TextView
+        internal var btnLogin: TextView
         init {
             lblStudentName = view.findViewById<View>(R.id.lblStudentName) as TextView
             lblStandard = view.findViewById<View>(R.id.lblStandard) as TextView
@@ -40,6 +41,7 @@ class ChildRoleAdapter(private val childDetails: ArrayList<ChildDetailData>, pri
             lblSchoolName = view.findViewById<View>(R.id.lblSchoolName) as TextView
             imgSchoologo = view.findViewById<View>(R.id.imgSchoologo) as ImageView
             lblDisplayMessage = view.findViewById<View>(R.id.lblDisplayMessage) as TextView
+            btnLogin = view.findViewById<View>(R.id.btnLogin) as TextView
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

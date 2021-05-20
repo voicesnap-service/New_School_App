@@ -39,7 +39,7 @@ class VideoviewconAdapter(private val imagelist: ArrayList<Text_Class>,
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val text_info = imagelist[position]
         videoClickListener = videoViewListener
-        videoClickListener?.videoViewClick(holder,text_info)
+//        videoClickListener?.videoViewClick(holder,text_info)
     }
     override fun getItemCount(): Int {
         return imagelist.size

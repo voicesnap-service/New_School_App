@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="clr_black">#24242b</color>
     <color name="clr_blue">#1fb8fd</color>
+    <color name="clr_white_light">#80FFFFFF</color>
+
     <color name="clr_grey">#ebebeb</color>
     <color name="clr_white">#FFFFFF</color>
     <color name="clr_school">#fb6b22</color>

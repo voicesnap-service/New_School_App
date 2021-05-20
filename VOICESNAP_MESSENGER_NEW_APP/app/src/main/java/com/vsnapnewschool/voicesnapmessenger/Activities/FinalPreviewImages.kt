@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_image_grid.recyleImages
 import kotlinx.android.synthetic.main.scroll_preview_images.*
 
 class FinalPreviewImages : BaseActivity(), View.OnClickListener {
-    var imageadapter: ParentImageAdapter? ? = null
+    var imageadapter: ParentImageAdapter?  = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.scroll_preview_images)

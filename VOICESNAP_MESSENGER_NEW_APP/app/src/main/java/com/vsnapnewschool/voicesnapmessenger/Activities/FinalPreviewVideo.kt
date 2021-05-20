@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
+import kotlinx.android.synthetic.main.scroll_preview_video.*
 
 class FinalPreviewVideo : BaseActivity() , View.OnClickListener{
 
@@ -23,6 +25,8 @@ class FinalPreviewVideo : BaseActivity() , View.OnClickListener{
         imgTeacherChat?.setOnClickListener(this)
         imgTeacherHomeMenu?.setOnClickListener(this)
         imgTeacherSettings?.setOnClickListener(this)
+        imgTeacherSettings?.setOnClickListener(this)
+        btnPublishVideo?.setOnClickListener(this)
 
     }
     override fun onClick(v: View?) {
@@ -35,6 +39,9 @@ class FinalPreviewVideo : BaseActivity() , View.OnClickListener{
             }
             R.id.imgTeacherSettings -> {
                 UtilConstants.imgProfileIntent(this)
+            }
+            R.id.btnPublishVideo ->{
+                SchoolAPIServices.videosizereducer(this)
             }
         }
     }

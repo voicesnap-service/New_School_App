@@ -31,18 +31,21 @@
 
     <Button
         android:id="@+id/btnNext"
-        android:layout_width="@dimen/two_ten"
+        android:layout_width="@dimen/two_hundred"
         android:layout_height="@dimen/fourty5_size"
-        android:enabled="true"
-        android:text="@string/btn_Publish"
-        style="@style/btnConfirm"
-        android:textAllCaps="false"
+        android:layout_marginLeft="@dimen/fifteen_size"
+        android:layout_marginRight="@dimen/fifteen_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:layout_gravity="center"
+        android:text="Next"
         android:textColor="@color/white"
         android:textSize="@dimen/sixteen"
-        android:layout_marginBottom="@dimen/dimen_eighty_size"
+        android:textAllCaps="false"
+        style="@style/btnConfirm"
+        android:enabled="false"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <include
         android:id="@+id/bottom_layout"

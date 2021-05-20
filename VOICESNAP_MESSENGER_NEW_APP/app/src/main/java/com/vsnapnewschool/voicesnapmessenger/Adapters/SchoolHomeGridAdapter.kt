@@ -15,6 +15,7 @@ import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.MenuListData
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_ABSENTEES_REPORT
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_ASSIGNMENT
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_ATTEDANCE_MARKING
+import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_CONFERENCE_CALL
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_EMERGENCY
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_EVENTS
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants.Companion.MENU_FEEDBACK
@@ -158,6 +159,11 @@ class SchoolHomeGridAdapter(private val context: Context, private val mMenusList
             holder.rytCardMenu?.setBackgroundResource(R.drawable.rect_white_bg)
             setRectangaleShape(holder,mMenusList[position].color_code)
             holder.imgIcon?.setImageResource(R.drawable.home_calendar)
+        }
+        else if(mMenusList[position].id?.equals(MENU_CONFERENCE_CALL.toString())){
+            holder.rytCardMenu?.setBackgroundResource(R.drawable.rect_white_bg)
+            setRectangaleShape(holder,mMenusList[position].color_code)
+            holder.imgIcon?.setImageResource(R.drawable.call)
         }
     }
 

@@ -9,11 +9,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.noticeboardListener
 import com.vsnapnewschool.voicesnapmessenger.Models.Image_Class
+import com.vsnapnewschool.voicesnapmessenger.ParentServiceModelResponse.GetNoticeBoardResponse
 import com.vsnapnewschool.voicesnapmessenger.R
 import java.util.*
 
 class ParentNoticeBoardAdapter(
-    private val listname: ArrayList<Image_Class>, private val context: Context?,private val type: String,val noticeboardListener: noticeboardListener) : RecyclerView.Adapter<ParentNoticeBoardAdapter.MyViewHolder>() {
+    private val listname: ArrayList<GetNoticeBoardResponse.NoticeData>, private val context: Context?,private val type: String,val noticeboardListener: noticeboardListener) : RecyclerView.Adapter<ParentNoticeBoardAdapter.MyViewHolder>() {
 
     companion object {
         var noticeclickListener: noticeboardListener? = null
@@ -40,8 +41,8 @@ class ParentNoticeBoardAdapter(
         noticeclickListener = noticeboardListener
         noticeclickListener?.noticeboardClick(holder,text_info)
         holder.title.text = text_info.title
-        holder.timing.text = text_info.timing
-        holder.content.text = text_info.content
+        holder.timing.text = text_info.created_on
+        holder.content.text = text_info.description
 
     }
     override fun getItemCount(): Int {

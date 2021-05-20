@@ -5,134 +5,94 @@ import android.view.View
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.vsnapnewschool.voicesnapmessenger.Adapters.TimeClassAdapter
-import com.vsnapnewschool.voicesnapmessenger.Adapters.TimeDayAdapter
+import com.vsnapnewschool.voicesnapmessenger.Adapters.*
+import com.vsnapnewschool.voicesnapmessenger.CallBacks.GetDateForTimeTableCallBack
+import com.vsnapnewschool.voicesnapmessenger.CallBacks.GetDatesHomeWorkCallBack
+import com.vsnapnewschool.voicesnapmessenger.CallBacks.GetHomeWorkCallBack
+import com.vsnapnewschool.voicesnapmessenger.CallBacks.TimeTableCallBack
+import com.vsnapnewschool.voicesnapmessenger.Interfaces.homeworkListener
 import com.vsnapnewschool.voicesnapmessenger.Models.DayCLass
+import com.vsnapnewschool.voicesnapmessenger.Network.StudentAPIServices
+import com.vsnapnewschool.voicesnapmessenger.ParentServiceModelResponse.GetDatesHomeWorkListResponse
+import com.vsnapnewschool.voicesnapmessenger.ParentServiceModelResponse.GetDaysTimeTable
+import com.vsnapnewschool.voicesnapmessenger.ParentServiceModelResponse.GetHomeWorkListResponse
+import com.vsnapnewschool.voicesnapmessenger.ParentServiceModelResponse.GetTimeTableList
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
+import kotlinx.android.synthetic.main.bottom_adds_items.*
+import kotlinx.android.synthetic.main.parent_bottom_menus.*
+import kotlinx.android.synthetic.main.recyclerview_layout.*
 import kotlinx.android.synthetic.main.timetable.*
 import java.util.*
-class TimeTable : BaseActivity(),View.OnClickListener {
-    private val menulist = ArrayList<DayCLass>()
-    internal lateinit var dayAdapter: TimeDayAdapter
-    internal lateinit var ClassAdapter: TimeClassAdapter
-    private  val row_index: Int = -1
-    private val subjectlist = ArrayList<DayCLass>()
-    private val daylist = ArrayList<DayCLass>()
+class TimeTable: BaseActivity(), View.OnClickListener, GetDateForTimeTableCallBack,
+    TimeTableCallBack {
+    var dateTimetablelist = ArrayList<GetDaysTimeTable.DateData>()
+    var StudentTimeTablelist = ArrayList<GetTimeTableList.TimeTableData>()
+    internal lateinit var timetabledayAdapter: TimeTableDayAdapter
+    internal lateinit var timetablelistAdapter: TimeTableListAdapter
+    var type:String="0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.timetable)
+        setContentView(R.layout.recyclerview_layout)
         enableCrashLytics()
-
-        imgTeacherChat?.setOnClickListener(this)
-        imgTeacherHomeMenu?.setOnClickListener(this)
-        imgTeacherSettings?.setOnClickListener(this)
-        initializeActionBar()
+        parentActionbar()
         setTitle(getString(R.string.title_timetable))
         enableSearch(true)
+        scrollAdds(this, imageSlider)
+        lblSeeMore.visibility=View.GONE
+        imgchat?.setOnClickListener(this)
+        imgHomeMenu?.setOnClickListener(this)
+        imgSettings?.setOnClickListener(this)
+        recyle_parent_bottom_layout.visibility = View.VISIBLE
 
-        Day()
-
-        val type: String = intent.getStringExtra("type")!!
-
-        dayAdapter = TimeDayAdapter(menulist,this,type,row_index, object : TimeDayAdapter.BtnClickListener {
-
-            override fun onBtnClick(position: Int) {
-                if (position == 0) {
-                    ClassTime()
-                    ClassAdapter = TimeClassAdapter(subjectlist,this@TimeTable, false)
-                } else if (position == 1) {
-                    ClassSubjects()
-
-                    ClassAdapter = TimeClassAdapter(menulist, this@TimeTable, false)
-                } else {
-                    ClassTime()
-                    ClassAdapter = TimeClassAdapter(subjectlist, this@TimeTable, false)
-                }
-                val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this@TimeTable)
-                rcyclass.setLayoutManager(mLayoutManager)
-                rcyclass.setItemAnimator(DefaultItemAnimator())
-                rcyclass.setAdapter(ClassAdapter)
-                ClassAdapter.notifyDataSetChanged()
-
-            }
-        })
-        rcyDay.setItemAnimator(DefaultItemAnimator())
-        rcyDay.setLayoutManager(LinearLayoutManager(this@TimeTable, LinearLayoutManager.HORIZONTAL, false))
-        rcyDay.setAdapter(dayAdapter)
-        dayAdapter.notifyDataSetChanged()
-
-    }
-    private fun Day() {
-        menulist.clear()
-
-        var menus = DayCLass("Mon")
-        menulist.add(menus)
-
-        menus = DayCLass("Tue")
-        menulist.add(menus)
-
-        menus = DayCLass("Wed")
-        menulist.add(menus)
-
-        menus = DayCLass("Thu")
-        menulist.add(menus)
-
-        menus = DayCLass("Fri")
-        menulist.add(menus)
-
-        menus = DayCLass("Sat")
-        menulist.add(menus)
-
-    }
-    private fun ClassSubjects() {
-
-        daylist.clear()
-
-        var menus = DayCLass("Tamil")
-        daylist.add(menus)
-
-        menus = DayCLass("English")
-        daylist.add(menus)
-
-        menus = DayCLass("French")
-        daylist.add(menus)
-
-        menus = DayCLass("Maths")
-        daylist.add(menus)
-
-        menus = DayCLass("Chemistry")
-        daylist.add(menus)
-
-        menus = DayCLass("Science")
-        daylist.add(menus)
-
-    } private fun ClassTime() {
-        subjectlist.clear()
-
-        var menus = DayCLass("Biology")
-        subjectlist.add(menus)
-
-        menus = DayCLass("French")
-        subjectlist.add(menus)
-
-        menus = DayCLass("Zoology")
-        subjectlist.add(menus)
+        StudentAPIServices.getDatesForTimetable(this, this)
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.imgTeacherChat -> {
+            R.id.imgchat -> {
                 //  setChatClick(imgChat?, imgHome?, imgProfile?)
             }
-            R.id.imgTeacherHomeMenu -> {
-                UtilConstants.imgTeacherHomeIntent(this)
+            R.id.imgHomeMenu -> {
+                UtilConstants.imgHomeIntent(this)
             }
-            R.id.imgTeacherSettings -> {
+            R.id.imgSettings -> {
                 UtilConstants.imgProfileIntent(this)
             }
         }
     }
+
+    override fun callBackDatesTimeTable(responseBody: GetDaysTimeTable) {
+        dateTimetablelist.clear()
+        dateTimetablelist= responseBody.data as ArrayList<GetDaysTimeTable.DateData>
+        timetabledayAdapter = TimeTableDayAdapter(dateTimetablelist, this,object : TimeTableDayAdapter.BtnClickListener {
+            override fun onBtnClick(position: Int,datelist: GetDaysTimeTable.DateData) {
+                StudentTimeTablelist.clear()
+                UtilConstants.DateIdTimeTable=datelist.day_id
+                StudentAPIServices.getTimeTable(this@TimeTable,this@TimeTable)
+            }
+
+        })
+        val mLayoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL ,false)
+        rcyhorizontal.layoutManager = mLayoutManager
+        rcyhorizontal.itemAnimator = DefaultItemAnimator()
+        rcyhorizontal.adapter = timetabledayAdapter
+        timetabledayAdapter.notifyDataSetChanged()
+    }
+
+    override fun callbackTimeTable(responseBody: GetTimeTableList) {
+        StudentTimeTablelist.clear()
+        StudentTimeTablelist= responseBody.data as ArrayList<GetTimeTableList.TimeTableData>
+        timetablelistAdapter = TimeTableListAdapter(StudentTimeTablelist, this,"0")
+        val mLayoutManager = LinearLayoutManager(this)
+        recyclerview.layoutManager = mLayoutManager
+        recyclerview.itemAnimator = DefaultItemAnimator()
+        recyclerview.adapter = timetablelistAdapter
+        timetablelistAdapter.notifyDataSetChanged()
+    }
 }
+
+
+

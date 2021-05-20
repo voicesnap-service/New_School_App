@@ -37,7 +37,7 @@ class ParentTextMessageScreen : BaseActivity(),View.OnClickListener,GetTextMessa
         parentActionbar()
         enableSearch(true)
         setTitle(getString(R.string.title_Text))
-        parent_bottom_layout.visibility= View.VISIBLE
+        recyle_parent_bottom_layout.visibility= View.VISIBLE
         imgchat?.setOnClickListener(this)
         imgHomeMenu?.setOnClickListener(this)
         imgSettings?.setOnClickListener(this)
@@ -66,6 +66,8 @@ class ParentTextMessageScreen : BaseActivity(),View.OnClickListener,GetTextMessa
     }
     override fun onClick(v: View?) {
         when (v!!.id) {
+
+
             R.id.imgchat -> {
             }
             R.id.imgHomeMenu -> {
@@ -89,9 +91,7 @@ class ParentTextMessageScreen : BaseActivity(),View.OnClickListener,GetTextMessa
 
         textMessageList.clear()
         textMessageList= responseBody!!.data as ArrayList<GetTextData>
-        parentTextMessageAdapter = ParentTextMessageAdapter(
-            textMessageList,
-            this,
+        parentTextMessageAdapter = ParentTextMessageAdapter(textMessageList, this,
             object : TextMessagesClickListener {
                 override fun onTextClick(
                     holder: ParentTextMessageAdapter.MyViewHolder,

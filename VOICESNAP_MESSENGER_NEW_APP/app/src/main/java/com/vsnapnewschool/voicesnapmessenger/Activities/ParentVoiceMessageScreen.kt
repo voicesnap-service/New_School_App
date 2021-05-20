@@ -1,5 +1,6 @@
 package com.vsnapnewschool.voicesnapmessenger.Activities
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -21,15 +22,16 @@ import java.util.ArrayList
 class ParentVoiceMessageScreen : BaseActivity(), View.OnClickListener, GetVoiceMessageCallBack, ReadStatusCallBacak {
     internal lateinit var parentVoiceMessageAdapter: ParentVoiceAdapter
     var voiceMessageList = ArrayList<GetVoiceData>()
+    private var mediaPlayer = MediaPlayer()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recyclerview_layout)
         enableCrashLytics()
         scrollAdds(this, imageSlider)
-        parentActionbar()
+        parentActionbarforVoice(mediaPlayer)
         enableSearch(true)
         setTitle(getString(R.string.title_Communication))
-        parent_bottom_layout.visibility = View.VISIBLE
+        recyle_parent_bottom_layout.visibility = View.VISIBLE
         imgchat?.setOnClickListener(this)
         imgHomeMenu?.setOnClickListener(this)
         imgSettings?.setOnClickListener(this)
@@ -40,6 +42,8 @@ class ParentVoiceMessageScreen : BaseActivity(), View.OnClickListener, GetVoiceM
             this@ParentVoiceMessageScreen, this,
             UtilConstants.API_NORMAL, recyclerview, shimmerFrameLayout
         )
+
+//        onBackPressed()
 
     }
 
@@ -57,8 +61,7 @@ class ParentVoiceMessageScreen : BaseActivity(), View.OnClickListener, GetVoiceM
         voiceMessageList.clear()
         voiceMessageList= responseBody!!.data as ArrayList<GetVoiceData>
         parentVoiceMessageAdapter = ParentVoiceAdapter(
-            voiceMessageList,
-            this,
+            voiceMessageList, this, mediaPlayer,
             object : VoiceMessagesClickListener {
                 override fun onVoiceClick(
                     holder: ParentVoiceAdapter.MyViewHolder,
@@ -74,6 +77,11 @@ class ParentVoiceMessageScreen : BaseActivity(), View.OnClickListener, GetVoiceM
                             StudentAPIServices.updateReadStatus(this@ParentVoiceMessageScreen,text_info.header_id,text_info.detail_id, UtilConstants.API_SEE_MORE,this@ParentVoiceMessageScreen)
                         }
                     })
+                }
+
+                override fun onrefresh() {
+                    recyclerview.adapter = parentVoiceMessageAdapter
+
                 }
 
             })
@@ -113,6 +121,13 @@ class ParentVoiceMessageScreen : BaseActivity(), View.OnClickListener, GetVoiceM
             recyclerview,
             shimmerFrameLayout
         )
+    }
+
+    override fun onBackPressed() {
+        if(mediaPlayer.isPlaying){
+            mediaPlayer.stop()
+        }
+        super.onBackPressed()
     }
 
     override fun onClick(v: View?) {

@@ -88,7 +88,13 @@ class TeacherSchoolsListScreen : BaseActivity(), checkSchoolListListener,View.On
         when (view!!.id) {
             R.id.btnNext -> {
                 UtilConstants.SelectedFinalSchoolsList=SelectedSchoolsList
-              SchoolAPIServices.sendEmergencyVoiceToSchools(this)
+                if(UtilConstants.MENU_TYPE == UtilConstants.MENU_EMERGENCY && UtilConstants.voicehistoryentire.equals("VoiceHistoryEntire")){
+                    SchoolAPIServices.sendEmergencyVoiceHistoryTOSChools(this)
+
+                }
+                else {
+                    SchoolAPIServices.sendEmergencyVoiceToSchools(this)
+                }
             }
             R.id.imgTeacherChat -> {
                 //  setChatClick(imgChat?, imgHome?, imgProfile?)

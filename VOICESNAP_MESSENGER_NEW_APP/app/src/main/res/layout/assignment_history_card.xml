@@ -1,54 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="@dimen/dimen_three"
     android:id="@+id/assignmentList"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_three">
 
     <RelativeLayout
         android:id="@+id/rytDetails1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shadow_bg"
         android:layout_margin="@dimen/dimen_five"
+        android:background="@drawable/shadow_bg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblDayDate">
+        app:layout_constraintTop_toTopOf="parent">
+
 
         <TextView
             android:id="@+id/lblSentAt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_three"
+            android:layout_marginRight="@dimen/thirty5_size"
+            android:layout_toLeftOf="@+id/lblNew"
             android:text="Sent at 21:10 "
-            android:textSize="@dimen/twele_size"
             android:layout_alignParentRight="true"
-            android:textColor="@color/transparent" />
+            android:textColor="@color/transparent"
+            android:textSize="@dimen/twele_size" />
 
 
         <TextView
             android:id="@+id/lblType"
-            android:layout_width="@dimen/sixty_size"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:visibility="visible"
-            android:textSize="@dimen/thirteen_size"
-            android:textAlignment="center"
-            android:textColor="@color/white"
             android:layout_marginTop="@dimen/dimen_two"
+            android:background="@drawable/bg_semihalf_blue_color"
             android:padding="@dimen/dimen_five"
             android:text="image"
-            android:background="@drawable/bg_semihalf_blue_color" />
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/eleven_size"
+            android:visibility="visible" />
+
         <RelativeLayout
             android:id="@+id/rytDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dimen_five"
-            android:layout_margin="@dimen/twele_size"
+            android:layout_below="@+id/lblSentAt"
             android:layout_alignParentLeft="true"
+            android:layout_margin="@dimen/twele_size"
             android:layout_toLeftOf="@+id/lblDate"
-            android:layout_below="@+id/lblSentAt">
+            android:padding="@dimen/dimen_five">
 
 
             <TextView
@@ -56,8 +60,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Records Submission"
-                android:textSize="@dimen/fourteen_size"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/fourteen_size" />
 
             <TextView
                 android:id="@+id/lblSubject"
@@ -68,26 +72,43 @@
                 android:textColor="@color/clr_dark_grey"
                 android:textSize="@dimen/twele_size" />
         </RelativeLayout>
+
         <TextView
             android:id="@+id/lblDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="05 Sep"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/thirty5_size"
+            android:layout_marginRight="@dimen/thirty_size"
             android:background="@drawable/rectangle_orange"
+            android:padding="@dimen/dimen_five"
+            android:text="04/02/2021"
             android:textColor="@color/clr_white"
             android:textSize="@dimen/twele_size"
-            android:padding="@dimen/dimen_five"
-            android:layout_marginTop="@dimen/thirty_size"
-            android:layout_marginRight="@dimen/thirty_size"
-            android:layout_alignParentRight="true"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/viewLine"
             android:layout_width="12dp"
             android:layout_height="12dp"
-            android:src="@drawable/right_arrow"
+            android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_marginTop="@dimen/twenty5_size"
+            android:src="@drawable/right_arrow" />
+
+        <TextView
+            android:id="@+id/lblNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/rectangle_red"
+            android:padding="3dp"
+
+            android:text="New"
+            android:textColor="@color/white"
+            android:textSize="@dimen/twele_size"
+            android:visibility="visible" />
+
 
     </RelativeLayout>
 

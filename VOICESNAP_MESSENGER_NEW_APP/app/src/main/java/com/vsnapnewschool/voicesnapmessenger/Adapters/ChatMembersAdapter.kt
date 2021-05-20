@@ -9,13 +9,17 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.vsnapnewschool.voicesnapmessenger.Activities.ParentChatScreen
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.chatmemberListener
 import com.vsnapnewschool.voicesnapmessenger.Models.class_chat
 import com.vsnapnewschool.voicesnapmessenger.R
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.StaffChatClassDetail
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.StaffChatClassResponse
 import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
-class ChatMembersAdapter(private val listname: ArrayList<class_chat>, private val context: Context, private  val type :Boolean,
+class ChatMembersAdapter(private val listname: ArrayList<StaffChatClassDetail>, private val context: Context, private  val type :Boolean,
                          val chatListener: chatmemberListener) : RecyclerView.Adapter<ChatMembersAdapter.MyViewHolder>() {
+
     companion object {
         var chatmemberListener: chatmemberListener? = null
     }
@@ -46,12 +50,15 @@ class ChatMembersAdapter(private val listname: ArrayList<class_chat>, private va
         val text_info = listname[position]
         chatmemberListener = chatListener
         chatListener.onchatclickListener(holder,text_info)
-        holder.lblTiming.text = text_info.content_
-        holder.lblContentMsg.text = text_info.title
-        holder.lblPersonName.text = text_info.timing
-        Glide.with(context)
-            .load(text_info.image)
-            .into(holder.imgMember);
+//        holder.lblTiming.text = text_info.content
+        if(type) {
+            holder.lblContentMsg.text = text_info.subjectname
+            holder.lblPersonName.text = text_info.standard + "-" + text_info.section
+            Glide.with(context)
+                .load(R.drawable.img_profile)
+                .into(holder.imgMember);
+        }
+
 
     }
     override fun getItemCount(): Int {

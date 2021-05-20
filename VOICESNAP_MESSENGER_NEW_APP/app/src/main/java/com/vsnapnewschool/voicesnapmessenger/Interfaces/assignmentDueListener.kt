@@ -3,9 +3,10 @@ package com.vsnapnewschool.voicesnapmessenger.Interfaces
 import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentAssignmentDueAdapter
 import com.vsnapnewschool.voicesnapmessenger.Models.EventsImageClass
 import com.vsnapnewschool.voicesnapmessenger.Models.Leave_Class
+import com.vsnapnewschool.voicesnapmessenger.ParentServiceModelResponse.GetParentAssignmentResponse
 
 interface assignmentDueListener {
 
-    fun onassignmentClick(holder: ParentAssignmentDueAdapter.MyViewHolder,item: EventsImageClass)
+    fun onassignmentClick(holder: ParentAssignmentDueAdapter.MyViewHolder,item: GetParentAssignmentResponse.AssingmentDueData)
 
 }

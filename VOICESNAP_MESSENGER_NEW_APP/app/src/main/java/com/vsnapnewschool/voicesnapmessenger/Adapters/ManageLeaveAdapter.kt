@@ -7,16 +7,23 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.vsnapnewschool.voicesnapmessenger.Interfaces.manageLeaveListener
 import com.vsnapnewschool.voicesnapmessenger.Models.Leave_Class
 import com.vsnapnewschool.voicesnapmessenger.R
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.ApproveLeaveData
 import java.util.*
 
 
-class ManageLeaveAdapter(private var imagelist: ArrayList<Leave_Class>, private val context: Context?) : RecyclerView.Adapter<ManageLeaveAdapter.MyViewHolder>() {
-    fun update(modelList:ArrayList<Leave_Class>){
-        imagelist = modelList
-        notifyDataSetChanged()
+class ManageLeaveAdapter(private var imagelist: ArrayList<ApproveLeaveData>,
+                         private val context: Context?,
+
+                         private val approvelistener: manageLeaveListener
+) : RecyclerView.Adapter<ManageLeaveAdapter.MyViewHolder>() {
+
+    companion object {
+        var leavelistenrer: manageLeaveListener? = null
     }
+
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         internal var status: TextView
         internal var day: TextView
@@ -42,19 +49,27 @@ class ManageLeaveAdapter(private var imagelist: ArrayList<Leave_Class>, private 
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val text_info = imagelist[position]
-        holder.status.text = text_info.status
-        holder.day.text = text_info.day
-        holder.lblstartdate.text = text_info.lblstartdate
-        holder.lblenddate.text = text_info.lblenddate
-        holder.leavereason.text = text_info.leavereason
-        holder.leavetype.text = text_info.leavetype
+     leavelistenrer = approvelistener
+     leavelistenrer?.onapproveleveClick(holder, text_info)
+
         holder.run {
-            status.text = text_info.status
-            day.text = text_info.day
-            lblstartdate.text = text_info.lblstartdate
-            lblenddate.text = text_info.lblenddate
-            leavereason.text = text_info.leavereason
-            leavetype.text = text_info.leavetype
+
+            if(text_info.status.equals("0")){
+                holder.status.text = context!!.getString(R.string.lbl_pending)
+
+            }else if (text_info.status.equals("1")){
+                holder.status.text = context!!.getString(R.string.lbl_approved)
+
+
+            }else if(text_info.equals("2")){
+                holder.status.text = context!!.getString(R.string.lbl_rejected)
+
+
+            }
+            lblstartdate.text = text_info.leave_from
+            lblenddate.text = text_info.leave_to
+            leavereason.text = text_info.reason
+            leavetype.text = text_info.leave_type
         }
     }
     override fun getItemCount(): Int {

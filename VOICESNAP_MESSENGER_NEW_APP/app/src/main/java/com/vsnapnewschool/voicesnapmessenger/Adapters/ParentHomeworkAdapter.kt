@@ -10,19 +10,21 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.homeworkListener
 import com.vsnapnewschool.voicesnapmessenger.Models.Leave_Class
+import com.vsnapnewschool.voicesnapmessenger.ParentServiceModelResponse.GetHomeWorkListResponse
 import com.vsnapnewschool.voicesnapmessenger.R
 
 
 class ParentHomeworkAdapter(
-    private var imagelist: ArrayList<Leave_Class>,
+    private var homeworklist: ArrayList<GetHomeWorkListResponse.ParentHomeworklist>,
     private val context: Context?,
-    private val type: String,val homeworkListener: homeworkListener
+    private val type: String,
+    val homeworkListener: homeworkListener
 ) : RecyclerView.Adapter<ParentHomeworkAdapter.MyViewHolder>() {
-        companion object {
-            var homeworkClick: homeworkListener? = null
-        }
-    fun update(modelList:ArrayList<Leave_Class>){
-        imagelist = modelList
+    companion object {
+        var homeworkClick: homeworkListener? = null
+    }
+    fun update(modelList:ArrayList<GetHomeWorkListResponse.ParentHomeworklist>){
+        homeworklist = modelList
         notifyDataSetChanged()
     }
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -51,16 +53,19 @@ class ParentHomeworkAdapter(
         return MyViewHolder(itemView)
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val text_info = imagelist[position]
+        val text_info = homeworklist[position]
         holder.run {
-            homeworkClick = homeworkListener
-            homeworkClick?.onhomeworkClick(holder,text_info)
-            content.text = text_info.status
-            subject.text = text_info.lblstartdate
-            date.text = text_info.day
-            sentat.text = text_info.lblenddate
-            lblType.text = text_info.leavetype
-            sentat.visibility = View.INVISIBLE
+            rytDetails1.setOnClickListener({
+                homeworkClick = homeworkListener
+                homeworkClick?.onhomeworkClick(holder,text_info)
+            })
+            lblType.visibility=View.GONE
+            date.visibility=View.GONE
+            content.text = text_info.homework_text
+            subject.text = text_info.subject_name
+            sentat.text = text_info.created_on
+//            lblType.text = text_info.leavetype
+//            sentat.visibility = View.INVISIBLE
             if (type.equals("0")) {
                 date.setBackgroundResource(R.drawable.parent_blue_bg)
 
@@ -72,7 +77,7 @@ class ParentHomeworkAdapter(
         }
     }
     override fun getItemCount(): Int {
-        return imagelist.size
+        return homeworklist.size
 
     }
 }

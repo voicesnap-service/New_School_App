@@ -4,60 +4,53 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.tabs.TabLayout
+import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentEventTabAdapter
 import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentEventsAdapter
+import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentFeesTabAdapter
 import com.vsnapnewschool.voicesnapmessenger.Interfaces.eventsparentListener
 import com.vsnapnewschool.voicesnapmessenger.Models.EventsImageClass
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import kotlinx.android.synthetic.main.bottom_adds_items.*
 import kotlinx.android.synthetic.main.parent_bottom_menus.*
-import kotlinx.android.synthetic.main.recyclerview_layout.*
+import kotlinx.android.synthetic.main.parent_view_pager.*
 import java.util.*
 
-class ParentEvents : BaseActivity(),View.OnClickListener  {
-    private val menulist = ArrayList<EventsImageClass>()
-    internal lateinit var eventsAdapter: ParentEventsAdapter
+class ParentEvents  : BaseActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.recyclerview_layout)
+        setContentView(R.layout.parent_view_pager)
         enableCrashLytics()
         parentActionbar()
         setTitle(getString(R.string.title_Events))
         enableSearch(true)
         scrollAdds(this,imageSlider)
+
         imgchat?.setOnClickListener(this)
         imgHomeMenu?.setOnClickListener(this)
         imgSettings?.setOnClickListener(this)
-        parent_bottom_layout.visibility= View.VISIBLE
-        ImageLength()
 
+        sliding_tabs!!.addTab(sliding_tabs!!.newTab().setText(R.string.tab_upcoming_events))
+        sliding_tabs!!.addTab(sliding_tabs!!.newTab().setText(R.string.tab_past_events))
+        sliding_tabs!!.tabGravity = TabLayout.GRAVITY_FILL
 
-        eventsAdapter = ParentEventsAdapter(menulist, this,true, object : eventsparentListener {
-            override fun oneventClick(holder: ParentEventsAdapter.MyViewHolder, text_info: EventsImageClass) {
-                holder.imgEventsImage.setOnClickListener({
-                    UtilConstants.parentEventsHistoryActivity(this@ParentEvents)
-                })
+        val adapter = ParentEventTabAdapter(this, supportFragmentManager, sliding_tabs!!.tabCount)
+        viewPager!!.adapter = adapter
+        viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(sliding_tabs))
+        sliding_tabs!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewPager!!.currentItem = tab.position
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+
+            }
+            override fun onTabReselected(tab: TabLayout.Tab) {
+
             }
         })
-        val mLayoutManager = LinearLayoutManager(this)
-        recyclerview.layoutManager = mLayoutManager
-        recyclerview.itemAnimator = DefaultItemAnimator()
-        recyclerview.adapter = eventsAdapter
 
-    }
-    private fun ImageLength() {
-        var movieModel = EventsImageClass(R.drawable.event1,"05","Aug","AnnualDay 2020","Main Audiotorium","")
-        menulist.add(movieModel)
-
-        movieModel = EventsImageClass(R.drawable.event2,"30","Jun","AnnualDay 2020","Main Audiotorium","")
-        menulist.add(movieModel)
-
-        movieModel = EventsImageClass( R.drawable.event3,"09","Sep","AnnualDay 2020","Main Audiotorium","")
-        menulist.add(movieModel)
-
-        movieModel = EventsImageClass( R.drawable.event4,"06","Aug","AnnualDay 2020","Main Audiotorium","")
-        menulist.add(movieModel)
     }
 
     override fun onClick(v: View?) {

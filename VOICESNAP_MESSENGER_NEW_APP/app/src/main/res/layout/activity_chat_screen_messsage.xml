@@ -30,11 +30,14 @@
         android:orientation="horizontal"
         android:padding="@dimen/thirteen_size"
         android:text=""
+        android:inputType="textMultiLine"
+        android:minLines="1"
+        android:maxLines="15"
         android:layout_marginBottom="@dimen/twele_size"
         android:textColor="@color/clr_black"
         android:textSize="@dimen/fourteen_size"
         android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_layout">
+        app:layout_constraintBottom_toTopOf="@+id/rlbtns">
 
     </EditText>
 
@@ -47,8 +50,40 @@
         app:layout_constraintLeft_toRightOf="@+id/lblContent"
         android:src="@drawable/teacherchat_send"
         android:layout_marginBottom="@dimen/seventeen_size"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+        app:layout_constraintBottom_toTopOf="@+id/rlbtns"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/rlbtns"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            style="@style/btnConfirm"
+            android:id="@+id/btnReplyall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp"
+            android:layout_centerInParent="true"
+            android:text="@string/btn_replyall"
+            android:textAllCaps="false"/>
+
+        <Button
+            style="@style/btnConfirm"
+            android:id="@+id/btnReplyprivate"
+            android:layout_width="wrap_content"
+            android:padding="15dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/btn_replyprivately"
+            android:textAllCaps="false"/>
+    </RelativeLayout>
 
     <include
         android:id="@+id/bottom_layout"

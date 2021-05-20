@@ -50,7 +50,60 @@
             <include layout="@layout/shimmer_placeholder_layout" />
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyhorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="@dimen/ten_size"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutTimeClass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rcyhorizontal">
 
+        <TextView
+            android:id="@+id/lbltime"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten_size"
+            android:gravity="center"
+            android:text="Time"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sixteen"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/thirty_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:background="@color/clr_grey_light"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@id/lbltime"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/lblclass"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten_size"
+            android:gravity="center"
+            android:text="Class"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sixteen"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
@@ -62,9 +115,11 @@
         android:scrollbarSize="5dp"
         android:scrollbarThumbVertical="@drawable/rect_blue_white"
         android:scrollbars="vertical"
+
+
         android:visibility="visible"
         android:background="@color/whitegrey"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/LayoutTimeClass"
         app:layout_constraintBottom_toTopOf="@+id/lblSeeMore" />
 
     <TextView
@@ -108,7 +163,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <include
-            android:id="@+id/parent_bottom_layout"
+            android:id="@+id/recyle_parent_bottom_layout"
             layout="@layout/parent_bottom_menus"
             android:layout_width="match_parent"
             android:layout_height="@dimen/sixty3_size"

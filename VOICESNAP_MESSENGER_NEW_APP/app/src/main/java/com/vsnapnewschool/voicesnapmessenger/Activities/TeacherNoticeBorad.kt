@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
+import kotlinx.android.synthetic.main.activity_events_publish.*
+import kotlinx.android.synthetic.main.events_scroll.*
 import kotlinx.android.synthetic.main.homework_publish.*
 import kotlinx.android.synthetic.main.notice_public.*
 import kotlinx.android.synthetic.main.notice_public.edDescription
 import kotlinx.android.synthetic.main.notice_public.edTitle
 import kotlinx.android.synthetic.main.scroll_noticeboard_publish.*
+import kotlinx.android.synthetic.main.scroll_noticeboard_publish.btnNext
 
 
 class TeacherNoticeBorad : BaseActivity(), View.OnClickListener {
@@ -30,6 +33,8 @@ class TeacherNoticeBorad : BaseActivity(), View.OnClickListener {
         imgTeacherHomeMenu?.setOnClickListener(this)
         imgTeacherSettings?.setOnClickListener(this)
         EditTextWatcher(btnNext, edDescription)
+
+
         lblAttachment = findViewById<TextView>(R.id.txtAttachments)
         rcyleSelectedFiles = findViewById<RecyclerView>(R.id.rcyleSelectedImages)
         lblAddFile = findViewById<TextView>(R.id.lblAddFile)

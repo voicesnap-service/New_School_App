@@ -18,23 +18,23 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <Spinner
-        android:id="@+id/spin"
+        android:id="@+id/LeaveSpin"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/fifty_size"
-        android:background="@drawable/spinnerbg"
-        android:layout_marginTop="@dimen/ten_size"
-        android:layout_marginRight="@dimen/dimen_two"
-        android:entries="@array/Leavetype"
-        app:layout_constraintTop_toBottomOf="@id/lblleave"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblleave" />
+
 
     <LinearLayout
         android:id="@+id/lnrCalendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/ten_size"
-        app:layout_constraintTop_toBottomOf="@id/spin"
+        app:layout_constraintTop_toBottomOf="@id/LeaveSpin"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="horizontal">
         <LinearLayout
@@ -75,7 +75,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/thirty5_size"
-
             android:orientation="vertical">
             <TextView
                 android:id="@+id/lblend"
@@ -133,18 +132,55 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
+
+
+    <TextView
+        android:id="@+id/lblOthers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ed_other_reason"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twele_size"
+        android:textStyle="normal"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/fifteen_size"
+        android:layout_marginStart="@dimen/dimen_two"
+        app:layout_constraintTop_toBottomOf="@id/lnrCalendar"
+        app:layout_constraintStart_toStartOf="@id/lblleave"
+        />
+    <EditText
+        android:id="@+id/edOtherDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+
+        android:layout_marginEnd="@dimen/dimen_four"
+        android:layout_marginLeft="@dimen/dimen_four"
+        android:layout_marginRight="@dimen/dimen_four"
+        android:layout_marginTop="@dimen/twele_size"
+        android:background="@drawable/bg_edittext_parent_color_change"
+        android:gravity="top"
+        android:hint="@string/ed_Typehere"
+        android:padding="@dimen/ten_size"
+        android:textColor="@color/dark_grey_black"
+        android:textColorHint="@color/clr_grey_light"
+        android:textSize="@dimen/fourteen_size"
+        app:layout_constraintTop_toBottomOf="@id/lblOthers"
+        app:layout_constraintStart_toStartOf="@+id/lblOthers"/>
+
     <TextView
         android:id="@+id/lbldesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_small_description"
+        android:text="@string/ed_reason"
         android:textColor="@color/black"
         android:textSize="@dimen/twele_size"
         android:textStyle="normal"
         android:layout_marginTop="@dimen/fifteen_size"
         android:layout_marginStart="@dimen/dimen_two"
-        app:layout_constraintTop_toBottomOf="@id/lnrCalendar"
-        app:layout_constraintStart_toStartOf="@id/lblleave"
+        app:layout_constraintTop_toBottomOf="@id/edOtherDescription"
+        app:layout_constraintStart_toStartOf="@id/edOtherDescription"
         />
     <EditText
         android:id="@+id/edDescription"
@@ -199,7 +235,6 @@
             android:textAllCaps="false"
             android:padding="@dimen/dimen_five"
             style="@style/btnNext"
-            android:enabled="false"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 

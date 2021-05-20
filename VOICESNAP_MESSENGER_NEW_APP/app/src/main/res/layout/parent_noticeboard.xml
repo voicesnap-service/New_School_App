@@ -68,6 +68,23 @@
                 android:textSize="@dimen/twele_size"
                 android:textStyle="normal">
             </TextView>
+
+            <TextView
+                android:id="@+id/lblShowImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblHistory"
+                android:layout_marginStart="@dimen/fifteen_size"
+                android:layout_marginTop="@dimen/dimen_two"
+                android:padding="@dimen/dimen_five"
+                android:text="@string/lbl_show_image"
+                android:background="@drawable/parent_blue_bg"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twele_size"
+                android:layout_alignParentRight="true"
+                android:textStyle="bold">
+
+            </TextView>
         </RelativeLayout>
 
         <ImageView

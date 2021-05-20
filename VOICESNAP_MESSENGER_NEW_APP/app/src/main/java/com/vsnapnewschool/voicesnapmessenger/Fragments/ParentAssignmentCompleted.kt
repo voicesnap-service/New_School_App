@@ -32,95 +32,95 @@ class ParentAssignmentCompleted : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        ImageLength()
-
-
-        assignmentDueAdapter = ParentAssignmentDueAdapter(menulist, activity, type, object : assignmentDueListener {
-                override fun onassignmentClick(holder: ParentAssignmentDueAdapter.MyViewHolder, item: EventsImageClass) {
-//                    holder.rytDetails1.setOnClickListener({
-//                        if (type) {
-//                            UtilConstants.parentAssignmentView(context as Activity, item)
-//                        }
+//        ImageLength()
 //
-//                    })
-                }
-            })
-        val mLayoutManager = LinearLayoutManager(activity)
-        recyclerview.layoutManager = mLayoutManager
-        recyclerview.itemAnimator = DefaultItemAnimator()
-        recyclerview.adapter = assignmentDueAdapter
-
-        (activity as BaseActivity?)!!.searchView!!.setOnQueryTextListener(object :
-            SearchView.OnQueryTextListener, android.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                filter(newText)
-
-                return false
-            }
-
-
-        })
+//
+//        assignmentDueAdapter = ParentAssignmentDueAdapter(menulist, activity, type, object : assignmentDueListener {
+//                override fun onassignmentClick(holder: ParentAssignmentDueAdapter.MyViewHolder, item: EventsImageClass) {
+////                    holder.rytDetails1.setOnClickListener({
+////                        if (type) {
+////                            UtilConstants.parentAssignmentView(context as Activity, item)
+////                        }
+////
+////                    })
+//                }
+//            })
+//        val mLayoutManager = LinearLayoutManager(activity)
+//        recyclerview.layoutManager = mLayoutManager
+//        recyclerview.itemAnimator = DefaultItemAnimator()
+//        recyclerview.adapter = assignmentDueAdapter
+//
+//        (activity as BaseActivity?)!!.searchView!!.setOnQueryTextListener(object :
+//            SearchView.OnQueryTextListener, android.widget.SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String): Boolean {
+//
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: String): Boolean {
+//                filter(newText)
+//
+//                return false
+//            }
+//
+//
+//        })
     }
 
-                private fun ImageLength() {
-            var movieModel = EventsImageClass(
-                R.drawable.event1,
-                "Record Submission",
-                "10 Dec",
-                "AnnualDay 2020",
-                "Main Audiotorium",
-                "image"
-            )
-            menulist.add(movieModel)
-            movieModel = EventsImageClass(
-                R.drawable.event2,
-                "Test 123",
-                "09 Oct",
-                "sportsday 2020",
-                "Main Audiotorium",
-                "text"
-            )
-            menulist.add(movieModel)
-            movieModel = EventsImageClass(
-                R.drawable.event3,
-                "Submission",
-                "08 Nov",
-                "freshersday 2020",
-                "Main Audiotorium",
-                "pdf"
-            )
-            menulist.add(movieModel)
-            movieModel = EventsImageClass(
-                R.drawable.event4,
-                "Record",
-                "07 Sep",
-                "maths",
-                "Main Audiotorium",
-                "pdf"
-            )
-            menulist.add(movieModel)
-        }
-
-            fun filter(s: String) {
-                val assignment: ArrayList<EventsImageClass> = ArrayList<EventsImageClass>()
-                for (d in menulist) {
-                    val value: String =
-                        d.Day!!.toLowerCase() + d.Content!!.toLowerCase() + d.description!!.toLowerCase()
-                    if (value.contains(s.toLowerCase())) {
-                        assignment.add(d)
-//                lblNoRecordsFound.setVisibility(View.GONE)
-                    } else if (!value.contains(s) && assignment.size == 0) {
-//                lblNoRecordsFound.setVisibility(View.VISIBLE)
-                    }
-                }
-                if (menulist.size != 0)
-                    assignmentDueAdapter.update(assignment);
-            }
+//                private fun ImageLength() {
+//            var movieModel = EventsImageClass(
+//                R.drawable.event1,
+//                "Record Submission",
+//                "10 Dec",
+//                "AnnualDay 2020",
+//                "Main Audiotorium",
+//                "image"
+//            )
+//            menulist.add(movieModel)
+//            movieModel = EventsImageClass(
+//                R.drawable.event2,
+//                "Test 123",
+//                "09 Oct",
+//                "sportsday 2020",
+//                "Main Audiotorium",
+//                "text"
+//            )
+//            menulist.add(movieModel)
+//            movieModel = EventsImageClass(
+//                R.drawable.event3,
+//                "Submission",
+//                "08 Nov",
+//                "freshersday 2020",
+//                "Main Audiotorium",
+//                "pdf"
+//            )
+//            menulist.add(movieModel)
+//            movieModel = EventsImageClass(
+//                R.drawable.event4,
+//                "Record",
+//                "07 Sep",
+//                "maths",
+//                "Main Audiotorium",
+//                "pdf"
+//            )
+////            menulist.add(movieModel)
+//        }
+//
+//            fun filter(s: String) {
+//                val assignment: ArrayList<EventsImageClass> = ArrayList<EventsImageClass>()
+//                for (d in menulist) {
+//                    val value: String =
+//                        d.Day!!.toLowerCase() + d.Content!!.toLowerCase() + d.description!!.toLowerCase()
+//                    if (value.contains(s.toLowerCase())) {
+//                        assignment.add(d)
+////                lblNoRecordsFound.setVisibility(View.GONE)
+//                    } else if (!value.contains(s) && assignment.size == 0) {
+////                lblNoRecordsFound.setVisibility(View.VISIBLE)
+//                    }
+//                }
+//                if (menulist.size != 0)
+//                    assignmentDueAdapter.update(assignment);
+//            }
 
     }
 

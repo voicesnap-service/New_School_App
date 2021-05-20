@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:scaleType="fitXY"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/white"
         app:strokeWidth="5dp"
@@ -41,9 +42,8 @@
         android:id="@+id/layoutCreatedBy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/twenty_size"
-        android:layout_marginTop="@dimen/ten_size"
-        android:visibility="gone"
+        android:layout_marginTop="@dimen/thirty_size"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgEventsImage">
         <TextView
@@ -97,7 +97,7 @@
         android:id="@+id/lblEventTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_five"
+        android:layout_marginTop="@dimen/fifteen_size"
         android:padding="@dimen/dimen_five"
         android:text="Annual Day 2020"
         android:textAlignment="center"
@@ -125,7 +125,7 @@
         android:id="@+id/imgEventTime"
         android:layout_width="@dimen/fifty_size"
         android:layout_height="@dimen/fifty_size"
-        android:layout_margin="@dimen/ten_size"
+        android:layout_marginTop="@dimen/fifteen_size"
         android:scaleType="fitXY"
         android:background="@drawable/bg_grey"
         android:backgroundTint="@color/clr_bluelight"
@@ -165,10 +165,12 @@
         android:id="@+id/imgEventPlace"
         android:layout_width="@dimen/fifty_size"
         android:layout_height="@dimen/fifty_size"
+        android:visibility="gone"
         android:layout_margin="@dimen/eighteen"
         android:backgroundTint="@color/clr_bluelight"
         android:background="@drawable/bg_grey"
         android:scaleType="fitXY"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgEventTime"
         android:src="@drawable/img_map" />
@@ -183,6 +185,8 @@
         android:textColor="@color/clr_black"
         android:textSize="@dimen/fourteen_size"
         android:textStyle="normal"
+        android:visibility="gone"
+
         android:layout_marginTop="@dimen/thirty5_size"
         app:layout_constraintLeft_toRightOf="@+id/imgEventPlace"
         app:layout_constraintTop_toBottomOf="@+id/lblEventTime" />
@@ -194,6 +198,8 @@
         android:layout_marginStart="@dimen/ten_size"
         android:layout_marginLeft="@dimen/ten_size"
         android:text="12 PM to 3PM"
+        android:visibility="gone"
+
         android:textAlignment="center"
         android:textColor="@color/clr_dark_grey"
         android:textSize="12dp"
@@ -207,21 +213,23 @@
         android:id="@+id/txtDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/twenty_size"
+
         android:layout_marginLeft="@dimen/twenty_size"
         android:text="@string/txt_event_details"
-        android:textAlignment="center"
         android:textColor="@color/clr_black"
         android:textSize="@dimen/fourteen_size"
         android:textStyle="normal"
-        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/fifteen_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgEventPlace" />
+        app:layout_constraintTop_toBottomOf="@+id/imgEventTime" />
     <TextView
         android:id="@+id/lblEventDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/twenty_size"
+        android:visibility="gone"
+
         app:layout_constraintStart_toStartOf="@+id/txtDetails"
         android:layout_marginEnd="@dimen/twenty_size"
         android:text="Event Will be held on Dec31"
@@ -235,8 +243,55 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fifteen_size"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/lblEventDetails"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/bottom_layout">
     </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/lblupload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fifteen_size"
+        android:layout_marginTop="@dimen/ten_size"
+        android:layout_marginBottom="@dimen/ten_size"
+        android:text="@string/lbl_uploaded_files"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fourteen_size"
+        android:textStyle="normal"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgEventTime" />
+
+    <RelativeLayout
+        android:id="@+id/rytViewDownload"
+        android:layout_width="@dimen/one_fifty"
+        android:layout_height="@dimen/fourty_size"
+        android:layout_marginTop="@dimen/twenty5_size"
+        android:background="@drawable/parent_blue_bg"
+        android:padding="@dimen/seven_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblupload">
+
+        <TextView
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:gravity="center"
+            android:text="@string/txt_viewImage"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="@dimen/ten_size"
+            android:src="@drawable/img_download_white" />
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

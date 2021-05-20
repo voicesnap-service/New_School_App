@@ -1,36 +1,61 @@
 package com.vsnapnewschool.voicesnapmessenger.UtilCommon
 
 import android.app.Activity
+import android.app.ProgressDialog
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
+import android.net.Uri
+import android.os.ParcelFileDescriptor
+import android.os.SystemClock
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.gson.JsonObject
 import com.vsnapnewschool.voicesnapmessenger.Activities.*
 import com.vsnapnewschool.voicesnapmessenger.Adapters.ForgotDialNumbers
 import com.vsnapnewschool.voicesnapmessenger.Models.*
+import com.vsnapnewschool.voicesnapmessenger.Network.ApiInterface
 import com.vsnapnewschool.voicesnapmessenger.Network.SchoolAPIServices
+import com.vsnapnewschool.voicesnapmessenger.ParentServiceModelResponse.*
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.R.layout.*
 import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.*
 import com.vsnapnewschool.voicesnapmessenger.albumImage.AlbumSelectActivity
-import java.io.File
+import net.ypresto.androidtranscoder.MediaTranscoder
+import net.ypresto.androidtranscoder.format.MediaFormatStrategyPresets
+import okhttp3.MediaType
+import okhttp3.OkHttpClient
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
+import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.io.*
 import java.util.*
+import java.util.concurrent.Future
+import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
 
 
 @Suppress("DEPRECATION")
 class UtilConstants {
     companion object {
-
 
         // School Menus
         var MENU_EMERGENCY: Int? = 100
@@ -55,6 +80,7 @@ class UtilConstants {
         var MENU_LEAVE_REQUESTS: Int? = 119
         var MENU_ONLINE_TEXT_BOOK: Int? = 120
         var MENU_PDF_UPLOAD: Int? = 121
+        var MENU_CONFERENCE_CALL: Int? = 122
 
         //Parent menus
 
@@ -75,6 +101,7 @@ class UtilConstants {
         var PARENT_MENU_VIDEO: Int? = 214
         var PARENT_MENU_ONLINE_TEXT_BOOK: Int? = 215
         var PARENT_MENU_LIBRARY: Int? = 216
+        var PARENT_MENU_TIMETABLE: Int? = 217
         var MENU_TYPE: Int? = 0
         var PARENT_MENU_TYPE: Int? = 0
 
@@ -100,6 +127,7 @@ class UtilConstants {
         var selectedFinalGroupsList = ArrayList<AllGroupsData>()
         var selectedFinalStaffsList = ArrayList<AllStaffsData>()
         var SelectedFinalSchoolsList = ArrayList<StaffDetailData>()
+        var SelectedConferenceList = ArrayList<ConferenceStaffResponse.ConferenceData>()
         var isSelectAll: Boolean? = false
         var AWSUploadedFilesList = ArrayList<AWSUploadedFiles>()
         var fileName: File? = null
@@ -122,6 +150,8 @@ class UtilConstants {
         var VideoFilePath: String? = null
         var Title: String? = null
         var Description: String? = null
+        var VimeoIframe: String? = null
+        var VimeoVideoUrl: String? = null
         var Date: String? = ""
         var Hour: String? = ""
         var Minute: String? = ""
@@ -130,6 +160,8 @@ class UtilConstants {
         var EndMinute: String? = ""
         var EventTime: String? = ""
         var ScheduleType: String? = null
+        var LeaveFrom: String? = null
+        var LeaveTo: String? = null
         var SucesspopupWindow: PopupWindow? = null
         var EntireSchoolPopupWindow: PopupWindow? = null
         var Apifiletype: String? = ""
@@ -140,22 +172,58 @@ class UtilConstants {
         var filetype: String? = "image"
         var filetypePdf: String? = "pdf"
         var filetypeVideo: String? = "video"
+        var FileTypeForApi: String? = null
 
         var API_SEE_MORE: String? = "SEE_MORE"
         var API_NORMAL: String? = "NORMAL"
         var CLICKED_SEE_MORE: Boolean? = false
 
-        var BottomMenuHome:Boolean?=true
+        var BottomMenuHome: Boolean? = true
         var extension: String? = null
         var selectedSubjectID: String? = null
         var selectedSubjectName: String? = null
         var SelectedStandardID: String? = null
         var SelectedSectionsForSubjects: String? = null
         var selectedSectionsListforSubjecject = ArrayList<Section>()
-         var voiceHistoryList = ArrayList<VoiceHistoryData>()
          var ApproveLeaveList = ArrayList<ApproveLeaveData>()
         var ApproveLeaveTypeStatus: String? = null
         var ApproveLeaveId: String? = null
+        var VoiceHistoryFile:String?=null
+        var voicehistoryentire:String?=""
+        var voicehistorygroup:String?=""
+        var Datehomework:String?=""
+        var TabPosition: Int? = null
+        var SelectedLeaveID: String? = null
+        var LeaveOtherDescription: String? = null
+        var LeaveReason: String? = null
+        var AssignmentHeaderID: String? = null
+        var AssignmentStudentID: String? = null
+        var AssignmentFiletype: String? = null
+        var ParentAssignmentHeaderID: String? = null
+        var ParentAssignmentDetailID: String? = null
+        var ParentAssignmentIsArchieve: String? = null
+        var PDFHeaderID: String? = null
+        var ParentAssingmentFileType: String? = null
+        var AssingmentTargetType: String? = null
+        var ManagementCountText: String? = ""
+        var ManagementCountVoice: String? = ""
+        var ManagementCountImage: String? = ""
+        var ManagementCountPdf: String? = ""
+        var ManagementCountVideo: String? = ""
+        var ListFilesImages = ArrayList<FilesImagePDF>()
+        var ListFilesPdf = ArrayList<FilesImagePDF>()
+        var DateIdTimeTable:String?=""
+
+        var chatstandardid:String?=""
+        var chatsectionid:String?=""
+        var chatsubjectid:String?=""
+        var chatisclassteacher:Int?=0
+        var chatstaffname:String?=""
+        var chatstaffid:String?=""
+        var ClassStrengthID: String? = null
+
+        var AssingmentForwardImageList = ArrayList<FilesImagePDF>()
+
 
 
         internal lateinit var dialNumbersAdapter: ForgotDialNumbers
@@ -190,17 +258,24 @@ class UtilConstants {
                 view,
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                true
+                false
             )
             SucesspopupWindow!!.setContentView(view)
             SucesspopupWindow!!.setTouchable(true)
             SucesspopupWindow!!.setFocusable(false)
-            SucesspopupWindow!!.setOutsideTouchable(false)
+            SucesspopupWindow!!.setOutsideTouchable(true)
 
             val lblClose = view.findViewById<TextView>(R.id.lblClose)
             val lblMessage = view.findViewById<TextView>(R.id.lblMessage)
+            val imgStatus = view.findViewById<ImageView>(R.id.imgStatus)
             lblMessage.setText(message)
-
+            imgStatus.setOnClickListener {
+                SucesspopupWindow!!.dismiss()
+                val intent = Intent(activity, SchoolHomeScreen::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                activity?.startActivity(intent)
+            }
             lblClose.setOnClickListener {
                 SucesspopupWindow!!.dismiss()
                 val intent = Intent(activity, SchoolHomeScreen::class.java)
@@ -223,15 +298,59 @@ class UtilConstants {
             popupWindow.setContentView(view)
             popupWindow.setTouchable(true)
             popupWindow.setFocusable(false)
-            popupWindow.setOutsideTouchable(false)
+            popupWindow.setOutsideTouchable(true)
 
             val lblClose = view.findViewById<TextView>(R.id.lblClose)
             val lblMessage = view.findViewById<TextView>(R.id.lblMessage)
+                val imgStatus = view.findViewById<ImageView>(R.id.imgStatus)
             lblMessage.setText(msg)
+            imgStatus.setOnClickListener {
+                SucesspopupWindow!!.dismiss()
+                val intent = Intent(activity, SchoolHomeScreen::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                activity?.startActivity(intent)
+            }
             lblClose.setOnClickListener {
                 popupWindow.dismiss()
             }
             popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
+        }
+
+        fun parentcustomSuccessAlert(activity: Activity?, message: String?) {
+            val inflater: LayoutInflater =
+                activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view: View = inflater.inflate(custom_alert_sucess, null)
+            SucesspopupWindow = PopupWindow(
+                view,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                true
+            )
+            SucesspopupWindow!!.setContentView(view)
+            SucesspopupWindow!!.setTouchable(true)
+            SucesspopupWindow!!.setFocusable(false)
+            SucesspopupWindow!!.setOutsideTouchable(false)
+
+            val lblClose = view.findViewById<TextView>(R.id.lblClose)
+            val lblMessage = view.findViewById<TextView>(R.id.lblMessage)
+            val imgStatus = view.findViewById<ImageView>(R.id.imgStatus)
+            lblMessage.setText(message)
+            imgStatus.setOnClickListener {
+                SucesspopupWindow!!.dismiss()
+                val intent = Intent(activity, SchoolHomeScreen::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                activity?.startActivity(intent)
+            }
+            lblClose.setOnClickListener {
+                SucesspopupWindow!!.dismiss()
+                val intent = Intent(activity, ParentHomeScreen::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                activity?.startActivity(intent)
+            }
+            SucesspopupWindow!!.showAtLocation(view, Gravity.CENTER, 0, 0)
         }
 
         fun parentCustomFailureAlert(activity: Activity?, message: String, ApiType: String?) {
@@ -246,16 +365,23 @@ class UtilConstants {
             popupWindow.setContentView(view)
             popupWindow.setTouchable(true)
             popupWindow.setFocusable(false)
-            popupWindow.setOutsideTouchable(false)
+            popupWindow.setOutsideTouchable(true)
 
             val lblClose = view.findViewById<TextView>(R.id.lblClose)
             val lblMessage = view.findViewById<TextView>(R.id.lblMessage)
+            val imgStatus = view.findViewById<ImageView>(R.id.imgStatus)
             lblMessage.setText(message)
+            imgStatus.setOnClickListener {
+                SucesspopupWindow!!.dismiss()
+                val intent = Intent(activity, SchoolHomeScreen::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                activity?.startActivity(intent)
+            }
             lblClose.setOnClickListener {
-                if(ApiType.equals(API_NORMAL)){
+                if (ApiType.equals(API_NORMAL)) {
                     popupWindow.dismiss()
-                }
-                else{
+                } else {
                     popupWindow.dismiss()
                     //activity.finish()
                 }
@@ -294,7 +420,8 @@ class UtilConstants {
         }
 
         fun showEntireSchoolConfirmationAlert(activity: Activity?) {
-            val inflater: LayoutInflater = activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val inflater: LayoutInflater =
+                activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view: View = inflater.inflate(confirmation_alert, null)
             EntireSchoolPopupWindow = PopupWindow(
                 view,
@@ -324,7 +451,10 @@ class UtilConstants {
         }
 
         private fun entireSchoolApi(activity: Activity) {
-            if (MENU_TYPE == MENU_TEXT) {
+            if(MENU_TYPE== MENU_VOICE && voicehistoryentire.equals("VoiceEntire")){
+                SchoolAPIServices.sendNonEmergencyVoiceHistoryToEntireSchool(activity)
+            }
+            else if (MENU_TYPE == MENU_TEXT) {
                 SchoolAPIServices.sendTextToEntireSchool(activity)
             } else if (MENU_TYPE == MENU_VOICE) {
                 SchoolAPIServices.sendNonEmergencyVoiceToEntireSchool(activity)
@@ -332,9 +462,11 @@ class UtilConstants {
                 val baseActivity: BaseActivity
                 baseActivity = BaseActivity()
                 baseActivity?.awsFileUpload(activity, 0)
+            }else if(MENU_TYPE== MENU_VIDEO){
+                SchoolAPIServices.videosizereducer(activity)
             }
-
         }
+
 
         fun forgotDialNumberPopup(activity: Activity?, otpData: OtpData) {
             val inflater: LayoutInflater =
@@ -418,7 +550,7 @@ class UtilConstants {
             val lblCreatedBy = view.findViewById<TextView>(R.id.lblCreatedBy)
             val imgClose = view.findViewById<ImageView>(R.id.imgClose)
 
-            lblCreatedBy.setText("Created By  :  "+ text_info.created_by)
+            lblCreatedBy.setText("Created By  :  " + text_info.created_by)
             lblMessage.setText(text_info.content)
             imgClose.setOnClickListener {
                 popupWindow.dismiss()
@@ -475,11 +607,10 @@ class UtilConstants {
             lblMessage.setText(activity.getString(R.string.exit_app))
             lblClose.setOnClickListener {
 
-                if(type.equals("Logout")){
+                if (type.equals("Logout")) {
                     Util_shared_preferences.putUserLoggedIn(activity, false)
                     SchoolAPIServices.logoutFromSameDevice(activity)
-                }
-             else {
+                } else {
                     popupWindow.dismiss()
                     activity.moveTaskToBack(true);
                     exitProcess(-1)
@@ -642,7 +773,7 @@ class UtilConstants {
                     tokenExpiredAlert(activity, errorResponseBody.message)
                 }
             } else if (errorCode == 500) {
-                parentCustomFailureAlert(activity, errorResponseBody!!.message,ApiType)
+                parentCustomFailureAlert(activity, errorResponseBody!!.message, ApiType)
             }
         }
 
@@ -741,6 +872,51 @@ class UtilConstants {
             activity?.startActivity(intent)
         }
 
+        fun messageFromManagement(activity: Activity?) {
+            val intent = Intent(activity, MessageFromMangementMenuScreen::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+
+        fun schoolStrength(activity: Activity?) {
+            val intent = Intent(activity, TeacherSchoolStrength::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+
+        fun conferenceScreen(activity: Activity?) {
+            val intent = Intent(activity, TeacherConferenceScreen::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+
+        fun TextmessageFromManagement(activity: Activity?) {
+            val intent = Intent(activity, MessageFromManageMentText::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+        fun ImagesFromManagement(activity: Activity?) {
+            val intent = Intent(activity, MessageFromManagementImage::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+        fun PdfFromManagementScreen(activity: Activity?) {
+            val intent = Intent(activity, MessageFromManagementPdf::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+
+        fun VoiceFromManagement(activity: Activity?) {
+            val intent = Intent(activity, MessageFromManagementVoice::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+        fun VideoFromManagement(activity: Activity?) {
+            val intent = Intent(activity, MessageFromManagementVideo::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+
         fun chatActivity(activity: Activity?) {
             val intent = Intent(activity, TeacherChatScreen::class.java)
             intent.putExtra("type", true)
@@ -797,6 +973,7 @@ class UtilConstants {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
         }
+
 
         fun videoActivity(activity: Activity?) {
             val intent = Intent(activity, TeacherVideoUploadScreen::class.java)
@@ -883,6 +1060,12 @@ class UtilConstants {
             activity?.startActivity(intent)
         }
 
+        fun parentCirculars(activity: Activity?) {
+            val intent = Intent(activity, ParentCircular::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+
         fun parentNoticeboardActivity(activity: Activity?) {
             val intent = Intent(activity, ParentNoticeBoard::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -946,16 +1129,31 @@ class UtilConstants {
             activity?.startActivity(intent)
         }
 
-        fun parentChatMemberActivity(context: Context?) {
+
+        fun parentChatMemberActivity(
+            context: Context?,
+            item: StaffChatDetails
+        ) {
             val intent = Intent(context, ChatConversation::class.java)
             intent.putExtra("type", false)
+            intent.putExtra("staffid", item.staff_id)
+            intent.putExtra("subjectid", item.subject_id)
+            intent.putExtra("staffname", item.staff_name)
+            intent.putExtra("isclassteacher", item.is_class_teacher)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context?.startActivity(intent)
         }
+        fun managementPdfViewScreen(activity: Activity?, text_info: MessageFromManagementPdfResponse.PdfData) {
+            val intent = Intent(activity, MessageMangementPdfViewScreen::class.java)
+            intent.putExtra("PdfData", text_info)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
 
-        fun parentCircularView(activity: Activity?, text_info: Text_Class) {
+        fun parentCircularView(activity: Activity?, text_info: GetPdfFilesResponse.PdfData) {
             val intent = Intent(activity, ParentCircularDetails::class.java)
-            intent.putExtra("content", text_info.recipients)
+            intent.putExtra("parentPdfData", text_info)
+
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
         }
@@ -978,9 +1176,10 @@ class UtilConstants {
             activity?.startActivity(intent)
         }
 
-        fun parentEventsHistoryActivity(activity: Activity?) {
+        fun parentEventsHistoryActivity(activity: Activity?, eventData: EventsData) {
             val intent = Intent(activity, ParentEventsViewScreen::class.java)
             intent.putExtra("type", "0")
+            intent.putExtra("EventClass", eventData)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
         }
@@ -994,28 +1193,68 @@ class UtilConstants {
         fun parentHomeworkHistoryActivityt(
             activity: Activity?,
             type: String,
-            text_info: Leave_Class
+            text_info: GetHomeWorkListResponse.ParentHomeworklist
         ) {
             val intent = Intent(activity, ParentHomeWorkViewScreen::class.java)
             intent.putExtra("type", type)
-            intent.putExtra("content", text_info.status)
-            intent.putExtra("homeworktype", text_info.leavetype)
+            intent.putExtra("content", text_info)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
         }
 
         fun ImageViewScreen(activity: Activity?, type: Boolean, text_info: String) {
-            val intent = Intent(activity, ViewFileScreen::class.java)
+            val intent = Intent(activity, ImagePdfFilesListScreen::class.java)
             intent.putExtra("contentfile", text_info)
             intent.putExtra("type", type)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
         }
 
-        fun viewFileActivity(activity: Activity?, text_info: EventsImageClass, type: Boolean) {
-            val intent = Intent(activity, ViewFileScreen::class.java)
-            intent.putExtra("contentfile", text_info)
+        fun viewFileActivity(
+            activity: Activity?,
+            fileList: ArrayList<FilesImagePDF>,
+            type: Boolean,
+            Menu: String
+        ) {
+            val intent = Intent(activity, ImagePdfFilesListScreen::class.java)
             intent.putExtra("type", type)
+            intent.putExtra("Menu", Menu)
+            activity?.startActivity(intent)
+        }
+
+        fun viewFileNotice(
+            activity: Activity?,
+            noticedata: GetNoticeBoardResponse.NoticeData,
+            type: Boolean,
+            position: Int
+        ) {
+            val intent = Intent(activity, ImagePdfFilesListScreen::class.java)
+            intent.putExtra("noticedata", noticedata)
+            intent.putExtra("type", type)
+            intent.putExtra("position", position)
+            activity?.startActivity(intent)
+        }
+
+        fun AssingnmentImageViewFile(
+            activity: Activity?,
+            assingmentData: GetAssingmentResponse.AssingmentData,
+            type: Boolean
+        ) {
+            val intent = Intent(activity, ImagePdfFilesListScreen::class.java)
+            intent.putExtra("assingmentData", assingmentData)
+            intent.putExtra("type", type)
+            activity?.startActivity(intent)
+        }
+
+        fun AssingnmentPdfViewFile(
+            activity: Activity?,
+            assingmentData: GetAssingmentResponse.AssingmentData,
+            type: Boolean
+        ) {
+            val intent = Intent(activity, ImagePdfFilesListScreen::class.java)
+            intent.putExtra("assingmentData", assingmentData)
+            intent.putExtra("type", type)
+            intent.putExtra("Menu", "Assingment")
             activity?.startActivity(intent)
         }
 
@@ -1025,22 +1264,58 @@ class UtilConstants {
             activity?.startActivity(intent)
         }
 
-        fun parentNoticeboardHistoryActivity(activity: Activity?) {
+        fun parentTimeTable(activity: Activity?) {
+            val intent = Intent(activity, TimeTable::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+
+        fun sectionWiseStrength(activity: Activity?) {
+            val intent = Intent(activity, TeacherSectionWiseStrength::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+
+        fun parentNoticeboardHistoryActivity(
+            activity: Activity?,
+            noticeBoardData: GetNoticeBoardResponse.NoticeData,
+            position: Int
+        ) {
             val intent = Intent(activity, ParentNoticeboardViewScreen::class.java)
             intent.putExtra("type", "0")
+            intent.putExtra("Noticeboard", noticeBoardData)
+            intent.putExtra("position", position)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
         }
 
-        fun parentVideoViewActivity(activity: Activity?) {
+        fun parentVideoViewActivity(
+            activity: Activity?,
+            item: ParentVideoDetail) {
             val intent = Intent(activity, ParentVideoView::class.java)
+            intent.putExtra("item", item.iframe)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+        fun managementVideoViewActivity(
+            activity: Activity?,
+            item: MessageFromManagementVideoResponse.VideoData) {
+            val intent = Intent(activity, ParentVideoView::class.java)
+            intent.putExtra("item", item.iframe)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
         }
 
-        fun teacherChatActivity(activity: Activity?) {
+        fun teacherChatActivity(
+            activity: Activity?,
+            textInfo: StaffChatClassDetail
+        ) {
             val intent = Intent(activity, ChatConversation::class.java)
             intent.putExtra("type", true)
+            intent.putExtra("isclassteacher", textInfo.isclassteacher)
+            intent.putExtra("sectionid", textInfo.sectionid)
+            intent.putExtra("standardid", textInfo.standardid)
+            intent.putExtra("subjectid", textInfo.subjectid)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
         }
@@ -1059,18 +1334,24 @@ class UtilConstants {
 
         }
 
-        fun teacherassignmentHistoryActivity(activity: Activity?, text_info: EventsImageClass) {
+        fun teacherassignmentHistoryActivity(
+            activity: Activity?,
+            text_info: GetAssingmentResponse.AssingmentData
+        ) {
             val intent = Intent(activity, AssignmentViewScreen::class.java)
             intent.putExtra("type", false)
-            intent.putExtra("contentfile", text_info)
+            intent.putExtra("assingmentData", text_info)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
         }
 
-        fun parentAssignmentView(activity: Activity?, item: EventsImageClass) {
-            val intent = Intent(activity, AssignmentViewScreen::class.java)
+        fun parentAssignmentView(
+            activity: Activity?,
+            item: GetParentAssignmentResponse.AssingmentDueData
+        ) {
+            val intent = Intent(activity, ParentAssingmentViewFileScreen::class.java)
             intent.putExtra("type", true)
-            intent.putExtra("contentfile", item)
+            intent.putExtra("ParentAssingmentData", item)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
         }
@@ -1090,6 +1371,15 @@ class UtilConstants {
 
         fun finalPreviewVoiceMessage(activity: Activity?, voicetype: Boolean) {
             val intent = Intent(activity, FinalPreviewVoiceMessage::class.java)
+            intent.putExtra("Voicetype", voicetype)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+
+        fun finalPreviewVoiceHistory(
+            activity: Activity?,
+            voicetype: Boolean) {
+            val intent = Intent(activity, FinalPreviewVoiceHistory::class.java)
             intent.putExtra("Voicetype", voicetype)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             activity?.startActivity(intent)
@@ -1143,7 +1433,24 @@ class UtilConstants {
             activity?.startActivity(intent)
         }
 
+        fun assignmentTotalAndSubmissions(activity: Activity?, type: Boolean) {
+            val intent = Intent(activity, AssingmentTotalAndSubmissions::class.java)
+            intent.putExtra("type", type)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+
+        fun ParentAssingnmentSubmit(activity: Activity?) {
+            val intent = Intent(activity, ParentAssingnmentSubmitScreen::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+        }
+
         fun previewScreens(activity: Activity) {
+            if (MENU_TYPE == MENU_VOICE && voicehistorygroup.equals("VoiceGroup")) {
+                finalPreviewVoiceMessage(activity, true)
+            }
+            else
             if (MENU_TYPE == MENU_EMERGENCY) {
                 finalPreviewVoiceMessage(activity, false)
             } else if (MENU_TYPE == MENU_VOICE) {
@@ -1182,6 +1489,8 @@ class UtilConstants {
             } else if (MENU_TYPE == MENU_TEXT) {
                 textMesageActivity(activity)
             } else if (MENU_TYPE == MENU_IMGAE_PDF) {
+                FileTypeForApi = "image"
+
                 imagesActivity(activity)
             } else if (MENU_TYPE == MENU_ASSIGNMENT) {
                 assignMentActivity(activity)
@@ -1214,11 +1523,21 @@ class UtilConstants {
                 approveLeaveActivity(activity)
             } else if (MENU_TYPE == MENU_MESSAGES_FROM_MANAGEMENT) {
 
+                messageFromManagement(activity)
+
+
             } else if (MENU_TYPE == MENU_SCHEDULE_EXAM) {
 
             } else if (MENU_TYPE == MENU_SCHOOL_STRENGTH) {
+                schoolStrength(activity)
 
-            } else if (MENU_TYPE == MENU_PDF_UPLOAD) {
+
+            }else if (MENU_TYPE == MENU_CONFERENCE_CALL) {
+                conferenceScreen(activity)
+
+            }
+            else if (MENU_TYPE == MENU_PDF_UPLOAD) {
+                FileTypeForApi = "pdf"
                 circularActivity(activity)
             }
         }
@@ -1237,6 +1556,7 @@ class UtilConstants {
             } else if (PARENT_MENU_TYPE == PARENT_MENU_EXAM_MARKS) {
                 parentExamResultActivity(activity)
             } else if (PARENT_MENU_TYPE == PARENT_MENU_CIRCULARS) {
+
                 parentCircularActivity(activity)
             } else if (PARENT_MENU_TYPE == PARENT_MENU_NOTICEBOARD) {
                 parentNoticeboardActivity(activity)
@@ -1261,12 +1581,122 @@ class UtilConstants {
 
             } else if (PARENT_MENU_TYPE == PARENT_MENU_ONLINE_TEXT_BOOK) {
 
+            } else if (PARENT_MENU_TYPE == PARENT_MENU_TIMETABLE) {
+                parentTimeTableActivty(activity)
+
             }
 
         }
 
+        fun FileViewPopUPImagePdf(
+            activity: Activity?,
+            file: String,
+            contentype: String,
+            title: String
+        ) {
+
+            Log.d("testPopup", activity.toString())
+            val inflater: LayoutInflater =
+                activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view: View = inflater.inflate(view_file_imagepdf, null)
+            val popupWindow = PopupWindow(
+                view,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                true
+            )
+
+            popupWindow.setContentView(view)
+            popupWindow.setTouchable(true)
+            popupWindow.setFocusable(true)
+            popupWindow.setOutsideTouchable(false)
+
+            val GridImageLayout = view.findViewById<ConstraintLayout>(R.id.GridImageLayout)
+            val lnrImageView = view.findViewById<ConstraintLayout>(R.id.lnrImageView)
+            val imgView = view.findViewById<ImageView>(R.id.imgView)
+
+            Log.d("contentype", contentype)
+            Log.d("file", file)
+
+            if (contentype.equals("image")) {
+                lnrImageView.visibility = View.VISIBLE
+                GridImageLayout.visibility = View.GONE
+
+                Glide.with(activity)
+                    .load(file)
+                    .into(imgView)
+            } else if (contentype.equals("pdf")) {
+                lnrImageView.visibility = View.GONE
+                GridImageLayout.visibility = View.GONE
+                popupWindow.dismiss()
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(file))
+                browserIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                browserIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                activity.startActivity(browserIntent)
+                popupWindow.dismiss()
+            }
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
+
+
+        }
+
+        fun FileViewScreen(activity: Activity?, type: Boolean) {
+            val intent = Intent(activity, ViewFileScreen::class.java)
+            intent.putExtra("type", type)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+
+        }
+
+        fun FileImageViewScreen(activity: Activity?, type: Boolean) {
+            val intent = Intent(activity, ViewFileImageScreen::class.java)
+            intent.putExtra("type", type)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity?.startActivity(intent)
+
+        }
+
+        fun PopupViewFiles(activity: Activity?, value: Boolean) {
+            val inflater: LayoutInflater =
+                activity!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view: View = inflater.inflate(R.layout.file_view_screen, null)
+            val ViewFilePopUp = PopupWindow(
+                view,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                true
+            )
+            ViewFilePopUp.setContentView(view)
+            ViewFilePopUp.setTouchable(true)
+            ViewFilePopUp.setFocusable(false)
+            ViewFilePopUp.setOutsideTouchable(false)
+
+            val btnViewImage = view.findViewById<TextView>(R.id.btnViewImage)
+            val btnViewPDF = view.findViewById<TextView>(R.id.btnViewPDF)
+            val imgClose = view.findViewById<ImageView>(R.id.imgClose)
+            imgClose.setOnClickListener({
+                ViewFilePopUp.dismiss()
+            })
+            if (PARENT_MENU_TYPE == PARENT_MENU_ASSIGNMENT) {
+
+                btnViewImage.setBackgroundResource(R.drawable.parent_blue_bg)
+                btnViewPDF.setBackgroundResource(R.drawable.parent_blue_bg)
+            }
+
+            btnViewImage.setOnClickListener { AssignmentFiletype = "IMAGE"
+
+                FileImageViewScreen(activity, value)
+
+            }
+            btnViewPDF.setOnClickListener {
+               AssignmentFiletype = "PDF"
+                FileViewScreen(activity, value)
+
+
+            }
+            ViewFilePopUp!!.showAtLocation(view, Gravity.CENTER, 0, 0)
+        }
 
     }
-
 
 }

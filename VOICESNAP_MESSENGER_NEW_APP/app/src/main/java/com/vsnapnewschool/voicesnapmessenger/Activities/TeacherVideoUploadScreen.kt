@@ -1,6 +1,7 @@
 package com.vsnapnewschool.voicesnapmessenger.Activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import com.vsnapnewschool.voicesnapmessenger.R
 import com.vsnapnewschool.voicesnapmessenger.UtilCommon.UtilConstants
 import kotlinx.android.synthetic.main.activity_bottom_menus.*
+import kotlinx.android.synthetic.main.circular_publish.*
 import kotlinx.android.synthetic.main.video.*
 
 
@@ -41,6 +43,8 @@ class TeacherVideoUploadScreen : BaseActivity(),View.OnClickListener{
             }
             R.id.btnNext -> {
                 HideKeyboard_Fragment(this)
+                UtilConstants.Title = lblContent.text.toString()
+                UtilConstants.Description = edVideoDescription.text.toString()
                 UtilConstants.recipientsActivity(this)
             }
             R.id.imgTeacherChat -> {

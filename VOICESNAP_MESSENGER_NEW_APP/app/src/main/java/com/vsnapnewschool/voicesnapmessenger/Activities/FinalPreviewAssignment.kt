@@ -33,7 +33,6 @@ class FinalPreviewAssignment : BaseActivity(), View.OnClickListener {
         lblAssignmentDescription.text = UtilConstants.Description
         lblAssignmentTitle.text = UtilConstants.Title
         lblSubject.text = UtilConstants.selectedSubjectName
-        lblAssignmentDueDate.text = UtilConstants.Date
 
         imgTeacherChat?.setOnClickListener(this)
         imgTeacherHomeMenu?.setOnClickListener(this)

@@ -35,7 +35,7 @@ class ParentStaff : BaseActivity(),View.OnClickListener {
         imgHomeMenu?.setOnClickListener(this)
         imgSettings?.setOnClickListener(this)
 
-        parent_bottom_layout.visibility= View.VISIBLE
+        recyle_parent_bottom_layout.visibility= View.VISIBLE
         StaffAdapter = ParentStaffAdapter(menulist, this)
         val mLayoutManager: RecyclerView.LayoutManager = GridLayoutManager(this, 2)
         recyclerview.setLayoutManager(mLayoutManager)
