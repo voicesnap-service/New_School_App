@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_margin="@dimen/fifty_size"
+        android:background="@color/whitegrey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgClose"
+            android:layout_width="@dimen/twenty5_size"
+            android:layout_height="@dimen/twenty5_size"
+            android:layout_marginTop="@dimen/ten_size"
+            android:layout_marginRight="@dimen/ten_size"
+            android:src="@drawable/image_close"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
+        <Button
+            android:id="@+id/btnViewImage"
+            android:layout_width="@dimen/two_hundred"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/thirty_size"
+            android:background="@drawable/rectangle_orange"
+            android:text="@string/txt_viewImage"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgClose" />
+
+        <Button
+            android:id="@+id/btnViewPDF"
+            android:layout_width="@dimen/two_hundred"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fifty_size"
+            android:background="@drawable/rectangle_orange"
+            android:text="@string/txt_view_Pdf"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnViewImage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

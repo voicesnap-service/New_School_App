@@ -1,0 +1,13 @@
+package com.vsnapnewschool.voicesnapmessenger.Interfaces
+
+import com.vsnapnewschool.voicesnapmessenger.Adapters.ChatMembersAdapter
+import com.vsnapnewschool.voicesnapmessenger.Adapters.ParentChatMembersAdapter
+import com.vsnapnewschool.voicesnapmessenger.Models.class_chat
+import com.vsnapnewschool.voicesnapmessenger.ParentServiceModelResponse.StaffChatDetails
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.StaffChatClassDetail
+
+interface parentchatmemberListener {
+
+    fun onchatclickListener(holder: ParentChatMembersAdapter.MyViewHolder, item: StaffChatDetails)
+
+}

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/ten_size"
+    android:background="@drawable/rect_white_bg"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_three">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:background="@color/clr_white">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/ten_size"
+            android:layout_marginLeft="@dimen/ten_size"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_three">
+
+            <TextView
+                android:id="@+id/lblCreatedBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/clr_parent"
+                android:textSize="@dimen/fourteen_size"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lblTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/clr_card_seventeen"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblCreatedBy" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/lblNew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/rectangle_red"
+                android:padding="@dimen/dimen_five"
+                android:text="@string/lbl_new"
+                android:textColor="@color/clr_white"
+                android:textSize="@dimen/thirteen_size"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/lblCreatedOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:textColor="@color/clr_black"
+                android:textSize="@dimen/twele_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblNew"
+                tools:text="20 Jan 2018" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_description_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/bpLine_background"
+        android:padding="5dp"
+        android:text="Description"
+        android:textColor="@color/clr_black"
+        android:visibility="gone" />
+
+
+
+    <FrameLayout
+        android:id="@+id/ImageFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/detailsLayout"
+        android:background="@color/white">
+        <ProgressBar
+            android:id="@+id/progressImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgGrid"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/one_fifty"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/clr_white"
+            app:strokeWidth="@dimen/dimen_five"
+            app:layout_constraintStart_toStartOf="parent"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/event1"
+            app:shapeAppearanceOverlay="@style/roundedCorner" />
+
+
+        <TextView
+            android:id="@+id/lblImageCount"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/one_fifty"
+            android:layout_gravity="center"
+            android:background="@color/clr_white_light"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="+2"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty5_size" />
+    </FrameLayout>
+
+
+</LinearLayout>

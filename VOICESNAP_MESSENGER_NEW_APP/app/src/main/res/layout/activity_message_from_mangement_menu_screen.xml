@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/assignmentList"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitegrey"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_three">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/OverallLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/LayoutText"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/rect_menu_four"
+            android:paddingBottom="@dimen/twenty_size"
+            app:layout_constraintEnd_toStartOf="@+id/LayoutVoice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/lblUnreadTextCount"
+                android:layout_width="@dimen/twenty3_size"
+                android:layout_height="@dimen/twenty3_size"
+                android:layout_marginLeft="@dimen/twenty5_size"
+                android:layout_marginRight="@dimen/dimen_five"
+                android:background="@drawable/bg_unread_circle"
+                android:gravity="center"
+                android:text="12"
+                android:textColor="@color/black"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgIcon"
+                android:layout_width="@dimen/thirty_size"
+                android:layout_height="@dimen/thirty_size"
+                android:layout_marginTop="@dimen/dimen_five"
+                android:layout_marginBottom="@dimen/twenty_size"
+                android:src="@drawable/home_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblUnreadTextCount" />
+
+            <TextView
+                android:id="@+id/lblMenuName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/ten_size"
+                android:layout_marginTop="@dimen/ten_size"
+                android:gravity="center"
+                android:text="Text"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgIcon"></TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/LayoutVoice"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/rect_menu_ten"
+            android:paddingBottom="@dimen/twenty_size"
+            app:layout_constraintEnd_toStartOf="@+id/LayoutImage"
+            app:layout_constraintStart_toEndOf="@+id/LayoutText"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/lblUnreadCountVoice"
+                android:layout_width="@dimen/twenty3_size"
+                android:layout_height="@dimen/twenty3_size"
+                android:layout_marginLeft="@dimen/twenty5_size"
+                android:layout_marginRight="@dimen/dimen_five"
+                android:background="@drawable/bg_unread_circle"
+                android:gravity="center"
+                android:text="12"
+                android:textColor="@color/black"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/imgIcon1"
+                android:layout_width="@dimen/thirty_size"
+                android:layout_height="@dimen/thirty_size"
+                android:layout_marginTop="@dimen/dimen_five"
+                android:layout_marginBottom="@dimen/twenty_size"
+                android:src="@drawable/call"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblUnreadCountVoice" />
+
+            <TextView
+                android:id="@+id/lblText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/ten_size"
+                android:gravity="center"
+                android:text="Voice"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgIcon1"></TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/LayoutImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/rect_menu_two"
+            android:paddingBottom="@dimen/twenty_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/LayoutVoice"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/lblUnreadCountImage"
+                android:layout_width="@dimen/twenty3_size"
+                android:layout_height="@dimen/twenty3_size"
+                android:layout_marginLeft="@dimen/twenty5_size"
+                android:layout_marginRight="@dimen/dimen_five"
+                android:background="@drawable/bg_unread_circle"
+                android:gravity="center"
+                android:text="12"
+                android:textColor="@color/black"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgIcon2"
+                android:layout_width="@dimen/thirty_size"
+                android:layout_height="@dimen/thirty_size"
+                android:layout_marginTop="@dimen/dimen_five"
+                android:layout_marginBottom="@dimen/twenty_size"
+                android:src="@drawable/home_image"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblUnreadCountImage" />
+
+            <TextView
+                android:id="@+id/lblText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/ten_size"
+                android:gravity="center"
+                android:text="Image"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgIcon2"></TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/thirty5_size"
+        android:layout_marginTop="@dimen/twenty5_size"
+        app:layout_constraintTop_toBottomOf="@+id/LayoutOne">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/LayoutPdf"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="@dimen/fourty_size"
+            android:background="@drawable/rect_menu_five"
+            android:paddingBottom="@dimen/twenty_size"
+            app:layout_constraintEnd_toStartOf="@+id/LayoutVideo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/lblUnreadCountPdf"
+                android:layout_width="@dimen/twenty3_size"
+                android:layout_height="@dimen/twenty3_size"
+                android:layout_marginLeft="@dimen/twenty5_size"
+                android:layout_marginRight="@dimen/dimen_five"
+                android:background="@drawable/bg_unread_circle"
+                android:gravity="center"
+                android:text="12"
+                android:textColor="@color/black"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgIcon3"
+                android:layout_width="@dimen/thirty_size"
+                android:layout_height="@dimen/thirty_size"
+                android:layout_marginTop="@dimen/dimen_five"
+                android:layout_marginBottom="@dimen/twenty_size"
+                android:src="@drawable/home_events"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblUnreadCountPdf" />
+
+            <TextView
+                android:id="@+id/lblPdf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/ten_size"
+                android:layout_marginTop="@dimen/ten_size"
+                android:gravity="center"
+                android:text="Pdf"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgIcon3">
+
+            </TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/LayoutVideo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_marginStart="@dimen/fourty_size"
+            android:background="@drawable/rect_menu_seven"
+            android:paddingBottom="@dimen/twenty_size"
+            app:layout_constraintStart_toEndOf="@+id/LayoutPdf"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/lblUnreadCountVideo"
+                android:layout_width="@dimen/twenty3_size"
+                android:layout_height="@dimen/twenty3_size"
+                android:layout_marginLeft="@dimen/twenty5_size"
+                android:layout_marginRight="@dimen/dimen_five"
+                android:background="@drawable/bg_unread_circle"
+                android:gravity="center"
+                android:text="12"
+                android:textColor="@color/black"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgIcon6"
+                android:layout_width="@dimen/thirty_size"
+                android:layout_height="@dimen/thirty_size"
+                android:layout_marginTop="@dimen/dimen_five"
+                android:layout_marginBottom="@dimen/twenty_size"
+                android:src="@drawable/home_video"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblUnreadCountVideo" />
+
+            <TextView
+                android:id="@+id/lblVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/ten_size"
+                android:layout_marginTop="@dimen/ten_size"
+                android:gravity="center"
+                android:text="Video"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgIcon6">
+
+            </TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/activity_bottom_menus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/seventy5_size"
+        android:layout_marginTop="@dimen/dimen_five"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

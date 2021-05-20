@@ -1,0 +1,12 @@
+package com.vsnapnewschool.voicesnapmessenger.Interfaces
+
+import com.vsnapnewschool.voicesnapmessenger.Adapters.CircularHistoryAdapter
+import com.vsnapnewschool.voicesnapmessenger.Adapters.ClassWiseStrengthAdapter
+import com.vsnapnewschool.voicesnapmessenger.ParentServiceModelResponse.GetPdfFilesResponse
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.GetClassWiseStrength
+
+interface classStrengthListener {
+
+    fun onClassStrength(holder: ClassWiseStrengthAdapter.MyViewHolder, item: GetClassWiseStrength.ClassStrengthData)
+
+}

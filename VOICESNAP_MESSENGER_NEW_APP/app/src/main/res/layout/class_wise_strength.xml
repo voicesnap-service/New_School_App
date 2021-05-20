@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/circular"
+    android:padding="@dimen/dimen_five"
+    android:background="@color/whitegrey"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/ten_size"
+        android:layout_margin="@dimen/eight_size"
+        android:background="@drawable/orange_shadow"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/imgNext"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginRight="@dimen/dimen_five"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:src="@drawable/right_arrow"
+            android:padding="@dimen/dimen_five"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/lbl_new"
+            android:textColor="@color/clr_white"
+            android:textSize="@dimen/fourteen_size"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/lblStandardName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vii"
+            android:textColor="@color/app_color"
+            android:textSize="@dimen/thirteen_size"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/ten_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lblRollNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="Total Student"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/ten_size"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblStandardName" />
+
+
+        <TextView
+            android:id="@+id/lblLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_five"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="-"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toRightOf="@+id/lblRollNo"
+            app:layout_constraintTop_toBottomOf="@+id/lblStandardName" />
+
+        <TextView
+            android:id="@+id/lblStudentCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_five"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="10"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toRightOf="@+id/lblLine"
+            app:layout_constraintTop_toBottomOf="@+id/lblStandardName" />
+
+        <TextView
+            android:id="@+id/girls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="Girls Count"
+            android:layout_marginStart="@dimen/ten_size"
+
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblRollNo" />
+
+
+        <TextView
+            android:id="@+id/lblLine1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ten_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="-"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="normal"
+            android:layout_marginLeft="@dimen/ten_size"
+            app:layout_constraintLeft_toRightOf="@+id/girls"
+            app:layout_constraintTop_toBottomOf="@+id/lblLine" />
+
+        <TextView
+            android:id="@+id/lblGirlsCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_five"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="10"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toRightOf="@+id/lblLine"
+            app:layout_constraintTop_toBottomOf="@+id/lblRollNo" />
+        <TextView
+            android:id="@+id/boys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="Boys Count"
+            android:layout_marginStart="@dimen/ten_size"
+
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/girls" />
+
+
+        <TextView
+            android:id="@+id/lblLine2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ten_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="-"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="normal"
+            android:layout_marginLeft="@dimen/ten_size"
+            app:layout_constraintLeft_toRightOf="@+id/boys"
+            app:layout_constraintTop_toBottomOf="@+id/girls" />
+
+        <TextView
+            android:id="@+id/lblBoysCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="10"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toRightOf="@+id/lblLine1"
+            app:layout_constraintTop_toBottomOf="@+id/girls" />
+
+        <TextView
+            android:id="@+id/Unspecified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="UnSpecified Count"
+            android:layout_marginStart="@dimen/ten_size"
+
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/boys" />
+
+
+        <TextView
+            android:id="@+id/lblLine3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ten_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="-"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="normal"
+            android:layout_marginLeft="@dimen/ten_size"
+            app:layout_constraintLeft_toRightOf="@+id/Unspecified"
+            app:layout_constraintTop_toBottomOf="@+id/boys" />
+
+        <TextView
+            android:id="@+id/lblUnspecifiedCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_size"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:text="10"
+            android:textColor="@color/clr_txtgrey_light"
+            android:textSize="@dimen/fifteen_size"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toRightOf="@+id/lblLine3"
+            app:layout_constraintTop_toBottomOf="@+id/boys" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

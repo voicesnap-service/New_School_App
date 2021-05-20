@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/lnrStudent"
+        android:layout_margin="@dimen/ten_size"
+        android:background="@drawable/whitebg"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/lnrStudentDetails"
+            android:background="@color/clr_white"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/lblStudentName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/thirteen_size"
+                android:layout_marginTop="@dimen/ten_size"
+                android:gravity="left"
+                android:layout_toLeftOf="@+id/lblstatus"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/clr_blue"
+                android:text="SDFDSGFDG"
+                android:layout_margin="@dimen/dimen_five"/>
+            <TextView
+                android:id="@+id/lblsection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/twele_size"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/lblStudentName"
+                android:textColor="@color/clr_black"
+                android:text="nisha"
+                android:layout_margin="@dimen/dimen_five"/>
+
+            <TextView
+                android:id="@+id/lblstatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/twele_size"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:textColor="@color/clr_green"
+                android:text=" Not submitted"
+                android:layout_margin="5dp"
+                android:padding="5dp"/>
+            <Button
+                android:id="@+id/btnViewFile"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/thirty_size"
+                android:layout_margin="@dimen/dimen_five"
+                android:background="@drawable/rectangle_orange"
+                android:backgroundTint="@color/clr_card_one"
+                android:text="@string/btn_view"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/lblstatus"
+                android:textColor="@android:color/white"
+                android:layout_gravity="center"
+                android:textSize="@dimen/twele_size"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

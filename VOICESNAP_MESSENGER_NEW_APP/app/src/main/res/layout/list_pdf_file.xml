@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_five"
+    android:background="@color/whitegrey"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LayoutPDF"
+        android:background="@drawable/whitebg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/lblPDFcontent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:text=""
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/whitegrey"
+            android:textColor="@color/clr_black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rytTextMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblPDFcontent">
+
+
+            <ImageView
+                android:id="@+id/imgPDF"
+                android:layout_width="@dimen/fourty5_size"
+                android:layout_height="@dimen/fourty5_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginBottom="6dp"
+                android:padding="5dp"
+                android:src="@drawable/pdf" />
+
+            <TextView
+                android:id="@+id/pdfpath"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/imgPDF"
+                android:padding="2dp"
+                app:layout_constraintTop_toTopOf="parent"
+
+                android:layout_marginRight="30dp"
+                app:layout_constraintLeft_toRightOf="@+id/imgPDF"
+                android:text="urpeksf;ldf;ljdfnsnfdsfjehsdkjfhdsjfhjdfjhgjfdgdghdhfsdfdsjfsj"
+                android:textColor="@color/clr_black"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

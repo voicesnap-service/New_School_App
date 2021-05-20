@@ -1,0 +1,11 @@
+package com.vsnapnewschool.voicesnapmessenger.Interfaces
+
+import com.vsnapnewschool.voicesnapmessenger.Adapters.ManagementImageAdapter
+import com.vsnapnewschool.voicesnapmessenger.Adapters.ManagementVideoAdapter
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.MessageFromManagementVideoResponse
+import com.vsnapnewschool.voicesnapmessenger.ServiceResponseModels.MessageFromMangementImageResponse
+
+interface managementVideoListener {
+
+    fun onManagementVideoClick(holder: ManagementVideoAdapter.MyViewHolder, item: MessageFromManagementVideoResponse.VideoData)
+}
